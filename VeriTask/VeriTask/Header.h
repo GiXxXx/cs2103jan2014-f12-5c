@@ -19,6 +19,7 @@ private:
 
 	public:
 	Task(); //default constructor
+	void Delete();
 	void Undo();
 	void Mark(string status);
 /* Add

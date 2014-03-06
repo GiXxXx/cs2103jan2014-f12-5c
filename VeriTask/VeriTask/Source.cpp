@@ -1,6 +1,11 @@
 #include "Header.h"
 using namespace std;
 
+void Task::Delete() {
+	// this function is to delete an unwanted task
+
+}
+
 void Task::Undo() {
 	/* every time a function is made, an extra marker data attribute in myVeriTask should be updated to reflect that function.
 	No change for SEARCH and SHOW. 
