@@ -10,7 +10,7 @@ using namespace std;
 class Task {
 
 private:
-	double _SequenceNo;
+	double _SequenceNum;
 	string _Title;
 	int _Deadline;
 	double _StartTime;
@@ -21,13 +21,20 @@ private:
 	Task(); //default constructor
 	void Undo();
 	void Mark(string status);
+/* Add
+	Search
+	Edit
+	Delete
+	Show
+	Select
+	Identifier (must recognise "exit" also) */
 
 };
 
 class VeriTask {
 
 private:
-	vector<Task> Data;
+	vector<Task> Data //main storage;
 
 };
 
