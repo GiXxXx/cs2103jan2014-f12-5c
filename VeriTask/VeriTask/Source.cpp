@@ -1,4 +1,6 @@
-#include "Header.h"
+#include "Task.h"
+#include "VeriTask.h"
+
 using namespace std;
 
 void Task::Delete() {
