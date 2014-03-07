@@ -3,12 +3,12 @@
 
 using namespace std;
 
-void Task::Delete() {
+void VeriTask::Delete() {
 	// this function is to delete an unwanted task
 
 }
 
-void Task::Undo() {
+void VeriTask::Undo() {
 	/* every time a function is made, an extra marker data attribute in myVeriTask should be updated to reflect that function.
 	No change for SEARCH and SHOW. 
 
@@ -22,7 +22,7 @@ void Task::Undo() {
 	show the undone change.*/
 }
 
-void Task::Mark(string status) {
+void VeriTask::Mark(string status) {
 	//see about declaring these strings in class VeriTask later
 	string str1 = "done";
 	string str2 = "undone";
