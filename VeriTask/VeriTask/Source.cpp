@@ -46,7 +46,7 @@ void Task::Mark(string status) {
 
 int main() {
 
-	VeriTask myVeriTask;
+//	VeriTask myVeriTask;
 
 	return 0;
 }

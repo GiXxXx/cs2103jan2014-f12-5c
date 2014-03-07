@@ -32,12 +32,12 @@ private:
 
 };
 
-class VeriTask {
+/*class VeriTask {
 
 private:
 	vector<Task> Data //main storage;
 
-};
+};*/
 
 
 
