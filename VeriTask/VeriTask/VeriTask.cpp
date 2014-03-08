@@ -22,13 +22,15 @@ void VeriTask::addTask(Task &taskToAdd(getEvent(), getDate, getStartTime, GetEnd
 	}
 }
 
-void deleteTask(vector<Task>, int){
-	//access sequence number of int
-	//iterate through vector and delete
-	return;
+void deleteTask(vector<Task>, int) {
+	haha
+
 }
 
-void editTask(int, string);
+void editTask(int, string) {
+
+
+}
 
 vector<Task> showTask();
 
@@ -36,27 +38,18 @@ vector<Task> VeriTask::searchTask(string keyword) {
 	vector<Task> taskListFound;	
 
 	for (vector<Task>::iterator i=_taskList.begin(); i<_taskList.end(); i++) {
-	
-		string tempEvent = (*i).getEvent();
-		string tempDate = (*i).getDate();
-		string tempStartTime = (*i).getStartTime();
-		string tempEndTime = (*i).getEndTime();
-		if ((tempEvent.find(keyword)!=string::npos)||
-			(tempDate.find(keyword)!=string::npos) ||
-			(tempStartTime.find(keyword)!=string::npos) ||
-			(tempEndTime.find(keyword)!=string::npos)) {
-			taskListFound.push_back((*i));
-			
-		}
-	}
-	return taskListFound;
-}
+		if (_taskList[i]._Event(keyword)!=string::npos) {
+
 
 void undoCommand();
-
 void markTask(int, int);
 
-void VeriTask::undoCommand() {
+void VeriTask::Delete() {
+	// this function is to delete an unwanted task
+
+}
+
+void VeriTask::Undo() {
 	/* every time a function is made, an extra marker data attribute in myVeriTask should be updated to reflect that function.
 	No change for SEARCH and SHOW. 
 
@@ -70,7 +63,7 @@ void VeriTask::undoCommand() {
 	show the undone change.*/
 }
 
-void VeriTask::markTask(int tasktomark, string status) {
+void VeriTask::Mark(string status) {
 	//see about declaring these strings in class VeriTask later
 	string str1 = "done";
 	string str2 = "undone";
