@@ -15,11 +15,11 @@ private:
 	string _Date;
 	string _StartTime;
 	string _EndTime;
-	int _Status;
+	string _Status;
 	double _SequenceNum;
 
 	public:
-	Task(string Event, string Date, string StartTime, string EndTime, int Status);
+	Task(string Event, string Date, string StartTime, string EndTime, string Status);
 	string getEvent();
 	string getDate();
 	string getStartTime();

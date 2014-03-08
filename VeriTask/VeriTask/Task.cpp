@@ -1,6 +1,6 @@
 #include "Task.h"
 
-Task::Task(string Event, string Date, string StartTime, string EndTime, int Status) {
+Task::Task(string Event, string Date, string StartTime, string EndTime, string Status) {
 	_Event = Event;
 	_Date = Date;
 	_StartTime = StartTime;

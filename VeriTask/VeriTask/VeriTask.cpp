@@ -3,12 +3,14 @@
 
 using namespace std;
 
-//VeriTask() {
+//VeriTask() { 
+
+  //set taskListToDisplay and copy everything from file to taskList[]
 
 //}
 
 
-void VeriTask::addTask(Task &taskToAdd(getEvent(), getDate, getStartTime, GetEndTime,) {
+void VeriTask::addTask(Task &taskToAdd(getEvent(), getDate, getStartTime, GetEndTime,) { // requires Identifier
 	if (_taskList.empty()) {
 		_taskList.push_back(taskToAdd);
 	} else {
@@ -22,23 +24,34 @@ void VeriTask::addTask(Task &taskToAdd(getEvent(), getDate, getStartTime, GetEnd
 	}
 }
 
-void deleteTask(vector<Task>, int) {
-	haha
+void VeriTask::deleteTask(int taskNumToDelete) {      // modify the code after integration
+	double sequenceNumToDelete = _taskListToDisplay[taskNumToDelete-1].getSequenceNum;
 
+	for (vector<Task>::iterator i=_taskList.begin(); i<_taskList.end(); i++) { //replace it with of function called searchTaskID
+		if ((*i).getSequenceNum = sequenceNumToDelete) {
+			_taskList.erase(i);
+			break;
+		}
+	}
 }
 
-void editTask(int, string) {
+void VeriTask::editTask(string taskInfo, int taskNumToEdit) {
+	double sequenceNumToEdit = _taskListToDisplay[taskNumToEdit-1].getSequenceNum();
 
+	for (vector<Task>::iterator i=_taskList.begin(); i<_taskList.end(); i++) {
+		if ((*i).getSequenceNum = sequenceNumToEdit) {
+			// set task with taskInfo depending on Identifier
 
+		}
+	}
 }
 
-vector<Task> showTask();
+// vector<Task> showTask();
 
 vector<Task> VeriTask::searchTask(string keyword) {
 	vector<Task> taskListFound;	
 
 	for (vector<Task>::iterator i=_taskList.begin(); i<_taskList.end(); i++) {
-	
 		string tempEvent = (*i).getEvent();
 		string tempDate = (*i).getDate();
 		string tempStartTime = (*i).getStartTime();
@@ -48,36 +61,13 @@ vector<Task> VeriTask::searchTask(string keyword) {
 			(tempStartTime.find(keyword)!=string::npos) ||
 			(tempEndTime.find(keyword)!=string::npos)) {
 			taskListFound.push_back((*i));
-			
 		}
 	}
 	return taskListFound;
 }
 
 
-void undoCommand();
-void markTask(int, int);
-
-void VeriTask::Delete() {
-	// this function is to delete an unwanted task
-
-}
-
-void VeriTask::Undo() {
-	/* every time a function is made, an extra marker data attribute in myVeriTask should be updated to reflect that function.
-	No change for SEARCH and SHOW. 
-
-	implement a single-queue item counter in Identifier. if undo is being called a 2nd time, undo the undo and say so.
-	disallow repeated undo & redo.
-
-	make a copy of the object that is being called.
-
-	if input is "undo", the object should be overwritten with the made copy. 
-	
-	show the undone change.*/
-}
-
-void VeriTask::Mark(string status) {
+void VeriTask::markTask(string status, int taskNumToMark) {
 	//see about declaring these strings in class VeriTask later
 	string str1 = "done";
 	string str2 = "undone";
@@ -100,6 +90,23 @@ void VeriTask::Mark(string status) {
 				cout << "Error in recognising input\n";
 			}
 }
+
+void undoCommand();
+
+void VeriTask::Undo() {
+	/* every time a function is made, an extra marker data attribute in myVeriTask should be updated to reflect that function.
+	No change for SEARCH and SHOW. 
+
+	implement a single-queue item counter in Identifier. if undo is being called a 2nd time, undo the undo and say so.
+	disallow repeated undo & redo.
+
+	make a copy of the object that is being called.
+
+	if input is "undo", the object should be overwritten with the made copy. 
+	
+	show the undone change.*/
+}
+
 
 int main() {
 

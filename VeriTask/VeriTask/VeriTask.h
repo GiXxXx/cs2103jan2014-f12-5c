@@ -19,12 +19,12 @@ private:
 public:
 	VeriTask(); //default constructor
 	void addTask(Task);
-	void deleteTask(vector<Task>, int);
-	void editTask(int, string);
-	vector<Task> showTask();
+	void deleteTask(int);
+	void editTask(string, int);
+	vector<Task> showTask(); //combine it with confirmation info
 	vector<Task> searchTask(string);
 	void undoCommand();
-	void markTask(int, int);
+	void markTask(string, int);
 
 	/* 
 	Show
