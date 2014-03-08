@@ -38,7 +38,21 @@ vector<Task> VeriTask::searchTask(string keyword) {
 	vector<Task> taskListFound;	
 
 	for (vector<Task>::iterator i=_taskList.begin(); i<_taskList.end(); i++) {
-		if (_taskList[i]._Event(keyword)!=string::npos) {
+	
+		string tempEvent = (*i).getEvent();
+		string tempDate = (*i).getDate();
+		string tempStartTime = (*i).getStartTime();
+		string tempEndTime = (*i).getEndTime();
+		if ((tempEvent.find(keyword)!=string::npos)||
+			(tempDate.find(keyword)!=string::npos) ||
+			(tempStartTime.find(keyword)!=string::npos) ||
+			(tempEndTime.find(keyword)!=string::npos)) {
+			taskListFound.push_back((*i));
+			
+		}
+	}
+	return taskListFound;
+}
 
 
 void undoCommand();
