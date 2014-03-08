@@ -11,7 +11,7 @@ File::~File(void){
 
 void File::AccessFile(list<Task> TaskList){
 	string TaskString;
-	Task Task;
+	Task task;
 	string date, StartTime, EndTime, Event;
 	double SequenceNumber;
 	string Number;
@@ -20,20 +20,20 @@ void File::AccessFile(list<Task> TaskList){
 	ifstream read(filename.c_str());
 
 	while(getline(read, date)){
-		Task.SetDate(date);
+		task.SetDate(date);
 		getline(read, StartTime);
-		Task.SetStartTime(StartTime);
+		task.SetStartTime(StartTime);
 		getline(read, EndTime);
-		Task.SetEndTime(EndTime);
+		task.SetEndTime(EndTime);
 		getline(read, Event);
-		Task.SetEvent(Event);
+		task.SetEvent(Event);
 		getline(read, Number);
 		TryParse(Number, SequenceNumber);
-		Task.SetSeqenceNumber(SequenceNumber);
+		task.SetSeqenceNumber(SequenceNumber);
 		getline(read, StatusString);
 		TryParse(StatusString, status);
-		Task.SetStatus(status);
-		TaskList.push_back(Task);
+		task.SetStatus(status);
+		TaskList.push_back(task);
 	}
 
 	read.close();
