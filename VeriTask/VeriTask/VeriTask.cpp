@@ -93,7 +93,7 @@ void VeriTask::markTask(string status, int taskNumToMark) {
 
 void undoCommand();
 
-void VeriTask::Undo() {
+void VeriTask::undoCommand() {
 	/* every time a function is made, an extra marker data attribute in myVeriTask should be updated to reflect that function.
 	No change for SEARCH and SHOW. 
 
