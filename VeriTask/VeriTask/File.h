@@ -11,7 +11,7 @@ private:
 	string filename;
 
 public:
-	File(string);
+	File(void);
 	~File(void);
 	void AccessFile(list<Task>);
 	void SaveFile(list<Task>);
