@@ -33,7 +33,7 @@ private:
 	string setEndTime(string EndTime);
 	string setEvent(string Event);
 	double setSeqenceNum(double SequenceNum);
-	string setStatus(int Status);
+	string setStatus(string Status);
 };
 
 #endif
