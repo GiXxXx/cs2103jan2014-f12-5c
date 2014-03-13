@@ -11,12 +11,11 @@ File::~File(void){
 
 void File::AccessFile(list<Task> TaskList){
 	string TaskString;
-	Task task;
+	Task task();
 	string date, StartTime, EndTime, Event;
 	double SequenceNumber;
 	string Number;
-	int status;
-	string StatusString;
+	string Status;
 	ifstream read(filename.c_str());
 
 	while(getline(read, date)){
@@ -28,11 +27,10 @@ void File::AccessFile(list<Task> TaskList){
 		getline(read, Event);
 		task.setEvent(Event);
 		getline(read, Number);
-		TryParse(Number, SequenceNumber);
+		SequenceNumber = std::stoi(Number);
 		task.setSeqenceNum(SequenceNumber);
-		getline(read, StatusString);
-		TryParse(StatusString, status);
-		task.setStatus(status);
+		getline(read, Status);
+		task.setStatus(Status);
 		TaskList.push_back(task);
 	}
 
