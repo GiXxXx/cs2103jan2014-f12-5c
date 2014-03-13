@@ -11,7 +11,7 @@ File::~File(void){
 
 void File::AccessFile(list<Task> TaskList){
 	string TaskString;
-	Task task();
+	Task task;
 	string date, StartTime, EndTime, Event;
 	double SequenceNumber;
 	string Number;
