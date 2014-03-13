@@ -64,12 +64,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\identifier\identifier\Identifier.h" />
     <ClInclude Include="File.h" />
-    <ClInclude Include="Identifier.h" />
     <ClInclude Include="Task.h" />
     <ClInclude Include="VeriTask.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\identifier\identifier\Identifier.cpp" />
     <ClCompile Include="File.cpp" />
     <ClCompile Include="VeriTask.cpp" />
     <ClCompile Include="Task.cpp" />
