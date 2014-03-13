@@ -1,4 +1,4 @@
-#include "File.h"
+/*#include "File.h"
 const string name = "data";
 
 File::File(void){
@@ -15,24 +15,22 @@ void File::AccessFile(list<Task> TaskList){
 	string date, StartTime, EndTime, Event;
 	double SequenceNumber;
 	string Number;
-	int status;
-	string StatusString;
+	string Status;
 	ifstream read(filename.c_str());
 
 	while(getline(read, date)){
-		task.SetDate(date);
+		task.setDate(date);
 		getline(read, StartTime);
-		task.SetStartTime(StartTime);
+		task.setStartTime(StartTime);
 		getline(read, EndTime);
-		task.SetEndTime(EndTime);
+		task.setEndTime(EndTime);
 		getline(read, Event);
-		task.SetEvent(Event);
+		task.setEvent(Event);
 		getline(read, Number);
-		TryParse(Number, SequenceNumber);
-		task.SetSeqenceNumber(SequenceNumber);
-		getline(read, StatusString);
-		TryParse(StatusString, status);
-		task.SetStatus(status);
+		SequenceNumber = std::stoi(Number);
+		task.setSeqenceNum(SequenceNumber);
+		getline(read, Status);
+		task.setStatus(Status);
 		TaskList.push_back(task);
 	}
 
@@ -42,18 +40,18 @@ void File::AccessFile(list<Task> TaskList){
 void File::SaveFile(list<Task> TaskList){
 	string date, StartTime, EndTime, Event;
 	double SequenceNumber;
-	int status;
+	string status;
 
 	ofstream write(filename.c_str());
 
 	while(!TaskList.empty()){
-		Task task = *(TaskList.front());
-		date = task.GetDate();
-		StartTime = task.GetStartTime();
-		EndTime = task.GetEndTime();
-		Event = task.GetEvent();
-		SequenceNumber = task.GetSequenceNumber();
-		status = task.GetStatus();
+		Task task = (TaskList.front());
+		date = task.getDate();
+		StartTime = task.getStartTime();
+		EndTime = task.getEndTime();
+		Event = task.getEvent();
+		SequenceNumber = task.getSequenceNum();
+		status = task.getStatus();
 		TaskList.pop_front();
 
 		write << date << endl << StartTime << endl << EndTime << endl << Event << endl << SequenceNumber << endl << status << endl;
@@ -61,3 +59,4 @@ void File::SaveFile(list<Task> TaskList){
 
 	write.close();
 }
+*/

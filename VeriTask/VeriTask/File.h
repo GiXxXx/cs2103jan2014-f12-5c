@@ -1,4 +1,4 @@
-#pragma once
+/*#pragma once
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -11,8 +11,9 @@ private:
 	string filename;
 
 public:
-	File(string);
+	File(void);
 	~File(void);
 	void AccessFile(list<Task>);
 	void SaveFile(list<Task>);
 };
+*/

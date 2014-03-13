@@ -19,12 +19,21 @@ private:
 	double _SequenceNum;
 
 	public:
-	Task(string Event, string Date, string StartTime, string EndTime, string Status);
+	Task(string Event, string Date, string StartTime, string EndTime);
+	Task(); //default constructor
 	string getEvent();
 	string getDate();
 	string getStartTime();
 	string getEndTime();
+	string getStatus();
 	double getSequenceNum();
+
+/*	string setDate(string Date);
+	string setStartTime(string StartTime);
+	string setEndTime(string EndTime);
+	string setEvent(string Event);
+	double setSeqenceNum(double SequenceNum);
+	string setStatus(string Status); */
 };
 
 #endif
