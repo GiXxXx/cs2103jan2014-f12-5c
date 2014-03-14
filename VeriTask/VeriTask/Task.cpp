@@ -1,15 +1,14 @@
 #include "Task.h"
 
-Task::Task(string Event, string Date, string StartTime, string EndTime, string Status) {
+Task::Task(string Event, string Date, string StartTime, string EndTime) {
 	_Event = Event;
 	_Date = Date;
 	_StartTime = StartTime;
 	_EndTime = EndTime;
-	_Status = Status;
-	int Date_int, StartTime_int;
-	istringstream (Date) >> Date_int;
-	istringstream (StartTime) >> StartTime_int;
-	_SequenceNum = Date_int * 100.0 + StartTime_int / 100.0;
+	//_Status = Status;
+    int Date_Int = std::stoi(_Date);
+	int StartTime_Int = std::stoi(_StartTime);
+	_SequenceNum = Date_Int + StartTime_Int/10000.0;
 }
 
 string Task::getEvent() {

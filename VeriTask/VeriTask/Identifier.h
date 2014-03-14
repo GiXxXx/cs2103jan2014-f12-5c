@@ -31,7 +31,7 @@ public:
 	string getStartTime();
 	string getEndTime();
 	string getEvent();
-	string getTaskNumber();	
+	int getTaskNumber();	
 	string getKeyword();
 	bool floatingTask();
 	bool timedTask();

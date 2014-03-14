@@ -21,10 +21,10 @@
     <ClCompile Include="VeriTask.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="File.cpp">
+    <ClCompile Include="Identifier.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\identifier\identifier\Identifier.cpp">
+    <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -35,10 +35,7 @@
     <ClInclude Include="Task.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="File.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\identifier\identifier\Identifier.h">
+    <ClInclude Include="Identifier.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
