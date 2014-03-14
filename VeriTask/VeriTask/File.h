@@ -1,4 +1,4 @@
-#pragma once
+/*#pragma once
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -16,3 +16,4 @@ public:
 	void AccessFile(list<Task>);
 	void SaveFile(list<Task>);
 };
+*/

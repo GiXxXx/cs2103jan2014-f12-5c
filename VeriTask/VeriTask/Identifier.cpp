@@ -76,14 +76,14 @@ string Identifier::getEvent(){
 	return Event;
 }
 
-string Identifier::getTaskNumber(){
-	string TaskNumber; 
+int Identifier::getTaskNumber(){
+	int TaskNumber; 
 	if(getCommand() == "edit"){
-		TaskNumber = uncategorizedInfo.substr(0,uncategorizedInfo.find_first_of(' '));
+		TaskNumber =  std::stoi(uncategorizedInfo.substr(0,uncategorizedInfo.find_first_of(' ')));
 		uncategorizedInfo = chopInfo(uncategorizedInfo);
 	}
-	else if(getCommand() == "del"){
-		TaskNumber = uncategorizedInfo;
+	else if(getCommand() == "delete"){
+		TaskNumber = std::stoi(uncategorizedInfo);
 	}
 	return TaskNumber;
 }
