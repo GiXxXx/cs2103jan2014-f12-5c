@@ -3,6 +3,9 @@
 
 using namespace std;
 
+const string number = "0123456789";
+const string slash = "/";
+const string colon = ":";
 /*because only the relavent attribute will be filled, denpending on the command given,
  *some attributes are given a initial value. this is to make it easy for display.
  *for example, when display all the tasks on the screen, it will be like the following:
@@ -19,15 +22,24 @@ using namespace std;
  */
 Identifier::Identifier(string userInput){
 	_userInput = userInput; 
-	uncategorizedInfo = _userInput.substr(_userInput.find_first_of(' ')+1);
+	int position = _userInput.find_first_of(" ") + 1; 
+	uncategorizedInfo = _userInput.substr(position);
 }
 
 /* sorry, still used the chopInfo method in this version. It's quite hard to handle the iterator method,
  * i will make necessary changes after this deadline
  */
-string Identifier::chopInfo(string &oldInfo){
-	string updatedInfo = oldInfo.substr(oldInfo.find_first_of(' ')+1);
-	return updatedInfo;
+void Identifier::chopInfo(string &oldInfo, int position, int size){
+	unsigned int EndPos = position + 1 + size;
+
+	if(EndPos < oldInfo.size()){
+		oldInfo = oldInfo.substr(0, position) + oldInfo.substr(position + 1 + size);
+	}
+
+	else{
+		oldInfo = oldInfo.substr(0, position);
+	}
+	return;
 }
 
 string Identifier::getCommand(){
@@ -36,40 +48,67 @@ string Identifier::getCommand(){
 }
 
 string Identifier::getDate(){
-	string Date;
-	if(getCommand() == "add" || getCommand() =="edit"){
-		if(!floatingTask()){
-			Date = uncategorizedInfo.substr(0,uncategorizedInfo.find_first_of(' '));
-			uncategorizedInfo = chopInfo(uncategorizedInfo);
-		}
+	string Date = "30000000", tempDate, keywordOne = "onby";
+	unsigned int position, startPos = 0, size = 13, indicator = 0;
+
+	while(Date == "30000000" && indicator < 3){
+
+	if((getCommand() == "add" || getCommand() =="edit") && size < uncategorizedInfo.size()){
+		do{
+			position = uncategorizedInfo.find(keywordOne.substr(indicator, 2), startPos);
+
+			if(position != string::npos){
+				tempDate = uncategorizedInfo.substr(position + 3, 10);
+
+				if((tempDate.substr(2,1)) == slash && (tempDate.substr(5,1)) == slash){
+					tempDate = tempDate.substr(6,4) + tempDate.substr(3,2) + tempDate.substr(0,2);
+
+				    if(ifNumber(tempDate)){
+						Date = tempDate;
+						chopInfo(uncategorizedInfo, position, size);
+					    break;
+					}
+				}
+			}
+
+			startPos = position + 1;
+
+		 }while(position != string::npos);
 	}
+
+	indicator += 2;
+	}
+
 	return Date;
 }
 
 string Identifier::getStartTime(){
-	string StartTime;
+	string StartTime, tempTime, keyword = "from";
+
 	if(getCommand() == "add" || getCommand() =="edit"){
-		if(timedTask()){
-			StartTime = uncategorizedInfo.substr(0,uncategorizedInfo.find_first_of(' '));
-			uncategorizedInfo = chopInfo(uncategorizedInfo);
-		}
+		StartTime = getTime(uncategorizedInfo, keyword);
 	}
+
 	return StartTime;
 }
 
 string Identifier::getEndTime(){
-	string EndTime;
+	string EndTime, keywordOne = "at", keywordTwo = "by", keywordThree = "to";
 	if(getCommand() == "add" || getCommand() =="edit"){
-		if(timedTask()){
-			EndTime = uncategorizedInfo.substr(0,uncategorizedInfo.find_first_of(' '));
-			uncategorizedInfo = chopInfo(uncategorizedInfo);
+		EndTime = getTime(uncategorizedInfo, keywordOne);
+
+		if(EndTime == "3000")
+			EndTime = getTime(uncategorizedInfo, keywordTwo);
+
+		if(EndTime == "3000")
+			EndTime = getTime(uncategorizedInfo, keywordThree);
 		}
-	}
+
 	return EndTime;
 }
 
 string Identifier::getEvent(){
-	string Event;
+	string Event = " ";
 	if(getCommand() == "add" || getCommand() =="edit"){
 		Event = uncategorizedInfo;
 	}
@@ -77,10 +116,10 @@ string Identifier::getEvent(){
 }
 
 int Identifier::getTaskNumber(){
-	int TaskNumber; 
+	int TaskNumber = 0, position = 0, size = 1;
 	if(getCommand() == "edit"){
-		TaskNumber =  std::stoi(uncategorizedInfo.substr(0,uncategorizedInfo.find_first_of(' ')));
-		uncategorizedInfo = chopInfo(uncategorizedInfo);
+		TaskNumber =  std::stoi(uncategorizedInfo.substr(position,size));
+		chopInfo(uncategorizedInfo, position, size);
 	}
 	else if(getCommand() == "delete"){
 		TaskNumber = std::stoi(uncategorizedInfo);
@@ -105,47 +144,71 @@ string Identifier::getKeyword(){
  *therefore, maybe we should consider using inherient classes.
  */
 void Identifier::getAddEditInfo(){
+	getTaskNumber();
 	getDate();
 	getStartTime();
 	getEndTime();
 	getEvent();
 }	
 
-/* the following two function checks whether the task is floating or timed or deadline,
- * to make things simple, i just used the magic number (e.g. 8 and 4) here since we have a fixed input format.
- * another thought about the time & date attributes, i doubt whether they can be converted into integer, 
- * because an integer can not be in the form like 0830.
- */
-bool Identifier::floatingTask(){
-	if(uncategorizedInfo.size() < 8){
-		return true;
-	}
-	else if(uncategorizedInfo.substr(0,uncategorizedInfo.find_first_of(' ')).size() < 8){
-		return true;
-	}
-	else{
-		for(int i=0;i<8;i++){
-			if(!(isdigit(uncategorizedInfo.at(i)) || !uncategorizedInfo.at(i) == ' ')){
-				return true;
+bool Identifier::ifNumber(string test){
+	unsigned int matchCount = 0;
+	bool isNumber = false;
+
+	for(unsigned int i = 0; i < test.size(); i++){
+		for(unsigned int j = 0; j < 10; j++){
+			if(test[i] == number[j]){
+				matchCount++;
 			}
 		}
 	}
-	return false;
+	
+	if(matchCount == test.size()){
+		isNumber = true;
+	}
+
+	return isNumber;
 }
 
-bool Identifier::timedTask(){
-	if(uncategorizedInfo.size() < 4){
-		return false;
-	}
-	else if(uncategorizedInfo.substr(0,uncategorizedInfo.find_first_of(' ')).size() < 4){
-		return false;
-	}
-	else{
-		for(int i=0;i<4;i++){
-			if(!(isdigit(uncategorizedInfo.at(i)) || !uncategorizedInfo.at(i) == ' ' )){
-				return false;
+string Identifier::getTime(string test, string keyword){
+	string Time = "3000", tempTime;
+	unsigned int position, startPos = 0, size = keyword.size() + 6;
+
+	if(size < uncategorizedInfo.size())
+		do{
+			position = test.find(keyword, startPos);
+
+			if(position != string::npos){
+				tempTime = test.substr(position + keyword.size() + 1, 5);
+
+				if((tempTime.substr(2,1)) == colon){
+					tempTime = tempTime.substr(0,2) + tempTime.substr(3,2);
+
+				    if(ifNumber(tempTime)){
+						Time = tempTime;
+						chopInfo(uncategorizedInfo, position, size);
+					    break;
+					}
+				}
 			}
-		}
-	}
-	return true;
+
+			startPos = position + 1;
+
+		 }while(position != string::npos);
+
+	return Time;
 }
+
+string Identifier::markStatus(string test){
+	string status;
+	if(getCommand() == "mark"){
+		status = uncategorizedInfo;
+	}
+	
+	if(status == "done" || status == "undone" || "cannot be done")
+		return status;
+
+	else{
+		return "error";
+}
+	
