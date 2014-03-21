@@ -1,16 +1,15 @@
-﻿Build started 2014/3/14 2:12:50.
-     1>Project "E:\Study\University\SEM 4\CS2103-CS2103T\Project\Project\VeriTask\VeriTask\VeriTask.vcxproj" on node 2 (Build target(s)).
+﻿Build started 2014/3/16 10:15:02.
+     1>Project "C:\Users\Pang\Desktop\CS2103\VeriTask\VeriTask\VeriTask.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\VSC\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt VeriTask.cpp
+         G:\Visual Studio\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Identifier.cpp Main.cpp VeriTask.cpp Task.cpp
+         Task.cpp
          VeriTask.cpp
-       Link:
-         C:\VSC\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\Study\University\SEM 4\CS2103-CS2103T\Project\Project\VeriTask\Debug\VeriTask.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\Study\University\SEM 4\CS2103-CS2103T\Project\Project\VeriTask\Debug\VeriTask.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\Study\University\SEM 4\CS2103-CS2103T\Project\Project\VeriTask\Debug\VeriTask.lib" /MACHINE:X86 Debug\Identifier.obj
-         Debug\Main.obj
-         Debug\VeriTask.obj
-         Debug\Task.obj
-         VeriTask.vcxproj -> E:\Study\University\SEM 4\CS2103-CS2103T\Project\Project\VeriTask\Debug\VeriTask.exe
-     1>Done Building Project "E:\Study\University\SEM 4\CS2103-CS2103T\Project\Project\VeriTask\VeriTask\VeriTask.vcxproj" (Build target(s)).
+         Main.cpp
+         Identifier.cpp
+     1>c:\users\pang\desktop\cs2103\veritask\veritask\identifier.cpp(215): fatal error C1075: end of file found before the left brace '{' at 'c:\users\pang\desktop\cs2103\veritask\veritask\identifier.cpp(202)' was matched
+         Generating Code...
+     1>Done Building Project "C:\Users\Pang\Desktop\CS2103\VeriTask\VeriTask\VeriTask.vcxproj" (Build target(s)) -- FAILED.
 
-Build succeeded.
+Build FAILED.
 
-Time Elapsed 00:00:01.16
+Time Elapsed 00:00:02.41
