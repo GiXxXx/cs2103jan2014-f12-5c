@@ -22,7 +22,11 @@ const string colon = ":";
  */
 Identifier::Identifier(string userInput){
 	_userInput = userInput; 
+
+	//assert(_userInput.find(" ")!=string::npos); //ensure that >1 word in user input
+
 	int position = _userInput.find_first_of(" ") + 1; 
+
 	uncategorizedInfo = _userInput.substr(position);
 }
 
@@ -204,11 +208,16 @@ string Identifier::markStatus(string test){
 	if(getCommand() == "mark"){
 		status = uncategorizedInfo;
 	}
-	
-	if(status == "done" || status == "undone" || "cannot be done")
-		return status;
 
+	//check that status is one of the 3 available values, else terminate immediately
+	assert((status == "done") || (status == "undone") || ("cannot be done"));
+	return status;
+	
+/*	if(status == "done" || status == "undone" || "cannot be done") {
+		return status;
+	}
 	else{
 		return "error";
+	} */
 }
 	

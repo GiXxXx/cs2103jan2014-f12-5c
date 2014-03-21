@@ -29,6 +29,7 @@ CommandType VeriTask::determineCommand(string Command) {
 }
 
 void VeriTask::doCommand(CommandType Command, Identifier infoIdentifier) {
+	//assert(Command != INVALID); //terminate if invalid command
 	switch (Command) {
 	case ADD: {
 		string Event, Date, StartTime, EndTime;
@@ -72,7 +73,7 @@ void VeriTask::doCommand(CommandType Command, Identifier infoIdentifier) {
 	case INVALID: {
 		cout << ERROR_MESSAGE << endl;
 				  }
-				  break;
+				  break; 
 	default: return;
 	};
 }
@@ -99,6 +100,8 @@ void VeriTask::addTask(Task taskToAdd) {
 
 void VeriTask::deleteTask(int taskNumToDelete) {  
 	// modify the code after integration
+	assert((taskNumToDelete-1)>0); //checks for valid user input
+
 	double sequenceNumToDelete = _taskListToDisplay[taskNumToDelete-1].getSequenceNum();
 	
 	for (vector<Task>::iterator i=_taskList.begin(); i<_taskList.end(); i++) { //replace it with of function called searchTaskID
@@ -127,9 +130,14 @@ void VeriTask::deleteTask(int taskNumToDelete) {
 // vector<Task> showTask();
 
 void VeriTask::searchTask(string keyword) {
-	_taskListToDisplay.clear();	
+	
+	if (_taskListToDisplay.empty()) {
+		cout << "There are no tasks!\n";
+	} else {
 
-	for (vector<Task>::iterator i=_taskList.begin(); i<_taskList.end(); i++) {
+		_taskListToDisplay.clear();	
+
+		for (vector<Task>::iterator i=_taskList.begin(); i<_taskList.end(); i++) {
 		string tempDate = (*i).getDate();
 		string tempStartTime = (*i).getStartTime();
 		string tempEndTime = (*i).getEndTime();
@@ -141,10 +149,6 @@ void VeriTask::searchTask(string keyword) {
 			_taskListToDisplay.push_back((*i));
 		}
 	}
-
-	if (_taskListToDisplay.empty()) {
-		cout << "There are no tasks!\n";
-	} else {
 
 	for (unsigned int i=0; i<_taskListToDisplay.size(); i++) {
 		cout << i+1 << ". "
