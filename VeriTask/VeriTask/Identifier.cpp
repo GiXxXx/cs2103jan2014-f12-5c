@@ -1,11 +1,48 @@
 #include "Identifier.h"
 #include <string>
+#include <ctime>
+#include <sstream>
 
 using namespace std;
 
 const string number = "0123456789";
 const string slash = "/";
 const string colon = ":";
+const string space = " ";
+const string Mark = "mark";
+const string Add = "add";
+const string Delete = "delete";
+const string Edit = "edit";
+const string Undo = "undo";
+const string Done = "done";
+const string Search = "search";
+const string UnDone = "undone";
+const string CannotBeDone = "cannot be done";
+const string LargeDate = "99999999";
+const string LargeTime = "9999";
+const string OnAndBy = "onby";
+const string at = "at";
+const string to = "to";
+const string from = "from";
+const string by = "by";
+const string monday = "Mon";
+const string tuesday = "Tue";
+const string thursday = "thu";
+const string wednesday = "wed";
+const string friday = "fri";
+const string saturday = "sat";
+const string sunday = "sun";
+const string NextMonday = "next Mon";
+const string NextTuesday = "next Tue";
+const string NextWednesday = "next Wed";
+const string NextThursday = "next Thu";
+const string NextFriday = "next Fri";
+const string NextSaturday = "next Sat";
+const string NextSunday = "next Sun";
+const signed int start = 0;
+const signed int unit = 1;
+const int zero = 0;
+
 /*because only the relavent attribute will be filled, denpending on the command given,
  *some attributes are given a initial value. this is to make it easy for display.
  *for example, when display all the tasks on the screen, it will be like the following:
@@ -25,7 +62,7 @@ Identifier::Identifier(string userInput){
 
 	//assert(_userInput.find(" ")!=string::npos); //ensure that >1 word in user input
 
-	int position = _userInput.find_first_of(" ") + 1; 
+	int position = _userInput.find_first_of(space) + 1; 
 
 	uncategorizedInfo = _userInput.substr(position);
 }
@@ -34,98 +71,126 @@ Identifier::Identifier(string userInput){
  * i will make necessary changes after this deadline
  */
 void Identifier::chopInfo(string &oldInfo, int position, int size){
-	unsigned int EndPos = position + 1 + size;
+	unsigned int EndPos = position + start + size;
 
 	if(EndPos < oldInfo.size()){
-		oldInfo = oldInfo.substr(0, position) + oldInfo.substr(position + 1 + size);
+		oldInfo = oldInfo.substr(start, position) + oldInfo.substr(position + unit + size);
 	}
 
 	else{
-		oldInfo = oldInfo.substr(0, position);
+		oldInfo = oldInfo.substr(start, position);
 	}
 	return;
 }
 
 string Identifier::getCommand(){
-	string Command = _userInput.substr(0,_userInput.find_first_of(' '));
+	string Command = _userInput.substr(start,_userInput.find_first_of(space));
 	return Command;
 }
 
 string Identifier::getDate(){
-	string Date = "30000000", tempDate, keywordOne = "onby";
-	unsigned int position, startPos = 0, size = 13, indicator = 0;
+	string Date = LargeDate, tempDateOne = "no date", keyword = OnAndBy;
+	int position, startPos = 0, indicator = 0, PositionOfSlash = 2, PositionOfMonth = 3, PositionOfYear = 6;
+	int KeywordSize = 2, DateSize = 10, YearSize = 4, MonthDaySize = 2, WeekSize = 3, NextWeekSize = 8;
+	unsigned int sizeOne = 13, sizeTwo = 6, sizeThree = 11;
 
-	while(Date == "30000000" && indicator < 3){
+	string tempDateTwo = tempDateOne, tempDateThree = tempDateOne;
 
-	if((getCommand() == "add" || getCommand() =="edit") && size < uncategorizedInfo.size()){
+	while(Date == LargeDate && indicator <= KeywordSize){
+
+	if((getCommand() == Add || getCommand() == Edit)){
 		do{
-			position = uncategorizedInfo.find(keywordOne.substr(indicator, 2), startPos);
+			position = uncategorizedInfo.find(keyword.substr(indicator, KeywordSize), startPos);
 
-			if(position != string::npos){
-				tempDate = uncategorizedInfo.substr(position + 3, 10);
+			if(position != string::npos && position + KeywordSize + unit < uncategorizedInfo.size() - unit){
+				signed int maxSize = uncategorizedInfo.substr(position + KeywordSize + unit).size();
 
-				if((tempDate.substr(2,1)) == slash && (tempDate.substr(5,1)) == slash){
-					tempDate = tempDate.substr(6,4) + tempDate.substr(3,2) + tempDate.substr(0,2);
+				if(DateSize <= maxSize){
+					tempDateOne = uncategorizedInfo.substr(position + KeywordSize + unit, DateSize);
 
-				    if(ifNumber(tempDate)){
-						Date = tempDate;
-						chopInfo(uncategorizedInfo, position, size);
-					    break;
+					if((tempDateOne.substr(PositionOfSlash,unit)) == slash && (tempDateOne.substr(PositionOfSlash + PositionOfSlash + unit,unit)) == slash){
+						tempDateOne = tempDateOne.substr(PositionOfYear,YearSize) + tempDateOne.substr(PositionOfMonth,MonthDaySize) + tempDateOne.substr(start, MonthDaySize);
 					}
+				}
+
+				if(WeekSize <= maxSize){
+					tempDateTwo = uncategorizedInfo.substr(position + KeywordSize + unit, WeekSize);
+					tempDateTwo = GetDateFromWeek(tempDateTwo);
+				}
+
+				if(NextWeekSize <= maxSize){
+				    tempDateThree = uncategorizedInfo.substr(position + KeywordSize + unit, NextWeekSize);
+					tempDateThree = GetDateFromWeek(tempDateThree);
+				}
+
+				if(ifNumber(tempDateOne)){
+					Date = tempDateOne;
+					chopInfo(uncategorizedInfo, position, sizeOne);
+					break;
+				}
+				else if(ifNumber(tempDateTwo)){
+					Date = tempDateTwo;
+					chopInfo(uncategorizedInfo, position, sizeTwo);
+					break;
+				}
+				else if(ifNumber(tempDateThree)){
+					Date = tempDateThree;
+					chopInfo(uncategorizedInfo, position, sizeThree);
+					break;
 				}
 			}
 
-			startPos = position + 1;
+			startPos = position + unit;
 
 		 }while(position != string::npos);
 	}
 
-	indicator += 2;
+	indicator += KeywordSize;
 	}
 
 	return Date;
 }
 
 string Identifier::getStartTime(){
-	string StartTime, tempTime, keyword = "from";
+	string StartTime, tempTime;
 
-	if(getCommand() == "add" || getCommand() =="edit"){
-		StartTime = getTime(uncategorizedInfo, keyword);
+	if(getCommand() == Add || getCommand() == Edit){
+		StartTime = getTime(uncategorizedInfo, from);
 	}
 
 	return StartTime;
 }
 
 string Identifier::getEndTime(){
-	string EndTime, keywordOne = "at", keywordTwo = "by", keywordThree = "to";
-	if(getCommand() == "add" || getCommand() =="edit"){
-		EndTime = getTime(uncategorizedInfo, keywordOne);
+	string EndTime;
+	if(getCommand() == Add || getCommand() == Edit){
+		EndTime = getTime(uncategorizedInfo, at);
 
-		if(EndTime == "3000")
-			EndTime = getTime(uncategorizedInfo, keywordTwo);
+		if(EndTime == LargeTime)
+			EndTime = getTime(uncategorizedInfo, by);
 
-		if(EndTime == "3000")
-			EndTime = getTime(uncategorizedInfo, keywordThree);
+		if(EndTime == LargeTime)
+			EndTime = getTime(uncategorizedInfo, to);
 		}
 
 	return EndTime;
 }
 
 string Identifier::getEvent(){
-	string Event = " ";
-	if(getCommand() == "add" || getCommand() =="edit"){
+	string Event = space;
+	if(getCommand() == Add || getCommand() == Edit){
 		Event = uncategorizedInfo;
 	}
 	return Event;
 }
 
 int Identifier::getTaskNumber(){
-	int TaskNumber = 0, position = 0, size = 1;
-	if(getCommand() == "edit"){
+	int TaskNumber = 0, position = start, size = unit;
+	if(getCommand() == Edit){
 		TaskNumber =  std::stoi(uncategorizedInfo.substr(position,size));
 		chopInfo(uncategorizedInfo, position, size);
 	}
-	else if(getCommand() == "delete"){
+	else if(getCommand() == Delete){
 		TaskNumber = std::stoi(uncategorizedInfo);
 	}
 	return TaskNumber;
@@ -133,7 +198,7 @@ int Identifier::getTaskNumber(){
 
 string Identifier::getKeyword(){
 	string Keyword;
-	if(getCommand() == "search"){
+	if(getCommand() == Search){
 		Keyword = uncategorizedInfo;
 	}
 	return Keyword;
@@ -175,18 +240,22 @@ bool Identifier::ifNumber(string test){
 }
 
 string Identifier::getTime(string test, string keyword){
-	string Time = "3000", tempTime;
-	unsigned int position, startPos = 0, size = keyword.size() + 6;
+	string Time = LargeTime, tempTime;
+	int TimeSize = 5, MinSize =2;
+	unsigned int position, startPos = start, size = keyword.size() + TimeSize + unit;
 
 	if(size < uncategorizedInfo.size())
 		do{
 			position = test.find(keyword, startPos);
 
 			if(position != string::npos){
-				tempTime = test.substr(position + keyword.size() + 1, 5);
+				signed int maxSize = test.substr(position + keyword.size() + unit).size();
 
-				if((tempTime.substr(2,1)) == colon){
-					tempTime = tempTime.substr(0,2) + tempTime.substr(3,2);
+				if(TimeSize <= maxSize){
+					tempTime = test.substr(position + keyword.size() + unit, TimeSize);
+
+				if((tempTime.substr(MinSize,unit)) == colon){
+					tempTime = tempTime.substr(start, MinSize) + tempTime.substr(start + MinSize + unit, MinSize);
 
 				    if(ifNumber(tempTime)){
 						Time = tempTime;
@@ -195,29 +264,140 @@ string Identifier::getTime(string test, string keyword){
 					}
 				}
 			}
+			}
 
-			startPos = position + 1;
+			startPos = position + unit;
 
 		 }while(position != string::npos);
 
 	return Time;
 }
 
-string Identifier::markStatus(string test){
+string Identifier::getStatus(){
 	string status;
-	if(getCommand() == "mark"){
+	if(getCommand() == Mark){
 		status = uncategorizedInfo;
 	}
 
-	//check that status is one of the 3 available values, else terminate immediately
-	assert((status == "done") || (status == "undone") || ("cannot be done"));
-	return status;
-	
-/*	if(status == "done" || status == "undone" || "cannot be done") {
+	if(status == Done || status == UnDone || status == CannotBeDone) {
 		return status;
+	} 
+
+	else
+		return "error";
+}
+
+string Identifier::GetDateFromWeek(string test){
+	char buffer[100]={0};
+	time_t now;
+	struct tm timenow;
+	time_t localTime;
+	int taskDayOfWeek;
+
+	if(test == monday){
+		taskDayOfWeek = 0;
+	}
+	else if(test == tuesday){
+		taskDayOfWeek = 1;
+	}
+	else if(test == wednesday){
+		taskDayOfWeek = 2;
+	}
+	else if(test == thursday){
+		taskDayOfWeek = 3;
+	}
+	else if(test == friday){
+		taskDayOfWeek = 4;
+	}
+	else if(test == saturday){
+		taskDayOfWeek = 5;
+	}
+	else if(test == sunday){
+		taskDayOfWeek = 6;
+	}
+	else if(test == NextMonday){
+		taskDayOfWeek = 7;
+	}
+	else if(test == NextTuesday){
+		taskDayOfWeek = 8;
+	}
+	else if(test == NextWednesday){
+		taskDayOfWeek = 9;
+	}
+	else if(test == NextThursday){
+		taskDayOfWeek = 10;
+	}
+	else if(test == NextFriday){
+		taskDayOfWeek = 11;
+	}
+	else if(test == NextSaturday){
+		taskDayOfWeek = 12;
+	}
+	else if(test == NextSunday){
+		taskDayOfWeek = 13;
 	}
 	else{
-		return "error";
-	} */
-}
+		return test;
+	}
+
+	localTime = time(NULL);
+	localtime_s(&timenow,&localTime);
+
+	strftime(buffer, 100, "%Y-%m-%A-%d",&timenow);
+	//puts(buffer);
+	int currentDayOfWeek = (timenow.tm_wday+6)%7;
+	int currentYear = timenow.tm_year+1900;
+	int currentMonth = timenow.tm_mon+1;
+	int currentday = timenow.tm_mday;
+	int currentTotalDay = timenow.tm_yday;
 	
+	//enum aWeek {sunday,tuesday,wednesday,thursday,friday,saturday,monday};
+	
+	int taskDay;
+	int taskMonth = currentMonth;
+	int taskYear = currentYear;
+
+	taskDay = currentday + taskDayOfWeek-currentDayOfWeek;
+
+	if((currentMonth ==1||currentMonth==3||currentMonth==5||currentMonth==7||currentMonth==8
+		||currentMonth==10||currentMonth==12) && taskDay>31){
+				taskDay = taskDay - 31;
+				++taskMonth;
+	}
+	else if((currentMonth==4||currentMonth==6||currentMonth==9||currentMonth==11) && taskDay>30){
+		taskDay = taskDay - 30;
+		++taskMonth;
+	}
+	else if(currentMonth ==2 && currentYear%4==0 && taskDay>29){
+		taskDay = taskDay - 29;
+		++taskMonth;
+		}
+	else if(currentMonth ==2 && currentYear%4!=0 && taskDay>28){
+		taskDay = taskDay - 28;
+		++taskMonth;
+	}
+
+	if(taskMonth>12){
+		taskMonth = taskMonth - 12;
+		++taskYear;
+	}
+
+	ostringstream outstr;
+
+	outstr << taskYear;
+
+	if(taskMonth < 10){
+		outstr << zero;
+	}
+
+	outstr << taskMonth;
+
+	if(taskDay < 10){
+		outstr << zero;
+	}
+
+	outstr << taskDay;
+
+	return outstr.str();	
+}
+
