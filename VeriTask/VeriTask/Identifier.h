@@ -14,7 +14,6 @@
 #include <vector>
 #include <string>
 #include <algorithm>
-#include <assert.h>
 
 using namespace std;
 
@@ -39,7 +38,8 @@ public:
 	void getAddEditInfo();
 	bool ifNumber(string);
 	string getTime(string, string);
-	string markStatus(string);
+	string getStatus();
+	string GetDateFromWeek(string);
 };
 
 #endif
