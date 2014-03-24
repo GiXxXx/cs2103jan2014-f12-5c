@@ -5,4 +5,5 @@ void DeleteTask::executeCommand(Identifier infoIdentifier, DataStorage &_dataSto
 	double taskIDToDelete = _dataStorage.retrieveTaskID(taskNum);
 	
 	_dataStorage.deleteData(taskIDToDelete);
+	textUI.printDeleteConfirmation();
 }

@@ -26,4 +26,6 @@ void VeriTask::pushCommand(string commandWord, Identifier infoIdentifier) {
 	
 	int i=commandList.size();
 	commandList[i-1]->executeCommand(infoIdentifier, _dataStorage);
+	undoList.push_back(_dataStorage);
+
 }

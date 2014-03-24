@@ -13,4 +13,5 @@ void EditTask::executeCommand(Identifier infoIdentifier, DataStorage &_dataStora
 	    Task taskToEdit(event, date, startTime, endTime);
 
 	    _dataStorage.saveData(taskToEdit);
+		textUI.printEditConfirmation();
 }

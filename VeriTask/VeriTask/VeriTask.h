@@ -10,14 +10,16 @@
 #include "EditTask.h"
 #include "SearchTask.h"
 #include "MarkTask.h"
+#include "TextUI.h"
 
 using namespace std;
 
 class VeriTask {
 private:
 	vector<Command*> commandList;
+	vector<DataStorage> undoList;
 	DataStorage _dataStorage;
-	vector<DataStorage> undoStorage;
+	TextUI textUI;
 public:
 	VeriTask();
 	~VeriTask();
