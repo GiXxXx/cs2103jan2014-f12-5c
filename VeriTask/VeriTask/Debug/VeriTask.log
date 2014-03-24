@@ -1,0 +1,31 @@
+﻿Build started 2014/3/24 21:07:12.
+     1>Project "E:\Study\University\SEM 4\CS2103-CS2103T\VeriTask_Version 2\VeriTask\VeriTask\VeriTask.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\VSC\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt AddTask.cpp DeleteTask.cpp EditTask.cpp Main.cpp MarkTask.cpp SearchTask.cpp VeriTask.cpp
+         VeriTask.cpp
+         Main.cpp
+         Generating Code...
+         Skipping... (no relevant changes detected)
+         SearchTask.cpp
+         MarkTask.cpp
+         EditTask.cpp
+         DeleteTask.cpp
+         AddTask.cpp
+       Link:
+         C:\VSC\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\Study\University\SEM 4\CS2103-CS2103T\VeriTask_Version 2\VeriTask\Debug\VeriTask.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\Study\University\SEM 4\CS2103-CS2103T\VeriTask_Version 2\VeriTask\Debug\VeriTask.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\Study\University\SEM 4\CS2103-CS2103T\VeriTask_Version 2\VeriTask\Debug\VeriTask.lib" /MACHINE:X86 Debug\AddTask.obj
+         Debug\DataStorage.obj
+         Debug\DeleteTask.obj
+         Debug\EditTask.obj
+         Debug\Identifier.obj
+         Debug\MarkTask.obj
+         Debug\VeriTask.obj
+         Debug\SearchTask.obj
+         Debug\Command.obj
+         Debug\Main.obj
+         Debug\Task.obj
+         VeriTask.vcxproj -> E:\Study\University\SEM 4\CS2103-CS2103T\VeriTask_Version 2\VeriTask\Debug\VeriTask.exe
+     1>Done Building Project "E:\Study\University\SEM 4\CS2103-CS2103T\VeriTask_Version 2\VeriTask\VeriTask\VeriTask.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.88
