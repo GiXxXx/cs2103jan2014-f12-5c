@@ -2,6 +2,7 @@
 #define HEADER_COMMAND_
 #include "DataStorage.h"
 #include "Identifier.h"
+#include "TextUI.h"
 #include <iostream>
 #include <vector>
 #include <queue>
@@ -17,6 +18,8 @@ const string MARK_COMMAND = "mark";
 const string ERROR_MESSAGE = "Invalid Command";
 
 class Command {
+protected:
+	TextUI textUI;
 
 public:
     virtual void executeCommand(Identifier, DataStorage &);

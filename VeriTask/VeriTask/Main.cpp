@@ -11,6 +11,9 @@ int main() {
 	VeriTask TaskManager;
 	string UserInput;
 	Identifier temp(UserInput);
+	TextUI welcomeMessage;
+
+	welcomeMessage.printWelcomeMessage();
 
 	do {
 		getline(cin, UserInput);

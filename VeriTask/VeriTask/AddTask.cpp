@@ -8,4 +8,5 @@ void AddTask::executeCommand(Identifier infoIdentifier, DataStorage &_dataStorag
 	Task taskToAdd(event, date, startTime, endTime);
 
 	_dataStorage.saveData(taskToAdd);
+	textUI.printAddConfirmation();
 }
