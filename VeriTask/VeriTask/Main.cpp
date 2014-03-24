@@ -1,6 +1,7 @@
 #include "VeriTask.h"
 #include "Identifier.h"
 #include <iostream>
+#include <queue>
 
 const string EXIT = "exit";
 
@@ -15,9 +16,8 @@ int main() {
 		getline(cin, UserInput);
 		Identifier InfoIdentifier(UserInput);
 		temp = InfoIdentifier;
-		TaskManager.executeCommand(InfoIdentifier.getCommand(), InfoIdentifier);
+		TaskManager.pushCommand(InfoIdentifier.getCommand(), InfoIdentifier);
 	} while (temp.getCommand() != EXIT);
 	
-
 	return 0;
 }

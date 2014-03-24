@@ -26,7 +26,7 @@ private:
 public:
 	Identifier(string);
 	string getCommand();
-	string chopInfo(string &uncategorizedInfo);
+	void chopInfo(string &, int, int);
 	string getDate();
 	string getStartTime();
 	string getEndTime();
@@ -36,6 +36,9 @@ public:
 	bool floatingTask();
 	bool timedTask();
 	void getAddEditInfo();
+	bool ifNumber(string);
+	string getTime(string, string);
+	string getStatus();
 };
 
 #endif

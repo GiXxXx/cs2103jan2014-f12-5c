@@ -1,32 +1,43 @@
 #include "Task.h"
 
 Task::Task(string Event, string Date, string StartTime, string EndTime) {
-	_Event = Event;
-	_Date = Date;
-	_StartTime = StartTime;
-	_EndTime = EndTime;
+	_event = Event;
+	_date = Date;
+	_startTime = StartTime;
+	_endTime = EndTime;
 	//_Status = Status;
-    int Date_Int = std::stoi(_Date);
-	int StartTime_Int = std::stoi(_StartTime);
-	_SequenceNum = Date_Int + StartTime_Int/10000.0;
+    int date_Int = std::stoi(_date);
+	int startTime_Int = std::stoi(_startTime);
+	int endTime_Int = std::stoi(_endTime);
+	_ID = date_Int + startTime_Int/10000.0 + endTime_Int/100000000.0;
 }
 
 string Task::getEvent() {
-	return _Event;
+	return _event;
 }
 
 string Task::getDate() {
-	return _Date;
+	return _date;
 }
 
 string Task::getStartTime() {
-	return _StartTime;
+	return _startTime;
 }
 
 string Task::getEndTime() {
-	return _EndTime;
+	return _endTime;
 }
 
-double Task::getSequenceNum() {
-	return _SequenceNum;
+string Task::getStatus() {
+	return _status;
 }
+
+double Task::getID() {
+	return _ID;
+}
+
+void Task::setStatus(string status) {
+	_status = status;
+}
+
+
