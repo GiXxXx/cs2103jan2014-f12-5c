@@ -10,17 +10,18 @@ using namespace std;
 int main() {
 	VeriTask TaskManager;
 	string UserInput;
-	Identifier temp(UserInput);
+	Identifier temp;
 	TextUI welcomeMessage;
 
 	welcomeMessage.printWelcomeMessage();
 
 	do {
 		getline(cin, UserInput);
-		Identifier InfoIdentifier(UserInput);
+		Identifier InfoIdentifier;
+		InfoIdentifier.Identify(UserInput);
 		temp = InfoIdentifier;
-		TaskManager.pushCommand(InfoIdentifier.getCommand(), InfoIdentifier);
-	} while (temp.getCommand() != EXIT);
+		TaskManager.pushCommand(InfoIdentifier.GetCommand(), InfoIdentifier);
+	} while (temp.GetCommand() != EXIT);
 	
 	return 0;
 }
