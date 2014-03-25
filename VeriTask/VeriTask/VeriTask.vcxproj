@@ -62,26 +62,44 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\identifier\identifier\identifier\CommandGetter.h" />
     <ClInclude Include="AddTask.h" />
+    <ClInclude Include="CommandGetter.h" />
     <ClInclude Include="DataStorage.h" />
+    <ClInclude Include="DateGetter.h" />
     <ClInclude Include="DeleteTask.h" />
     <ClInclude Include="EditTask.h" />
+    <ClInclude Include="EndTimeGetter.h" />
+    <ClInclude Include="EventGetter.h" />
     <ClInclude Include="Identifier.h" />
+    <ClInclude Include="KeywordGetter.h" />
     <ClInclude Include="MarkTask.h" />
+    <ClInclude Include="StartTimeGetter.h" />
+    <ClInclude Include="StatusGetter.h" />
+    <ClInclude Include="TaskNumGetter.h" />
     <ClInclude Include="TextUI.h" />
-    <ClInclude Include="VeriTask.h" />
     <ClInclude Include="SearchTask.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="Task.h" />
+    <ClInclude Include="Tokenizer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AddTask.cpp" />
+    <ClCompile Include="CommandGetter.cpp" />
     <ClCompile Include="DataStorage.cpp" />
+    <ClCompile Include="DateGetter.cpp" />
     <ClCompile Include="DeleteTask.cpp" />
     <ClCompile Include="EditTask.cpp" />
+    <ClCompile Include="EndTimeGetter.cpp" />
+    <ClCompile Include="EventGetter.cpp" />
     <ClCompile Include="Identifier.cpp" />
+    <ClCompile Include="KeywordGetter.cpp" />
     <ClCompile Include="MarkTask.cpp" />
+    <ClCompile Include="StartTimeGetter.cpp" />
+    <ClCompile Include="StatusGetter.cpp" />
+    <ClCompile Include="TaskNumGetter.cpp" />
     <ClCompile Include="TextUI.cpp" />
+    <ClCompile Include="Tokenizer.cpp" />
     <ClCompile Include="VeriTask.cpp" />
     <ClCompile Include="SearchTask.cpp" />
     <ClCompile Include="Command.cpp" />
