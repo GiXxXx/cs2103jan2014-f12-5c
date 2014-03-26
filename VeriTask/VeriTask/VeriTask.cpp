@@ -38,10 +38,9 @@ void VeriTask::pushCommand(string commandWord, Identifier infoIdentifier, TextUI
 	    _dataStorage = undoList.back();
 		commandList.pop_back();
 		textUI.printTask(_dataStorage);
-	}
+	}	
+}
 
-
-	
-	
-	
+DataStorage VeriTask::getDataStorage() {
+	return _dataStorage;
 }

@@ -19,7 +19,7 @@ double DataStorage::retrieveTaskID(int taskNum) {
 void DataStorage::saveData(Task taskToSave) {
 	bool isSaved = false;
 	
-	for (iter=_taskList.begin(); iter<_taskList.end(); iter++) {
+	for (iter=_taskList.begin(); iter<_taskList.end(); ++iter) {
 		if (iter->getID() > taskToSave.getID()) {
 			_taskList.insert(iter, taskToSave);
 			isSaved = true;
@@ -33,7 +33,7 @@ void DataStorage::saveData(Task taskToSave) {
 }
 
 void DataStorage::deleteData(double taskID) {
-	for (iter=_taskList.begin(); iter<_taskList.end(); iter++) { 
+	for (iter=_taskList.begin(); iter<_taskList.end(); ++iter) { 
 		if (iter->getID() == taskID) {
 			_taskList.erase(iter);
 			break;
@@ -45,7 +45,7 @@ bool DataStorage::searchData(string keyword) {
 	bool isFound = true;
 	 _taskListToDisplay.clear();
 
-	for (iter=_taskList.begin(); iter<_taskList.end(); iter++) {
+	for (iter=_taskList.begin(); iter<_taskList.end(); ++iter) {
 		string tempDate = iter->getDate();
 		string tempStartTime = iter->getStartTime();
 		string tempEndTime = iter->getEndTime();
@@ -68,7 +68,7 @@ bool DataStorage::searchData(string keyword) {
 }
 
 void DataStorage::markData(double taskID, string status) {
-	for (iter=_taskList.begin(); iter<_taskList.end(); iter++) {
+	for (iter=_taskList.begin(); iter<_taskList.end(); ++iter) {
 		if (iter->getID() == taskID) {
 			iter->setStatus(status);
 			break;

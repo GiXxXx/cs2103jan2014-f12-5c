@@ -23,5 +23,6 @@ public:
 	VeriTask();
 	~VeriTask();
 	void pushCommand(string, Identifier, TextUI); 
+	DataStorage getDataStorage();
 };
 #endif
