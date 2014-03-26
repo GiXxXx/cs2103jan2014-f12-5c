@@ -29,17 +29,19 @@ namespace UnitTest2 {
 	TEST_CLASS(UnitTest1) {
 	public:
 		
-		TEST_METHOD(testAdd) {
+		TEST_METHOD(testAddTimedTask) {
 			string TestUserInput = "add stargazing session on 31/05/2011 from 19:30 to 22:00";
 			Identifier TestInfoIdentifier;
 			VeriTask TaskManager;
 			TestInfoIdentifier.Identify(TestUserInput);
 			TextUI textUI;
 
-			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI);
-			//check that data structure has had one task added
-			DataStorage _TestdataStorage = TaskManager.getDataStorage();
+			//check that attributes have been initialised correctly for timed tasks
 
+			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI);
+		
+			DataStorage _TestdataStorage = TaskManager.getDataStorage();
+			
 			Task test1 =*((_TestdataStorage.retrieveTaskList()).begin());
 
 			string str1 = "20110531";
@@ -51,9 +53,6 @@ namespace UnitTest2 {
 			string str3 = "2200";
 			Assert::AreEqual(test1.getEndTime(), str3);
 
-			//size_t index = 0;
-			//Assert::AreEqual(test1.getStatus().size(), index);
-
 			string str4 = "stargazing session ";
 			Assert::AreEqual(test1.getEvent(), str4);
 
@@ -61,6 +60,41 @@ namespace UnitTest2 {
 			
 			//check that task has been added in correct order, comparing 2 timed tasks
 			string TestUserInput2 = "add birthday party on 01/03/2011 from 08.00 to 17.00";
+			TestInfoIdentifier.Identify(TestUserInput2);
+			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI);
+			_TestdataStorage = TaskManager.getDataStorage();
+			Task test2 =*((_TestdataStorage.retrieveTaskList()).begin());
+			string str5 = "20110301";
+			Assert::AreEqual(test2.getDate(), str5);			
+		}
+
+		TEST_METHOD(testAddDeadlineTask) {
+			string TestUserInput = "add see sunrise by 19/05/2011";
+			Identifier TestInfoIdentifier;
+			VeriTask TaskManager;
+			TestInfoIdentifier.Identify(TestUserInput);
+			TextUI textUI;
+
+			//check that attributes have been initialised correctly for deadline tasks
+
+			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI);
+		
+			DataStorage _TestdataStorage = TaskManager.getDataStorage();
+			
+			Task test1 =*((_TestdataStorage.retrieveTaskList()).begin());
+
+			string str1 = "20110519";
+			Assert::AreEqual(test1.getDate(), str1);
+
+			//haven't decided what to return for getStartTime() and getEndTime() for deadlines
+
+			string str4 = "see sunrise ";
+			Assert::AreEqual(test1.getEvent(), str4);
+
+			Assert::AreEqual(test1.getID(), 20110519.99999999);
+			
+			//check that task has been added in correct order, comparing 2 timed tasks
+			string TestUserInput2 = "add see sunset by 01/03/2011";
 			TestInfoIdentifier.Identify(TestUserInput2);
 			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI);
 			_TestdataStorage = TaskManager.getDataStorage();
