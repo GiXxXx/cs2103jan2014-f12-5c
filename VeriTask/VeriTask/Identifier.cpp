@@ -2,13 +2,13 @@
 
 
 Identifier::Identifier(){
+	
 }
-
 
 Identifier::~Identifier(){
 }
 
-void Identifier::Identify(string userInput){
+void Identifier::Identify(string userInput) {
 	CommandGetter CommandIdentifier(userInput);
 	Command = CommandIdentifier.Tokenize();
 	DateGetter DateIdentifier(userInput, Command);

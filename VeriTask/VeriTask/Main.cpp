@@ -11,18 +11,16 @@ using namespace std;
 int main() {
 	VeriTask TaskManager;
 	string UserInput;
-	Identifier temp;
+	Identifier InfoIdentifier;
 	TextUI textUI;
 
 	textUI.printWelcomeMessage();
 
 	do {
 		getline(cin, UserInput);
-		Identifier InfoIdentifier;
 		InfoIdentifier.Identify(UserInput);
-		temp = InfoIdentifier;
 		TaskManager.pushCommand(InfoIdentifier.GetCommand(), InfoIdentifier, textUI);
-	} while (temp.GetCommand() != EXIT);
+	} while (InfoIdentifier.GetCommand() != EXIT);
 	
 	return 0;
 }
