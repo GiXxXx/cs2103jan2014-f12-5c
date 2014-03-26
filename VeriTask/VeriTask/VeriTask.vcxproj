@@ -74,6 +74,7 @@
     <ClInclude Include="Identifier.h" />
     <ClInclude Include="KeywordGetter.h" />
     <ClInclude Include="MarkTask.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="StartTimeGetter.h" />
     <ClInclude Include="StatusGetter.h" />
     <ClInclude Include="TaskNumGetter.h" />
@@ -109,6 +110,9 @@
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
     <None Include="ClassDiagram1.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="VeriTask.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
