@@ -62,7 +62,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\identifier\identifier\identifier\CommandGetter.h" />
     <ClInclude Include="AddTask.h" />
     <ClInclude Include="CommandGetter.h" />
     <ClInclude Include="DataStorage.h" />
@@ -82,6 +81,7 @@
     <ClInclude Include="Command.h" />
     <ClInclude Include="Task.h" />
     <ClInclude Include="Tokenizer.h" />
+    <ClInclude Include="VeriTask.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AddTask.cpp" />

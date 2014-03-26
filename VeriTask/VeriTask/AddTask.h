@@ -12,7 +12,7 @@ using namespace std;
 
 class AddTask:public Command {
 public:
-	void executeCommand(Identifier, DataStorage &);	
+	void executeCommand(Identifier, DataStorage &, TextUI);	
 };
 
 #endif

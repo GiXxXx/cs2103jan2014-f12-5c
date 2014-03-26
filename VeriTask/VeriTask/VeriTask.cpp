@@ -1,31 +1,47 @@
 #include "VeriTask.h"
 
-VeriTask::VeriTask() {};
+VeriTask::VeriTask() {
+	undoList.push_back(_dataStorage);
+};
 
 VeriTask::~VeriTask() {};
 
-void VeriTask::pushCommand(string commandWord, Identifier infoIdentifier) {
+void VeriTask::pushCommand(string commandWord, Identifier infoIdentifier, TextUI textUI) {
+	Command* newTask;
 	if (commandWord == ADD_COMMAND) {
-		commandList.push_back(new AddTask);
+		newTask = new AddTask;
 	}
 	if (commandWord == DELETE_COMMAND) {
-		commandList.push_back(new DeleteTask);
+		newTask = new DeleteTask;
 	}
 	if (commandWord == EDIT_COMMAND) {
-		commandList.push_back(new EditTask);
+		newTask = new EditTask;
 	}
 	if (commandWord == SEARCH_COMMAND) {
-		commandList.push_back(new SearchTask);
+		newTask = new SearchTask;
 	}
 	if (commandWord == MARK_COMMAND) {
-		commandList.push_back(new MarkTask);
+		newTask = new MarkTask;
 	}
 	if (commandWord == "exit") { // change it
 		return;
-	} 
+	}
 	
-	int i=commandList.size();
-	commandList[i-1]->executeCommand(infoIdentifier, _dataStorage);
-	undoList.push_back(_dataStorage);
+	if (commandWord != UNDO_COMMAND) {
+		commandList.push_back(newTask);
+	    commandList.back()->executeCommand(infoIdentifier, _dataStorage, textUI);
+	    undoList.push_back(_dataStorage);
+	}
 
+	if (commandWord == UNDO_COMMAND) {
+		undoList.pop_back();
+	    _dataStorage = undoList.back();
+		commandList.pop_back();
+		textUI.printTask(_dataStorage);
+	}
+
+
+	
+	
+	
 }

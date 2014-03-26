@@ -10,7 +10,6 @@
 #include "EditTask.h"
 #include "SearchTask.h"
 #include "MarkTask.h"
-#include "TextUI.h"
 
 using namespace std;
 
@@ -19,11 +18,10 @@ private:
 	vector<Command*> commandList;
 	vector<DataStorage> undoList;
 	DataStorage _dataStorage;
-	TextUI textUI;
+	
 public:
 	VeriTask();
 	~VeriTask();
-	void pushCommand(string, Identifier); 
-	
+	void pushCommand(string, Identifier, TextUI); 
 };
 #endif
