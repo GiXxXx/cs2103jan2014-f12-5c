@@ -15,14 +15,14 @@ const string DELETE_COMMAND = "delete";
 const string EDIT_COMMAND = "edit";
 const string SEARCH_COMMAND = "search";
 const string MARK_COMMAND = "mark";
+const string UNDO_COMMAND = "undo";
 const string ERROR_MESSAGE = "Invalid Command";
 
 class Command {
 protected:
-	TextUI textUI;
 
 public:
-    virtual void executeCommand(Identifier, DataStorage &);
+    virtual void executeCommand(Identifier, DataStorage &, TextUI textUI);
 	void pushCommand(string);
 
 };

@@ -1,6 +1,6 @@
 #include "EditTask.h"	
 
-void EditTask::executeCommand(Identifier infoIdentifier, DataStorage &_dataStorage) {
+void EditTask::executeCommand(Identifier infoIdentifier, DataStorage &_dataStorage, TextUI textUI) {
 		int taskNum=std::stoi(infoIdentifier.GetTaskNum());
 		double taskIDToEdit = _dataStorage.retrieveTaskID(taskNum);
 	
@@ -13,5 +13,7 @@ void EditTask::executeCommand(Identifier infoIdentifier, DataStorage &_dataStora
 	    Task taskToEdit(event, date, startTime, endTime);
 
 	    _dataStorage.saveData(taskToEdit);
+
+		textUI.printTask(_dataStorage);
 		textUI.printEditConfirmation();
 }

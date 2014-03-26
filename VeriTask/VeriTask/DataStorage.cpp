@@ -30,8 +30,6 @@ void DataStorage::saveData(Task taskToSave) {
 	if (!isSaved) {
 		_taskList.push_back(taskToSave);
 	}
-
-	printTask();
 }
 
 void DataStorage::deleteData(double taskID) {
@@ -41,7 +39,6 @@ void DataStorage::deleteData(double taskID) {
 			break;
 		}
 	}
-	printTask();
 }
 
 bool DataStorage::searchData(string keyword) {
@@ -77,7 +74,6 @@ void DataStorage::markData(double taskID, string status) {
 			break;
 		}
 	}
-	printTask();
 }
 
 void DataStorage::printTask() {
