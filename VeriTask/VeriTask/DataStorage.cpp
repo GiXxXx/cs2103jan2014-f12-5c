@@ -30,6 +30,13 @@ void DataStorage::saveData(Task taskToSave) {
 	if (!isSaved) {
 		_taskList.push_back(taskToSave);
 	}
+
+	_taskListToDisplay = _taskList;
+	/*_taskListToDisplay.clear();
+	for (unsigned int i=0; i<_taskList.size(); ++i) {
+		_taskListToDisplay.push_back(_taskList[i]);
+	}*/
+	//void printTaskToDisplay();
 }
 
 void DataStorage::deleteData(double taskID) {
@@ -39,6 +46,13 @@ void DataStorage::deleteData(double taskID) {
 			break;
 		}
 	}
+
+	_taskListToDisplay = _taskList;
+	/*_taskListToDisplay.clear();
+	for (unsigned int i=0; i<_taskList.size(); ++i) {
+		_taskListToDisplay.push_back(_taskList[i]);
+	}
+	//void printTaskToDisplay();*/
 }
 
 bool DataStorage::searchData(string keyword) {
@@ -62,7 +76,6 @@ bool DataStorage::searchData(string keyword) {
 	if (_taskListToDisplay.empty()) {
 		return (isFound = false);
 	}
-	printTaskToDisplay();
 
 	return isFound;
 }
@@ -74,8 +87,10 @@ void DataStorage::markData(double taskID, string status) {
 			break;
 		}
 	}
-}
 
+	_taskListToDisplay = _taskList;
+}
+/*
 void DataStorage::printTask() {
 	if (_taskList.empty()) {
 		cout << "There are no tasks!\n";
@@ -107,3 +122,4 @@ void DataStorage::printTaskToDisplay() {
 	}
 	}
 }
+*/
