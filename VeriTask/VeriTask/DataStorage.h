@@ -21,8 +21,8 @@ public:
 	vector<Task> retrieveTaskListToDisplay();
 	double retrieveTaskID(int);
 
-	void printTask();
-	void printTaskToDisplay();
+//	void printTask();
+//	void printTaskToDisplay(); 
 
 	void saveData(Task taskToSave);
 	void deleteData(double taskID);

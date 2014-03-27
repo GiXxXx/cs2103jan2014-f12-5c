@@ -37,7 +37,7 @@ void VeriTask::pushCommand(string commandWord, Identifier infoIdentifier, TextUI
 		undoList.pop_back();
 	    _dataStorage = undoList.back();
 		commandList.pop_back();
-		textUI.printTask(_dataStorage);
+		textUI.printTaskToDisplay(_dataStorage);
 	}	
 }
 
