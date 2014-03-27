@@ -20,6 +20,7 @@ public:
 	vector<Task> retrieveTaskList();
 	vector<Task> retrieveTaskListToDisplay();
 	double retrieveTaskID(int);
+	Task retrieveTask(int);
 
 //	void printTask();
 //	void printTaskToDisplay(); 
