@@ -6,5 +6,7 @@ void SearchTask::executeCommand(Identifier infoIdentifier, DataStorage &_dataSto
 	isFound = _dataStorage.searchData(keyword);
 	if (!isFound) {
 		cout << "Not Found!\n";
+	} else {
+		textUI.printTaskToDisplay(_dataStorage);
 	}
 }

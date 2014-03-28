@@ -17,6 +17,7 @@ public:
 	void printMarkConfirmation();
 	void printSearchResult();
 	void printTask(DataStorage &);
+	void printTaskToDisplay(DataStorage &);
 };
 
 #endif
