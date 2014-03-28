@@ -5,9 +5,10 @@ void AddTask::executeCommand(Identifier infoIdentifier, DataStorage &_dataStorag
 	string startTime = infoIdentifier.GetStartTime();
 	string endTime = infoIdentifier.GetEndTime();
 	string event = infoIdentifier.GetEvent();
-	Task taskToAdd(event, date, startTime, endTime);
+	int index= infoIdentifier.getIndex();
+	Task taskToAdd(event, date, startTime, endTime, index);
 
 	_dataStorage.saveData(taskToAdd);
-	textUI.printTask(_dataStorage);
+	textUI.printTaskToDisplay(_dataStorage);
 	textUI.printAddConfirmation();
 }

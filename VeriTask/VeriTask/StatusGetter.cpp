@@ -8,13 +8,25 @@ StatusGetter::StatusGetter(string& uncategorizedInfo, string Command):Tokenizer(
 StatusGetter::~StatusGetter(){
 }
 
-string StatusGetter::Tokenize(){
+/*string StatusGetter::Tokenize(){
 	string status = NoStatus;
 	unsigned int position = (*uncategorizedInfo).find_last_not_of(space);
 
 	if(command == Mark){
 		if(*uncategorizedInfo == Done || *uncategorizedInfo == UnDone || *uncategorizedInfo == CannotBeDone) {
-			status = (*uncategorizedInfo).substr(start, position + OneUnit);
+			status = (*uncategorizedInfo);.substr(start, position + OneUnit);
+		} 
+	}
+
+	return status;
+}*/
+
+string StatusGetter::Tokenize(){
+	string status = NoStatus;
+
+	if(command == Mark){
+		if(*uncategorizedInfo == Done || *uncategorizedInfo == UnDone || *uncategorizedInfo == CannotBeDone) {
+			status = *uncategorizedInfo;
 		} 
 	}
 
