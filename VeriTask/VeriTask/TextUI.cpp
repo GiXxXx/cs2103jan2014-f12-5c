@@ -2,7 +2,7 @@
 
 void TextUI::printWelcomeMessage() {
 	cout << "Welcome to VeriTask!\n"
-		 << "The following functions are supported: add, delete, edit, search, mark.\n";
+		 << "The following functions are supported: add, delete, edit, search, mark, undo.\n";
 };
 
 void TextUI::printAddConfirmation() {
