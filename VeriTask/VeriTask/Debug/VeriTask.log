@@ -1,10 +1,10 @@
-﻿Build started 2014/3/28 1:28:37.
-     1>Project "E:\Study\University\SEM 4\CS2103-CS2103T\Project\Project\VeriTask\VeriTask\VeriTask.vcxproj" on node 2 (Build target(s)).
+﻿Build started 2014/3/28 3:00:37.
+     1>Project "C:\Users\GAO JIACHENG\Desktop\New folder (2)\VeriTask\VeriTask\VeriTask.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\VSC\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Identifier.cpp
-         Identifier.cpp
+         C:\Program Files (x86)\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt DateGetter.cpp
+         DateGetter.cpp
        Link:
-         C:\VSC\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\Study\University\SEM 4\CS2103-CS2103T\Project\Project\VeriTask\Debug\VeriTask.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\Study\University\SEM 4\CS2103-CS2103T\Project\Project\VeriTask\Debug\VeriTask.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\Study\University\SEM 4\CS2103-CS2103T\Project\Project\VeriTask\Debug\VeriTask.lib" /MACHINE:X86 Debug\AddTask.obj
+         C:\Program Files (x86)\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\GAO JIACHENG\Desktop\New folder (2)\VeriTask\Debug\VeriTask.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\GAO JIACHENG\Desktop\New folder (2)\VeriTask\Debug\VeriTask.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\GAO JIACHENG\Desktop\New folder (2)\VeriTask\Debug\VeriTask.lib" /MACHINE:X86 Debug\AddTask.obj
          Debug\CommandGetter.obj
          Debug\DataStorage.obj
          Debug\DateGetter.obj
@@ -25,9 +25,9 @@
          Debug\Command.obj
          Debug\Main.obj
          Debug\Task.obj
-         VeriTask.vcxproj -> E:\Study\University\SEM 4\CS2103-CS2103T\Project\Project\VeriTask\Debug\VeriTask.exe
-     1>Done Building Project "E:\Study\University\SEM 4\CS2103-CS2103T\Project\Project\VeriTask\VeriTask\VeriTask.vcxproj" (Build target(s)).
+         VeriTask.vcxproj -> C:\Users\GAO JIACHENG\Desktop\New folder (2)\VeriTask\Debug\VeriTask.exe
+     1>Done Building Project "C:\Users\GAO JIACHENG\Desktop\New folder (2)\VeriTask\VeriTask\VeriTask.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:02.21
+Time Elapsed 00:00:01.52

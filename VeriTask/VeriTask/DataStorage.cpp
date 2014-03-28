@@ -16,6 +16,11 @@ double DataStorage::retrieveTaskID(int taskNum) {
 	return taskID;
 }
 
+Task DataStorage::retrieveTask(int taskNum) {
+	Task task = _taskListToDisplay[taskNum-1];
+	return task;
+}
+
 void DataStorage::saveData(Task taskToSave) {
 	bool isSaved = false;
 	
