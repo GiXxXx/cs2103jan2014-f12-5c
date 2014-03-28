@@ -10,13 +10,13 @@ TaskNumGetter::~TaskNumGetter(){
 
 string TaskNumGetter::Tokenize(){
 	string TaskNumber;
-	int position = start, size = unit;
+
 	if(command == Edit || command == Mark){
-		TaskNumber =  (*uncategorizedInfo).substr(position,size);
-		chopInfo(*uncategorizedInfo, position, size);
+		TaskNumber =  (*uncategorizedInfo).substr(start, OneUnit);
+		chopInfo(*uncategorizedInfo, start, OneUnit);
 	}
 	else if(command == Delete){
-		TaskNumber = *uncategorizedInfo;
+		TaskNumber =  (*uncategorizedInfo).substr(start, OneUnit);
 	}
 	return TaskNumber;
 }

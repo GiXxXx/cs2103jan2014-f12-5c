@@ -37,3 +37,20 @@ void TextUI::printTask(DataStorage &_dataStorage) {
 	}
 	}
 }
+
+void TextUI::printTaskToDisplay(DataStorage &_dataStorage) {
+	vector<Task> taskListToDisplay = _dataStorage.retrieveTaskListToDisplay();
+	if (taskListToDisplay.empty()) {
+		cout << "No match!\n";
+	} else {
+	for (unsigned int i=0; i<taskListToDisplay.size(); i++) {
+		cout << i+1 << ". "
+			 << taskListToDisplay[i].getEvent() << " " 
+			 << taskListToDisplay[i].getDate() << " "
+			 << taskListToDisplay[i].getStartTime() << " "
+			 << taskListToDisplay[i].getEndTime() << " "
+			 << taskListToDisplay[i].getStatus() << " "
+			 << endl;
+	}
+	}
+}

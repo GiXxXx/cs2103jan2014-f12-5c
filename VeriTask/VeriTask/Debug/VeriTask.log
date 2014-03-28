@@ -1,33 +1,10 @@
-﻿Build started 26/3/2014 10:31:04 PM.
-     1>Project "C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\VeriTask.vcxproj" on node 2 (Rebuild target(s)).
+﻿Build started 2014/3/28 3:00:37.
+     1>Project "C:\Users\GAO JIACHENG\Desktop\New folder (2)\VeriTask\VeriTask\VeriTask.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt AddTask.cpp CommandGetter.cpp DataStorage.cpp DateGetter.cpp DeleteTask.cpp EditTask.cpp EndTimeGetter.cpp EventGetter.cpp Identifier.cpp KeywordGetter.cpp MarkTask.cpp StartTimeGetter.cpp StatusGetter.cpp TaskNumGetter.cpp TextUI.cpp Tokenizer.cpp VeriTask.cpp SearchTask.cpp Command.cpp Main.cpp Task.cpp
-         Task.cpp
-         Main.cpp
-         Command.cpp
-         SearchTask.cpp
-         VeriTask.cpp
-         Tokenizer.cpp
-         TextUI.cpp
-         TaskNumGetter.cpp
-         StatusGetter.cpp
-         StartTimeGetter.cpp
-         MarkTask.cpp
-         KeywordGetter.cpp
-         Identifier.cpp
-         EventGetter.cpp
-         EndTimeGetter.cpp
-         EditTask.cpp
-         DeleteTask.cpp
+         C:\Program Files (x86)\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt DateGetter.cpp
          DateGetter.cpp
-         DataStorage.cpp
-         CommandGetter.cpp
-         Generating Code...
-         Compiling...
-         AddTask.cpp
-         Generating Code...
-       Lib:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\Lib.exe /OUT:"C:\Users\YuJia\Desktop\NewProject\VeriTask\Debug\VeriTask.lib" /NOLOGO Debug\AddTask.obj
+       Link:
+         C:\Program Files (x86)\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\GAO JIACHENG\Desktop\New folder (2)\VeriTask\Debug\VeriTask.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\GAO JIACHENG\Desktop\New folder (2)\VeriTask\Debug\VeriTask.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\GAO JIACHENG\Desktop\New folder (2)\VeriTask\Debug\VeriTask.lib" /MACHINE:X86 Debug\AddTask.obj
          Debug\CommandGetter.obj
          Debug\DataStorage.obj
          Debug\DateGetter.obj
@@ -48,9 +25,9 @@
          Debug\Command.obj
          Debug\Main.obj
          Debug\Task.obj
-         VeriTask.vcxproj -> C:\Users\YuJia\Desktop\NewProject\VeriTask\Debug\VeriTask.lib
-     1>Done Building Project "C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\VeriTask.vcxproj" (Rebuild target(s)).
+         VeriTask.vcxproj -> C:\Users\GAO JIACHENG\Desktop\New folder (2)\VeriTask\Debug\VeriTask.exe
+     1>Done Building Project "C:\Users\GAO JIACHENG\Desktop\New folder (2)\VeriTask\VeriTask\VeriTask.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:14.43
+Time Elapsed 00:00:01.52
