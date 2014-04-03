@@ -10,6 +10,7 @@
 #include "EditTask.h"
 #include "SearchTask.h"
 #include "MarkTask.h"
+#include "File.h"
 
 using namespace std;
 
@@ -20,9 +21,9 @@ private:
 	DataStorage _dataStorage;
 	
 public:
-	VeriTask();
+	VeriTask(File);
 	~VeriTask();
-	void pushCommand(string, Identifier, TextUI); 
+	void pushCommand(string, Identifier, TextUI, File); 
 	DataStorage getDataStorage();
 };
 #endif

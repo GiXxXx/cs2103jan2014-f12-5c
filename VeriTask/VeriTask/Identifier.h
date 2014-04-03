@@ -34,6 +34,6 @@ public:
 	string GetTaskNum();
 	string GetCommand();
 	string GetStatus();
-	int getIndex();
+	//int getIndex();
 };
 

@@ -16,6 +16,7 @@ private:
 	string _startTime;
 	string _endTime;
 	string _status;
+	int _index;
 	double _ID;
 
 public:
@@ -26,15 +27,14 @@ public:
 	string getEndTime();
 	string getStatus();
 	double getID();
+	int getIndex();
 
+	void setEvent(string event);
+	void setDate(string date);
+	void setStartTime(string startTime);
+	void setEndTime(string endTime);
 	void setStatus(string status);
-
-/*	string setDate(string Date);
-	string setStartTime(string StartTime);
-	string setEndTime(string EndTime);
-	string setEvent(string Event);
-	double setSeqenceNum(double SequenceNum);
-	 */
+	void setID(double ID);
 };
 
 #endif
