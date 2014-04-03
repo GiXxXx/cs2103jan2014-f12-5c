@@ -21,7 +21,7 @@ public:
 	
 	vector<Task> retrieveTaskList();
 	vector<Task> retrieveTaskListToDisplay();
-	double retrieveTaskID(int);
+	unsigned long long int retrieveTaskID(int);
 	Task retrieveTask(int);
 
 //	void printTask();

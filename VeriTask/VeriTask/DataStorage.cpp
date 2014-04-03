@@ -11,8 +11,8 @@ vector<Task> DataStorage::retrieveTaskListToDisplay() {
 	return _taskListToDisplay;
 }
 
-double DataStorage::retrieveTaskID(int taskNum) {
-	double taskID = _taskListToDisplay[taskNum-1].getID();
+unsigned long long int DataStorage::retrieveTaskID(int taskNum) {
+	unsigned long long int taskID = _taskListToDisplay[taskNum-1].getID();
 	return taskID;
 }
 
