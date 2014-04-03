@@ -22,7 +22,7 @@ class Command {
 protected:
 
 public:
-    virtual void executeCommand(Identifier, DataStorage &, TextUI textUI);
+    virtual void executeCommand(Identifier, DataStorage &, TextUI textUI, File file);
 	void pushCommand(string);
 
 };

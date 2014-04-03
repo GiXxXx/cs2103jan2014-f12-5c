@@ -5,6 +5,7 @@
 #include <string>
 #include <algorithm>
 #include "Task.h"
+#include "File.h"
 
 using namespace std;
 
@@ -13,6 +14,7 @@ private:
 	vector<Task> _taskList;
 	vector<Task> _taskListToDisplay;
 	vector<Task>::iterator iter;
+	int _taskIndex;
 
 public:
 	DataStorage();
@@ -24,11 +26,13 @@ public:
 
 //	void printTask();
 //	void printTaskToDisplay(); 
-
+	void fillData(vector<Task>);
 	void saveData(Task taskToSave);
 	void deleteData(double taskID);
 	bool searchData(string keyword);
 	void markData(double taskID, string status);
+	void setTaskIndex(int taskIndex);
+	int getTaskIndex();
 };
 
 #endif

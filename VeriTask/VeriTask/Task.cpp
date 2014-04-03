@@ -1,36 +1,35 @@
 #include "Task.h"
 
-Task::Task(string Event, string Date, string StartTime, string EndTime, int index) {
-	_event = Event;
-	_date = Date;
-	_startTime = StartTime;
-	_endTime = EndTime;
-	//_Status = Status;
+Task::Task(string event, string date, string startTime, string endTime, int index) {
+	_event = event;
+	_date = date;
+	_startTime = startTime;
+	_endTime = endTime;
+	_index = index;
 	int date_Int;
 	int startTime_Int;
 	int endTime_Int;
 
-	if(Date == "        "){
+	if(date == "        "){
 		date_Int = 99999999;
 	}
 	else{
 		date_Int = std::stoi(_date);
 	}
-	if(StartTime == "    "){
+	if(startTime == "    "){
 		startTime_Int = 9999;
 	}
 	else{
 		startTime_Int = std::stoi(_startTime);
 	}
-	if(EndTime == "    "){
+	if(endTime == "    "){
 		endTime_Int = 9999;
 	}
 	else{
 		endTime_Int = std::stoi(_endTime);
 	}
 
-	while (index>=0.00000001)
-		index = index/10.0;
+	index = index/10000000000000.0;
 
 	_ID = date_Int + startTime_Int/10000.0 + endTime_Int/100000000.0 + index;
 }
@@ -59,8 +58,30 @@ double Task::getID() {
 	return _ID;
 }
 
+int Task::getIndex() {
+	return _index;
+}
+
+void Task::setEvent(string event) {
+	_event = event;
+}
+
+void Task::setDate(string date) {
+	_date = date;
+}
+
+void Task::setStartTime(string startTime) {
+	_startTime = startTime;
+}
+
+void Task::setEndTime(string endTime) {
+	_endTime = endTime;
+}
+
 void Task::setStatus(string status) {
 	_status = status;
 }
 
-
+void Task::setID(double ID) {
+	_ID = ID;
+}
