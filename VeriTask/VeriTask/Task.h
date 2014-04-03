@@ -17,7 +17,7 @@ private:
 	string _endTime;
 	string _status;
 	int _index;
-	double _ID;
+	unsigned long long _ID;
 
 public:
 	Task(string event, string date, string startTime, string endTime, int index);
@@ -26,7 +26,7 @@ public:
 	string getStartTime();
 	string getEndTime();
 	string getStatus();
-	double getID();
+	unsigned long long getID();
 	int getIndex();
 
 	void setEvent(string event);
@@ -34,7 +34,7 @@ public:
 	void setStartTime(string startTime);
 	void setEndTime(string endTime);
 	void setStatus(string status);
-	void setID(double ID);
+	void setID(unsigned long long ID);
 };
 
 #endif

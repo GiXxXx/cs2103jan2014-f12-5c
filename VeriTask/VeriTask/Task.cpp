@@ -29,9 +29,9 @@ Task::Task(string event, string date, string startTime, string endTime, int inde
 		endTime_Int = std::stoi(_endTime);
 	}
 
-	index = index/10000000000000.0;
+	//index = index/10000000000000.0;
 
-	_ID = date_Int + startTime_Int/10000.0 + endTime_Int/100000000.0 + index;
+	_ID = date_Int * 100000000000 + startTime_Int * 10000000  + endTime_Int * 1000 + index;
 }
 
 string Task::getEvent() {
@@ -54,7 +54,7 @@ string Task::getStatus() {
 	return _status;
 }
 
-double Task::getID() {
+unsigned long long Task::getID() {
 	return _ID;
 }
 
@@ -82,6 +82,6 @@ void Task::setStatus(string status) {
 	_status = status;
 }
 
-void Task::setID(double ID) {
+void Task::setID(unsigned long long ID) {
 	_ID = ID;
 }
