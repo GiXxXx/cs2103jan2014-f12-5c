@@ -21,6 +21,12 @@ Task DataStorage::retrieveTask(int taskNum) {
 	return task;
 }
 
+void DataStorage::fillData(vector<Task> taskList) {
+	for (unsigned int i=0; i<taskList.size(); ++i) {
+		_taskList.push_back(taskList[i]);
+	}
+}
+
 void DataStorage::saveData(Task taskToSave) {
 	bool isSaved = false;
 	
@@ -128,3 +134,11 @@ void DataStorage::printTaskToDisplay() {
 	}
 }
 */
+void DataStorage::setTaskIndex(int taskIndex) {
+	_taskIndex = taskIndex;
+}
+
+int DataStorage::getTaskIndex() {
+	_taskIndex++;
+	return (_taskIndex-1);
+}

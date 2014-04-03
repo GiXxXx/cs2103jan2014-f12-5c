@@ -60,7 +60,7 @@ string Identifier::GetStatus(){
 	return Status;
 }
 
-int Identifier::getIndex() {
+/*int Identifier::getIndex() {
 	return index;
-}
+} */
 
