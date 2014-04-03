@@ -50,7 +50,7 @@ void DataStorage::saveData(Task taskToSave) {
 	//void printTaskToDisplay();
 }
 
-void DataStorage::deleteData(double taskID) {
+void DataStorage::deleteData(unsigned long long int taskID) {
 	for (iter=_taskList.begin(); iter<_taskList.end(); ++iter) { 
 		if (iter->getID() == taskID) {
 			_taskList.erase(iter);
@@ -91,7 +91,7 @@ bool DataStorage::searchData(string keyword) {
 	return isFound;
 }
 
-void DataStorage::markData(double taskID, string status) {
+void DataStorage::markData(unsigned long long int taskID, string status) {
 	for (iter=_taskList.begin(); iter<_taskList.end(); ++iter) {
 		if (iter->getID() == taskID) {
 			iter->setStatus(status);
