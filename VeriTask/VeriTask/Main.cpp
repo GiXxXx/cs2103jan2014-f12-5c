@@ -10,8 +10,9 @@ const string EXIT = "exit";
 using namespace std;
 
 int main() {
-	File file;
-	VeriTask TaskManager(file);
+	File* file;
+	file = new File;
+	VeriTask TaskManager(*file);
 	string UserInput;
 	Identifier InfoIdentifier;
 	TextUI textUI;
@@ -21,7 +22,7 @@ int main() {
 	do {
 		getline(cin, UserInput);
 		InfoIdentifier.Identify(UserInput);
-		TaskManager.pushCommand(InfoIdentifier.GetCommand(), InfoIdentifier, textUI, file);
+		TaskManager.pushCommand(InfoIdentifier.GetCommand(), InfoIdentifier, textUI, *file);
 	} while (InfoIdentifier.GetCommand() != EXIT);
 	
 	return 0;
