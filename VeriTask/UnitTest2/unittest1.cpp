@@ -65,7 +65,25 @@ namespace UnitTest2 {
 			_TestdataStorage = TaskManager.getDataStorage();
 			Task test2 =*((_TestdataStorage.retrieveTaskList()).begin());
 			string str5 = "birthday party";
-			Assert::AreEqual(test2.getEvent(), str5);			
+			Assert::AreEqual(test2.getEvent(), str5);
+
+			//check that task has been added in correct order, comparing timed & deadline tasks
+			string TestUserInput3 = "add settle accounts by 01/04/2014";
+			TestInfoIdentifier.Identify(TestUserInput3);
+			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI);
+			_TestdataStorage = TaskManager.getDataStorage();
+			Task test3 =*((_TestdataStorage.retrieveTaskList()).end());
+			string str6 = "settle accounts";
+			Assert::AreEqual(test3.getEvent(), str6);
+
+			//check that task has been added in correct order, comparing timed & floating tasks
+			string TestUserInput3 = "add arrange music score";
+			TestInfoIdentifier.Identify(TestUserInput3);
+			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI);
+			_TestdataStorage = TaskManager.getDataStorage();
+			Task test4 =*((_TestdataStorage.retrieveTaskList()).end());
+			string str7 = "arrange music score";
+			Assert::AreEqual(test4.getEvent(), str7);
 		}
 		
 		TEST_METHOD(testAddDeadlineTask) {
@@ -86,24 +104,39 @@ namespace UnitTest2 {
 			string str1 = "20110519";
 			Assert::AreEqual(test1.getDate(), str1);
 
-			string str11 = "9999";
-			Assert::AreEqual(test1.getStartTime(), str11);
+			string str2 = "9999";
+			Assert::AreEqual(test1.getStartTime(), str2);
 
-			Assert::AreEqual(test1.getEndTime(), str11);
+			string str3 = "9999";
+			Assert::AreEqual(test1.getEndTime(), str3);
 
 			string str4 = "see sunrise ";
 			Assert::AreEqual(test1.getEvent(), str4);
 
 			Assert::AreEqual(test1.getID(), 20110519.99999999);
 			
-			//check that task has been added in correct order, comparing 2 dealine tasks
+			//check that task has been added in correct order, comparing 2 deadline tasks
 			string TestUserInput2 = "add see sunset by 01/03/2011";
 			TestInfoIdentifier.Identify(TestUserInput2);
 			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI);
 			_TestdataStorage = TaskManager.getDataStorage();
 			Task test2 =*((_TestdataStorage.retrieveTaskList()).begin());
 			string str5 = "see sunset";
-			Assert::AreEqual(test2.getEvent(), str5);			
+			Assert::AreEqual(test2.getEvent(), str5);	
+
+			//check that task has been added in correct order, comparing deadline & floating tasks
+			string TestUserInput3 = "add watch Ghibli";
+			TestInfoIdentifier.Identify(TestUserInput3);
+			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI);
+
+			string TestUserInput4 = "add see sunset by 01/03/2011";
+			TestInfoIdentifier.Identify(TestUserInput4);
+			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI);
+
+			_TestdataStorage = TaskManager.getDataStorage();
+			Task test3 =*((_TestdataStorage.retrieveTaskList()).end());
+			string str6 = "watch Ghibli";
+			Assert::AreEqual(test3.getEvent(), str6);
 		} 
 
 		TEST_METHOD(testAddFloatingTask) {
@@ -136,10 +169,18 @@ namespace UnitTest2 {
 			TestInfoIdentifier.Identify(TestUserInput2);
 			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI);
 			_TestdataStorage = TaskManager.getDataStorage();
-
 			Task test2 =*((_TestdataStorage.retrieveTaskList()).begin());
-			string str5 = "see sunset";
-			Assert::AreEqual(test2.getEvent(), str5);			
+			string str4 = "see sunset";
+			Assert::AreEqual(test2.getEvent(), str4);			
+
+			//check that task has been added in correct order, comparing 2 floating tasks
+			string TestUserInput3 = "add shift furniture";
+			TestInfoIdentifier.Identify(TestUserInput3);
+			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI);
+			_TestdataStorage = TaskManager.getDataStorage();
+			Task test3 =*((_TestdataStorage.retrieveTaskList()).end());
+			string str5 = "shift furniture";
+			Assert::AreEqual(test2.getEvent(), str5);
 		
 		}
 
