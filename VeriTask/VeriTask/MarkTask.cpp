@@ -7,7 +7,7 @@ void MarkTask::executeCommand(Identifier infoIdentifier, DataStorage &_dataStora
 
 		_dataStorage.markData(taskIDToMark, status);
 
-		textUI.printTask(_dataStorage);
+		textUI.printTaskToDisplay(_dataStorage);
 		textUI.printMarkConfirmation();
 }
 

@@ -11,6 +11,7 @@ void EditTask::executeCommand(Identifier infoIdentifier, DataStorage &_dataStora
 	    string startTime = infoIdentifier.GetStartTime();
 	    string endTime = infoIdentifier.GetEndTime();
 	    string event = infoIdentifier.GetEvent();
+		int index = infoIdentifier.getIndex();
 
 		if(date == "        "){
 			date = temp.getDate();
@@ -28,9 +29,9 @@ void EditTask::executeCommand(Identifier infoIdentifier, DataStorage &_dataStora
 			event = temp.getEvent();
 		}
 
-		Task taskToEdit(event, date, startTime, endTime);
+		Task taskToEdit(event, date, startTime, endTime, index);
 	    _dataStorage.saveData(taskToEdit);
 
-		textUI.printTask(_dataStorage);
+		textUI.printTaskToDisplay(_dataStorage);
 		textUI.printEditConfirmation();
 }

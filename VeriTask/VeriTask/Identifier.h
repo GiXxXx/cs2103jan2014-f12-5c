@@ -21,6 +21,7 @@ private:
 	string Keyword;
 	string TaskNum;
 	string Status;
+	int index;
 public:
 	Identifier();
 	~Identifier();
@@ -33,5 +34,6 @@ public:
 	string GetTaskNum();
 	string GetCommand();
 	string GetStatus();
+	int getIndex();
 };
 
