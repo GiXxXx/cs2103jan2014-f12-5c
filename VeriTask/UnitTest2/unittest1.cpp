@@ -36,13 +36,13 @@ namespace UnitTest2 {
 			TestInfoIdentifier.Identify(TestUserInput);
 			TextUI textUI;
 
-			//check that attributes have been initialised correctly for timed tasks
-
 			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI);
 		
 			DataStorage _TestdataStorage = TaskManager.getDataStorage();
 			
 			Task test1 =*((_TestdataStorage.retrieveTaskList()).begin());
+
+			//check that attributes have been initialised correctly for timed tasks
 
 			string str1 = "20110531";
 			Assert::AreEqual(test1.getDate(), str1);
@@ -64,10 +64,10 @@ namespace UnitTest2 {
 			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI);
 			_TestdataStorage = TaskManager.getDataStorage();
 			Task test2 =*((_TestdataStorage.retrieveTaskList()).begin());
-			string str5 = "20110301";
-			Assert::AreEqual(test2.getDate(), str5);			
+			string str5 = "birthday party";
+			Assert::AreEqual(test2.getEvent(), str5);			
 		}
-
+		
 		TEST_METHOD(testAddDeadlineTask) {
 			string TestUserInput = "add see sunrise by 19/05/2011";
 			Identifier TestInfoIdentifier;
@@ -86,21 +86,61 @@ namespace UnitTest2 {
 			string str1 = "20110519";
 			Assert::AreEqual(test1.getDate(), str1);
 
-			//haven't decided what to return for getStartTime() and getEndTime() for deadlines
+			string str11 = "9999";
+			Assert::AreEqual(test1.getStartTime(), str11);
+
+			Assert::AreEqual(test1.getEndTime(), str11);
 
 			string str4 = "see sunrise ";
 			Assert::AreEqual(test1.getEvent(), str4);
 
 			Assert::AreEqual(test1.getID(), 20110519.99999999);
 			
-			//check that task has been added in correct order, comparing 2 timed tasks
+			//check that task has been added in correct order, comparing 2 dealine tasks
 			string TestUserInput2 = "add see sunset by 01/03/2011";
 			TestInfoIdentifier.Identify(TestUserInput2);
 			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI);
 			_TestdataStorage = TaskManager.getDataStorage();
 			Task test2 =*((_TestdataStorage.retrieveTaskList()).begin());
-			string str5 = "20110301";
-			Assert::AreEqual(test2.getDate(), str5);			
+			string str5 = "see sunset";
+			Assert::AreEqual(test2.getEvent(), str5);			
+		} 
+
+		TEST_METHOD(testAddFloatingTask) {
+			string TestUserInput = "add move house";
+			Identifier TestInfoIdentifier;
+			VeriTask TaskManager;
+			TestInfoIdentifier.Identify(TestUserInput);
+			TextUI textUI;
+
+			//check that attributes have been initialised correctly for deadline tasks
+
+			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI);
+		
+			DataStorage _TestdataStorage = TaskManager.getDataStorage();
+			
+			Task test1 =*((_TestdataStorage.retrieveTaskList()).begin());
+
+			string str1 = "move house";
+			Assert::AreEqual(test1.getEvent(), str1);
+
+			string str2 = "9999";
+			Assert::AreEqual(test1.getStartTime(), str2);
+			string str3 = "9999";
+			Assert::AreEqual(test1.getEndTime(), str3);
+
+			Assert::AreEqual(test1.getID(), 99999999.99999999);
+			
+			//check that task has been added in correct order, comparing deadline to floating
+			string TestUserInput2 = "add see sunset by 01/03/2011";
+			TestInfoIdentifier.Identify(TestUserInput2);
+			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI);
+			_TestdataStorage = TaskManager.getDataStorage();
+
+			Task test2 =*((_TestdataStorage.retrieveTaskList()).begin());
+			string str5 = "see sunset";
+			Assert::AreEqual(test2.getEvent(), str5);			
+		
 		}
 
 		TEST_METHOD(testEdit) {
@@ -117,9 +157,35 @@ namespace UnitTest2 {
 		}
 
 		TEST_METHOD(testSearch) {
-				
-		}
+			string TestUserInput = "add stargazing session on 31/05/2011 from 19:30 to 22:00";
+			Identifier TestInfoIdentifier;
+			VeriTask TaskManager;
+			TestInfoIdentifier.Identify(TestUserInput);
+			TextUI textUI;
 
+			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI);
+		
+			DataStorage _TestdataStorage = TaskManager.getDataStorage();
+			
+			//negative search
+			string TestUserInput2 = "search sunset";
+			TestInfoIdentifier.Identify(TestUserInput2);
+			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI);
+			_TestdataStorage = TaskManager.getDataStorage();
+
+			Assert::IsTrue((_TestdataStorage.retrieveTaskListToDisplay()).empty());	
+
+			//positive search
+			string TestUserInput3 = "search stargazing";
+			TestInfoIdentifier.Identify(TestUserInput3);
+			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI);
+			_TestdataStorage = TaskManager.getDataStorage();
+
+			Task test2 =*((_TestdataStorage.retrieveTaskListToDisplay()).begin());
+			string str1 = "stargazing session";
+			Assert::AreEqual(test2.getEvent(), str1);
+		}
+		
 		TEST_METHOD(testUndo) {
 				
 		}
