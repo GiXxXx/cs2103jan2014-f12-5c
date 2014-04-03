@@ -32,7 +32,7 @@ namespace UnitTest2 {
 		TEST_METHOD(testAddTimedTask) {
 			string TestUserInput = "add stargazing session on 31/05/2011 from 19:30 to 22:00";
 			Identifier TestInfoIdentifier;
-			File filename;
+			File filename("UnitTest1.txt");
 			VeriTask TaskManager(filename);
 			TestInfoIdentifier.Identify(TestUserInput);
 			TextUI textUI;
@@ -56,8 +56,8 @@ namespace UnitTest2 {
 
 			string str4 = "stargazing session";
 			Assert::AreEqual(test1.getEvent(), str4);
-
-			Assert::AreEqual(test1.getID(), 20110531.19302200);
+			unsigned long long int test = 2011053119302200001;
+			Assert::AreEqual(test1.getID(), test);
 			
 			//check that task has been added in correct order, comparing 2 timed tasks
 			string TestUserInput2 = "add birthday party on 01/03/2011 from 08.00 to 17.00";
@@ -90,7 +90,7 @@ namespace UnitTest2 {
 		TEST_METHOD(testAddDeadlineTask) {
 			string TestUserInput = "add see sunrise by 19/05/2011";
 			Identifier TestInfoIdentifier;
-			File filename;
+			File filename("UnitTest2.txt");;
 			VeriTask TaskManager(filename);
 			TestInfoIdentifier.Identify(TestUserInput);
 			TextUI textUI;
@@ -114,8 +114,8 @@ namespace UnitTest2 {
 
 			string str4 = "see sunrise";
 			Assert::AreEqual(test1.getEvent(), str4);
-
-			Assert::AreEqual(test1.getID(), 20110519.99999999);
+			unsigned long long int test = 2011051999999999001;
+			Assert::AreEqual(test1.getID(), test);
 			
 			//check that task has been added in correct order, comparing 2 deadline tasks
 			string TestUserInput2 = "add see sunset by 01/03/2011";
@@ -144,7 +144,7 @@ namespace UnitTest2 {
 		TEST_METHOD(testAddFloatingTask) {
 			string TestUserInput = "add move house";
 			Identifier TestInfoIdentifier1;
-			File filename;
+			File filename("UnitTest3.txt");;
 			VeriTask TaskManager1(filename);
 			TestInfoIdentifier1.Identify(TestUserInput);
 			TextUI textUI;
@@ -165,8 +165,8 @@ namespace UnitTest2 {
 			Assert::AreEqual(test1.getEndTime(), str2);
 			string str3 = "        ";
 			Assert::AreEqual(test1.getDate(), str3);
-
-			Assert::AreEqual(test1.getID(), 99999999.999999991);
+            unsigned long long int test = 9999999999999999001;
+			Assert::AreEqual(test1.getID(), test);
 
 //to-do: check for initialisation of 2nd floating task ID
 			
@@ -196,7 +196,7 @@ namespace UnitTest2 {
 			//initialise task
 			string TestUserInput = "add stargazing session on 31/05/2011 from 19:30 to 22:00";
 			Identifier TestInfoIdentifier;
-			File filename;
+			File filename("UnitTest4.txt");;
 			VeriTask TaskManager(filename);
 			TestInfoIdentifier.Identify(TestUserInput);
 			TextUI textUI;
@@ -264,7 +264,7 @@ namespace UnitTest2 {
 			//initialise task
 			string TestUserInput = "add grow up by 11/04/2014";
 			Identifier TestInfoIdentifier;
-			File filename;
+			File filename("UnitTest5.txt");
 			VeriTask TaskManager(filename);
 			TestInfoIdentifier.Identify(TestUserInput);
 			TextUI textUI;
@@ -303,7 +303,7 @@ namespace UnitTest2 {
 			//initialise task
 			string TestUserInput = "add complete drawing";
 			Identifier TestInfoIdentifier;
-			File filename;
+			File filename("UnitTest6.txt");
 			VeriTask TaskManager(filename);
 			TestInfoIdentifier.Identify(TestUserInput);
 			TextUI textUI;
@@ -358,7 +358,7 @@ namespace UnitTest2 {
 		TEST_METHOD(testSearch) {
 			string TestUserInput = "add stargazing session on 31/05/2011 from 19:30 to 22:00";
 			Identifier TestInfoIdentify;
-			File filenameS;
+			File filenameS("UnitTest7.txt");
 			VeriTask TaskManagerS(filenameS);
 			TestInfoIdentify.Identify(TestUserInput);
 			TextUI textUI;

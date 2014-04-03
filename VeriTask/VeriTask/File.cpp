@@ -17,7 +17,8 @@ int File::accessIndex() {
 	ifstream readFile(_fileName.c_str());
 
 	getline(readFile, taskIndex);
-	if (taskIndex == "") {
+
+	if (taskIndex.size() == 0) {
 		return 0;
 	}
 
