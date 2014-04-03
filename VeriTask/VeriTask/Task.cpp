@@ -1,6 +1,6 @@
 #include "Task.h"
 
-Task::Task(string Event, string Date, string StartTime, string EndTime) {
+Task::Task(string Event, string Date, string StartTime, string EndTime, int index) {
 	_event = Event;
 	_date = Date;
 	_startTime = StartTime;
@@ -29,7 +29,10 @@ Task::Task(string Event, string Date, string StartTime, string EndTime) {
 		endTime_Int = std::stoi(_endTime);
 	}
 
-	_ID = date_Int + startTime_Int/10000.0 + endTime_Int/100000000.0;
+	while (index>=0.00000001)
+		index = index/10.0;
+
+	_ID = date_Int + startTime_Int/10000.0 + endTime_Int/100000000.0 + index;
 }
 
 string Task::getEvent() {

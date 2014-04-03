@@ -19,7 +19,7 @@ private:
 	double _ID;
 
 public:
-	Task(string event, string date, string startTime, string endTime);
+	Task(string event, string date, string startTime, string endTime, int index);
 	string getEvent();
 	string getDate();
 	string getStartTime();

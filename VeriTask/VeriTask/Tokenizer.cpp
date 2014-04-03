@@ -77,7 +77,7 @@ string Tokenizer::getTime(string test, string keyword){
 
 void Tokenizer::ChangeDoubleDigit(string &Number){
 	if(isNumber(Number)){
-		if(std::stoi(Number) < 10){
+		if(std::stoi(Number) < 10 && Number.size() == OneUnit){
 			Number = Zero + Number;
 		}
 	}

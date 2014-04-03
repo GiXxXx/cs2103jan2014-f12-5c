@@ -1,4 +1,4 @@
-﻿Build started 26/3/2014 10:31:04 PM.
+﻿Build started 28/3/2014 11:13:14 AM.
      1>Project "C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\VeriTask.vcxproj" on node 2 (Rebuild target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt AddTask.cpp CommandGetter.cpp DataStorage.cpp DateGetter.cpp DeleteTask.cpp EditTask.cpp EndTimeGetter.cpp EventGetter.cpp Identifier.cpp KeywordGetter.cpp MarkTask.cpp StartTimeGetter.cpp StatusGetter.cpp TaskNumGetter.cpp TextUI.cpp Tokenizer.cpp VeriTask.cpp SearchTask.cpp Command.cpp Main.cpp Task.cpp
@@ -53,4 +53,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:14.43
+Time Elapsed 00:00:14.50

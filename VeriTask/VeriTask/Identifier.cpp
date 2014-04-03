@@ -2,13 +2,14 @@
 
 
 Identifier::Identifier(){
-	
+	index = 0;
 }
 
 Identifier::~Identifier(){
 }
 
 void Identifier::Identify(string userInput) {
+	index++;
 	CommandGetter CommandIdentifier(userInput);
 	Command = CommandIdentifier.Tokenize();
 	DateGetter DateIdentifier(userInput, Command);
@@ -59,5 +60,7 @@ string Identifier::GetStatus(){
 	return Status;
 }
 
-
+int Identifier::getIndex() {
+	return index;
+}
 
