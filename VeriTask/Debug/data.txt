@@ -1,4 +1,4 @@
-88
+171
 see sunset
 20110301
     
@@ -77,6 +77,66 @@ see sunrise
     
 
 82
+see sunrise
+20110519
+    
+    
+
+89
+see sunrise
+20110519
+    
+    
+
+96
+see sunrise
+20110519
+    
+    
+
+103
+see sunrise
+20110519
+    
+    
+
+110
+see sunrise
+20110519
+    
+    
+
+117
+see sunrise
+20110519
+    
+    
+
+124
+see sunrise
+20110519
+    
+    
+
+134
+see sunrise
+20110519
+    
+    
+
+144
+see sunrise
+20110519
+    
+    
+
+153
+see sunrise
+20110519
+    
+    
+
+162
 stargazing session
 20110531
 1930
@@ -293,6 +353,174 @@ stargazing session
 2200
 
 87
+stargazing session
+20110531
+1930
+2200
+
+88
+stargazing session
+20110531
+1930
+2200
+
+91
+stargazing session
+20110531
+1930
+2200
+
+94
+stargazing session
+20110531
+1930
+2200
+
+95
+stargazing session
+20110531
+1930
+2200
+
+98
+stargazing session
+20110531
+1930
+2200
+
+101
+stargazing session
+20110531
+1930
+2200
+
+102
+stargazing session
+20110531
+1930
+2200
+
+105
+stargazing session
+20110531
+1930
+2200
+
+108
+stargazing session
+20110531
+1930
+2200
+
+109
+stargazing session
+20110531
+1930
+2200
+
+112
+stargazing session
+20110531
+1930
+2200
+
+115
+stargazing session
+20110531
+1930
+2200
+
+116
+stargazing session
+20110531
+1930
+2200
+
+119
+stargazing session
+20110531
+1930
+2200
+
+122
+stargazing session
+20110531
+1930
+2200
+
+123
+stargazing session
+20110531
+1930
+2200
+
+126
+stargazing session
+20110531
+1930
+2200
+
+132
+stargazing session
+20110531
+1930
+2200
+
+133
+stargazing session
+20110531
+1930
+2200
+
+136
+stargazing session
+20110531
+1930
+2200
+
+142
+stargazing session
+20110531
+1930
+2200
+
+143
+stargazing session
+20110531
+1930
+2200
+
+146
+stargazing session
+20110531
+1930
+2200
+
+152
+stargazing session
+20110531
+1930
+2200
+
+155
+stargazing session
+20110531
+1930
+2200
+
+161
+stargazing session
+20110531
+1930
+2200
+
+164
+stargazing session
+20110531
+1930
+2200
+
+170
 grow up
 20140411
     
@@ -359,6 +587,66 @@ grow up
     
 
 85
+grow up
+20140411
+    
+    
+
+92
+grow up
+20140411
+    
+    
+
+99
+grow up
+20140411
+    
+    
+
+106
+grow up
+20140411
+    
+    
+
+113
+grow up
+20140411
+    
+    
+
+120
+grow up
+20140411
+    
+    
+
+127
+grow up
+20140411
+    
+    
+
+137
+grow up
+20140411
+    
+    
+
+147
+grow up
+20140411
+    
+    
+
+156
+grow up
+20140411
+    
+    
+
+165
 haha
         
     
@@ -503,3 +791,183 @@ complete drawing
     
 
 86
+move house
+        
+    
+    
+
+90
+complete drawing
+        
+    
+    
+
+93
+move house
+        
+    
+    
+
+97
+complete drawing
+        
+    
+    
+
+100
+move house
+        
+    
+    
+
+104
+complete drawing
+        
+    
+    
+
+107
+move house
+        
+    
+    
+
+111
+complete drawing
+        
+    
+    
+
+114
+move house
+        
+    
+    
+
+118
+complete drawing
+        
+    
+    
+
+121
+move house
+        
+    
+    
+
+125
+complete drawing
+        
+    
+    
+
+128
+complete drawing
+        
+    
+    
+
+129
+complete drawing
+        
+    
+    
+
+131
+move house
+        
+    
+    
+
+135
+complete drawing
+        
+    
+    
+
+138
+complete drawing
+        
+    
+    
+
+139
+complete drawing
+        
+    
+    
+
+141
+move house
+        
+    
+    
+
+145
+complete drawing
+        
+    
+    
+
+148
+complete drawing
+        
+    
+    
+
+149
+complete drawing
+        
+    
+    
+
+151
+move house
+        
+    
+    
+
+154
+complete drawing
+        
+    
+    
+
+157
+complete drawing
+        
+    
+    
+
+158
+complete drawing
+        
+    
+    
+
+160
+move house
+        
+    
+    
+
+163
+complete drawing
+        
+    
+    
+
+166
+complete drawing
+        
+    
+    
+
+167
+complete drawing
+        
+    
+    
+
+169

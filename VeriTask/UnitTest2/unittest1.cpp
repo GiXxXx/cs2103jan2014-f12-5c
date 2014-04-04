@@ -36,11 +36,14 @@ namespace UnitTest2 {
 			VeriTask TaskManager(filename);
 			TestInfoIdentifier.Identify(TestUserInput);
 			TextUI textUI;
+			DataStorage _TestdataStorage = TaskManager.getDataStorage();
+			
+			//DEBUG
+			Assert::IsTrue(_TestdataStorage.retrieveTaskList().empty());
 
 			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, filename);
 		
-			DataStorage _TestdataStorage = TaskManager.getDataStorage();
-			
+			//declaration
 			Task test1 =*((_TestdataStorage.retrieveTaskList()).begin());
 
 			//check that attributes have been initialised correctly for timed tasks
@@ -63,7 +66,7 @@ namespace UnitTest2 {
 			string TestUserInput2 = "add birthday party on 01/03/2011 from 08.00 to 17.00";
 			TestInfoIdentifier.Identify(TestUserInput2);
 			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, filename);
-			_TestdataStorage = TaskManager.getDataStorage();
+			
 			Task test2 =*((_TestdataStorage.retrieveTaskList()).begin());
 			string str5 = "birthday party";
 			Assert::AreEqual(test2.getEvent(), str5);
@@ -72,7 +75,7 @@ namespace UnitTest2 {
 			string TestUserInput3 = "add settle accounts by 01/04/2014";
 			TestInfoIdentifier.Identify(TestUserInput3);
 			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, filename);
-			_TestdataStorage = TaskManager.getDataStorage();
+		
 			Task test3 =*((_TestdataStorage.retrieveTaskList()).end());
 			string str6 = "settle accounts";
 			Assert::AreEqual(test3.getEvent(), str6);
@@ -81,7 +84,7 @@ namespace UnitTest2 {
 			string TestUserInput4 = "add arrange music score";
 			TestInfoIdentifier.Identify(TestUserInput4);
 			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, filename);
-			_TestdataStorage = TaskManager.getDataStorage();
+			
 			Task test4 =*((_TestdataStorage.retrieveTaskList()).end());
 			string str7 = "arrange music score";
 			Assert::AreEqual(test4.getEvent(), str7);
@@ -121,7 +124,7 @@ namespace UnitTest2 {
 			string TestUserInput2 = "add see sunset by 01/03/2011";
 			TestInfoIdentifier.Identify(TestUserInput2);
 			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, filename);
-			_TestdataStorage = TaskManager.getDataStorage();
+			
 			Task test2 =*((_TestdataStorage.retrieveTaskList()).begin());
 			string str5 = "see sunset";
 			Assert::AreEqual(test2.getEvent(), str5);	
@@ -135,7 +138,6 @@ namespace UnitTest2 {
 			TestInfoIdentifier.Identify(TestUserInput4);
 			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, filename);
 
-			_TestdataStorage = TaskManager.getDataStorage();
 			Task test3 =*((_TestdataStorage.retrieveTaskList()).end());
 			string str6 = "watch Ghibli";
 			Assert::AreEqual(test3.getEvent(), str6);
@@ -174,7 +176,7 @@ namespace UnitTest2 {
 			string TestUserInput2 = "add see sunset by 01/03/2011";
 			TestInfoIdentifier1.Identify(TestUserInput2);
 			TaskManager1.pushCommand(TestInfoIdentifier1.GetCommand(), TestInfoIdentifier1, textUI, filename);
-			_TestdataStorage = TaskManager1.getDataStorage();
+			
 			Task test2 =*((_TestdataStorage.retrieveTaskList()).begin());
 			string str4 = "see sunset";
 			Assert::AreEqual(test2.getEvent(), str4);			
@@ -183,7 +185,7 @@ namespace UnitTest2 {
 			string TestUserInput3 = "add shift furniture";
 			TestInfoIdentifier1.Identify(TestUserInput3);
 			TaskManager1.pushCommand(TestInfoIdentifier1.GetCommand(), TestInfoIdentifier1, textUI, filename);
-			_TestdataStorage = TaskManager1.getDataStorage();
+			
 			Task test3 =*((_TestdataStorage.retrieveTaskList()).end());
 			string str5 = "shift furniture";
 			Assert::AreEqual(test2.getEvent(), str5);
@@ -200,17 +202,16 @@ namespace UnitTest2 {
 			VeriTask TaskManager(filename);
 			TestInfoIdentifier.Identify(TestUserInput);
 			TextUI textUI;
+			DataStorage _TestdataStorage = TaskManager.getDataStorage();
 
 			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI,filename);
 		
-			DataStorage _TestdataStorage = TaskManager.getDataStorage();
-
 			//edit timed task attributes
 			string TestUserInput2 = "edit sunset";
 			TestInfoIdentifier.Identify(TestUserInput2);
 			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, filename);
-			_TestdataStorage = TaskManager.getDataStorage();
-			Task test2 =*((_TestdataStorage.retrieveTaskListToDisplay()).begin());
+			
+			Task test2 =*((_TestdataStorage.retrieveTaskList()).begin());
 			string str1 = "sunset";
 			Assert::AreEqual(test2.getEvent(), str1);
 
@@ -268,16 +269,15 @@ namespace UnitTest2 {
 			VeriTask TaskManager(filename);
 			TestInfoIdentifier.Identify(TestUserInput);
 			TextUI textUI;
+			DataStorage _TestdataStorage = TaskManager.getDataStorage();
 
 			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, filename);
-		
-			DataStorage _TestdataStorage = TaskManager.getDataStorage();
 
 			//edit deadline task attributes
 			string TestUserInput2 = "edit be mugger";
 			TestInfoIdentifier.Identify(TestUserInput2);
 			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, filename);
-			_TestdataStorage = TaskManager.getDataStorage();
+			
 			Task test2 =*((_TestdataStorage.retrieveTaskListToDisplay()).begin());
 			string str1 = "be mugger";
 			Assert::AreEqual(test2.getEvent(), str1);
@@ -307,16 +307,15 @@ namespace UnitTest2 {
 			VeriTask TaskManager(filename);
 			TestInfoIdentifier.Identify(TestUserInput);
 			TextUI textUI;
+			DataStorage _TestdataStorage = TaskManager.getDataStorage();
 
 			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, filename);
-		
-			DataStorage _TestdataStorage = TaskManager.getDataStorage();
 
 			//edit task attributes
 			string TestUserInput2 = "edit update portfolio";
 			TestInfoIdentifier.Identify(TestUserInput2);
 			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, filename);
-			_TestdataStorage = TaskManager.getDataStorage();
+			
 			Task test2 =*((_TestdataStorage.retrieveTaskListToDisplay()).begin());
 			string str1 = "update portfolio";
 			Assert::AreEqual(test2.getEvent(), str1);
@@ -332,7 +331,7 @@ namespace UnitTest2 {
 			string TestUserInput5 = "add buy pencil";
 			TestInfoIdentifier.Identify(TestUserInput5);
 			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, filename);
-			_TestdataStorage = TaskManager.getDataStorage();
+		
 			Task test3 =*((_TestdataStorage.retrieveTaskListToDisplay()).end());
 
 			string TestUserInput4 = "edit from 12:00 to 15:00 on 17/03/2010";
@@ -348,7 +347,27 @@ namespace UnitTest2 {
 		}
 
 		TEST_METHOD(testMark) {
+			string testMark = "add complete drawing";
+			Identifier TestMarkIdentifier;
+			File filenameMark;
+			VeriTask TaskManagerMark(filenameMark);
+			TestMarkIdentifier.Identify(testMark);
+			TextUI textUIMark;
+			DataStorage _TestdataStoreMark = TaskManagerMark.getDataStorage();
+
+			TaskManagerMark.pushCommand(TestMarkIdentifier.GetCommand(), TestMarkIdentifier, textUIMark, filenameMark);
 				
+			Task test2Mark =*((_TestdataStoreMark.retrieveTaskList()).begin());
+
+			string testMark2 = "mark done";
+			TaskManagerMark.pushCommand(TestMarkIdentifier.GetCommand(), TestMarkIdentifier, textUIMark, filenameMark);
+			string testMarkStatus = "done";
+			Assert::AreEqual(test2Mark.getStatus(), testMarkStatus);
+
+			string testMark3 = "mark cannot be done";
+			TaskManagerMark.pushCommand(TestMarkIdentifier.GetCommand(), TestMarkIdentifier, textUIMark, filenameMark);
+			string testMarkStatus2 = "cannot be done";
+			Assert::AreEqual(test2Mark.getStatus(), testMarkStatus2);
 		}
 
 		TEST_METHOD(testDelete) {
@@ -377,7 +396,7 @@ namespace UnitTest2 {
 			Assert::IsTrue((_TestdataStorageS.retrieveTaskListToDisplay()).empty());	
 
 			//positive search
-			string TestUserInput3 = "search stargazing";
+			string TestUserInput3 = "search stargazing ";
 			TestInfoIdentify.Identify(TestUserInput3);
 			TaskManagerS.pushCommand(TestInfoIdentify.GetCommand(), TestInfoIdentify, textUI, filenameS);
 			//DEBUG
@@ -391,8 +410,8 @@ namespace UnitTest2 {
 				
 		}
 
-		TEST_METHOD(testIdentifier) {
+		/*TEST_METHOD(testIdentifier) {
 				
-		}
+		} */
 	};
 }
