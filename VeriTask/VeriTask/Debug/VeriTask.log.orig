@@ -1,10 +1,35 @@
-﻿Build started 2014/3/28 1:28:37.
-     1>Project "E:\Study\University\SEM 4\CS2103-CS2103T\Project\Project\VeriTask\VeriTask\VeriTask.vcxproj" on node 2 (Build target(s)).
+﻿Build started 4/4/2014 12:23:03 PM.
+     1>Project "C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\VeriTask.vcxproj" on node 2 (Rebuild target(s)).
      1>ClCompile:
-         C:\VSC\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Identifier.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt AddTask.cpp CommandGetter.cpp DataStorage.cpp DateGetter.cpp DeleteTask.cpp EditTask.cpp EndTimeGetter.cpp EventGetter.cpp File.cpp Identifier.cpp KeywordGetter.cpp MarkTask.cpp StartTimeGetter.cpp StatusGetter.cpp TaskNumGetter.cpp TextUI.cpp Tokenizer.cpp VeriTask.cpp SearchTask.cpp Command.cpp Main.cpp Task.cpp
+         Task.cpp
+     1>c:\users\yujia\desktop\newproject\veritask\veritask\task.cpp(32): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+         Main.cpp
+         Command.cpp
+         SearchTask.cpp
+         VeriTask.cpp
+         Tokenizer.cpp
+         TextUI.cpp
+         TaskNumGetter.cpp
+         StatusGetter.cpp
+         StartTimeGetter.cpp
+         MarkTask.cpp
+         KeywordGetter.cpp
          Identifier.cpp
-       Link:
-         C:\VSC\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\Study\University\SEM 4\CS2103-CS2103T\Project\Project\VeriTask\Debug\VeriTask.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\Study\University\SEM 4\CS2103-CS2103T\Project\Project\VeriTask\Debug\VeriTask.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\Study\University\SEM 4\CS2103-CS2103T\Project\Project\VeriTask\Debug\VeriTask.lib" /MACHINE:X86 Debug\AddTask.obj
+         File.cpp
+         EventGetter.cpp
+         EndTimeGetter.cpp
+         EditTask.cpp
+         DeleteTask.cpp
+         DateGetter.cpp
+         DataStorage.cpp
+         Generating Code...
+         Compiling...
+         CommandGetter.cpp
+         AddTask.cpp
+         Generating Code...
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\Lib.exe /OUT:"C:\Users\YuJia\Desktop\NewProject\VeriTask\Debug\VeriTask.lib" /NOLOGO Debug\AddTask.obj
          Debug\CommandGetter.obj
          Debug\DataStorage.obj
          Debug\DateGetter.obj
@@ -12,6 +37,7 @@
          Debug\EditTask.obj
          Debug\EndTimeGetter.obj
          Debug\EventGetter.obj
+         Debug\File.obj
          Debug\Identifier.obj
          Debug\KeywordGetter.obj
          Debug\MarkTask.obj
@@ -25,9 +51,9 @@
          Debug\Command.obj
          Debug\Main.obj
          Debug\Task.obj
-         VeriTask.vcxproj -> E:\Study\University\SEM 4\CS2103-CS2103T\Project\Project\VeriTask\Debug\VeriTask.exe
-     1>Done Building Project "E:\Study\University\SEM 4\CS2103-CS2103T\Project\Project\VeriTask\VeriTask\VeriTask.vcxproj" (Build target(s)).
+         VeriTask.vcxproj -> C:\Users\YuJia\Desktop\NewProject\VeriTask\Debug\VeriTask.lib
+     1>Done Building Project "C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\VeriTask.vcxproj" (Rebuild target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:02.21
+Time Elapsed 00:00:13.99

@@ -1,0 +1,18 @@
+﻿Build started 2014/4/4 4:11:31.
+     1>Project "C:\Users\GAO JIACHENG\Desktop\New folder (4)\VeriTask\UI\UI.vcxproj" on node 3 (Rebuild target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\VC\bin\CL.exe /c /I"C:\Users\GAO JIACHENG\Desktop\New folder (4)\VeriTask\VeriTask" /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\\" /AI"C:\Program Files (x86)\Windows Kits\8.0\References\CommonConfiguration\Neutral" /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\\" /Zi /clr /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /TP /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\mscorlib.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Drawing.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Windows.Forms.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xml.dll" /analyze- /errorReport:prompt /clr:nostdlib VeriTaskUI.cpp
+         VeriTaskUI.cpp
+     1>VeriTaskUI.cpp(8): warning C4829: Possibly incorrect parameters to function main. Consider 'int main(Platform::Array<Platform::String^>^ argv)'
+         C:\Program Files (x86)\VC\bin\CL.exe /c /I"C:\Users\GAO JIACHENG\Desktop\New folder (4)\VeriTask\VeriTask" /Zi /clr /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /TP /analyze- /errorReport:prompt "C:\Users\GAO JIACHENG\AppData\Local\Temp\.NETFramework,Version=v4.5.AssemblyAttributes.cpp"
+         .NETFramework,Version=v4.5.AssemblyAttributes.cpp
+       Link:
+         C:\Program Files (x86)\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\GAO JIACHENG\Desktop\New folder (4)\VeriTask\Debug\UI.exe" /INCREMENTAL /NOLOGO /ASSEMBLYRESOURCE:Debug\UI.VeriTaskUI.resources /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\GAO JIACHENG\Desktop\New folder (4)\VeriTask\Debug\UI.pdb" /ASSEMBLYDEBUG /SUBSYSTEM:WINDOWS /TLBID:1 /ENTRY:"main" /DYNAMICBASE /FIXED:NO /NXCOMPAT /MACHINE:X86 Debug\VeriTaskUI.obj
+         "Debug\.NETFramework,Version=v4.5.AssemblyAttributes.obj"
+         "C:\Users\GAO JIACHENG\Desktop\New folder (4)\VeriTask\Debug\VeriTask.lib"
+         UI.vcxproj -> C:\Users\GAO JIACHENG\Desktop\New folder (4)\VeriTask\Debug\UI.exe
+     1>Done Building Project "C:\Users\GAO JIACHENG\Desktop\New folder (4)\VeriTask\UI\UI.vcxproj" (Rebuild target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:04.46

@@ -2,7 +2,7 @@
 
 void EditTask::executeCommand(Identifier infoIdentifier, DataStorage &_dataStorage, TextUI textUI, File file) {
 		int taskNum=std::stoi(infoIdentifier.GetTaskNum());
-		double taskIDToEdit = _dataStorage.retrieveTaskID(taskNum);
+		unsigned long long int taskIDToEdit = _dataStorage.retrieveTaskID(taskNum);
 		Task temp = _dataStorage.retrieveTask(taskNum);
 	
 		_dataStorage.deleteData(taskIDToEdit);
