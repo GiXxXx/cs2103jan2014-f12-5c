@@ -1,6 +1,11 @@
 #include "File.h"
 
 File::File(void){
+	_fileName = FILENAME;
+}
+
+File::File(string fileName){
+	_fileName = fileName;
 }
 
 
@@ -9,7 +14,7 @@ File::~File(void){
 
 int File::accessIndex() {
 	string taskIndex;
-	ifstream readFile(FILENAME.c_str());
+	ifstream readFile(_fileName.c_str());
 
 	getline(readFile, taskIndex);
 	if (taskIndex == "") {
@@ -27,7 +32,7 @@ vector<Task> File::accessFile() {
 	vector<Task> taskList;
 	string date, startTime, endTime, event, status, index, taskIndex;
 	int index_int;
-	ifstream readFile(FILENAME.c_str());
+	ifstream readFile(_fileName.c_str());
 	
 	getline(readFile, taskIndex);
 
@@ -51,7 +56,7 @@ void File::saveFile(vector<Task> taskList, int taskIndex) {
 	string date, startTime, endTime, event, status;
 	int index;
 
-	ofstream write(FILENAME.c_str());
+	ofstream write(_fileName.c_str());
 	write << taskIndex << endl;
 
 	for (unsigned int i=0; i<taskList.size(); ++i) {

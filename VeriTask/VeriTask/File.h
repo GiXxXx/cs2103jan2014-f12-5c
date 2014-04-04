@@ -10,9 +10,10 @@ const string FILENAME = "data.txt";
 
 class File {
 private:
-
+	string _fileName;
 public:
 	File();
+	File(string);
 	~File();
 	int accessIndex();
 	vector<Task> accessFile();
