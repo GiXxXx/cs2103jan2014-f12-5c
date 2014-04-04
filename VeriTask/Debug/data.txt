@@ -1,505 +1,229 @@
-88
-see sunset
-20110301
+96
+go to cs tutorial
+20140404
+    
+1000
+
+53
+watch movie
+20140404
     
     
 
-19
-see midnight
-20110319
+34
+get up from bed
+20140405
     
-    
+1000
 
-23
-see sunrise
-20110519
+79
+prepare 2150 presentation
+20140405
     
-    
+2400
 
-3
-see sunrise
-20110519
-    
-    
-
-10
-see sunrise
-20110519
-    
-    
-
-17
-see sunrise
-20110519
-    
-    
-
-30
-see sunrise
-20110519
-    
-    
-
-37
-see sunrise
-20110519
-    
-    
-
-44
-see sunrise
-20110519
+71
+ie2150 project
+20140405
     
     
 
 51
-see sunrise
-20110519
+tennis session
+20140406
+2000
+2200
+
+24
+CS meeting
+20140406
+1200
+1800
+
+18
+buy a new schoolbag
+20140406
     
     
-
-58
-see sunrise
-20110519
-    
-    
-
-68
-see sunrise
-20110519
-    
-    
-
-75
-see sunrise
-20110519
-    
-    
-
-82
-stargazing session
-20110531
-1930
-2200
-
-2
-stargazing session
-20110531
-1930
-2200
-
-5
-stargazing session
-20110531
-1930
-2200
-
-8
-stargazing session
-20110531
-1930
-2200
-
-9
-stargazing session
-20110531
-1930
-2200
-
-12
-stargazing session
-20110531
-1930
-2200
-
-15
-stargazing session
-20110531
-1930
-2200
-
-16
-stargazing session
-20110531
-1930
-2200
-
-25
-stargazing session
-20110531
-1930
-2200
-
-28
-stargazing session
-20110531
-1930
-2200
-
-29
-stargazing session
-20110531
-1930
-2200
-
-32
-stargazing session
-20110531
-1930
-2200
-
-35
-stargazing session
-20110531
-1930
-2200
-
-36
-stargazing session
-20110531
-1930
-2200
-
-39
-stargazing session
-20110531
-1930
-2200
-
-42
-stargazing session
-20110531
-1930
-2200
-
-43
-stargazing session
-20110531
-1930
-2200
-
-46
-stargazing session
-20110531
-1930
-2200
-
-49
-stargazing session
-20110531
-1930
-2200
-
-50
-stargazing session
-20110531
-1930
-2200
-
-53
-stargazing session
-20110531
-1930
-2200
-
-56
-stargazing session
-20110531
-1930
-2200
-
-57
-stargazing session
-20110531
-1930
-2200
-
-60
-stargazing session
-20110531
-1930
-2200
 
 63
-stargazing session
-20110531
-1930
-2200
-
-65
-stargazing session
-20110531
-1930
-2200
-
-69
-stargazing session
-20110531
-1930
-2200
-
-70
-stargazing session
-20110531
-1930
-2200
-
-71
-stargazing session
-20110531
-1930
-2200
-
-72
-stargazing session
-20110531
-1930
-2200
-
-73
-stargazing session
-20110531
-1930
-2200
-
-74
-stargazing session
-20110531
-1930
-2200
-
-77
-stargazing session
-20110531
-1930
-2200
-
-80
-stargazing session
-20110531
-1930
-2200
+finish veritask
+20140406
+    
+    
 
 81
-stargazing session
-20110531
-1930
-2200
+IE2150 meeting
+20140407
+1200
+1400
 
-84
-stargazing session
-20110531
-1930
-2200
-
-87
-grow up
-20140411
-    
-    
-
-6
-grow up
-20140411
-    
-    
-
-13
-grow up
-20140411
-    
-    
+28
+tuition
+20140407
+0900
+1100
 
 26
-grow up
-20140411
+buy milk
+20140407
     
     
 
-33
-grow up
-20140411
+44
+ST3131 assigenment
+20140408
     
     
 
-40
-grow up
+22
+cs quiz
+20140408
+    
+    
+
+30
+meet with friends
+20140409
+1200
+1800
+
+36
+IE2130 homework
+20140409
+    
+    
+
+42
+EG presentation
+20140410
+1300
+1400
+
+32
+attend cs2103 lecture
+20140411
+1600
+1800
+
+75
+v0.4
 20140411
     
     
 
 47
-grow up
+finish 2103
 20140411
     
     
 
-54
-grow up
-20140411
-    
-    
-
-61
-grow up
-20140411
-    
-    
-
-66
-grow up
-20140411
-    
-    
-
-78
-grow up
-20140411
-    
-    
-
-85
-haha
-        
+73
+submit V0.5
+20140414
     
     
 
 1
-move house
+IE2150 presentation
+20140415
+    
+    
+
+10
+CS exam
+20140426
+    
+    
+
+8
+final exams
+20140427
+    
+    
+
+61
+return to China
+20140507
+    
+    
+
+55
+go home
+20140601
+    
+    
+
+49
+go to Beijing
+20140622
+    
+    
+
+65
+find a decent job
+20160601
+    
+    
+
+57
+graduate from NUS
+20160601
+    
+    
+
+67
+go to seattle for ti6
+20160801
+    
+    
+
+83
+go to gym
         
     
     
 
-4
-complete drawing
-        
-    
-    
-
-7
-move house
-        
-    
-    
-
-11
-complete drawing
-        
-    
-    
-
-14
-watch Ghibli
-        
-    
-    
-
-21
-move house
-        
-    
-    
-
-24
-complete drawing
-        
-    
-    
-
-27
-move house
-        
-    
-    
-
-31
-complete drawing
-        
-    
-    
-
-34
-move house
+20
+get ready for final
         
     
     
 
 38
-complete drawing
+buy air ticket
         
     
     
 
-41
-move house
+40
+have some good rest
         
     
     
 
-45
-complete drawing
-        
-    
-    
-
-48
-move house
-        
-    
-    
-
-52
-complete drawing
-        
-    
-    
-
-55
-move house
+46
+reach 5000mmr
         
     
     
 
 59
-complete drawing
+get married before age 35
         
     
     
 
-62
-move house
+69
+by some milk
         
     
     
 
-64
-complete drawing
+77
+cs2103 is so hard!!!
         
     
     
 
-67
-move house
-        
-    
-    
-
-76
-complete drawing
-        
-    
-    
-
-79
-move house
-        
-    
-    
-
-83
-complete drawing
-        
-    
-    
-
-86
+85

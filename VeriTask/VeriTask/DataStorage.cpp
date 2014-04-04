@@ -11,8 +11,8 @@ vector<Task> DataStorage::retrieveTaskListToDisplay() {
 	return _taskListToDisplay;
 }
 
-unsigned long long DataStorage::retrieveTaskID(int taskNum) {
-	unsigned long long taskID = _taskListToDisplay[taskNum-1].getID();
+unsigned long long int DataStorage::retrieveTaskID(int taskNum) {
+	unsigned long long int taskID = _taskListToDisplay[taskNum-1].getID();
 	return taskID;
 }
 
@@ -50,7 +50,7 @@ void DataStorage::saveData(Task taskToSave) {
 	//void printTaskToDisplay();
 }
 
-void DataStorage::deleteData(unsigned long long taskID) {
+void DataStorage::deleteData(unsigned long long int taskID) {
 	for (iter=_taskList.begin(); iter<_taskList.end(); ++iter) { 
 		if (iter->getID() == taskID) {
 			_taskList.erase(iter);
@@ -91,7 +91,7 @@ bool DataStorage::searchData(string keyword) {
 	return isFound;
 }
 
-void DataStorage::markData(unsigned long long taskID, string status) {
+void DataStorage::markData(unsigned long long int taskID, string status) {
 	for (iter=_taskList.begin(); iter<_taskList.end(); ++iter) {
 		if (iter->getID() == taskID) {
 			iter->setStatus(status);

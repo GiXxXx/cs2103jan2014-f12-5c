@@ -21,16 +21,16 @@ public:
 	
 	vector<Task> retrieveTaskList();
 	vector<Task> retrieveTaskListToDisplay();
-	unsigned long long retrieveTaskID(int);
+	unsigned long long int retrieveTaskID(int);
 	Task retrieveTask(int);
 
 //	void printTask();
 //	void printTaskToDisplay(); 
 	void fillData(vector<Task>);
 	void saveData(Task taskToSave);
-	void deleteData(unsigned long long taskID);
+	void deleteData(unsigned long long int taskID);
 	bool searchData(string keyword);
-	void markData(unsigned long long taskID, string status);
+	void markData(unsigned long long int taskID, string status);
 	void setTaskIndex(int taskIndex);
 	int getTaskIndex();
 };
