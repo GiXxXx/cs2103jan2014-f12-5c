@@ -11,5 +11,6 @@ public:
 	string GetDateFromWeek(string&, string);
 	string DateConverter(int, int, int);
 	string Tokenize();
+	void ChangeToLowerCase(string&);
 };
 
