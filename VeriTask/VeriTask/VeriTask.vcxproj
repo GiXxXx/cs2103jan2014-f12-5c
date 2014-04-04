@@ -43,6 +43,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -74,6 +75,7 @@
     <ClInclude Include="Identifier.h" />
     <ClInclude Include="KeywordGetter.h" />
     <ClInclude Include="MarkTask.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="StartTimeGetter.h" />
     <ClInclude Include="StatusGetter.h" />
     <ClInclude Include="TaskNumGetter.h" />
@@ -107,6 +109,16 @@
     <ClCompile Include="Command.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Task.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="VeriTask.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

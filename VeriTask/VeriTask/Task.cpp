@@ -6,9 +6,9 @@ Task::Task(string event, string date, string startTime, string endTime, int inde
 	_startTime = startTime;
 	_endTime = endTime;
 	_index = index;
-	int date_Int;
-	int startTime_Int;
-	int endTime_Int;
+	unsigned long long int date_Int;
+	unsigned long long int startTime_Int;
+	unsigned long long int endTime_Int;
 
 	if(date == "        "){
 		date_Int = 99999999;
