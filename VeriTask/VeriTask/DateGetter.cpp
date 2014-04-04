@@ -102,7 +102,7 @@ string DateGetter::GetDateFromDate(string &Input, string keyword){
         			tempDate = elementThree + elementTwo + elementOne;
     	    	}
 
-        		if(isNumber(tempDate)){
+				if(isNumber(tempDate)){
         			Date = tempDate;
         			chopInfo((*uncategorizedInfo), position, elementThree.size() + FourUnit + positionTwo);
         			break;
@@ -151,53 +151,56 @@ string DateGetter::GetDateFromWeek(string &Input, string keyword){
         		week = tempDate.substr(positionOne, positionTwo - positionOne);
         	}
 
-        	WeekConvertor(week);
+			if(!isNumber(week)){
 
-        	if(isNumber(week)){
-        		taskDayOfWeek = taskDayOfWeek + std::stoi(week);
-        		localTime = time(NULL);
-        	    localtime_s(&timenow,&localTime);
+            	WeekConvertor(week);
 
-        	    strftime(buffer, 100, "%Y-%m-%A-%d",&timenow);
+            	if(isNumber(week)){
+            		taskDayOfWeek = taskDayOfWeek + std::stoi(week);
+            		localTime = time(NULL);
+            	    localtime_s(&timenow,&localTime);
 
-             	int currentDayOfWeek = (timenow.tm_wday+6)%7;
-            	int currentYear = timenow.tm_year+1900;
-             	int currentMonth = timenow.tm_mon+1;
-            	int currentday = timenow.tm_mday;
-            	int currentTotalDay = timenow.tm_yday;
-            	int taskDay;
-            	int taskMonth = currentMonth;
-        	    int taskYear = currentYear;
+            	    strftime(buffer, 100, "%Y-%m-%A-%d",&timenow);
 
-        	    taskDay = currentday + taskDayOfWeek-currentDayOfWeek;
+                	int currentDayOfWeek = (timenow.tm_wday+6)%7;
+                	int currentYear = timenow.tm_year+1900;
+                 	int currentMonth = timenow.tm_mon+1;
+                	int currentday = timenow.tm_mday;
+                	int currentTotalDay = timenow.tm_yday;
+                	int taskDay;
+                	int taskMonth = currentMonth;
+            	    int taskYear = currentYear;
 
-            	if((currentMonth ==1||currentMonth==3||currentMonth==5||currentMonth==7||currentMonth==8
-	            	||currentMonth==10||currentMonth==12) && taskDay>31){
-        	    			taskDay = taskDay - 31;
-	             			++taskMonth;
-        		}	
-        		else if((currentMonth==4||currentMonth==6||currentMonth==9||currentMonth==11) && taskDay>30){
-        	      	taskDay = taskDay - 30;
-        	    	++taskMonth;
-             	}
-            	else if(currentMonth ==2 && currentYear%4==0 && taskDay>29){
-        	    	taskDay = taskDay - 29;
-	            	++taskMonth;
-        	    }
-        	    else if(currentMonth ==2 && currentYear%4!=0 && taskDay>28){
-        		    taskDay = taskDay - 28;
-        		    ++taskMonth;
-        	    }
+            	    taskDay = currentday + taskDayOfWeek-currentDayOfWeek;
+
+                	if((currentMonth ==1||currentMonth==3||currentMonth==5||currentMonth==7||currentMonth==8
+	                	||currentMonth==10||currentMonth==12) && taskDay>31){
+        	        			taskDay = taskDay - 31;
+	                 			++taskMonth;
+            		}	
+             		else if((currentMonth==4||currentMonth==6||currentMonth==9||currentMonth==11) && taskDay>30){
+            	      	taskDay = taskDay - 30;
+            	    	++taskMonth;
+                 	}
+                	else if(currentMonth ==2 && currentYear%4==0 && taskDay>29){
+            	    	taskDay = taskDay - 29;
+	                	++taskMonth;
+            	    }
+            	    else if(currentMonth ==2 && currentYear%4!=0 && taskDay>28){
+        	    	    taskDay = taskDay - 28;
+            		    ++taskMonth;
+            	    }
  
-        	    if(taskMonth>12){
-        	     	taskMonth = taskMonth - 12;
-	            	++taskYear;
-            	}
+            	    if(taskMonth>12){
+            	     	taskMonth = taskMonth - 12;
+	                	++taskYear;
+                	}
   
-            	Date = DateConverter(taskYear, taskMonth, taskDay);
-    	    	chopInfo(Input, position, size + ThreeUnit);
-    	    	break;
-    		}  
+                	Date = DateConverter(taskYear, taskMonth, taskDay);
+        	    	chopInfo(Input, position, size + ThreeUnit);
+        	    	break;
+        		}
+  			}
 			
 			startPos = position + OneUnit;
 		}
@@ -227,40 +230,42 @@ string DateGetter::DateConverter(int year, int month, int day){
 }
 
 void DateGetter::MonthConvertor(string &Month){
-	if(Month == jan || Month == Jan || Month == January || Month == january || Month == JAN || Month == JANUARY){
+	ChangeToLowerCase(Month);
+
+	if(Month == jan || Month == january){
 		Month = one;
 	}
-	else if(Month == feb || Month == Feb || Month == February || Month == february || Month == FEB || Month == FEBRUARY){
+	else if(Month == feb || Month == february){
 		Month = two;
 	}
-	else if(Month == mar || Month == Mar || Month == March || Month == march || Month == MAR || Month == MARCH){
+	else if(Month == mar || Month == march){
 		Month = three;
 	}
-	else if(Month == apr || Month == Apr || Month == April || Month == april || Month == APR || Month == APRIL){
+	else if(Month == apr || Month == april){
 		Month = four;
 	}
-	else if(Month == may || Month == May || Month == MAY){
+	else if(Month == may){
 		Month = five;
 	}
-	else if(Month == jun || Month == Jun || Month == June || Month == june || Month == JUN || Month == JUNE){
+	else if(Month == jun || Month == june){
 		Month = six;
 	}
-	else if(Month == jul || Month == Jul || Month == July || Month == july || Month == JUL || Month == JULY){
+	else if(Month == jul || Month == july){
 		Month = seven;
 	}
-	else if(Month == aug || Month == Aug || Month == August || Month == august || Month == AUG || Month == AUGUST){
+	else if(Month == aug || Month == august){
 		Month = eight;
 	}
-	else if(Month == sep || Month == Sep || Month == September || Month == september || Month == SEP || Month == SEPTEMBER){
+	else if(Month == sep || Month == september){
 		Month = nine;
 	}
-	else if(Month == octo || Month == Oct || Month == October || Month == october || Month == OCT || Month == OCTOBER){
+	else if(Month == octo || Month == october){
 		Month = ten;
 	}
-	else if(Month == nov || Month == Nov || Month == November || Month == november || Month == NOV || Month == NOVEMBER){
+	else if(Month == nov || Month == november){
 		Month = eleven;
 	}
-	else if(Month == dece || Month == Dec || Month == December || Month == december || Month == DEC || Month == DECEMBER){
+	else if(Month == dece || Month == december){
 		Month = twelve;
 	}
 
@@ -268,26 +273,38 @@ void DateGetter::MonthConvertor(string &Month){
 }
 
 void DateGetter::WeekConvertor(string &Week){
-	if(Week == mon || Week == Mon || Week == MON || Week == monday || Week == Monday || Week == MONDAY){
+	ChangeToLowerCase(Week);
+
+	if(Week == mon || Week == monday){
 		Week = Zero;
 	}
-	else if(Week == tue || Week == Tue || Week == TUE || Week == tuesday || Week == Tuesday || Week == TUESDAY){
+	else if(Week == tue || Week == tuesday){
 		Week = one;
 	}
-	else if(Week == wed || Week == Wed || Week == WED || Week == wednesday || Week == Wednesday || Week == WEDNESDAY){
+	else if(Week == wed || Week == wednesday){
 		Week = two;
 	}
-	else if(Week == thu || Week == Thu || Week == THU || Week == thursday || Week == Thursday || Week == THURSDAY){
+	else if(Week == thu || Week == thursday){
 		Week = three;
 	}
-	else if(Week == fri || Week == Fri || Week == FRI || Week == friday || Week == Friday || Week == FRIDAY){
+	else if(Week == fri || Week == friday){
 		Week = four;
 	}
-	else if(Week == sat || Week == Sat || Week == SAT || Week == saturday || Week == Saturday || Week == SATURDAY){
+	else if(Week == sat || Week == saturday){
 		Week = five;
 	}
-	else if(Week == sun || Week == Sun || Week == SUN || Week == sunday || Week == Sunday || Week == SUNDAY){
+	else if(Week == sun || Week == sunday){
 		Week = six;
 	}
+	return;
+}
+
+void DateGetter::ChangeToLowerCase(string &input){
+	for(unsigned int i = 0; i < input.size(); i++){
+		if(input[i] >= A && input[i] <= Z){
+			input[i] = input[i] - (A - a); 
+		}
+	}
+
 	return;
 }
