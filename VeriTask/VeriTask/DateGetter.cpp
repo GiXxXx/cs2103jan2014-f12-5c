@@ -17,7 +17,7 @@ string DateGetter::Tokenize(){
 			*uncategorizedInfo = by + *uncategorizedInfo;
 		}
 
-		while(Date == LargeDate && indicator <= ThreeUnit){
+		while(Date == LargeDate && indicator <= EightUnit){
 
 			keyword = preposition[indicator];
 
