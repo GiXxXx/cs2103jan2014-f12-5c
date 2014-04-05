@@ -43,9 +43,39 @@ namespace UI {
 			_newIdentifier = new Identifier; 
 			_TaskManager = new VeriTask(A);
 			_operationReport = new TextUI;
-			//
-			//TODO: Add the constructor code here
-			//
+			
+			// display existing tasks when program starts
+			 DataStorage AllStorage = _TaskManager->getDataStorage();
+			 std::vector<Task> TaskVectorToDisplay = AllStorage.retrieveTaskList();// convert tasklist to tasklist to display
+				 //std::vector<Task> TaskVectorToDisplay = AllStorage.retrieveTaskListToDisplay();
+
+			int vecSize = TaskVectorToDisplay.size();
+			for(int taskIndex = 0;taskIndex<vecSize;taskIndex++){
+					 dataGridView1->Rows->Add();
+					 dataGridView1->Rows[taskIndex]->Cells[0]->Value = (taskIndex+1).ToString();
+					 for(int cellIndex = 1;cellIndex<=6;cellIndex++){
+						 if(cellIndex == 1){
+							String^ managedStatus = gcnew String(TaskVectorToDisplay.at(taskIndex).getStatus().c_str());
+							dataGridView1->Rows[taskIndex]->Cells[cellIndex]->Value = managedStatus;
+						 }
+						 if(cellIndex == 2){
+							 String^ managedDate = gcnew String(TaskVectorToDisplay.at(taskIndex).getDate().c_str());
+							 dataGridView1->Rows[taskIndex]->Cells[cellIndex]->Value = managedDate;
+						 }
+						 else if(cellIndex == 3){
+							 String^ managedStartTime = gcnew String(TaskVectorToDisplay.at(taskIndex).getStartTime().c_str());
+							 dataGridView1->Rows[taskIndex]->Cells[cellIndex]->Value = managedStartTime;
+						 }
+						 else if(cellIndex == 4){
+							String^ managedEndTime = gcnew String(TaskVectorToDisplay.at(taskIndex).getEndTime().c_str());
+							dataGridView1->Rows[taskIndex]->Cells[cellIndex]->Value = managedEndTime;
+						 }
+						 else if(cellIndex == 5){
+							String^ managedEvent = gcnew String(TaskVectorToDisplay.at(taskIndex).getEvent().c_str());
+							dataGridView1->Rows[taskIndex]->Cells[cellIndex]->Value = managedEvent;
+						 }
+					 }
+		}
 		}
 
 	protected:
@@ -221,7 +251,7 @@ namespace UI {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-//			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"$this.BackgroundImage")));
+			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"$this.BackgroundImage")));
 			this->ClientSize = System::Drawing::Size(532, 498);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->dataGridView1);

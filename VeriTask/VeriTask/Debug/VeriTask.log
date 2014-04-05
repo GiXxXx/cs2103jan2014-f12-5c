@@ -1,7 +1,7 @@
-﻿Build started 4/4/2014 2:34:56 PM.
-     1>Project "C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\VeriTask.vcxproj" on node 2 (Rebuild target(s)).
+﻿Build started 2014/4/4 13:02:11.
+     1>Project "C:\Users\Pang\Desktop\New folder\VeriTask\VeriTask\VeriTask.vcxproj" on node 2 (Rebuild target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt AddTask.cpp CommandGetter.cpp DataStorage.cpp DateGetter.cpp DeleteTask.cpp EditTask.cpp EndTimeGetter.cpp EventGetter.cpp File.cpp Identifier.cpp KeywordGetter.cpp MarkTask.cpp StartTimeGetter.cpp StatusGetter.cpp TaskNumGetter.cpp TextUI.cpp Tokenizer.cpp VeriTask.cpp SearchTask.cpp Command.cpp Main.cpp Task.cpp
+         G:\Visual Studio\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt AddTask.cpp CommandGetter.cpp DataStorage.cpp DateGetter.cpp DeleteTask.cpp EditTask.cpp EndTimeGetter.cpp EventGetter.cpp File.cpp Identifier.cpp KeywordGetter.cpp MarkTask.cpp StartTimeGetter.cpp StatusGetter.cpp TaskNumGetter.cpp TextUI.cpp Tokenizer.cpp VeriTask.cpp SearchTask.cpp Command.cpp Main.cpp Task.cpp
          Task.cpp
          Main.cpp
          Command.cpp
@@ -30,7 +30,7 @@
        ResourceCompile:
          C:\Program Files (x86)\Windows Kits\8.0\bin\x86\rc.exe /l"0x0409" /nologo /fo"Debug\VeriTask.res" VeriTask.rc 
        Lib:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\Lib.exe /OUT:"C:\Users\YuJia\Desktop\NewProject\VeriTask\Debug\VeriTask.lib" /NOLOGO Debug\VeriTask.res
+         G:\Visual Studio\VC\bin\Lib.exe /OUT:"C:\Users\Pang\Desktop\New folder\VeriTask\Debug\VeriTask.lib" /NOLOGO Debug\VeriTask.res
          Debug\AddTask.obj
          Debug\CommandGetter.obj
          Debug\DataStorage.obj
@@ -54,9 +54,9 @@
          Debug\Main.obj
          Debug\Task.obj
      1>LINK : warning LNK4068: /MACHINE not specified; defaulting to X86
-         VeriTask.vcxproj -> C:\Users\YuJia\Desktop\NewProject\VeriTask\Debug\VeriTask.lib
-     1>Done Building Project "C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\VeriTask.vcxproj" (Rebuild target(s)).
+         VeriTask.vcxproj -> C:\Users\Pang\Desktop\New folder\VeriTask\Debug\VeriTask.lib
+     1>Done Building Project "C:\Users\Pang\Desktop\New folder\VeriTask\VeriTask\VeriTask.vcxproj" (Rebuild target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:16.18
+Time Elapsed 00:00:15.40
