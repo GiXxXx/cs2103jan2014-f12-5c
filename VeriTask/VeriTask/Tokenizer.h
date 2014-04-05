@@ -108,7 +108,7 @@ const string theDayAfterTomorrow = "the day after tomorrow";
 const string theDayAfterTmr = "the day after tmr";
 const string dayAfterTomorrow = "day after tomorrow";
 const string dayAfterTmr = "day after tmr";
-const string preposition[4] = {"before", "in", "on", "by"};
+const string preposition[8] = {"during", "from", "before", "in", "on", "by", "at", "to"};
 const string during = "during";
 const string before = "before";
 const string emptyString = "";
@@ -152,7 +152,6 @@ public:
 	void ChangeDoubleDigit(string&);
 	void ChangeToLowerCase(string&);
 	string changeWordToNumber(string);
-	string getTime(string, string);
 	string GetDateFormatTwo(string);
 	virtual string Tokenize();
 };
