@@ -4,7 +4,7 @@
 #include "EndTimeGetter.h"
 #include "EventGetter.h"
 #include "KeywordGetter.h"
-#include "StartTimeGetter.h"
+#include "TimeGetter.h"
 #include "StatusGetter.h"
 #include "TaskNumGetter.h"
 #include "Tokenizer.h"

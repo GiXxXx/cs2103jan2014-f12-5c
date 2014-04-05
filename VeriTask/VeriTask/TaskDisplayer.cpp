@@ -36,7 +36,6 @@ void TaskDisplayer::executeCommand(Identifier infoIdentifier, DataStorage &dataS
 		}
 	}
 	if (date == "        " || status == "no status") {
-		textUI.printTask();
+		textUI.printTask(dataStorage);
 		}
 	}
-}
