@@ -23,9 +23,6 @@ public:
 	vector<Task> retrieveTaskListToDisplay();
 	unsigned long long int retrieveTaskID(int);
 	Task retrieveTask(int);
-
-//	void printTask();
-//	void printTaskToDisplay(); 
 	void fillData(vector<Task>);
 	void saveData(Task taskToSave);
 	void deleteData(unsigned long long int taskID);
@@ -34,5 +31,4 @@ public:
 	void setTaskIndex(int taskIndex);
 	int getTaskIndex();
 };
-
 #endif

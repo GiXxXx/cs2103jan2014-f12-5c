@@ -4,11 +4,10 @@
 #include <vector>
 #include <string>
 #include "DataStorage.h"
+
 using namespace std;
 
 class TextUI {
-private:
-
 public:
 	void printWelcomeMessage();
 	void printAddConfirmation();

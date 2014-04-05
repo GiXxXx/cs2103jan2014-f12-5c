@@ -4,6 +4,7 @@
 #include <fstream>
 #include <vector>
 #include "Task.h"
+
 using namespace std;
 
 const string FILENAME = "data.txt";
