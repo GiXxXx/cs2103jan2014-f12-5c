@@ -1,15 +1,13 @@
 #pragma once
-#include "Tokenizer.h"
 #include "CommandGetter.h"
 #include "DateGetter.h"
 #include "EndTimeGetter.h"
-#include "StartTimeGetter.h"
-#include "TaskNumGetter.h"
-#include "DateGetter.h"
-#include "KeywordGetter.h"
 #include "EventGetter.h"
+#include "KeywordGetter.h"
+#include "StartTimeGetter.h"
 #include "StatusGetter.h"
-
+#include "TaskNumGetter.h"
+#include "Tokenizer.h"
 
 class Identifier{
 private:
@@ -34,6 +32,5 @@ public:
 	string GetTaskNum();
 	string GetCommand();
 	string GetStatus();
-	//int getIndex();
 };
 
