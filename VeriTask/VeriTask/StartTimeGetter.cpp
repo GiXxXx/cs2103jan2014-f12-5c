@@ -13,7 +13,12 @@ string StartTimeGetter::Tokenize(){
 
 	if(command == Add || command == Edit){
 		StartTime = getTime(*uncategorizedInfo, from);
+
+		if(StartTime == LargeTime)
+			StartTime = getTime(*uncategorizedInfo, during);
 	}
+
+
 
 	return StartTime;
 }
