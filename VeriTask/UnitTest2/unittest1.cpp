@@ -377,7 +377,23 @@ namespace UnitTest2 {
 		}
 
 		TEST_METHOD(testDelete) {
-				
+			string testDel = "add complete drawing";
+			Identifier TestDelIdentifier;
+			File filenameDel;
+			VeriTask TaskManagerDel(filenameDel);
+			TestDelIdentifier.Identify(testDel);
+			TextUI textUIDel;
+			DataStorage _TestdataStoreDel = TaskManagerDel.getDataStorage();
+
+			Assert::IsTrue((_TestdataStoreDel.retrieveTaskList()).empty());  //begin with empty data store
+
+			TaskManagerDel.pushCommand(TestDelIdentifier.GetCommand(), TestDelIdentifier, textUIDel, filenameDel);
+			Assert::IsFalse((_TestdataStoreDel.retrieveTaskList()).empty()); //task has been added
+
+			string testDel = "delete 1";
+			TaskManagerDel.pushCommand(TestDelIdentifier.GetCommand(), TestDelIdentifier, textUIDel, filenameDel);
+
+			Assert::IsTrue((_TestdataStoreDel.retrieveTaskList()).empty()); //task has been deleted
 		}
 
 		TEST_METHOD(testSearch) {
