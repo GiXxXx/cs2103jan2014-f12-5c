@@ -217,7 +217,8 @@ namespace UnitTest2 {
 			//unit test for search
 			//empty search
 			//negative search: using each data attribute, using multiple attribute combinations
-			//positive search:using each data attribute, using multiple attribute combinations
+			//positive search: using each data attribute, using multiple attribute combinations
+			//positive search: single result, multiple results
 			//multiple attribute search treats multiple attributes as multiple AND conditions
 
 			Identifier TestInfoIdentify;
@@ -263,13 +264,34 @@ namespace UnitTest2 {
 
 			Assert::IsTrue((_TestdataStorageS.retrieveTaskListToDisplay()).empty());
 
-			//positive search
+			//positive search: single result
 			string PosSearch1 = "search stargazing";
 			TestInfoIdentify.Identify(PosSearch1);
 			TaskManagerS.pushCommand(TestInfoIdentify.GetCommand(), TestInfoIdentify, textUI, filenameS);
 			Task testS =*((_TestdataStorageS.retrieveTaskListToDisplay()).begin());
 			string str1S = "stargazing session";
 			Assert::AreEqual(testS.getEvent(), str1S); 
+
+			string PosSearch2 = "search 31/05/2011";
+			TestInfoIdentify.Identify(PosSearch2);
+			TaskManagerS.pushCommand(TestInfoIdentify.GetCommand(), TestInfoIdentify, textUI, filenameS);
+			Task testS =*((_TestdataStorageS.retrieveTaskListToDisplay()).begin());
+			string str1S = "stargazing session";
+			Assert::AreEqual(testS.getEvent(), str1S);
+
+			string PosSearch3 = "search 19:30";
+			TestInfoIdentify.Identify(PosSearch3);
+			TaskManagerS.pushCommand(TestInfoIdentify.GetCommand(), TestInfoIdentify, textUI, filenameS);
+			Task testS =*((_TestdataStorageS.retrieveTaskListToDisplay()).begin());
+			string str1S = "stargazing session";
+			Assert::AreEqual(testS.getEvent(), str1S);
+
+			string PosSearch3 = "search 22:00";
+			TestInfoIdentify.Identify(PosSearch3);
+			TaskManagerS.pushCommand(TestInfoIdentify.GetCommand(), TestInfoIdentify, textUI, filenameS);
+			Task testS =*((_TestdataStorageS.retrieveTaskListToDisplay()).begin());
+			string str1S = "stargazing session";
+			Assert::AreEqual(testS.getEvent(), str1S);
 		}
 		
 		TEST_METHOD(testEditTimedTask) {
@@ -495,8 +517,5 @@ namespace UnitTest2 {
 				
 		}
 
-		/*TEST_METHOD(testIdentifier) {
-				
-		} */
 	};
 }
