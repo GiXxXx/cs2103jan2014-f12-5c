@@ -13,9 +13,9 @@ string KeywordGetter::Tokenize(){
 	unsigned int position = (*uncategorizedInfo).find_last_not_of(space);
 
 	if(position == string::npos){
-		Keyword = "";
+		Keyword = emptyString;
 	}
-	else if(command == Search){
+	else if(command == Search || command == Display){
 		Keyword = (*uncategorizedInfo).substr(start, position + OneUnit);
 	}
 	return Keyword;
