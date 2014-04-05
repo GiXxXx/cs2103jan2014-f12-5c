@@ -15,6 +15,8 @@ public:
 	void printDeleteConfirmation();
 	void printEditConfirmation();
 	void printMarkConfirmation();
+	void printSearchConfirmationYes();
+	void printSearchConfirmationNo();
 	void printSearchResult();
 	void printTask(DataStorage &);
 	void printTaskToDisplay(DataStorage &);

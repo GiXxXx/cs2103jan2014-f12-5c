@@ -1,7 +1,6 @@
 #include "Command.h"
 
-void Command::executeCommand(Identifier infoIdentifier, DataStorage &_dataStorage, TextUI textUI, File file) {
-	cout << "bitch\n";
+void Command::executeCommand(Identifier infoIdentifier, DataStorage &_dataStorage, TextUI textUI) {
 }
 
 

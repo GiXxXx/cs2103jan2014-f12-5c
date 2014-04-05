@@ -1,13 +1,13 @@
 #include "MarkTask.h"	
 
-void MarkTask::executeCommand(Identifier infoIdentifier, DataStorage &_dataStorage, TextUI textUI, File file) {
+void MarkTask::executeCommand(Identifier infoIdentifier, DataStorage &dataStorage, TextUI textUI) {
 		string status=infoIdentifier.GetStatus();
 	    int taskNum=std::stoi(infoIdentifier.GetTaskNum());;
-		unsigned long long int taskIDToMark = _dataStorage.retrieveTaskID(taskNum);
+		unsigned long long int taskIDToMark = dataStorage.retrieveTaskID(taskNum);
 
-		_dataStorage.markData(taskIDToMark, status);
-		file.saveFile(_dataStorage.retrieveTaskList(), _dataStorage.getTaskIndex());
-		textUI.printTaskToDisplay(_dataStorage);
+		dataStorage.markData(taskIDToMark, status);
+		dataStorage.saveFile();
+		textUI.printTaskToDisplay(dataStorage);
 		textUI.printMarkConfirmation();
 }
 

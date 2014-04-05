@@ -10,7 +10,7 @@
 #include "EditTask.h"
 #include "SearchTask.h"
 #include "MarkTask.h"
-#include "File.h"
+#include "TaskDisplayer.h"
 
 using namespace std;
 
@@ -18,12 +18,10 @@ class VeriTask {
 private:
 	vector<Command*> commandList;
 	vector<DataStorage> undoList;
-	DataStorage _dataStorage;
 	
 public:
-	VeriTask(File);
+	VeriTask(DataStorage&);
 	~VeriTask();
-	void pushCommand(string, Identifier, TextUI, File); 
-	DataStorage getDataStorage();
+	void pushCommand(string, Identifier, TextUI, DataStorage&); 
 };
 #endif

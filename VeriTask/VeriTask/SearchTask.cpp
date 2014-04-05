@@ -1,12 +1,13 @@
 #include "SearchTask.h"	
 
-void SearchTask::executeCommand(Identifier infoIdentifier, DataStorage &_dataStorage, TextUI textUI, File file) {
+void SearchTask::executeCommand(Identifier infoIdentifier, DataStorage &dataStorage, TextUI textUI) {
 	bool isFound;
 	string keyword=infoIdentifier.GetKeyword();
-	isFound = _dataStorage.searchData(keyword);
+	isFound = dataStorage.searchData(keyword);
 	if (!isFound) {
-		cout << "Not Found!\n";
+		textUI.printSearchConfirmationNo();
 	} else {
-		textUI.printTaskToDisplay(_dataStorage);
+		textUI.printSearchConfirmationYes();
+		textUI.printTaskToDisplay(dataStorage);
 	}
 }
