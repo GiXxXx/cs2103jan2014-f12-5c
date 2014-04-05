@@ -17,9 +17,19 @@ void TextUI::printEditConfirmation() {
 	cout << "Task edited!\n";
 }
 
-void TextUI::printMarkConfirmation() {
+void TextUI::printSearchConfirmation() {
 	cout << "Task marked!\n";
 }
+
+void TextUI::printSearchConfirmationYes() {
+	cout << "Tasks found!\n";
+}
+
+void TextUI::printMarkConfirmationNo() {
+	cout << "Tasks not found!\n";
+}
+
+
 
 void TextUI::printTask(DataStorage &_dataStorage) {
 	vector<Task> taskList = _dataStorage.retrieveTaskList();

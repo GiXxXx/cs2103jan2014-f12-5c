@@ -1,17 +1,18 @@
 #include "EditTask.h"	
 
-void EditTask::executeCommand(Identifier infoIdentifier, DataStorage &_dataStorage, TextUI textUI, File file) {
+void EditTask::executeCommand(Identifier infoIdentifier, DataStorage &dataStorage, TextUI textUI) {
 		int taskNum=std::stoi(infoIdentifier.GetTaskNum());
-		unsigned long long int taskIDToEdit = _dataStorage.retrieveTaskID(taskNum);
-		Task temp = _dataStorage.retrieveTask(taskNum);
+		unsigned long long int taskIDToEdit = dataStorage.retrieveTaskID(taskNum);
+		Task temp = dataStorage.retrieveTask(taskNum);
 	
-		_dataStorage.deleteData(taskIDToEdit);
+		dataStorage.deleteData(taskIDToEdit);
 
 		string date = infoIdentifier.GetDate();
 	    string startTime = infoIdentifier.GetStartTime();
 	    string endTime = infoIdentifier.GetEndTime();
 	    string event = infoIdentifier.GetEvent();
-		int index = _dataStorage.getTaskIndex();
+		int index = dataStorage.getTaskIndex();
+		dataStorage.setTaskIndex(dataStorage.getTaskIndex()+1);
 
 		if(date == "        "){
 			date = temp.getDate();
@@ -30,8 +31,8 @@ void EditTask::executeCommand(Identifier infoIdentifier, DataStorage &_dataStora
 		}
 
 		Task taskToEdit(event, date, startTime, endTime, index);
-	    _dataStorage.saveData(taskToEdit);
-		file.saveFile(_dataStorage.retrieveTaskList(), _dataStorage.getTaskIndex());
-		textUI.printTaskToDisplay(_dataStorage);
+	    dataStorage.saveData(taskToEdit);
+		dataStorage.saveFile();
+		textUI.printTaskToDisplay(dataStorage);
 		textUI.printEditConfirmation();
 }

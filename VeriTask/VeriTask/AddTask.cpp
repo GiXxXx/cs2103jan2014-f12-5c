@@ -1,15 +1,16 @@
 #include "AddTask.h"
 
-void AddTask::executeCommand(Identifier infoIdentifier, DataStorage &_dataStorage, TextUI textUI, File file) {
+void AddTask::executeCommand(Identifier infoIdentifier, DataStorage &dataStorage, TextUI textUI) {
 	string date = infoIdentifier.GetDate();
 	string startTime = infoIdentifier.GetStartTime();
 	string endTime = infoIdentifier.GetEndTime();
 	string event = infoIdentifier.GetEvent();
-	int index= _dataStorage.getTaskIndex();
+	int index= dataStorage.getTaskIndex();
+	dataStorage.setTaskIndex(dataStorage.getTaskIndex()+1);
 	Task taskToAdd(event, date, startTime, endTime, index);
 
-	_dataStorage.saveData(taskToAdd);
-	file.saveFile(_dataStorage.retrieveTaskList(), _dataStorage.getTaskIndex());
-	textUI.printTaskToDisplay(_dataStorage);
+	dataStorage.saveData(taskToAdd);
+	dataStorage.saveFile();
+	textUI.printTaskToDisplay(dataStorage);
 	textUI.printAddConfirmation();
 }

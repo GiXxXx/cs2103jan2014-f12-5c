@@ -11,7 +11,7 @@ using namespace std;
 
 class MarkTask:public Command {
 public:
-	void executeCommand(Identifier, DataStorage &, TextUI, File);	
+	void executeCommand(Identifier, DataStorage &, TextUI);	
 };
 
 #endif

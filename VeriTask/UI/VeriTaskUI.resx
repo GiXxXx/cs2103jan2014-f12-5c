@@ -135,40 +135,4 @@
   <metadata name="EventCol.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="IndexCol.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="StatusCol.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="DateCol.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="StartCol.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="EndCol.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="EventCol.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="$this.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-      /9j/4AAQSkZJRgABAQEAAAAAAAD/2wBDAAkGBggGDwkIBwgKCQkSDQsNDQwMExATDAkNHxwVFB8cGRIY
-      JzIgHBwjGR4THy8iIzMpLCwuISo0QT4qQSYtNDX/2wBDAQkKCg0MDBoODxkvJBwkNSkyMCwzLi8uKSw1
-      KSkyLCosMSwpNS0sNDA1NCkpNCwpKS0wLCwpLjQsLCksKSwsKSn/wAARCAETALcDASIAAhEBAxEB/8QA
-      GAABAQEBAQAAAAAAAAAAAAAAAAECBgP/xAAkEAEAAgIBAwMFAAAAAAAAAAAAAQIRIRIxQVEDYbETcdHh
-      8f/EABcBAQEBAQAAAAAAAAAAAAAAAAACBgX/xAAaEQEBAQADAQAAAAAAAAAAAAAAAQIxQVER/9oADAMB
-      AAIRAxEAPwDrgGkcUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-      AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-      AAAAAAAAAAAAAABu3r7tMREWmvaIxXtOumMFvStTUzH5joxiOuP2nGviETNnCvsr0n05jMZrO8anuxP1
-      Kz0rEbntOtT8fKca+IONfEFzb2SyNcfUrEWtWsRmucfeP4nK06n28eycaxvjCkz6XQAtIAAAAAAAAAAA
-      AAAAAAAAAAAAD//Z
-    </value>
-  </data>
 </root>

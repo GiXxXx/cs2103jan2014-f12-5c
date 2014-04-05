@@ -7,7 +7,6 @@
 #include <msclr/marshal_cppstd.h>
 #include <cliext\vector>
 #include "TextUI.h"
-#include "File.h"
 
 namespace UI {
 
@@ -32,6 +31,7 @@ namespace UI {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  StartCol;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  EndCol;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  EventCol;
+	private: System::Windows::Forms::TextBox^  textBox2;
 
 			 TextUI* _operationReport;
 
@@ -39,9 +39,9 @@ namespace UI {
 		VeriTaskUI(void)
 		{
 			InitializeComponent();
-            File A;
+            DataStorage dataStorage;
 			_newIdentifier = new Identifier; 
-			_TaskManager = new VeriTask(A);
+			_TaskManager = new VeriTask(dataStorage);
 			_operationReport = new TextUI;
 			//
 			//TODO: Add the constructor code here
@@ -81,7 +81,6 @@ namespace UI {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(VeriTaskUI::typeid));
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
@@ -94,6 +93,7 @@ namespace UI {
 			this->EndCol = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->EventCol = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -103,7 +103,7 @@ namespace UI {
 			this->label1->BackColor = System::Drawing::Color::Transparent;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Cambria", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(22, 109);
+			this->label1->Location = System::Drawing::Point(22, 74);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(58, 15);
 			this->label1->TabIndex = 0;
@@ -116,11 +116,11 @@ namespace UI {
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->label2->AutoSize = true;
 			this->label2->BackColor = System::Drawing::Color::Transparent;
-			this->label2->Font = (gcnew System::Drawing::Font(L"AR BLANCA", 24, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
+			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 24, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(0)));
-			this->label2->Location = System::Drawing::Point(194, 30);
+			this->label2->Location = System::Drawing::Point(194, 28);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(133, 39);
+			this->label2->Size = System::Drawing::Size(152, 37);
 			this->label2->TabIndex = 1;
 			this->label2->Text = L"VeriTask";
 			this->label2->TextAlign = System::Drawing::ContentAlignment::TopCenter;
@@ -128,11 +128,12 @@ namespace UI {
 			// textBox1
 			// 
 			this->textBox1->BackColor = System::Drawing::SystemColors::InactiveBorder;
-			this->textBox1->Location = System::Drawing::Point(25, 127);
+			this->textBox1->Location = System::Drawing::Point(25, 93);
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->ScrollBars = System::Windows::Forms::ScrollBars::Horizontal;
-			this->textBox1->Size = System::Drawing::Size(485, 20);
+			this->textBox1->Size = System::Drawing::Size(485, 21);
 			this->textBox1->TabIndex = 2;
+			this->textBox1->TextChanged += gcnew System::EventHandler(this, &VeriTaskUI::textBox1_TextChanged);
 			this->textBox1->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &VeriTaskUI::textBox1_KeyDown);
 			// 
 			// label3
@@ -141,7 +142,7 @@ namespace UI {
 			this->label3->BackColor = System::Drawing::Color::Transparent;
 			this->label3->Font = (gcnew System::Drawing::Font(L"Cambria", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(0)));
-			this->label3->Location = System::Drawing::Point(22, 216);
+			this->label3->Location = System::Drawing::Point(22, 199);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(82, 15);
 			this->label3->TabIndex = 3;
@@ -156,11 +157,12 @@ namespace UI {
 			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(6) {this->IndexCol, 
 				this->StatusCol, this->DateCol, this->StartCol, this->EndCol, this->EventCol});
 			this->dataGridView1->GridColor = System::Drawing::SystemColors::ControlLight;
-			this->dataGridView1->Location = System::Drawing::Point(25, 234);
+			this->dataGridView1->Location = System::Drawing::Point(25, 216);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->ReadOnly = true;
-			this->dataGridView1->Size = System::Drawing::Size(485, 235);
+			this->dataGridView1->Size = System::Drawing::Size(485, 217);
 			this->dataGridView1->TabIndex = 4;
+			this->dataGridView1->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &VeriTaskUI::dataGridView1_CellContentClick);
 			// 
 			// IndexCol
 			// 
@@ -209,20 +211,32 @@ namespace UI {
 			this->button1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
 			this->button1->Font = (gcnew System::Drawing::Font(L"Cambria", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(0)));
-			this->button1->Location = System::Drawing::Point(435, 166);
+			this->button1->Location = System::Drawing::Point(435, 182);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(75, 23);
+			this->button1->Size = System::Drawing::Size(75, 21);
 			this->button1->TabIndex = 5;
 			this->button1->Text = L"GO!";
 			this->button1->UseVisualStyleBackColor = false;
 			this->button1->Click += gcnew System::EventHandler(this, &VeriTaskUI::button1_Click);
 			// 
+			// textBox2
+			// 
+			this->textBox2->BackColor = System::Drawing::SystemColors::Control;
+			this->textBox2->BorderStyle = System::Windows::Forms::BorderStyle::None;
+			this->textBox2->Location = System::Drawing::Point(24, 115);
+			this->textBox2->Multiline = true;
+			this->textBox2->Name = L"textBox2";
+			this->textBox2->ScrollBars = System::Windows::Forms::ScrollBars::Horizontal;
+			this->textBox2->Size = System::Drawing::Size(485, 51);
+			this->textBox2->TabIndex = 6;
+			this->textBox2->TextChanged += gcnew System::EventHandler(this, &VeriTaskUI::textBox2_TextChanged);
+			// 
 			// VeriTaskUI
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 12);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-//			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"$this.BackgroundImage")));
-			this->ClientSize = System::Drawing::Size(532, 498);
+			this->ClientSize = System::Drawing::Size(532, 460);
+			this->Controls->Add(this->textBox2);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->dataGridView1);
 			this->Controls->Add(this->label3);
@@ -247,12 +261,13 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 				 _newIdentifier->Identify(unmanagedInputString);							//pass input to identifier
 				  textBox1->Text = "";
 
-				  File A;
-				  _TaskManager->pushCommand(_newIdentifier->GetCommand(), *_newIdentifier, *_operationReport, A);
+				  DataStorage dataStorage;
+				  _TaskManager->pushCommand(_newIdentifier->GetCommand(), *_newIdentifier, *_operationReport, dataStorage);
 				 
 				 //display the task in dataGridView after each operation
 
-				 DataStorage AllStorage = _TaskManager->getDataStorage();
+				 DataStorage AllStorage = dataStorage;
+
 				 std::vector<Task> TaskVectorToDisplay = AllStorage.retrieveTaskListToDisplay();
 
 				 int vecSize = TaskVectorToDisplay.size();
@@ -290,5 +305,25 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 					 }
 				 }
 		 }
-	};
+	private: System::Void dataGridView1_CellContentClick(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e) {
+			 }
+private: System::Void textBox2_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+		 }
+private: System::Void textBox1_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+			  textBox2->Text = "add, delete, edit, search, mark, undo";
+			 if (textBox1->Text != "") {
+			 
+			 std::string unmanagedInputString = marshal_as<std::string>(textBox1->Text);//convert managed string to native
+			 _newIdentifier->Identify(unmanagedInputString); //pass input to identifier
+			 
+			 string str1 = "Command: " + _newIdentifier->GetCommand();
+			 string str2 = "Date: " + _newIdentifier->GetDate() + " Event: " + _newIdentifier->GetEvent()
+				            + " StartTime: " + _newIdentifier->GetStartTime()+ " EtartTime: " + _newIdentifier->GetEndTime();
+			
+			 textBox2->Text = gcnew String((str1 + "\r\n" + str2).c_str());
+			 } else {
+			       textBox2->Text = "add, delete, edit, search, mark, undo";
+			 }
+		 }
+};
 }
