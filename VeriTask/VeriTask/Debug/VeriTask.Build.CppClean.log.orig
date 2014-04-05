@@ -1,3 +1,4 @@
+<<<<<<< local
 C:\USERS\YUJIA\DESKTOP\NEWPROJECT\VERITASK\VERITASK\DEBUG\DATASTORAGE.OBJ
 C:\USERS\YUJIA\DESKTOP\NEWPROJECT\VERITASK\VERITASK\DEBUG\DATEGETTER.OBJ
 C:\USERS\YUJIA\DESKTOP\NEWPROJECT\VERITASK\VERITASK\DEBUG\DELETETASK.OBJ
@@ -21,6 +22,8 @@ C:\USERS\YUJIA\DESKTOP\NEWPROJECT\VERITASK\VERITASK\DEBUG\TASK.OBJ
 C:\USERS\YUJIA\DESKTOP\NEWPROJECT\VERITASK\VERITASK\DEBUG\ADDTASK.OBJ
 C:\USERS\YUJIA\DESKTOP\NEWPROJECT\VERITASK\VERITASK\DEBUG\COMMANDGETTER.OBJ
 C:\USERS\YUJIA\DESKTOP\NEWPROJECT\VERITASK\VERITASK\DEBUG\VC110.PDB
+C:\USERS\YUJIA\DESKTOP\NEWPROJECT\VERITASK\DEBUG\VERITASK.LIB
+C:\USERS\YUJIA\DESKTOP\NEWPROJECT\VERITASK\VERITASK\DEBUG\VERITASK.RES
 C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\AddTask.obj
 C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\Command.obj
 C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\CommandGetter.obj
@@ -46,8 +49,80 @@ C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\VeriTask.obj
 C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\cl.command.1.tlog
 C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\CL.read.1.tlog
 C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\CL.write.1.tlog
-C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\link.command.1.tlog
-C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\link.read.1.tlog
-C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\link.write.1.tlog
+C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\Lib-link-cvtres.read.1.tlog
+C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\Lib-link-cvtres.write.1.tlog
+C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\Lib-link.read.1.tlog
+C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\Lib-link.write.1.tlog
+C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\lib.command.1.tlog
+C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\rc.command.1.tlog
+C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\rc.read.1.tlog
+C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\rc.write.1.tlog
+C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\VeriTask.res
 C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\vc110.idb
 C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\vc110.pdb
+C:\Users\YuJia\Desktop\NewProject\VeriTask\Debug\VeriTask.lib
+=======
+C:\USERS\PANG\DESKTOP\NEW FOLDER\VERITASK\VERITASK\DEBUG\DATASTORAGE.OBJ
+C:\USERS\PANG\DESKTOP\NEW FOLDER\VERITASK\VERITASK\DEBUG\DATEGETTER.OBJ
+C:\USERS\PANG\DESKTOP\NEW FOLDER\VERITASK\VERITASK\DEBUG\DELETETASK.OBJ
+C:\USERS\PANG\DESKTOP\NEW FOLDER\VERITASK\VERITASK\DEBUG\EDITTASK.OBJ
+C:\USERS\PANG\DESKTOP\NEW FOLDER\VERITASK\VERITASK\DEBUG\ENDTIMEGETTER.OBJ
+C:\USERS\PANG\DESKTOP\NEW FOLDER\VERITASK\VERITASK\DEBUG\EVENTGETTER.OBJ
+C:\USERS\PANG\DESKTOP\NEW FOLDER\VERITASK\VERITASK\DEBUG\FILE.OBJ
+C:\USERS\PANG\DESKTOP\NEW FOLDER\VERITASK\VERITASK\DEBUG\IDENTIFIER.OBJ
+C:\USERS\PANG\DESKTOP\NEW FOLDER\VERITASK\VERITASK\DEBUG\KEYWORDGETTER.OBJ
+C:\USERS\PANG\DESKTOP\NEW FOLDER\VERITASK\VERITASK\DEBUG\MARKTASK.OBJ
+C:\USERS\PANG\DESKTOP\NEW FOLDER\VERITASK\VERITASK\DEBUG\STARTTIMEGETTER.OBJ
+C:\USERS\PANG\DESKTOP\NEW FOLDER\VERITASK\VERITASK\DEBUG\STATUSGETTER.OBJ
+C:\USERS\PANG\DESKTOP\NEW FOLDER\VERITASK\VERITASK\DEBUG\TASKNUMGETTER.OBJ
+C:\USERS\PANG\DESKTOP\NEW FOLDER\VERITASK\VERITASK\DEBUG\TEXTUI.OBJ
+C:\USERS\PANG\DESKTOP\NEW FOLDER\VERITASK\VERITASK\DEBUG\TOKENIZER.OBJ
+C:\USERS\PANG\DESKTOP\NEW FOLDER\VERITASK\VERITASK\DEBUG\VERITASK.OBJ
+C:\USERS\PANG\DESKTOP\NEW FOLDER\VERITASK\VERITASK\DEBUG\SEARCHTASK.OBJ
+C:\USERS\PANG\DESKTOP\NEW FOLDER\VERITASK\VERITASK\DEBUG\COMMAND.OBJ
+C:\USERS\PANG\DESKTOP\NEW FOLDER\VERITASK\VERITASK\DEBUG\MAIN.OBJ
+C:\USERS\PANG\DESKTOP\NEW FOLDER\VERITASK\VERITASK\DEBUG\TASK.OBJ
+C:\USERS\PANG\DESKTOP\NEW FOLDER\VERITASK\VERITASK\DEBUG\ADDTASK.OBJ
+C:\USERS\PANG\DESKTOP\NEW FOLDER\VERITASK\VERITASK\DEBUG\COMMANDGETTER.OBJ
+C:\USERS\PANG\DESKTOP\NEW FOLDER\VERITASK\VERITASK\DEBUG\VC110.PDB
+C:\USERS\PANG\DESKTOP\NEW FOLDER\VERITASK\DEBUG\VERITASK.LIB
+C:\USERS\PANG\DESKTOP\NEW FOLDER\VERITASK\VERITASK\DEBUG\VERITASK.RES
+C:\Users\Pang\Desktop\New folder\VeriTask\VeriTask\Debug\VeriTask.vcxprojResolveAssemblyReference.cache
+C:\Users\Pang\Desktop\New folder\VeriTask\VeriTask\Debug\AddTask.obj
+C:\Users\Pang\Desktop\New folder\VeriTask\VeriTask\Debug\Command.obj
+C:\Users\Pang\Desktop\New folder\VeriTask\VeriTask\Debug\CommandGetter.obj
+C:\Users\Pang\Desktop\New folder\VeriTask\VeriTask\Debug\DataStorage.obj
+C:\Users\Pang\Desktop\New folder\VeriTask\VeriTask\Debug\DateGetter.obj
+C:\Users\Pang\Desktop\New folder\VeriTask\VeriTask\Debug\DeleteTask.obj
+C:\Users\Pang\Desktop\New folder\VeriTask\VeriTask\Debug\EditTask.obj
+C:\Users\Pang\Desktop\New folder\VeriTask\VeriTask\Debug\EndTimeGetter.obj
+C:\Users\Pang\Desktop\New folder\VeriTask\VeriTask\Debug\EventGetter.obj
+C:\Users\Pang\Desktop\New folder\VeriTask\VeriTask\Debug\File.obj
+C:\Users\Pang\Desktop\New folder\VeriTask\VeriTask\Debug\Identifier.obj
+C:\Users\Pang\Desktop\New folder\VeriTask\VeriTask\Debug\KeywordGetter.obj
+C:\Users\Pang\Desktop\New folder\VeriTask\VeriTask\Debug\Main.obj
+C:\Users\Pang\Desktop\New folder\VeriTask\VeriTask\Debug\MarkTask.obj
+C:\Users\Pang\Desktop\New folder\VeriTask\VeriTask\Debug\SearchTask.obj
+C:\Users\Pang\Desktop\New folder\VeriTask\VeriTask\Debug\StartTimeGetter.obj
+C:\Users\Pang\Desktop\New folder\VeriTask\VeriTask\Debug\StatusGetter.obj
+C:\Users\Pang\Desktop\New folder\VeriTask\VeriTask\Debug\Task.obj
+C:\Users\Pang\Desktop\New folder\VeriTask\VeriTask\Debug\TaskNumGetter.obj
+C:\Users\Pang\Desktop\New folder\VeriTask\VeriTask\Debug\TextUI.obj
+C:\Users\Pang\Desktop\New folder\VeriTask\VeriTask\Debug\Tokenizer.obj
+C:\Users\Pang\Desktop\New folder\VeriTask\VeriTask\Debug\VeriTask.obj
+C:\Users\Pang\Desktop\New folder\VeriTask\VeriTask\Debug\cl.command.1.tlog
+C:\Users\Pang\Desktop\New folder\VeriTask\VeriTask\Debug\CL.read.1.tlog
+C:\Users\Pang\Desktop\New folder\VeriTask\VeriTask\Debug\CL.write.1.tlog
+C:\Users\Pang\Desktop\New folder\VeriTask\VeriTask\Debug\Lib-link-cvtres.read.1.tlog
+C:\Users\Pang\Desktop\New folder\VeriTask\VeriTask\Debug\Lib-link-cvtres.write.1.tlog
+C:\Users\Pang\Desktop\New folder\VeriTask\VeriTask\Debug\Lib-link.read.1.tlog
+C:\Users\Pang\Desktop\New folder\VeriTask\VeriTask\Debug\Lib-link.write.1.tlog
+C:\Users\Pang\Desktop\New folder\VeriTask\VeriTask\Debug\lib.command.1.tlog
+C:\Users\Pang\Desktop\New folder\VeriTask\VeriTask\Debug\rc.command.1.tlog
+C:\Users\Pang\Desktop\New folder\VeriTask\VeriTask\Debug\rc.read.1.tlog
+C:\Users\Pang\Desktop\New folder\VeriTask\VeriTask\Debug\rc.write.1.tlog
+C:\Users\Pang\Desktop\New folder\VeriTask\VeriTask\Debug\VeriTask.res
+C:\Users\Pang\Desktop\New folder\VeriTask\VeriTask\Debug\vc110.idb
+C:\Users\Pang\Desktop\New folder\VeriTask\VeriTask\Debug\vc110.pdb
+C:\Users\Pang\Desktop\New folder\VeriTask\Debug\VeriTask.lib
+>>>>>>> other
