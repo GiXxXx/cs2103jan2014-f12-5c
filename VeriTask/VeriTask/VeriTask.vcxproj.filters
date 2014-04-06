@@ -48,9 +48,6 @@
     <ClInclude Include="DateGetter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="EndTimeGetter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="EventGetter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -58,9 +55,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="KeywordGetter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="StartTimeGetter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="StatusGetter.h">
@@ -79,6 +73,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TaskDisplayer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeGetter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -122,9 +119,6 @@
     <ClCompile Include="DateGetter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="EndTimeGetter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="EventGetter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -132,9 +126,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="KeywordGetter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="StartTimeGetter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="StatusGetter.cpp">
@@ -147,6 +138,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TaskDisplayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeGetter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

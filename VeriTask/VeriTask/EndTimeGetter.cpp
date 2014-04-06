@@ -18,7 +18,10 @@ string EndTimeGetter::Tokenize(){
 
 		if(EndTime == LargeTime)
 			EndTime = getTime(*uncategorizedInfo, to);
-		}
+
+    	if(EndTime == LargeTime)
+			EndTime = getTime(*uncategorizedInfo, before);
+    }
 
 	return EndTime;
 }

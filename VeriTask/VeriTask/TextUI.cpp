@@ -17,7 +17,7 @@ void TextUI::printEditConfirmation() {
 	cout << "Task edited!\n";
 }
 
-void TextUI::printSearchConfirmation() {
+void TextUI::printMarkConfirmation() {
 	cout << "Task marked!\n";
 }
 
@@ -25,7 +25,7 @@ void TextUI::printSearchConfirmationYes() {
 	cout << "Tasks found!\n";
 }
 
-void TextUI::printMarkConfirmationNo() {
+void TextUI::printSearchConfirmationNo() {
 	cout << "Tasks not found!\n";
 }
 

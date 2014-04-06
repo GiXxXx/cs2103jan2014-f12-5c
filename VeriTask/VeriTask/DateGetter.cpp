@@ -12,34 +12,37 @@ string DateGetter::Tokenize(){
 	string Date = LargeDate, keyword;
 	unsigned int indicator = zero;
 
-	if(command == Add || command == Edit){
-		while(Date == LargeDate && indicator <= TwoUnit){
+	if(command == Add || command == Edit || command == Display){
+		if(command == Display){
+			*uncategorizedInfo = by + *uncategorizedInfo;
+		}
 
-			keyword = OnAndBy.substr(indicator, TwoUnit);
+		while(Date == LargeDate && indicator <= EightUnit){
+
+			keyword = preposition[indicator];
 
 			Date = GetDateFromDate(*uncategorizedInfo, keyword);
 
 			if(Date == LargeDate){
 			Date = GetDateFromWeek(*uncategorizedInfo, keyword);
 			}
+			
+			if(Date == LargeDate){
+			Date = GetDateFromDescriptionOne(*uncategorizedInfo, keyword);
+			}
+
+			if(Date == LargeDate){
+			Date = GetDateFromDescriptionTwo(*uncategorizedInfo, keyword);
+			}
     
-	        indicator += TwoUnit;
+	        indicator += OneUnit;
+		}
+
+		if(Date == LargeDate && command == Display){
+			*uncategorizedInfo = (*uncategorizedInfo).substr(start, ThreeUnit);
 		}
 	}
 
-/*	if(command == Add && Date == LargeDate){
-		char date[8];
-	    time_t localTime;
-	    struct tm timeNow;
-
-	    localTime = time(NULL);
-	    localtime_s(&timeNow,&localTime);
-
-	    strftime(date, sizeof(date), "%Y%m%A%d",&timeNow);
-
-		Date = DateConverter(timeNow.tm_year + 1900, timeNow.tm_mon + 1, timeNow.tm_mday);
-	}
-	*/
 	return Date;
 }
 
@@ -52,7 +55,7 @@ string DateGetter::GetDateFromDate(string &Input, string keyword){
 		position = Input.find(keyword, startPos);
 
 		if(position != string::npos){
-			tempDate = Input.substr(position + ThreeUnit);
+			tempDate = Input.substr(position + keyword.size() + OneUnit);
 
 	    	positionOne = tempDate.find_first_of(slash);
 	    	positionTwo = tempDate.find_last_of(slash);
@@ -130,7 +133,7 @@ string DateGetter::GetDateFromWeek(string &Input, string keyword){
 		position = Input.find(keyword, startPos);
 
 		if(position != string::npos){
-			tempDate = Input.substr(position + ThreeUnit);
+			tempDate = Input.substr(position + keyword.size() + OneUnit);
 
         	positionOne = tempDate.find_first_of(space);
         	week = tempDate.substr(start, positionOne);
@@ -150,6 +153,10 @@ string DateGetter::GetDateFromWeek(string &Input, string keyword){
         		size = positionTwo;
         		week = tempDate.substr(positionOne, positionTwo - positionOne);
         	}
+
+			if(week == Week || week == Weeks){
+				week = sun;
+			}
 
 			if(!isNumber(week)){
 
@@ -197,7 +204,7 @@ string DateGetter::GetDateFromWeek(string &Input, string keyword){
                 	}
   
                 	Date = DateConverter(taskYear, taskMonth, taskDay);
-        	    	chopInfo(Input, position, size + ThreeUnit);
+        	    	chopInfo(Input, position, size + keyword.size() + OneUnit);
         	    	break;
         		}
   			}
@@ -208,6 +215,108 @@ string DateGetter::GetDateFromWeek(string &Input, string keyword){
 
 	return Date;
 }
+
+string DateGetter::GetDateFromDescriptionTwo(string& Input, string keyword){
+	string Date = LargeDate, tempDate;
+	unsigned int position, startPos = start, positionOne, indicator = zero;
+	string description[SevenUnit] = {theDayAfterTomorrow, theDayAfterTmr, dayAfterTomorrow, dayAfterTmr, tomorrow, tmr, today};
+
+	do{
+		position = Input.find(keyword, startPos);
+
+		if(position != string::npos){
+			tempDate = Input.substr(position + keyword.size() + OneUnit);
+
+			while(Date == LargeDate && indicator < SevenUnit){
+				positionOne = tempDate.find(description[indicator]);
+	    	    
+				if(positionOne != string::npos){
+					if((positionOne == zero) || (positionOne != zero && tempDate.substr(positionOne - OneUnit, OneUnit) == space)){
+						Date = DateConvertorFromDescription(description[indicator], space);
+						chopInfo(Input, position, description[indicator].size() + keyword.size() + OneUnit);
+						break;
+					}
+				}
+
+				indicator++;
+			}
+    	
+			startPos = position + OneUnit;
+		}
+
+	}while(position != string::npos);
+
+	indicator = zero;
+
+	while(Date == LargeDate && indicator < SevenUnit && keyword == by){
+		positionOne = Input.find(description[indicator]);
+	    	 
+		if(positionOne == zero){
+			Date = DateConvertorFromDescription(description[indicator], space);
+			chopInfo(Input, positionOne, description[indicator].size());
+			break;
+		}
+		else{
+	    		positionOne = Input.rfind(description[indicator]);
+
+	    		if(positionOne != string::npos){
+					string checker = Input.substr(positionOne + description[indicator].size() + OneUnit, TenUnit);
+	
+					if(checker == tenSpaces){
+                		Date = DateConvertorFromDescription(description[indicator], space);
+                		chopInfo(Input, positionOne, description[indicator].size());
+            			break;
+	         		}
+				}
+	    	}
+
+		indicator++;
+	}
+
+	return Date;
+}
+
+string DateGetter::GetDateFromDescriptionOne(string& Input, string keyword){
+	string Date = LargeDate, tempDate, element, number;
+	unsigned int position, startPos = start, positionOne, positionTwo, indicator = zero;
+	const string description[EightUnit] = {days, day, months, month, years, year, Week, Weeks};
+
+	do{
+		position = Input.find(keyword, startPos);
+
+		if(position != string::npos){
+			while(Date == LargeDate && indicator < EightUnit){
+				tempDate = Input.substr(position);
+				positionOne = tempDate.find(description[indicator]);
+	    	    
+				if(positionOne != string::npos){
+					positionTwo = keyword.size() + OneUnit;
+					tempDate = tempDate.substr(positionTwo, positionOne - positionTwo - OneUnit);
+	
+					number = tempDate;
+
+					if(!isNumber(tempDate) && tempDate != This && tempDate != Next){
+    					number = changeWordToNumber(tempDate);
+					}
+
+					if(number != Zero){
+		    			Date = DateConvertorFromDescription(description[indicator], number);
+						chopInfo(Input, position, keyword.size() + TwoUnit + tempDate.size() + description[indicator].size());
+						break;
+		    		}
+				}
+
+				indicator++;
+			}
+    	
+			startPos = position + OneUnit;
+		}
+
+		}while(position != string::npos);
+
+	return Date;
+}
+	
 
 string DateGetter::DateConverter(int year, int month, int day){
 	ostringstream outstr;
@@ -299,12 +408,90 @@ void DateGetter::WeekConvertor(string &Week){
 	return;
 }
 
-void DateGetter::ChangeToLowerCase(string &input){
-	for(unsigned int i = 0; i < input.size(); i++){
-		if(input[i] >= A && input[i] <= Z){
-			input[i] = input[i] - (A - a); 
-		}
-	}
+string DateGetter::DateConvertorFromDescription(string description, string descriptionTwo){
+		int adder = zero;
 
-	return;
-}
+		if(isNumber(descriptionTwo)){
+			adder = std::stoi(descriptionTwo);
+		}
+
+		if(description == day || description == days){
+			adder = adder * OneUnit;
+		}
+
+		if(description == Week || description == Weeks){
+			adder = adder * SevenUnit;
+		}
+
+		if(description == month || description == months){
+			adder = adder * TenUnit * ThreeUnit;
+		}
+
+		if(description == year || description == years){
+			adder = adder * yearDays;
+		}
+
+		if(description == tmr || description == tmr){
+			adder = adder * OneUnit;
+		}
+
+		if(description == theDayAfterTmr || description == theDayAfterTomorrow || description == dayAfterTmr || description == dayAfterTomorrow){
+			adder = adder * TwoUnit;
+		}
+
+		time_t local = time(NULL);
+		struct tm *timeNow = localtime(&local);
+		timeNow->tm_mday += adder;
+		time_t newTime = mktime(timeNow);
+		localtime_s(timeNow, &newTime);
+
+		if(description == year || description == years){
+			if(descriptionTwo == This){
+    			timeNow->tm_mday = monthDay;
+	    		timeNow->tm_mon = yearMonth;
+			}
+			else if(descriptionTwo == Next){
+				timeNow->tm_mday = monthDay;
+	    		timeNow->tm_mon = yearMonth;
+				timeNow->tm_year += OneUnit;
+			}
+		}
+
+		if(description == month || description == months){
+			if(descriptionTwo == This){
+				unsigned int temp = timeNow->tm_mon;
+
+		        while(timeNow->tm_mon == temp){
+	    			timeNow->tm_mday++;
+	    	        newTime = mktime(timeNow);
+    	        	localtime_s(timeNow, &newTime);
+    			}
+
+	    		timeNow->tm_mday--;
+    		    newTime = mktime(timeNow);
+     	        localtime_s(timeNow, &newTime);
+
+    			}
+    			else if(descriptionTwo == Next){
+					unsigned int temp = timeNow->tm_mon;
+
+					while(timeNow->tm_mon <= temp + OneUnit){
+	    			timeNow->tm_mday++;
+	    	        newTime = mktime(timeNow);
+    	        	localtime_s(timeNow, &newTime);
+    		    	}
+
+	        		timeNow->tm_mday--;
+        		    newTime = mktime(timeNow);
+         	        localtime_s(timeNow, &newTime);
+	    		}
+		}
+
+		int Year = timeNow->tm_year + yearAdder;
+		int Month = timeNow->tm_mon + OneUnit;
+		int Day = timeNow->tm_mday;
+
+		string Date = DateConverter(Year, Month, Day);
+
+		return Date;
+	}
