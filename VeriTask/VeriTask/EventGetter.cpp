@@ -9,7 +9,7 @@ EventGetter::~EventGetter(){
 }
 
 string EventGetter:: Tokenize(){
-	string Event = space;
+	string Event = emptyString;
 	unsigned int position = (*uncategorizedInfo).find_last_not_of(space);
 	unsigned int startPos = start;
 
@@ -31,7 +31,7 @@ string EventGetter:: Tokenize(){
     	    string punctuations = Event.substr(positionOne + OneUnit);
     		Event = Event.substr(start, positionOne + OneUnit);
 
-			for(int i = zero; i < SixUnit; i++){
+			for(int i = zero; i < FiveUnit; i++){
 				positionOne = punctuations.find(punctuationArray[i]);
 				if(positionOne != string::npos){
 					Event = Event + punctuationArray[i];
@@ -52,7 +52,6 @@ string EventGetter:: Tokenize(){
 				}
 
 	    		if(size > OneUnit){
-	    			char punctuation;
 	    			string temp = Event.substr(positionOne, size);
     				unsigned int position;
 
