@@ -11,12 +11,13 @@ KeywordGetter::~KeywordGetter(){
 string KeywordGetter::Tokenize(){
 	string Keyword;
 	unsigned int position = (*uncategorizedInfo).find_last_not_of(space);
+	unsigned int positionOne = (*uncategorizedInfo).find_first_not_of(space);
 
 	if(position == string::npos){
 		Keyword = emptyString;
 	}
 	else if(command == Search || command == Display){
-		Keyword = (*uncategorizedInfo).substr(start, position + OneUnit);
+		Keyword = (*uncategorizedInfo).substr(positionOne, position - positionOne + OneUnit);
 	}
 	return Keyword;
 }

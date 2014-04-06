@@ -33,9 +33,6 @@ string TimeGetter::getTime(string test, string keyword){
 			position = test.find(keyword, startPos);
 
 			if(position != string::npos){
-				cout << "hehe1 = " <<  test<<endl;
-				cout << "hehe2 = " <<keyword<< "asdsd= " << position <<endl;
-				cout << "hehe3 = " << keyword<<endl;
 				tempTime = test.substr(position + keyword.size() + OneUnit);
 				sizeOne = tempTime.find_first_of(space);
 				sizeTwo = tempTime.find_first_of(space, sizeOne + OneUnit); 
@@ -52,6 +49,32 @@ string TimeGetter::getTime(string test, string keyword){
 
 				tempTime = tempTime.substr(start, sizeOne);
 
+				string apm[SixUnit] = {amOne, amTwo, amThree, pmOne, pmTwo, pmThree};
+		    	unsigned int indicator = zero;
+
+				while(!isNumber(tempTime) && indicator < SixUnit){
+	    			unsigned int newPosition = tempTime.find(apm[indicator]);
+
+	    			if(newPosition != string::npos){
+						string temp = tempTime.substr(start, newPosition);
+				
+						if(isNumber(temp)){
+							tempTime = temp;
+							if(indicator < ThreeUnit){
+				    			hourStandard = OneUnit;
+			    			}
+			    			else{
+			    				hourStandard = TwoUnit;
+			    			}
+
+							sizeTwo = sizeOne;
+							break;
+						}
+					}
+
+					indicator++;
+				}
+
 				if(tempTime.size() >= FourUnit){
        				if((tempTime.substr(OneUnit,OneUnit)) == colon || tempTime.substr(OneUnit,OneUnit) == dot){
         				tempTime = tempTime.substr(start, OneUnit) + tempTime.substr(start + TwoUnit, TwoUnit);
@@ -59,8 +82,9 @@ string TimeGetter::getTime(string test, string keyword){
 
    	    			if((tempTime.substr(TwoUnit,OneUnit)) == colon || tempTime.substr(TwoUnit,OneUnit) == dot){
 	       				tempTime = tempTime.substr(start, TwoUnit) + tempTime.substr(start + ThreeUnit, TwoUnit);
+						}
 	        		}
-				}
+				
 
 			    if(isNumber(tempTime)){
 					if(tempTime.size() <= TwoUnit){
@@ -92,10 +116,10 @@ string TimeGetter::getTime(string test, string keyword){
 				    break;
 				}
 			}
-			
+
 			startPos = position + OneUnit;
 
-		 }while(position != string::npos);
+		 }while(position != string::npos);	
 
 	return Time;
 }
