@@ -15,8 +15,11 @@ string DateGetter::Tokenize(){
 	if(command == Add || command == Edit || command == Display){
 		if(command == Display){
 			unsigned int position = (*uncategorizedInfo).find_first_not_of(space);
+
+			if(position != string::npos){
 			*uncategorizedInfo = (*uncategorizedInfo).substr(position);
 			*uncategorizedInfo = by + *uncategorizedInfo;
+			}
 		}
 
 		unsigned int posOne = (*uncategorizedInfo).find_first_not_of(space);
