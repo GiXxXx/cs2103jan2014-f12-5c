@@ -15,11 +15,14 @@ string TimeGetter::Tokenize(){
 	if(command == Add || command == Edit){
 		unsigned int posOne = (*uncategorizedInfo).find_first_not_of(space);
 		unsigned int posTwo = (*uncategorizedInfo).find_first_of(space, posOne);
-		string checker = (*uncategorizedInfo).substr(posOne, posTwo - posOne);
 
-		if(isNumber(checker) && checker.size() == FourUnit){
-			time = checker;
-			chopInfo(*uncategorizedInfo, posOne, checker.size());
+		if(posOne != string::npos){
+	    	string checker = (*uncategorizedInfo).substr(posOne, posTwo - posOne);
+
+    		if(isNumber(checker) && checker.size() == FourUnit){
+	    		time = checker;
+		    	chopInfo(*uncategorizedInfo, posOne, checker.size());
+	    	}
 		}
 
 		while(time == LargeTime && indicator < NineUnit){

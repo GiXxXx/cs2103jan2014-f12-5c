@@ -21,11 +21,14 @@ string DateGetter::Tokenize(){
 
 		unsigned int posOne = (*uncategorizedInfo).find_first_not_of(space);
 		unsigned int posTwo = (*uncategorizedInfo).find_first_of(space, posOne);
-		string checker = (*uncategorizedInfo).substr(posOne, posTwo - posOne);
 
-		if(isNumber(checker) && checker.size() == EightUnit){
-			Date = checker;
-			chopInfo(*uncategorizedInfo, posOne, checker.size());
+		if(posOne != string::npos){
+	    	string checker = (*uncategorizedInfo).substr(posOne, posTwo - posOne);
+
+    		if(isNumber(checker) && checker.size() == EightUnit){
+	    		Date = checker;
+	    		chopInfo(*uncategorizedInfo, posOne, checker.size());
+    		}
 		}
 
 		while(Date == LargeDate && indicator < NineUnit){
@@ -555,7 +558,7 @@ string DateGetter::DateConvertorFromDescription(string description, string descr
 			adder = adder * yearDays;
 		}
 	
-		if(description == tmr || description == tmr){
+		if(description == tmr || description == tomorrow){
 			adder = adder + OneUnit;
 		}
 
