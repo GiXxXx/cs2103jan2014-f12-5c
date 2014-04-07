@@ -53,16 +53,18 @@ string TimeGetter::Tokenize(){
 	return Time;
 }*/
 
-string TimeGetter::getTimeFromTwelveHour(string test, string keyword){
-	string Time = LargeTime, tempTime, checker;
+string TimeGetter::getTimeFromTwelveHour(string Input, string keyword){
+	string Time = LargeTime, tempTime, checker, duplicate = Input;
 	unsigned int position, startPos = start, sizeOne, sizeTwo;
 	int hourStandard = zero;
 
+	ChangeToLowerCase(duplicate);
+
 		do{
-			position = test.find(keyword, startPos);
+			position = duplicate.find(keyword, startPos);
 
 			if(position != string::npos){
-				tempTime = test.substr(position + keyword.size());
+				tempTime = duplicate.substr(position + keyword.size());
 				sizeOne = tempTime.find_first_of(space);
 				sizeTwo = tempTime.find_first_of(space, sizeOne + OneUnit); 
 					

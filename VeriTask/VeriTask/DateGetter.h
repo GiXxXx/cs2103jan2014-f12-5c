@@ -13,6 +13,7 @@ public:
 	string DateConverter(int, int, int);
 	string GetDateFromDescriptionOne(string&, string);
 	string GetDateFromDescriptionTwo(string&, string);
+	string GetDateFromFestival(string&, string);
 	string DateConvertorFromDescription(string, string);
 	string Tokenize();
 };

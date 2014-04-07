@@ -21,6 +21,8 @@ string TaskNumGetter::Tokenize(){
 		TaskNumber =  (*uncategorizedInfo).substr(position, positionTwo - position);
 	}
 
+	ChangeToLowerCase(TaskNumber);
+
 	if(!isNumber(TaskNumber)){
 		TaskNumber = changeWordToNumber(TaskNumber);
 	}

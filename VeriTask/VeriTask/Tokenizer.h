@@ -109,8 +109,8 @@ const string theDayAfterTmr = "the day after tmr";
 const string dayAfterTomorrow = "day after tomorrow";
 const string dayAfterTmr = "day after tmr";
 const string preposition[8] = {" during ", " from ", " before ", " in ", " on ", " by ", " to ", " at "};
-const string during = "during";
-const string before = "before";
+const string during = " during ";
+const string before = " before ";
 const string emptyString = "";
 const string ones[20] = {"hundred", "one", "two", "three","four","five","six","seven","eight","nine", "ten", "eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen", "eighteen","nineteen"};
 const string tens[10] = {"", "", "twenty", "thirty","forty","fifty","sixty","seventy","eighty","ninety"};
@@ -120,7 +120,12 @@ const char A = 'A';
 const char Z = 'Z';
 const char a = 'a';
 const string astring = "a";
-const string dummy = "test on today    ";
+const string dummy = "test by today    ";
+const string festivalDates[23] = {"0101", "0214", "0215", "0401", "0418", "0501", "0511", "0615", "0606", "0621", "0809", "0905", "1003", "1031", "1031", "1127", "1224", "1224", "1225",
+	                              "1225","1225", "1225","1231"};
+const string festivals[23] = {"new year", "valentines's day", "totoal defense day", "april fool's day", "good friday", "labour day", "mother's day", "father's day", "youth day",
+	                          "racial harmony day", "national day", "teacher's day", "chiledren's day", "holloween night", "holloween", "thanksgiving day", "christmas eve", "xmas eve",
+							  "christmas day", "christmas", "xmas day", "xmas", "new year eve"};
 const unsigned int start = 0;
 const unsigned int OneUnit = 1;
 const unsigned int TwoUnit = 2;
@@ -139,6 +144,7 @@ const int maxSize = 100;
 const int yearDays = 365;
 const int monthDay = 31;
 const int yearMonth = 11;
+const int tenThousand = 10000;
 
 class Tokenizer{
 

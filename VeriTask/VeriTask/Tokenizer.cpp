@@ -100,7 +100,7 @@ string Tokenizer::changeWordToNumber(string input){
 
 	int result = first + second;
 
-	stringstream ss;
+	ostringstream ss;
 
 	ss << result;
 
