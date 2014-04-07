@@ -1,0 +1,32 @@
+﻿Build started 2014/4/7 19:18:20.
+     1>Project "E:\Study\University\SEM 4\CS2103-CS2103T\Project\Project\VeriTask\VeriTask\VeriTask.vcxproj" on node 2 (Build target(s)).
+     1>Lib:
+         C:\VSC\VC\bin\Lib.exe /OUT:"E:\Study\University\SEM 4\CS2103-CS2103T\Project\Project\VeriTask\Debug\VeriTask.lib" /NOLOGO Debug\VeriTask.res
+         Debug\AddTask.obj
+         Debug\CommandGetter.obj
+         Debug\DataStorage.obj
+         Debug\DateGetter.obj
+         Debug\DeleteTask.obj
+         Debug\EditTask.obj
+         Debug\EventGetter.obj
+         Debug\Identifier.obj
+         Debug\KeywordGetter.obj
+         Debug\MarkTask.obj
+         Debug\TimeGetter.obj
+         Debug\StatusGetter.obj
+         Debug\TaskDisplayer.obj
+         Debug\TaskNumGetter.obj
+         Debug\TextUI.obj
+         Debug\Tokenizer.obj
+         Debug\VeriTask.obj
+         Debug\SearchTask.obj
+         Debug\Command.obj
+         Debug\Main.obj
+         Debug\Task.obj
+     1>LINK : warning LNK4068: /MACHINE not specified; defaulting to X86
+         VeriTask.vcxproj -> E:\Study\University\SEM 4\CS2103-CS2103T\Project\Project\VeriTask\Debug\VeriTask.lib
+     1>Done Building Project "E:\Study\University\SEM 4\CS2103-CS2103T\Project\Project\VeriTask\VeriTask\VeriTask.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.41
