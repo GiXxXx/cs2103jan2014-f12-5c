@@ -1,6 +1,6 @@
 #include "Command.h"
 
-void Command::executeCommand(Identifier infoIdentifier, DataStorage &_dataStorage, TextUI textUI) {
+void Command::executeCommand(Identifier infoIdentifier, DataStorage &dataStorage, TextUI textUI) {
 }
 
 
