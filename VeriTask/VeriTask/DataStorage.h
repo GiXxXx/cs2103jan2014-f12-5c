@@ -34,7 +34,6 @@ public:
 
 //	void printTask();
 //	void printTaskToDisplay(); 
-	void fillData(vector<Task>);
 	void saveData(Task taskToSave);
 	void deleteData(unsigned long long int taskID);
 	bool searchData(string keyword);

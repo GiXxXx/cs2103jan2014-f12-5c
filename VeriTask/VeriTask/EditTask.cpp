@@ -33,6 +33,8 @@ void EditTask::executeCommand(Identifier infoIdentifier, DataStorage &dataStorag
 		Task taskToEdit(event, date, startTime, endTime, index);
 	    dataStorage.saveData(taskToEdit);
 		dataStorage.saveFile();
+		dataStorage.searchDataDate(date);
+
 		textUI.printTaskToDisplay(dataStorage);
 		textUI.printEditConfirmation();
 }

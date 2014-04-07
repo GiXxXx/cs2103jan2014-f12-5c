@@ -25,6 +25,9 @@ namespace UI {
 	private:
 		Identifier* _newIdentifier;
 		VeriTask* _TaskManager;
+		 TextUI* _operationReport;
+		 DataStorage *_dataStorage;
+
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  IndexCol;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  StatusCol;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  DateCol;
@@ -32,16 +35,16 @@ namespace UI {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  EndCol;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  EventCol;
 	private: System::Windows::Forms::TextBox^  textBox2;
-
-			 TextUI* _operationReport;
+	private: System::Windows::Forms::ListBox^  listBox1;
+	private: System::Windows::Forms::MonthCalendar^  monthCalendar1;
 
 	public:
 		VeriTaskUI(void)
 		{
 			InitializeComponent();
-            DataStorage dataStorage;
+            _dataStorage = new DataStorage;
 			_newIdentifier = new Identifier; 
-			_TaskManager = new VeriTask(dataStorage);
+			_TaskManager = new VeriTask(*_dataStorage);
 			_operationReport = new TextUI;
 			//
 			//TODO: Add the constructor code here
@@ -94,6 +97,8 @@ namespace UI {
 			this->EventCol = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
+			this->listBox1 = (gcnew System::Windows::Forms::ListBox());
+			this->monthCalendar1 = (gcnew System::Windows::Forms::MonthCalendar());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -103,7 +108,7 @@ namespace UI {
 			this->label1->BackColor = System::Drawing::Color::Transparent;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Cambria", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(22, 74);
+			this->label1->Location = System::Drawing::Point(23, 563);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(58, 15);
 			this->label1->TabIndex = 0;
@@ -128,7 +133,7 @@ namespace UI {
 			// textBox1
 			// 
 			this->textBox1->BackColor = System::Drawing::SystemColors::InactiveBorder;
-			this->textBox1->Location = System::Drawing::Point(25, 93);
+			this->textBox1->Location = System::Drawing::Point(25, 587);
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->ScrollBars = System::Windows::Forms::ScrollBars::Horizontal;
 			this->textBox1->Size = System::Drawing::Size(485, 21);
@@ -142,7 +147,7 @@ namespace UI {
 			this->label3->BackColor = System::Drawing::Color::Transparent;
 			this->label3->Font = (gcnew System::Drawing::Font(L"Cambria", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(0)));
-			this->label3->Location = System::Drawing::Point(22, 199);
+			this->label3->Location = System::Drawing::Point(22, 70);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(82, 15);
 			this->label3->TabIndex = 3;
@@ -157,10 +162,10 @@ namespace UI {
 			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(6) {this->IndexCol, 
 				this->StatusCol, this->DateCol, this->StartCol, this->EndCol, this->EventCol});
 			this->dataGridView1->GridColor = System::Drawing::SystemColors::ControlLight;
-			this->dataGridView1->Location = System::Drawing::Point(25, 216);
+			this->dataGridView1->Location = System::Drawing::Point(25, 95);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->ReadOnly = true;
-			this->dataGridView1->Size = System::Drawing::Size(485, 217);
+			this->dataGridView1->Size = System::Drawing::Size(485, 445);
 			this->dataGridView1->TabIndex = 4;
 			this->dataGridView1->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &VeriTaskUI::dataGridView1_CellContentClick);
 			// 
@@ -211,7 +216,7 @@ namespace UI {
 			this->button1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
 			this->button1->Font = (gcnew System::Drawing::Font(L"Cambria", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, 
 				static_cast<System::Byte>(0)));
-			this->button1->Location = System::Drawing::Point(435, 182);
+			this->button1->Location = System::Drawing::Point(436, 550);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(75, 21);
 			this->button1->TabIndex = 5;
@@ -223,19 +228,38 @@ namespace UI {
 			// 
 			this->textBox2->BackColor = System::Drawing::SystemColors::Control;
 			this->textBox2->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->textBox2->Location = System::Drawing::Point(24, 115);
+			this->textBox2->Location = System::Drawing::Point(26, 612);
 			this->textBox2->Multiline = true;
 			this->textBox2->Name = L"textBox2";
+			this->textBox2->ReadOnly = true;
 			this->textBox2->ScrollBars = System::Windows::Forms::ScrollBars::Horizontal;
-			this->textBox2->Size = System::Drawing::Size(485, 51);
+			this->textBox2->Size = System::Drawing::Size(485, 58);
 			this->textBox2->TabIndex = 6;
 			this->textBox2->TextChanged += gcnew System::EventHandler(this, &VeriTaskUI::textBox2_TextChanged);
+			// 
+			// listBox1
+			// 
+			this->listBox1->FormattingEnabled = true;
+			this->listBox1->ItemHeight = 12;
+			this->listBox1->Location = System::Drawing::Point(533, 296);
+			this->listBox1->Name = L"listBox1";
+			this->listBox1->Size = System::Drawing::Size(220, 292);
+			this->listBox1->TabIndex = 7;
+			// 
+			// monthCalendar1
+			// 
+			this->monthCalendar1->Location = System::Drawing::Point(533, 95);
+			this->monthCalendar1->Name = L"monthCalendar1";
+			this->monthCalendar1->TabIndex = 8;
+			this->monthCalendar1->DateChanged += gcnew System::Windows::Forms::DateRangeEventHandler(this, &VeriTaskUI::monthCalendar1_DateChanged);
 			// 
 			// VeriTaskUI
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 12);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(532, 460);
+			this->ClientSize = System::Drawing::Size(782, 693);
+			this->Controls->Add(this->monthCalendar1);
+			this->Controls->Add(this->listBox1);
 			this->Controls->Add(this->textBox2);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->dataGridView1);
@@ -243,8 +267,10 @@ namespace UI {
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
+			this->MaximizeBox = false;
 			this->Name = L"VeriTaskUI";
 			this->Text = L"VeriTaskUI";
+			this->Load += gcnew System::EventHandler(this, &VeriTaskUI::VeriTaskUI_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->dataGridView1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -261,13 +287,11 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 				 _newIdentifier->Identify(unmanagedInputString);							//pass input to identifier
 				  textBox1->Text = "";
 
-				  DataStorage dataStorage;
-				  _TaskManager->pushCommand(_newIdentifier->GetCommand(), *_newIdentifier, *_operationReport, dataStorage);
+				  _TaskManager->pushCommand(_newIdentifier->GetCommand(), *_newIdentifier, *_operationReport, *_dataStorage);
 				 
 				 //display the task in dataGridView after each operation
 
-				 DataStorage AllStorage = dataStorage;
-
+				 DataStorage AllStorage = *_dataStorage;
 				 std::vector<Task> TaskVectorToDisplay = AllStorage.retrieveTaskListToDisplay();
 
 				 int vecSize = TaskVectorToDisplay.size();
@@ -305,12 +329,11 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 					 }
 				 }
 		 }
-	private: System::Void dataGridView1_CellContentClick(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e) {
+private: System::Void dataGridView1_CellContentClick(System::Object^  sender, System::Windows::Forms::DataGridViewCellEventArgs^  e) {
 			 }
-private: System::Void textBox2_TextChanged(System::Object^  sender, System::EventArgs^  e) {
-		 }
+
 private: System::Void textBox1_TextChanged(System::Object^  sender, System::EventArgs^  e) {
-			  textBox2->Text = "add, delete, edit, search, mark, undo";
+			 textBox2->Text = "add, delete, edit, search, mark, undo";
 			 if (textBox1->Text != "") {
 			 
 			 std::string unmanagedInputString = marshal_as<std::string>(textBox1->Text);//convert managed string to native
@@ -324,6 +347,56 @@ private: System::Void textBox1_TextChanged(System::Object^  sender, System::Even
 			 } else {
 			       textBox2->Text = "add, delete, edit, search, mark, undo";
 			 }
+		 }
+private: System::Void textBox2_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+		 }
+private: System::Void VeriTaskUI_Load(System::Object^  sender, System::EventArgs^  e) {
+		 }
+private: System::Void monthCalendar1_DateChanged(System::Object^  sender, System::Windows::Forms::DateRangeEventArgs^  e) {
+			 string dateSelected = marshal_as<std::string>(monthCalendar1->SelectionStart.ToString());
+			 string userInput = "display" + dateSelected;
+
+			 _newIdentifier->Identify(userInput);							//pass input to identifier
+			 _TaskManager->pushCommand(_newIdentifier->GetCommand(), *_newIdentifier, *_operationReport, *_dataStorage);
+			 DataStorage AllStorage = *_dataStorage;
+			 std::vector<Task> TaskVectorToDisplay = AllStorage.retrieveTaskListToDisplay();
+
+			 int vecSize = TaskVectorToDisplay.size();
+				 
+				 //clear the previoue data
+				 for(int i=0;i<vecSize;i++){
+					 dataGridView1->Rows->Clear();
+				 }
+
+			 for(int taskIndex = 0;taskIndex<vecSize;taskIndex++){
+					 dataGridView1->Rows->Add();
+					 dataGridView1->Rows[taskIndex]->Cells[0]->Value = (taskIndex+1).ToString();
+					 for(int cellIndex = 1;cellIndex<=6;cellIndex++){
+						 if(cellIndex == 1){
+							String^ managedStatus = gcnew String(TaskVectorToDisplay.at(taskIndex).getStatus().c_str());
+							dataGridView1->Rows[taskIndex]->Cells[cellIndex]->Value = managedStatus;
+						 }
+						 if(cellIndex == 2){
+							 String^ managedDate = gcnew String(TaskVectorToDisplay.at(taskIndex).getDate().c_str());
+							 dataGridView1->Rows[taskIndex]->Cells[cellIndex]->Value = managedDate;
+						 }
+						 else if(cellIndex == 3){
+							 String^ managedStartTime = gcnew String(TaskVectorToDisplay.at(taskIndex).getStartTime().c_str());
+							 dataGridView1->Rows[taskIndex]->Cells[cellIndex]->Value = managedStartTime;
+						 }
+						 else if(cellIndex == 4){
+							String^ managedEndTime = gcnew String(TaskVectorToDisplay.at(taskIndex).getEndTime().c_str());
+							dataGridView1->Rows[taskIndex]->Cells[cellIndex]->Value = managedEndTime;
+						 }
+						 else if(cellIndex == 5){
+		//					 MessageBox::Show(gcnew String(TaskVectorToDisplay.at(taskIndex).getEvent().c_str()));
+							String^ managedEvent = gcnew String(TaskVectorToDisplay.at(taskIndex).getEvent().c_str());
+							dataGridView1->Rows[taskIndex]->Cells[cellIndex]->Value = managedEvent;
+						 }
+					 }
+				 }
+
+			// textBox2->Text = gcnew String(dateSelected.c_str());
 		 }
 };
 }

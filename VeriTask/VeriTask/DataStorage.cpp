@@ -91,12 +91,6 @@ Task DataStorage::retrieveTask(int taskNum) {
 	return task;
 }
 
-void DataStorage::fillData(vector<Task> taskList) {
-	for (unsigned int i=0; i<taskList.size(); ++i) {
-		_taskList.push_back(taskList[i]);
-	}
-}
-
 void DataStorage::saveData(Task taskToSave) {
 	bool isSaved = false;
 	
@@ -111,6 +105,9 @@ void DataStorage::saveData(Task taskToSave) {
 	if (!isSaved) {
 		_taskList.push_back(taskToSave);
 	}
+
+	string date = taskToSave.getDate();
+	searchDataDate(date);
 
 	//_taskListToDisplay = _taskList;
 	/*_taskListToDisplay.clear();
