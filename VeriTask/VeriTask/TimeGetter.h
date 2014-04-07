@@ -5,7 +5,9 @@ class TimeGetter :	public Tokenizer{
 public:
 	TimeGetter(string&, string);
 	~TimeGetter();
-	string getTime(string, string);
+	string getTimeFromTwentyFourHour(string, string);
+	string getTimeFromTwelveHour(string, string);
+	string convertToTime(string);
 	string Tokenize();
 };
 

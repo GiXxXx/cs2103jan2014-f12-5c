@@ -26,6 +26,12 @@ void Identifier::Identify(string userInput) {
 	Status = StatusIdentifier.Tokenize();
 	EventGetter EventIdentifier(userInput, Command);
 	Event = EventIdentifier.Tokenize();
+
+	if(StartTime != LargeTime && Date == LargeDate){
+		string dummyString = dummy;
+		DateGetter dummyDateIdentifier(dummyString, Add);
+		Date = dummyDateIdentifier.Tokenize();
+	}
 }
 
 string Identifier::GetDate(){

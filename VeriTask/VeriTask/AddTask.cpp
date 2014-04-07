@@ -11,6 +11,8 @@ void AddTask::executeCommand(Identifier infoIdentifier, DataStorage &dataStorage
 
 	dataStorage.saveData(taskToAdd);
 	dataStorage.saveFile();
-	textUI.printTaskToDisplay(dataStorage);
-	textUI.printAddConfirmation();
+	
+	dataStorage.searchDataDate(date);
+	//textUI.printTaskToDisplay(dataStorage);
+	//textUI.printAddConfirmation();
 }
