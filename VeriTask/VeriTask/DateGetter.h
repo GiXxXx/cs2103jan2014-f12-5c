@@ -8,6 +8,7 @@ public:
 	~DateGetter();
 	void MonthConvertor(string&);
 	void WeekConvertor(string&);
+	void GetDateForBeforeAfter(string&, string);
 	string GetDateFromDate(string&, string);
 	string GetDateFromWeek(string&, string);
 	string DateConverter(int, int, int);
