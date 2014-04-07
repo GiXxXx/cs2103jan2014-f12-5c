@@ -4,7 +4,7 @@ void MarkTask::executeCommand(Identifier infoIdentifier, DataStorage &dataStorag
 		string status=infoIdentifier.GetStatus();
 	    int taskNum=std::stoi(infoIdentifier.GetTaskNum());;
 		unsigned long long int taskIDToMark = dataStorage.retrieveTaskID(taskNum);
-		string date = dataStorage.retrieveTask(taskIDToMark).getDate();
+		string date = dataStorage.retrieveTask(taskNum).getDate();
 
 		dataStorage.markData(taskIDToMark, status);
 		dataStorage.saveFile();
