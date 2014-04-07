@@ -19,7 +19,7 @@ string DateGetter::Tokenize(){
 			*uncategorizedInfo = by + *uncategorizedInfo;
 		}
 
-		while(Date == LargeDate && indicator <= EightUnit){
+		while(Date == LargeDate && indicator < NineUnit){
 
 			keyword = preposition[indicator];
 
@@ -41,7 +41,7 @@ string DateGetter::Tokenize(){
 			Date = GetDateFromFestival(*uncategorizedInfo, keyword);
 			}
 
-			if(Date != LargeDate && keyword == before){
+			if(Date != LargeDate && (keyword == before || keyword == after)){
 				string year = Date.substr(start, FourUnit);
 				string month = Date.substr(FourUnit, TwoUnit);
 				string day = Date.substr(SixUnit, TwoUnit);
@@ -50,7 +50,14 @@ string DateGetter::Tokenize(){
 				localtime_s(&timeNow, &local);
 				timeNow.tm_year = std::stoi(year) - yearAdder;
 				timeNow.tm_mon = std::stoi(month) - OneUnit;
-				timeNow.tm_mday = std::stoi(day) - OneUnit;
+				timeNow.tm_mday = std::stoi(day);
+
+				if(keyword == before){
+					timeNow.tm_mday--;
+				}
+				else{
+					timeNow.tm_mday++;
+				}
 
 				time_t newTime = mktime(&timeNow);
 				localtime_s(&timeNow, &newTime);
