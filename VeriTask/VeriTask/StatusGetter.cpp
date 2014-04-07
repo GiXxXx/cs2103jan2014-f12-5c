@@ -15,6 +15,7 @@ string StatusGetter::Tokenize(){
 	
 	if(positionOne != string::npos && position != string::npos){ 
 		temp = (*uncategorizedInfo).substr(positionOne, position - positionOne + OneUnit);
+		ChangeToLowerCase(temp);
 	}
 	
 	if(command == Mark){
