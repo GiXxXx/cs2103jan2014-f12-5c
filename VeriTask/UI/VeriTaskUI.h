@@ -380,7 +380,7 @@ private: System::Void textBox1_TextChanged(System::Object^  sender, System::Even
 			 if (_newIdentifier->GetCommand() == "add") {
 			 
 			 string str1 = "Command: " + _newIdentifier->GetCommand();
-			 string str2 = "Date: " + _newIdentifier->GetDate() + " StartTime: " + _newIdentifier->GetStartTime()+ " EtartTime: " + _newIdentifier->GetEndTime(); 
+			 string str2 = "Date: " + _newIdentifier->GetDate() + " StartTime: " + _newIdentifier->GetStartTime()+ " EndTime: " + _newIdentifier->GetEndTime(); 
 			 string str3 = "Event: " + _newIdentifier->GetEvent();
 			
 			 textBox2->Text = gcnew String((str1 + "\r\n" + str2 + "\r\n" + str3).c_str());
@@ -402,14 +402,16 @@ private: System::Void textBox1_TextChanged(System::Object^  sender, System::Even
 			 
 			 string str1 = "Command: " + _newIdentifier->GetCommand();
 			 string str2 = "Task Number: " + _newIdentifier->GetTaskNum();
-			 textBox2->Text = gcnew String((str1 + "\r\n" + str2).c_str());
+			 string str3 = "Status: " + _newIdentifier->GetKeyword();
+			 textBox2->Text = gcnew String((str1 + "\r\n" + str2+ "\r\n" + str3).c_str());
 			 }
 
 			 if (_newIdentifier->GetCommand() == "edit") {
 			 
 			 string str1 = "Command: " + _newIdentifier->GetCommand();
 			 string str2 = "Task Number: " + _newIdentifier->GetTaskNum();
-			 textBox2->Text = gcnew String((str1 + "\r\n" + str2).c_str());
+			 string str3 = "Content: " + _newIdentifier->GetKeyword();
+			 textBox2->Text = gcnew String((str1 + "\r\n" + str2 + "\r\n" + str3).c_str());
 			 }
 			 
 			 if (_newIdentifier->GetCommand() == "display") {
