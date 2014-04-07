@@ -94,17 +94,17 @@ string Tokenizer::changeWordToNumber(string input){
 		}
 	}
 
-	if(elementOne == astring || elementTwo == space){
+	if(elementOne == astring && elementTwo == space){
 		first = OneUnit;
 	}
 
 	int result = first + second;
 
-	ostringstream ss;
+	ostringstream out;
 
-	ss << result;
+	out << result;
 
-	return ss.str();
+	return out.str();
 }
 
 string Tokenizer::Tokenize(){
