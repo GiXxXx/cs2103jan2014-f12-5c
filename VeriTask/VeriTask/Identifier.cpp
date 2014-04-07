@@ -20,10 +20,10 @@ void Identifier::Identify(string userInput) {
 	EndTime = EndTimeIdentifier.Tokenize();
 	TaskNumGetter TaskNumIdentifier(userInput, Command);
 	TaskNum = TaskNumIdentifier.Tokenize();
-	KeywordGetter KeywordIdentifier(userInput, Command);
-	Keyword = KeywordIdentifier.Tokenize();
 	StatusGetter StatusIdentifier(userInput, Command);
 	Status = StatusIdentifier.Tokenize();
+	KeywordGetter KeywordIdentifier(userInput, Command);
+	Keyword = KeywordIdentifier.Tokenize();
 	EventGetter EventIdentifier(userInput, Command);
 	Event = EventIdentifier.Tokenize();
 	
