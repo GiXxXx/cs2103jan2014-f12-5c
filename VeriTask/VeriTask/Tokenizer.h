@@ -26,6 +26,8 @@ const string Done = "done";
 const string Search = "search";
 const string UnDone = "undone";
 const string CannotBeDone = "cannot be done";
+const string overdue = "overdue";
+const string all = "all";
 const string NoStatus = "no status";
 const string year = "year";
 const string years = "years";
@@ -146,7 +148,12 @@ const int yearDays = 365;
 const int monthDay = 31;
 const int yearMonth = 11;
 const int tenThousand = 10000;
-
+const string OneWordStatus[15] = {"doing", "finishing", "completing", "undone", "prepar", "start", "done", "finish", "complete", "over", "cant", "can't", "cannot", "impossible", "unable"}; 
+const string MultiWordStatus[29] = {"have do", "have finished", "have complete", "done already", "do already", "already do", "already finish", "finished already",
+	                              "finish already", "complete already", "completed already", "already complete", "haven't do", "haven't finish", "havent' complete",
+								  "haven't start", "not yet", "not do", "not complete", "not finish", "cannot do", "can't do", "cant do", "no time", "dont know",
+								  "not know", "how to", "cannot be done", "not able"};
+const string overdueStatus[11] = {"overdue", "passed due", "past due", "fail", "the due", "over due", "pass due", "past due", "all", "every", "full"};
 class Tokenizer{
 
 protected:

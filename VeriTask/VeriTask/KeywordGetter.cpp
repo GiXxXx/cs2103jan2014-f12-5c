@@ -16,7 +16,7 @@ string KeywordGetter::Tokenize(){
 	if(position == string::npos){
 		Keyword = emptyString;
 	}
-	else if(command == Search || command == Display){
+	else if(command == Search){
 		Keyword = (*uncategorizedInfo).substr(positionOne, position - positionOne + OneUnit);
 	}
 	return Keyword;
