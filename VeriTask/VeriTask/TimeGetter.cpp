@@ -13,7 +13,7 @@ string TimeGetter::Tokenize(){
 	unsigned int indicator = zero;
 
 	if(command == Add || command == Edit){
-		while(time == LargeTime && indicator < EightUnit){
+		while(time == LargeTime && indicator < NineUnit){
 			time = getTimeFromTwelveHour(*uncategorizedInfo, preposition[indicator]);
 
 		    indicator++;
