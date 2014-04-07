@@ -26,7 +26,7 @@ string CommandGetter::Tokenize(){
 	}
 
 	if(!isValid){
-		command = Search;
+		command = emptyString;
 	}
 
 	return command;
