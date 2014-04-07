@@ -13,6 +13,15 @@ string TimeGetter::Tokenize(){
 	unsigned int indicator = zero;
 
 	if(command == Add || command == Edit){
+		unsigned int posOne = (*uncategorizedInfo).find_first_not_of(space);
+		unsigned int posTwo = (*uncategorizedInfo).find_first_of(space, posOne);
+		string checker = (*uncategorizedInfo).substr(posOne, posTwo - posOne);
+
+		if(isNumber(checker) && checker.size() == FourUnit){
+			time = checker;
+			chopInfo(*uncategorizedInfo, posOne, checker.size());
+		}
+
 		while(time == LargeTime && indicator < NineUnit){
 			time = getTimeFromTwelveHour(*uncategorizedInfo, preposition[indicator]);
 
