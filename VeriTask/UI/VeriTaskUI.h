@@ -35,7 +35,12 @@ namespace UI {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  EndCol;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  EventCol;
 	private: System::Windows::Forms::TextBox^  textBox2;
-	private: System::Windows::Forms::ListBox^  listBox1;
+
+	private: System::Windows::Forms::ListView^  listView1;
+	private: System::Windows::Forms::ColumnHeader^  Index;
+	private: System::Windows::Forms::ColumnHeader^  Event;
+	private: System::Windows::Forms::ColumnHeader^  Date;
+	private: System::Windows::Forms::ColumnHeader^  Time;
 	private: System::Windows::Forms::MonthCalendar^  monthCalendar1;
 
 	public:
@@ -97,8 +102,12 @@ namespace UI {
 			this->EventCol = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
-			this->listBox1 = (gcnew System::Windows::Forms::ListBox());
 			this->monthCalendar1 = (gcnew System::Windows::Forms::MonthCalendar());
+			this->listView1 = (gcnew System::Windows::Forms::ListView());
+			this->Index = (gcnew System::Windows::Forms::ColumnHeader());
+			this->Event = (gcnew System::Windows::Forms::ColumnHeader());
+			this->Date = (gcnew System::Windows::Forms::ColumnHeader());
+			this->Time = (gcnew System::Windows::Forms::ColumnHeader());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -237,15 +246,6 @@ namespace UI {
 			this->textBox2->TabIndex = 6;
 			this->textBox2->TextChanged += gcnew System::EventHandler(this, &VeriTaskUI::textBox2_TextChanged);
 			// 
-			// listBox1
-			// 
-			this->listBox1->FormattingEnabled = true;
-			this->listBox1->ItemHeight = 12;
-			this->listBox1->Location = System::Drawing::Point(533, 296);
-			this->listBox1->Name = L"listBox1";
-			this->listBox1->Size = System::Drawing::Size(220, 292);
-			this->listBox1->TabIndex = 7;
-			// 
 			// monthCalendar1
 			// 
 			this->monthCalendar1->Location = System::Drawing::Point(533, 95);
@@ -253,13 +253,48 @@ namespace UI {
 			this->monthCalendar1->TabIndex = 8;
 			this->monthCalendar1->DateChanged += gcnew System::Windows::Forms::DateRangeEventHandler(this, &VeriTaskUI::monthCalendar1_DateChanged);
 			// 
+			// listView1
+			// 
+		/*	this->listView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::ColumnHeader^  >(4) {this->Index, this->Event, 
+				this->Date, this->Time});
+			this->listView1->Location = System::Drawing::Point(486, 268);
+			this->listView1->Name = L"listView1";
+			this->listView1->Size = System::Drawing::Size(303, 390);
+			this->listView1->TabIndex = 9;
+			this->listView1->UseCompatibleStateImageBehavior = false;
+			this->listView1->View = System::Windows::Forms::View::Details;
+			this->listView1->SelectedIndexChanged += gcnew System::EventHandler(this, &VeriTaskUI::listView1_SelectedIndexChanged); */
+			// 
+			// Index
+			// 
+			this->Index->Text = L"No.";
+			this->Index->Width = 30;
+			// 
+			// Event
+			// 
+			this->Event->Text = L"Event";
+			this->Event->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			this->Event->Width = 250;
+			// 
+			// Date
+			// 
+			this->Date->Text = L"Date";
+			this->Date->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			this->Date->Width = 80;
+			// 
+			// Time
+			// 
+			this->Time->Text = L"Time";
+			this->Time->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
+			this->Time->Width = 120;
+			// 
 			// VeriTaskUI
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 12);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(782, 693);
+			this->Controls->Add(this->listView1);
 			this->Controls->Add(this->monthCalendar1);
-			this->Controls->Add(this->listBox1);
 			this->Controls->Add(this->textBox2);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->dataGridView1);
@@ -277,7 +312,7 @@ namespace UI {
 
 		}
 #pragma endregion
-	private: System::Void textBox1_KeyDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e) {
+private: System::Void textBox1_KeyDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e) {
 				 if(e->KeyCode == Keys::Enter)
 				  button1->PerformClick();
 			 }
@@ -333,19 +368,62 @@ private: System::Void dataGridView1_CellContentClick(System::Object^  sender, Sy
 			 }
 
 private: System::Void textBox1_TextChanged(System::Object^  sender, System::EventArgs^  e) {
-			 textBox2->Text = "add, delete, edit, search, mark, undo";
-			 if (textBox1->Text != "") {
+			 textBox2->Text = "add, delete, edit, search, mark, display, undo";
 			 
+			 if (textBox1->Text == "") {
+			 textBox2->Text = "add, delete, edit, search, mark, display, undo";
+			 }
+
 			 std::string unmanagedInputString = marshal_as<std::string>(textBox1->Text);//convert managed string to native
 			 _newIdentifier->Identify(unmanagedInputString); //pass input to identifier
 			 
+			 if (_newIdentifier->GetCommand() == "add") {
+			 
 			 string str1 = "Command: " + _newIdentifier->GetCommand();
-			 string str2 = "Date: " + _newIdentifier->GetDate() + " Event: " + _newIdentifier->GetEvent()
-				            + " StartTime: " + _newIdentifier->GetStartTime()+ " EtartTime: " + _newIdentifier->GetEndTime();
+			 string str2 = "Date: " + _newIdentifier->GetDate() + " StartTime: " + _newIdentifier->GetStartTime()+ " EtartTime: " + _newIdentifier->GetEndTime(); 
+			 string str3 = "Event: " + _newIdentifier->GetEvent();
 			
+			 textBox2->Text = gcnew String((str1 + "\r\n" + str2 + "\r\n" + str3).c_str());
+			 } 
+			 
+			 if (_newIdentifier->GetCommand() == "delete") {
+			 string str1 = "Command: " + _newIdentifier->GetCommand();
+			 string str2 = "Task Number: " + _newIdentifier->GetTaskNum();
 			 textBox2->Text = gcnew String((str1 + "\r\n" + str2).c_str());
-			 } else {
-			       textBox2->Text = "add, delete, edit, search, mark, undo";
+			 }
+
+			 if (_newIdentifier->GetCommand() == "search") {
+			 string str1 = "Command: " + _newIdentifier->GetCommand();
+			 string str2 = "Keyword: " + _newIdentifier->GetKeyword();
+			 textBox2->Text = gcnew String((str1 + "\r\n" + str2).c_str());
+			 }
+
+			 if (_newIdentifier->GetCommand() == "mark") {
+			 
+			 string str1 = "Command: " + _newIdentifier->GetCommand();
+			 string str2 = "Task Number: " + _newIdentifier->GetTaskNum();
+			 textBox2->Text = gcnew String((str1 + "\r\n" + str2).c_str());
+			 }
+
+			 if (_newIdentifier->GetCommand() == "edit") {
+			 
+			 string str1 = "Command: " + _newIdentifier->GetCommand();
+			 string str2 = "Task Number: " + _newIdentifier->GetTaskNum();
+			 textBox2->Text = gcnew String((str1 + "\r\n" + str2).c_str());
+			 }
+			 
+			 if (_newIdentifier->GetCommand() == "display") {
+			 
+			 string str1 = "Command: " + _newIdentifier->GetCommand();
+			 string str2 = "Keyword: " + _newIdentifier->GetKeyword();
+			 string str3 = "Date: " + _newIdentifier->GetDate();
+			 textBox2->Text = gcnew String((str1 + "\r\n" + str2 + "\r\n" + str3).c_str());
+			 }
+			 
+			 if (_newIdentifier->GetCommand() == "undo") {
+			 
+			 string str1 = "Command: " + _newIdentifier->GetCommand();
+			 textBox2->Text = gcnew String(str1.c_str());
 			 }
 		 }
 private: System::Void textBox2_TextChanged(System::Object^  sender, System::EventArgs^  e) {
@@ -398,5 +476,8 @@ private: System::Void monthCalendar1_DateChanged(System::Object^  sender, System
 
 			// textBox2->Text = gcnew String(dateSelected.c_str());
 		 }
+/*private: System::Void listView1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
+			 listView1->Columes = "0";
+		 }*/
 };
 }
