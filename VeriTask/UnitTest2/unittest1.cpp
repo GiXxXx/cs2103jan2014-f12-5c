@@ -275,23 +275,23 @@ namespace UnitTest2 {
 			string PosSearch2 = "search 31/05/2011";
 			TestInfoIdentify.Identify(PosSearch2);
 			TaskManagerS.pushCommand(TestInfoIdentify.GetCommand(), TestInfoIdentify, textUI, filenameS);
-			Task testS =*((_TestdataStorageS.retrieveTaskListToDisplay()).begin());
-			string str1S = "stargazing session";
-			Assert::AreEqual(testS.getEvent(), str1S);
+			Task testS1 =*((_TestdataStorageS.retrieveTaskListToDisplay()).begin());
+			string str2S = "stargazing session";
+			Assert::AreEqual(testS1.getEvent(), str2S);
 
 			string PosSearch3 = "search 19:30";
 			TestInfoIdentify.Identify(PosSearch3);
 			TaskManagerS.pushCommand(TestInfoIdentify.GetCommand(), TestInfoIdentify, textUI, filenameS);
-			Task testS =*((_TestdataStorageS.retrieveTaskListToDisplay()).begin());
-			string str1S = "stargazing session";
-			Assert::AreEqual(testS.getEvent(), str1S);
+			Task testS2 =*((_TestdataStorageS.retrieveTaskListToDisplay()).begin());
+			string str3S = "stargazing session";
+			Assert::AreEqual(testS2.getEvent(), str3S);
 
-			string PosSearch3 = "search 22:00";
-			TestInfoIdentify.Identify(PosSearch3);
+			string PosSearch4 = "search 22:00";
+			TestInfoIdentify.Identify(PosSearch4);
 			TaskManagerS.pushCommand(TestInfoIdentify.GetCommand(), TestInfoIdentify, textUI, filenameS);
-			Task testS =*((_TestdataStorageS.retrieveTaskListToDisplay()).begin());
-			string str1S = "stargazing session";
-			Assert::AreEqual(testS.getEvent(), str1S);
+			Task testS3 =*((_TestdataStorageS.retrieveTaskListToDisplay()).begin());
+			string str4S = "stargazing session";
+			Assert::AreEqual(testS3.getEvent(), str4S);
 		}
 		
 		TEST_METHOD(testEditTimedTask) {
