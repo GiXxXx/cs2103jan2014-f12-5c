@@ -131,7 +131,7 @@ string TimeGetter::getTime(string Input, string keyword){
 
 string TimeGetter::getTimeFromMorning(string Input, string keyword){
 	string Time = LargeTime, tempTime, checker, duplicate = Input;
-	unsigned int position, startPos = start, sizeOne, sizeTwo;
+	unsigned int position, startPos = start, sizeOne;
 	int hourStandard = zero, indicator = zero;
 
 	ChangeToLowerCase(duplicate);

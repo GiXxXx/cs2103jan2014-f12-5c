@@ -35,7 +35,7 @@ string StatusGetter::Tokenize(){
 	}
 
 	if(wordCount > OneUnit){
-		for(int i = zero; i < sizeOne; i++){
+		for(int i = zero; i < sizeTwo; i++){
 			if(temp.find(MultiWordStatus[i]) != string::npos){
 				if(i <= TenUnit + OneUnit){
 					status = Done;
@@ -43,7 +43,7 @@ string StatusGetter::Tokenize(){
 				else if(i <= TenUnit + NineUnit){
 					status = UnDone;
 				}
-				else if(i < sizeOne){
+				else if(i < sizeTwo){
 					status = CannotBeDone;
 				}
 			}
@@ -51,16 +51,19 @@ string StatusGetter::Tokenize(){
 	}
 
 	if(wordCount == OneUnit || (status != Done && status != UnDone && status != CannotBeDone)){
-		for(int i = zero; i < sizeTwo; i++){
+		for(int i = zero; i < sizeOne; i++){
 			if(temp.find(OneWordStatus[i]) != string::npos){
 				if(i < SixUnit){
 					status = UnDone;
+					break;
 				}
 				else if(i < TenUnit){
 					status = Done;
+					break;
 				}
-				else if(i < sizeTwo){
+				else if(i < sizeOne){
 					status = CannotBeDone;
+					break;
 				}
 			}
 		}
