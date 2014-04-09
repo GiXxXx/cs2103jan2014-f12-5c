@@ -60,6 +60,7 @@ const string sat = "sat";
 const string sun = "sun";
 const string Next = "next";
 const string This = "this";
+const string The = "the";
 const string Zero = "0";
 const string one = "1";
 const string two = "2";
@@ -156,6 +157,9 @@ const string MultiWordStatus[40] = {"have do", "have finished", "have complete",
 								  "havent finish", "havent complete", "havent start", "not yet", "never do", "not do", "not complete", "not finish"};
 			
 const string overdueStatus[11] = {"overdue", "passed due", "past due", "fail", "the due", "over due", "pass due", "past due", "all", "every", "full"};
+const string NoonStatus[7] = { "morning ", "afternoon ", "evening ", "noon ", "midnight ", "tonight ", "night " };
+const string correspondingTime[7] = { "1200", "1900", "2400", "1200", "2400", "2400", "2400" };
+
 class Tokenizer{
 
 protected:
