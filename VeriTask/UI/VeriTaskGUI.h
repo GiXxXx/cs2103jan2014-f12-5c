@@ -183,10 +183,15 @@ namespace UI {
 
     private: System::Void commandBox_KeyDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e) {
 			 if(e->KeyCode == Keys::Enter) {
-				 for(int i=0; i<taskSheet->Items->Count; i++) {
-					 taskSheet->Items[i]->Remove();
+				 int size = taskSheet->Items->Count();
+				 for(int i=0; i<taskSheet->Items->Count();i++){
+					 dataGridView1->Rows->Clear();
 				 }
 				 
+				 while (taskSheet->Items->Count() > 0) {
+					 taskSheet->Items->Clear();
+				 }
+
 				 std::string unmanagedInputString = marshal_as<std::string>(taskSheet->Text);
 			     newIdentifier->Identify(unmanagedInputString); 
 	         	 taskManager->pushCommand(newIdentifier->GetCommand(), *newIdentifier, *textUI, *dataStorage);
