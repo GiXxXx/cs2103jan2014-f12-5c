@@ -20,8 +20,8 @@ private:
 	vector<DataStorage> undoList;
 	
 public:
-	VeriTask(DataStorage&);
+	VeriTask(/*DataStorage&*/);
 	~VeriTask();
-	void pushCommand(string, Identifier, TextUI, DataStorage&); 
+    void pushCommand(string, Identifier, TextUI, DataStorage&); 
 };
 #endif
