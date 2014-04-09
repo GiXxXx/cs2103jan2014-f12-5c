@@ -324,9 +324,11 @@ string DateGetter::GetDateFromDescriptionTwo(string& Input, string keyword){
 string DateGetter::GetDateFromDescriptionOne(string& Input, string keyword){
 	string Date = LargeDate, tempDate, element, number, duplicate = Input;
 	unsigned int position, startPos = start, positionOne, indicator = zero;
-	const string description[EightUnit] = {days, day, months, month, years, year, Week, Weeks};
+	string description[EightUnit] = {days, day, months, month, years, year, Week, Weeks};
+	string descriptionTwo[SixUnit] = { space + This + space + Week, space + This + space + month, space + This + space + year,
+	                                	space + Next + space + Week, space + Next + space + month, space + Next + space + year };
 
-	changeWordToNumber(duplicate);
+	ChangeToLowerCase(duplicate);
 
 	do{
 		position = duplicate.find(keyword, startPos);
@@ -359,6 +361,19 @@ string DateGetter::GetDateFromDescriptionOne(string& Input, string keyword){
 		}
 
 		}while(position != string::npos);
+
+	if (Date == LargeDate && keyword == at){
+		for (int i = zero; i < SixUnit; i++){
+			position = duplicate.find(descriptionTwo[i]);
+
+			if (position != string::npos){
+				string temp = descriptionTwo[i].substr(SixUnit);
+				number = descriptionTwo[i].substr(OneUnit, FourUnit);
+				Date = DateConvertorFromDescription(temp, number);
+				chopInfo(*uncategorizedInfo, position, descriptionTwo[i].size());
+			}
+		}
+	}
 
 	return Date;
 }
