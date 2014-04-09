@@ -30,6 +30,14 @@ string TimeGetter::Tokenize(){
 
 		    indicator++;
 		}
+
+		indicator = zero;
+
+		while (time == LargeTime && indicator < NineUnit){
+			time = getTimeFromMorning(*uncategorizedInfo, preposition[indicator]);
+
+			indicator++;
+		}
 	}
 
 	return time;
@@ -117,6 +125,84 @@ string TimeGetter::getTime(string Input, string keyword){
 	    	startPos = position + OneUnit;
 		
 		}while(position != string::npos);	
+
+	return Time;
+}
+
+string TimeGetter::getTimeFromMorning(string Input, string keyword){
+	string Time = LargeTime, tempTime, checker, duplicate = Input;
+	unsigned int position, startPos = start, sizeOne, sizeTwo;
+	int hourStandard = zero, indicator = zero;
+
+	ChangeToLowerCase(duplicate);
+
+	do{
+		position = duplicate.find(keyword, startPos);
+
+		if (position != string::npos){
+			tempTime = duplicate.substr(position + keyword.size());
+
+			while (Time == LargeTime && indicator < SevenUnit){
+				sizeOne = tempTime.find(NoonStatus[indicator]);
+
+				if (sizeOne != string::npos){
+					Time = correspondingTime[indicator];
+					chopInfo(*uncategorizedInfo, position, position + NoonStatus[indicator].size() - OneUnit);
+					break;
+				}
+
+				indicator++;
+			}
+		}
+		
+    	startPos = position + OneUnit;
+
+   	} while (position != string::npos);
+
+	indicator = zero;
+	sizeOne = string::npos;
+
+	if (Time == LargeTime && position == string::npos && keyword == at){
+		while (Time == LargeTime && indicator < SevenUnit){
+			sizeOne = duplicate.find(NoonStatus[indicator]);
+
+			if (sizeOne != string::npos){
+				int checkerOne = duplicate.find(This);
+				int checkerTwo = duplicate.find(Next);
+				int checkerThree = duplicate.find(The);
+				int checker = zero;
+
+				Time = correspondingTime[indicator];
+
+				if (checkerOne != string::npos && sizeOne - checkerOne == FiveUnit){
+					sizeOne = checkerOne;
+					checker = FourUnit;
+				}
+
+				if (checkerTwo != string::npos && sizeOne - checkerTwo == FiveUnit){
+					sizeOne = checkerTwo;
+					checker = FourUnit;
+				}
+
+				if (checkerThree != string::npos && sizeOne - checkerThree == FourUnit){
+					sizeOne = checkerThree;
+					checker = ThreeUnit;
+				}
+
+				if (checker != zero)
+				{
+					chopInfo(*uncategorizedInfo, sizeOne, checker + NoonStatus[indicator].size());
+					break;
+				}
+				else{
+					chopInfo(*uncategorizedInfo, sizeOne, NoonStatus[indicator].size() - OneUnit);
+					break;
+				}
+			}
+
+	     	indicator++;
+	   	}
+	}
 
 	return Time;
 }
