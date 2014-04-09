@@ -6,7 +6,11 @@ void DeleteTask::executeCommand(Identifier infoIdentifier, DataStorage &dataStor
 	string date = dataStorage.retrieveTask(taskNum).getDate();
 	dataStorage.deleteData(taskIDToDelete);
 	dataStorage.saveFile();
-	dataStorage.searchDataDate(date);
+	//dataStorage.searchDataDate(date);
+
+	vector<Task> updatedTaskListToDisplay = dataStorage.retrieveTaskListToDisplay();//
+	updatedTaskListToDisplay.erase(updatedTaskListToDisplay.begin() + taskNum - 1);//
+	dataStorage.setTaskListToDisplay(updatedTaskListToDisplay);//
 
 	//textUI.printTaskToDisplay(dataStorage);
 	//textUI.printDeleteConfirmation();

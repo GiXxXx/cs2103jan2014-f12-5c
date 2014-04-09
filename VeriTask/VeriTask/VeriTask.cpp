@@ -8,9 +8,12 @@ VeriTask::~VeriTask() {};
 
 void VeriTask::pushCommand(string commandWord, Identifier infoIdentifier, TextUI textUI, DataStorage& dataStorage) {
 	Command* newTask;
+	cout << commandWord <<" = " << ADD_COMMAND <<  endl;
 	if (commandWord == ADD_COMMAND) {
 		newTask = new AddTask;
+		cout << "asdasdasdasfsedfsdfsdfdgsdg1" << endl;
 		newTask->executeCommand(infoIdentifier, dataStorage, textUI);
+		cout << "asdasdasdasfsedfsdfsdfdgsdg2" << endl;
 	}
 	if (commandWord == DELETE_COMMAND) {
 		newTask = new DeleteTask;
