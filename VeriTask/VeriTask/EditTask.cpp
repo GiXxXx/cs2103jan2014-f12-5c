@@ -11,6 +11,7 @@ void EditTask::executeCommand(Identifier infoIdentifier, DataStorage &dataStorag
 	    string startTime = infoIdentifier.GetStartTime();
 	    string endTime = infoIdentifier.GetEndTime();
 	    string event = infoIdentifier.GetEvent();
+		string status = UnDone;
 		int index = dataStorage.getTaskIndex();
 		dataStorage.setTaskIndex(dataStorage.getTaskIndex()+1);
 
@@ -30,10 +31,16 @@ void EditTask::executeCommand(Identifier infoIdentifier, DataStorage &dataStorag
 			event = temp.getEvent();
 		}
 
-		Task taskToEdit(event, date, startTime, endTime, index);
+		Task taskToEdit(event, date, startTime, endTime, UnDone, index);
 	    dataStorage.saveData(taskToEdit);
 		dataStorage.saveFile();
-		dataStorage.searchDataDate(date);
+	//	dataStorage.searchDataDate(date);
+		vector<Task> updatedTaskListToDisplay = dataStorage.retrieveTaskListToDisplay();//
+		(updatedTaskListToDisplay.begin() + (taskNum - 1))->setDate(date);//
+		(updatedTaskListToDisplay.begin() + (taskNum - 1))->setStartTime(startTime);//
+		(updatedTaskListToDisplay.begin() + (taskNum - 1))->setEndTime(endTime);//
+		(updatedTaskListToDisplay.begin() + (taskNum - 1))->setEvent(event);//
+		dataStorage.setTaskListToDisplay(updatedTaskListToDisplay);//
 
 		textUI.printTaskToDisplay(dataStorage);
 		textUI.printEditConfirmation();

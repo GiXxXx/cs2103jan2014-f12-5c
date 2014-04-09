@@ -35,7 +35,7 @@ DataStorage::DataStorage() {
 		getline(readFile, index);
 	    index_int = stoi(index);
 
-	Task task(event, date, startTime, endTime, index_int);
+	Task task(event, date, startTime, endTime, status, index_int);
 	_taskList.push_back(task);
 	_taskListToDisplay.push_back(task);
 }
@@ -79,7 +79,7 @@ DataStorage::DataStorage(string fileName) {
 		getline(readFile, index);
 	    index_int = stoi(index);
 
-	Task task(event, date, startTime, endTime, index_int);
+	Task task(event, date, startTime, endTime, status, index_int);
 	_taskList.push_back(task);
 }
 	readFile.close();
@@ -255,4 +255,8 @@ void DataStorage::setTaskIndex(int taskIndex) {
 int DataStorage::getTaskIndex() {
 	_taskIndex;
 	return _taskIndex;
+}
+
+void DataStorage::setTaskListToDisplay(vector<Task> taskListToDisplay){
+	_taskListToDisplay = taskListToDisplay;
 }
