@@ -183,15 +183,7 @@ namespace UI {
 
     private: System::Void commandBox_KeyDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e) {
 			 if(e->KeyCode == Keys::Enter) {
-				 int size = taskSheet->Items->Count();
-				 for(int i=0; i<taskSheet->Items->Count();i++){
-					 dataGridView1->Rows->Clear();
-				 }
-				 
-				 while (taskSheet->Items->Count() > 0) {
-					 taskSheet->Items->Clear();
-				 }
-
+			
 				 std::string unmanagedInputString = marshal_as<std::string>(taskSheet->Text);
 			     newIdentifier->Identify(unmanagedInputString); 
 	         	 taskManager->pushCommand(newIdentifier->GetCommand(), *newIdentifier, *textUI, *dataStorage);
@@ -261,14 +253,14 @@ namespace UI {
 			 
 			 string str1 = "Command: " + newIdentifier->GetCommand();
 			 string str2 = "Task Number: " + newIdentifier->GetTaskNum();
-			 string str3 = "Content: " + newIdentifier->GetKeyword();
+			 string str3 = "Content: " + newIdentifier->GetStatus();
 			 feedbackBox->Text = gcnew String((str1 + "\r\n" + str2 + "\r\n" + str3).c_str());
 			 }
 			 
 			 if (newIdentifier->GetCommand() == "display") {
 			 
 			 string str1 = "Command: " + newIdentifier->GetCommand();
-			 string str2 = "Keyword: " + newIdentifier->GetKeyword();
+			 string str2 = "Tasktype: " + newIdentifier->GetStatus();
 			 string str3 = "Date: " + newIdentifier->GetDate();
 			 feedbackBox->Text = gcnew String((str1 + "\r\n" + str2 + "\r\n" + str3).c_str());
 			 }
