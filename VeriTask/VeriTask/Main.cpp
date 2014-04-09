@@ -11,7 +11,7 @@ using namespace std;
 
 int main() {
 	DataStorage dataStorage;
-	VeriTask TaskManager(dataStorage);
+	VeriTask TaskManager/*dataStorage*/;
 	string UserInput;
 	Identifier InfoIdentifier;
 	TextUI textUI;

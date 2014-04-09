@@ -107,16 +107,6 @@ string Tokenizer::changeWordToNumber(string input){
 	return out.str();
 }
 
-void Tokenizer::ChangeDoubleDigit(string &Number){
-	if (isNumber(Number)){
-		if (std::stoi(Number) < 10 && Number.size() == OneUnit){
-			Number = Zero + Number;
-		}
-	}
-
-	return;
-}
-
 string Tokenizer::Tokenize(){
 	return *uncategorizedInfo;
 }

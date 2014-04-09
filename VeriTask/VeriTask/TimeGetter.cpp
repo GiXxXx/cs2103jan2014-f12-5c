@@ -122,30 +122,37 @@ string TimeGetter::getTime(string Input, string keyword){
 }
 
 string TimeGetter::convertToTime(string tempTime){
-	int position = tempTime.find(colon);
-	string hour, minute;
-	
-	if (position == string::npos) {
-		position = tempTime.find(dot);
-	}
+	if(tempTime.size() >= FourUnit){
+		if((tempTime.substr(OneUnit,OneUnit)) == colon || tempTime.substr(OneUnit,OneUnit) == dot){
+			tempTime = tempTime.substr(start, OneUnit) + tempTime.substr(start + TwoUnit, TwoUnit);
+  		}
 
-	if(position != string::npos) {
-		hour = tempTime.substr(start, position - start);
-		minute = tempTime.substr(position + OneUnit);
+   	   	if((tempTime.substr(TwoUnit,OneUnit)) == colon || tempTime.substr(TwoUnit,OneUnit) == dot){
+	   		tempTime = tempTime.substr(start, TwoUnit) + tempTime.substr(start + ThreeUnit, TwoUnit);
+			}
 	}
 				
-   if(isNumber(hour) && isNumber(minute)){
-	   if(hour.size() == OneUnit){
-		   hour = Zero + hour ;
+   if(isNumber(tempTime)){
+	   if(tempTime.size() == OneUnit){
+		   tempTime = Zero + tempTime + Zero + Zero;
     	}
-	   
-	   if (minute.size() == OneUnit){
-		   minute = minute + Zero;
+	   else if(tempTime.size() == TwoUnit){
+		   tempTime = tempTime + Zero + Zero;
 	   }
-
-	   tempTime = hour + minute;
+	   else if(tempTime.size() == ThreeUnit){
+		   tempTime = Zero + tempTime + Zero;
+	   }
    }
 
    return tempTime;
 }
 
+void Tokenizer::ChangeDoubleDigit(string &Number){
+	if(isNumber(Number)){
+		if(std::stoi(Number) < 10 && Number.size() == OneUnit){
+			Number = Zero + Number;
+		}
+	}
+
+	return;
+}

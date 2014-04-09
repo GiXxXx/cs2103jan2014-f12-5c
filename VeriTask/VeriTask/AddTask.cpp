@@ -13,6 +13,6 @@ void AddTask::executeCommand(Identifier infoIdentifier, DataStorage &dataStorage
 	dataStorage.saveFile();
 	
 	dataStorage.searchDataDate(date);
-	//textUI.printTaskToDisplay(dataStorage);
-	//textUI.printAddConfirmation();
+	textUI.printTaskToDisplay(dataStorage);
+	textUI.printAddConfirmation();
 }
