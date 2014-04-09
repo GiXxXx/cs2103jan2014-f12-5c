@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{B788E4C5-292E-46C3-A9D5-A2EBC1B854BE}</ProjectGuid>
+    <ProjectGuid>{8CE4A7AD-CD1B-4E48-B49F-A1A8B1EA11BE}</ProjectGuid>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
     <RootNamespace>UI</RootNamespace>
@@ -52,12 +52,11 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>E:\Study\University\SEM 4\CS2103-CS2103T\Project\Project\VeriTask\VeriTask;C:\Users\GAO JIACHENG\Desktop\New folder %284%29\VeriTask\VeriTask;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>E:\Study\University\SEM 4\CS2103-CS2103T\New Project\Project\VeriTask\VeriTask;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies />
-      <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>main</EntryPointSymbol>
     </Link>
   </ItemDefinitionGroup>
@@ -79,17 +78,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="VeriTaskUI.cpp" />
+    <ClCompile Include="VeriTaskGUI.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="VeriTaskUI.h">
+    <ClInclude Include="VeriTaskGUI.h">
       <FileType>CppForm</FileType>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="VeriTaskUI.resx">
-      <DependentUpon>VeriTaskUI.h</DependentUpon>
-      <SubType>Designer</SubType>
+    <EmbeddedResource Include="VeriTaskGUI.resx">
+      <DependentUpon>VeriTaskGUI.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
