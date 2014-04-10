@@ -270,7 +270,6 @@ namespace UI {
 						 str = startTime + "-" + endTime;
 					 }
 					 newTask->SubItems->Add(gcnew String(str.c_str()));
-					 cout << "status2 =" << status << endl;
 
 					 if (status == UnDone) {
 						 newTask->ForeColor = Color::Black;
