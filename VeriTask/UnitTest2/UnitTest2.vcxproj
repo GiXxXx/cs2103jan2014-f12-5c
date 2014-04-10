@@ -54,7 +54,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UseFullPaths>true</UseFullPaths>
-      <AdditionalIncludeDirectories>C:\Users\GAO JIACHENG\Desktop\New folder %284%29\VeriTask\VeriTask;$(VCInstallDir)UnitTest\include;C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Pang\Desktop\2103\cs2103jan2014-f12-5c\VeriTask\VeriTask;C:\Users\GAO JIACHENG\Desktop\New folder %284%29\VeriTask\VeriTask;$(VCInstallDir)UnitTest\include;C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

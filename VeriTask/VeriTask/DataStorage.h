@@ -41,6 +41,7 @@ public:
 	bool searchDataStatus(string keyword);
 	void markData(unsigned long long int taskID, string status);
 	void setTaskIndex(int taskIndex);
+	void setTaskListToDisplay(vector<Task> taskListToDisplay);
 	int getTaskIndex();
 };
 

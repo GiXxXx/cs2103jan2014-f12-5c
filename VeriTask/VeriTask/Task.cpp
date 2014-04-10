@@ -1,10 +1,11 @@
 #include "Task.h"
 
-Task::Task(string event, string date, string startTime, string endTime, int index) {
+Task::Task(string event, string date, string startTime, string endTime, string status, int index) {
 	_event = event;
 	_date = date;
 	_startTime = startTime;
 	_endTime = endTime;
+	_status = status;
 	_index = index;
 	unsigned long long int date_Int;
 	unsigned long long int startTime_Int;

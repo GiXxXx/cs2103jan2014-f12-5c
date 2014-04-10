@@ -20,7 +20,7 @@ private:
 	unsigned long long _ID;
 
 public:
-	Task(string event, string date, string startTime, string endTime, int index);
+	Task(string event, string date, string startTime, string endTime, string status, int index);
 	string getEvent();
 	string getDate();
 	string getStartTime();
