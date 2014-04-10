@@ -29,10 +29,13 @@ namespace UI {
 		DataStorage *dataStorage;
 		VeriTask* taskManager;
 
-	private: 
-		System::Windows::Forms::ColumnHeader^  columnHeader1;
+	private: System::Windows::Forms::ColumnHeader^  columnHeader1;
 	private: System::Windows::Forms::Button^  closeButton;
 	private: System::Windows::Forms::Button^  minimizeButton;
+	private: bool *_dragging;
+	private: Point *_offset;
+	private: Point *_start_point;
+
 
 			 TextUI* textUI;
 
@@ -40,6 +43,8 @@ namespace UI {
 		VeriTaskGUI(void)
 		{
 			InitializeComponent();
+			_dragging = new bool(false);
+			_start_point = new Point(0, 0);
 			
 			newIdentifier = new Identifier;
 			taskManager = new VeriTask;
@@ -184,7 +189,7 @@ namespace UI {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ControlLightLight;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
-			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->ClientSize = System::Drawing::Size(479, 600);
 			this->ControlBox = false;
 			this->Controls->Add(this->closeButton);
@@ -192,11 +197,15 @@ namespace UI {
 			this->Controls->Add(this->commandBox);
 			this->Controls->Add(this->taskSheet);
 			this->Controls->Add(this->minimizeButton);
+			this->ForeColor = System::Drawing::SystemColors::ControlLightLight;
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Name = L"VeriTaskGUI";
 			this->Text = L"VeriTaskGUI";
 			this->Load += gcnew System::EventHandler(this, &VeriTaskGUI::VeriTaskGUI_Load);
+			this->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &VeriTaskGUI::VeriTaskGUI_MouseDown);
+			this->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &VeriTaskGUI::VeriTaskGUI_MouseMove);
+			this->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &VeriTaskGUI::VeriTaskGUI_MouseUp);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -362,6 +371,20 @@ private: System::Void closeButton_MouseClick(System::Object^  sender, System::Wi
 }
 private: System::Void minimizeButton_MouseClick(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
 			 this->WindowState = FormWindowState::Minimized;
+}
+private: System::Void VeriTaskGUI_MouseDown(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+			 *_dragging = true;
+			 _start_point = new Point(-e->X, -e->Y);
+}
+private: System::Void VeriTaskGUI_MouseUp(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+			 *_dragging = false;
+}
+private: System::Void VeriTaskGUI_MouseMove(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+			 if (*_dragging) {
+				 Point mousePosition = Control::MousePosition;
+				 mousePosition.Offset(_start_point->X, _start_point->Y);
+				 this->Location = mousePosition;
+			 }
 }
 };
 }
