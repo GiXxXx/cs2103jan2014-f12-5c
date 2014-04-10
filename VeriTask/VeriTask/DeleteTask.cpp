@@ -8,6 +8,6 @@ void DeleteTask::executeCommand(Identifier infoIdentifier, DataStorage &dataStor
 	dataStorage.saveFile();
 	dataStorage.searchDataDate(date);
 
-	//textUI.printTaskToDisplay(dataStorage);
-	//textUI.printDeleteConfirmation();
+	textUI.printTaskToDisplay(dataStorage);
+	textUI.printDeleteConfirmation();
 }

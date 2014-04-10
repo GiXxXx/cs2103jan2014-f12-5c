@@ -18,7 +18,7 @@ void TaskDisplayer::executeCommand(Identifier infoIdentifier, DataStorage &dataS
 	bool isFound;
 
 	if (date != "        ") {
-		isFound = dataStorage.searchDataDate(keyword);
+		isFound = dataStorage.searchDataDate(date);
 		if (isFound) {
 			textUI.printSearchConfirmationYes();
 			textUI.printTaskToDisplay(dataStorage);
@@ -26,7 +26,7 @@ void TaskDisplayer::executeCommand(Identifier infoIdentifier, DataStorage &dataS
 			textUI.printSearchConfirmationNo();
 		}
 	}
-	if (keyword !="") {
+	if (status !="") {
 		isFound = dataStorage.searchDataStatus(keyword);
 		if (isFound) {
 			textUI.printSearchConfirmationYes();

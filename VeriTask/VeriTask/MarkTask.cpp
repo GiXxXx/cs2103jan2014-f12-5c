@@ -9,8 +9,8 @@ void MarkTask::executeCommand(Identifier infoIdentifier, DataStorage &dataStorag
 		dataStorage.markData(taskIDToMark, status);
 		dataStorage.saveFile();
 		dataStorage.searchDataDate(date);
-		//textUI.printTaskToDisplay(dataStorage);
-		//textUI.printMarkConfirmation();
+		textUI.printTaskToDisplay(dataStorage);
+		textUI.printMarkConfirmation();
 }
 
 	
