@@ -108,15 +108,13 @@ namespace UI {
 			// 
 			// taskSheet
 			// 
-			this->taskSheet->Columns->AddRange(gcnew cli::array< System::Windows::Forms::ColumnHeader^  >(4) {
-				this->columnHeader1, this->columnHeader2,
-					this->columnHeader3, this->columnHeader4
-			});
+			this->taskSheet->Columns->AddRange(gcnew cli::array< System::Windows::Forms::ColumnHeader^  >(4) {this->columnHeader1, this->columnHeader2, 
+				this->columnHeader3, this->columnHeader4});
 			this->taskSheet->FullRowSelect = true;
 			this->taskSheet->GridLines = true;
-			this->taskSheet->Location = System::Drawing::Point(62, 81);
+			this->taskSheet->Location = System::Drawing::Point(62, 71);
 			this->taskSheet->Name = L"taskSheet";
-			this->taskSheet->Size = System::Drawing::Size(393, 367);
+			this->taskSheet->Size = System::Drawing::Size(465, 339);
 			this->taskSheet->TabIndex = 0;
 			this->taskSheet->UseCompatibleStateImageBehavior = false;
 			this->taskSheet->View = System::Windows::Forms::View::Details;
@@ -141,19 +139,19 @@ namespace UI {
 			// 
 			// commandBox
 			// 
-			this->commandBox->Location = System::Drawing::Point(62, 466);
+			this->commandBox->Location = System::Drawing::Point(62, 430);
 			this->commandBox->Name = L"commandBox";
-			this->commandBox->Size = System::Drawing::Size(393, 20);
+			this->commandBox->Size = System::Drawing::Size(393, 21);
 			this->commandBox->TabIndex = 1;
 			this->commandBox->TextChanged += gcnew System::EventHandler(this, &VeriTaskGUI::commandBox_TextChanged);
 			this->commandBox->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &VeriTaskGUI::commandBox_KeyDown);
 			// 
 			// feedbackBox
 			// 
-			this->feedbackBox->Location = System::Drawing::Point(62, 505);
+			this->feedbackBox->Location = System::Drawing::Point(62, 466);
 			this->feedbackBox->Multiline = true;
 			this->feedbackBox->Name = L"feedbackBox";
-			this->feedbackBox->Size = System::Drawing::Size(393, 69);
+			this->feedbackBox->Size = System::Drawing::Size(393, 64);
 			this->feedbackBox->TabIndex = 2;
 			// 
 			// closeButton
@@ -162,10 +160,10 @@ namespace UI {
 			this->closeButton->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->closeButton->FlatAppearance->BorderSize = 0;
 			this->closeButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->closeButton->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"closeButton.Image")));
-			this->closeButton->Location = System::Drawing::Point(432, 28);
+			this->closeButton->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"closeButton.Image")));
+			this->closeButton->Location = System::Drawing::Point(432, 26);
 			this->closeButton->Name = L"closeButton";
-			this->closeButton->Size = System::Drawing::Size(23, 23);
+			this->closeButton->Size = System::Drawing::Size(23, 21);
 			this->closeButton->TabIndex = 3;
 			this->closeButton->UseVisualStyleBackColor = false;
 			this->closeButton->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &VeriTaskGUI::closeButton_MouseClick);
@@ -175,22 +173,22 @@ namespace UI {
 			this->minimizeButton->BackColor = System::Drawing::SystemColors::ControlLightLight;
 			this->minimizeButton->FlatAppearance->BorderSize = 0;
 			this->minimizeButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->minimizeButton->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"minimizeButton.Image")));
-			this->minimizeButton->Location = System::Drawing::Point(402, 28);
+			this->minimizeButton->Image = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"minimizeButton.Image")));
+			this->minimizeButton->Location = System::Drawing::Point(402, 26);
 			this->minimizeButton->Name = L"minimizeButton";
-			this->minimizeButton->Size = System::Drawing::Size(24, 23);
+			this->minimizeButton->Size = System::Drawing::Size(24, 21);
 			this->minimizeButton->TabIndex = 4;
 			this->minimizeButton->UseVisualStyleBackColor = false;
 			this->minimizeButton->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &VeriTaskGUI::minimizeButton_MouseClick);
 			// 
 			// VeriTaskGUI
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 12);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ControlLightLight;
-			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
+			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^  >(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->ClientSize = System::Drawing::Size(479, 600);
+			this->ClientSize = System::Drawing::Size(539, 554);
 			this->ControlBox = false;
 			this->Controls->Add(this->closeButton);
 			this->Controls->Add(this->feedbackBox);
@@ -199,8 +197,9 @@ namespace UI {
 			this->Controls->Add(this->minimizeButton);
 			this->ForeColor = System::Drawing::SystemColors::ControlLightLight;
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
-			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^  >(resources->GetObject(L"$this.Icon")));
 			this->Name = L"VeriTaskGUI";
+			this->Opacity = 0;
 			this->Text = L"VeriTaskGUI";
 			this->Load += gcnew System::EventHandler(this, &VeriTaskGUI::VeriTaskGUI_Load);
 			this->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &VeriTaskGUI::VeriTaskGUI_MouseDown);
