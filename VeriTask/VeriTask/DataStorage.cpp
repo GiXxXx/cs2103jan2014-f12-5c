@@ -6,23 +6,20 @@ DataStorage::DataStorage() {
 	string date, startTime, endTime, event, status, index, taskIndex;
 	int index_int;
 	
+	struct tm timeNow;
+	time_t localTime = time(NULL);
+
+	localtime_s(&timeNow, &localTime);
+
+	int localYear = timeNow.tm_year + 1900;
+	int localMonth = timeNow.tm_mon + 1;
+	int localDate = timeNow.tm_mday;
+	int localHour = timeNow.tm_hour;
+	int localMin = timeNow.tm_min;
+	
 	ifstream readFile(_fileName.c_str());
 
 	getline(readFile, taskIndex);
-
-	/*char date[8];
-	time_t localTime;
-	struct tm timeNow;
-
-	localTime = time(NULL);
-	localtime_s(&timeNow,&localTime);
-
-	strftime(date, sizeof(date), "%Y%m%A%d",&timeNow);
-
-    Date = DateConverter(timeNow.tm_year + 1900, timeNow.tm_mon + 1, timeNow.tm_mday);  */
-
-
-
 
 	if (taskIndex.size() == 0) {
 		_taskIndex = 0;
@@ -39,8 +36,28 @@ DataStorage::DataStorage() {
 	    index_int = stoi(index);
 
 	Task task(event, date, startTime, endTime, status, index_int);
+	
+	if (date != "        ") {
+	if (localYear*10000+localMonth*100+localDate > stoi(date)) {
+		task.setStatus("overdue");
+	} else if (localYear*10000+localMonth*100+localDate == stoi(date)) {
+		if ((startTime != "    ") && (endTime == "    ")) {
+			if ((localHour*100+localMin) > stoi(startTime)) {
+				task.setStatus("overdue");
+			}
+		}
+		if ((startTime != "    ") && (endTime != "    ")) {
+			if ((localHour*100+localMin) > stoi(endTime)) {
+				task.setStatus("overdue");
+			}
+		}
+	}
+	}
+
 	_taskList.push_back(task);
-	_taskListToDisplay.push_back(task);
+	if ((date == "        ") || localYear*10000+localMonth*100+localDate == std::stoi(date)) {
+		_taskListToDisplay.push_back(task);
+	}
 }
 	readFile.close();
 	/*if (_taskListToDisplay.empty()) {
@@ -184,6 +201,11 @@ bool DataStorage::searchDataDate(string keyword) {
 		if (tempDate.find(keyword)!=string::npos) {
 			    _taskListToDisplay.push_back(*iter);
 		    }
+
+		if (tempDate == "        ") {
+			_taskListToDisplay.push_back(*iter);
+		}
+
 	}
 
 	if (_taskListToDisplay.empty()) {
