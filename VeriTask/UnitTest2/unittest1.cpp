@@ -546,7 +546,7 @@ namespace UnitTest2 {
 			string TestUserInput = "add stargazing session on 31/05/2011 from 19:30 to 22:00";
 			Identifier TestInfoIdentifier;
 	     	DataStorage _TestdataStorage("testAddTimedTask.txt");
-			VeriTask TaskManager(_TestdataStorage);
+			VeriTask TaskManager;
 			TextUI textUI;
 						
 			//pre-condition: empty data storage upon program initialisation
@@ -620,7 +620,7 @@ namespace UnitTest2 {
 	
 			Identifier IdentifierADT;
 	     	DataStorage _TestdataStorage("testAddDeadlineTask.txt");
-			VeriTask TaskManager(_TestdataStorage);
+			VeriTask TaskManager;
 			TextUI textUI;
 
 			//pre-condition: empty data storage upon program initialisation
@@ -684,7 +684,7 @@ namespace UnitTest2 {
 			string TestAFT = "add move house";
 			Identifier TestInfoIdentifier1;
 	     	DataStorage _TestdataStorage("testAddFloatingTask.txt");
-			VeriTask TaskManager1(_TestdataStorage);
+			VeriTask TaskManager1;
 			TextUI textUI;
 			
 			//pre-condition: empty data storage upon program initialisation
@@ -734,7 +734,7 @@ namespace UnitTest2 {
 
 			Identifier TestInfoIdentify;
 	     	DataStorage _TestdataStorageS("testSearch.txt");
-			VeriTask TaskManagerS(_TestdataStorageS);
+			VeriTask TaskManagerS;
 			TextUI textUI;
 			
 			//pre-condition: empty data storage upon program initialisation
@@ -814,7 +814,7 @@ namespace UnitTest2 {
 			string TestUserInput = "add stargazing session on 31/05/2011 from 19:30 to 22:00";
 			Identifier TestETTIdentifier;
 	     	DataStorage _TestdataStorageETT("testEditTimedTask.txt");
-			VeriTask TaskManagerETT(_TestdataStorageETT);
+			VeriTask TaskManagerETT;
 			TextUI textUI;
 
 			//pre-condition: empty data storage upon program initialisation
@@ -902,7 +902,7 @@ namespace UnitTest2 {
 			
 			Identifier TestInfoIdentifier;
 	     	DataStorage _TestdataStorage("testEditDeadlineTask.txt");
-			VeriTask TaskManager(_TestdataStorage);
+			VeriTask TaskManager;
 			TextUI textUI;
 
 			//pre-condition: empty data storage upon program initialisation
@@ -959,7 +959,7 @@ namespace UnitTest2 {
 			string TestUserInput = "add complete drawing";
 			Identifier TestInfoIdentifier;
 	     	DataStorage _TestdataStorage("testEditFloatingTask.txt");
-			VeriTask TaskManager(_TestdataStorage);
+			VeriTask TaskManager;
 			TextUI textUI;
 
 			//pre-condition: empty data storage upon program initialisation
@@ -1035,7 +1035,7 @@ namespace UnitTest2 {
 			string testMark = "add complete drawing";
 			Identifier TestMarkIdentifier;
 	     	DataStorage _TestdataStoreMark("testMark.txt");
-			VeriTask TaskManagerMark(_TestdataStoreMark);
+			VeriTask TaskManagerMark;
 			TextUI textUIMark;
 
 			//pre-condition: empty data storage upon program initialisation
@@ -1085,7 +1085,7 @@ namespace UnitTest2 {
 			string testDel = "add complete drawing";
 			Identifier TestDelIdentifier;
 	     	DataStorage _TestdataStoreDel("testDelete.txt");
-			VeriTask TaskManagerDel(_TestdataStoreDel);
+			VeriTask TaskManagerDel;
 			TextUI textUIDel;
 
 			//precondition: begin with empty data store
@@ -1117,7 +1117,7 @@ namespace UnitTest2 {
 
 			Identifier undoIdentifier;
 	     	DataStorage _undoData("testUndo.txt");
-			VeriTask undoVeriTask(_undoData);
+			VeriTask undoVeriTask;
 			TextUI undoUI;
 			string undoKeyword = "undo"; 
 
