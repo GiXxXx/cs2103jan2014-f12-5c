@@ -5,7 +5,7 @@ void SearchTask::executeCommand(Identifier infoIdentifier, DataStorage &dataStor
 	string keyword=infoIdentifier.GetKeyword();
 	isFound = dataStorage.searchData(keyword);
 	if (!isFound) {
-		textUI.printSearchConfirmationNo();
+		//textUI.printSearchConfirmationNo();
 	} else {
 		//textUI.printSearchConfirmationYes();
 		//textUI.printTaskToDisplay(dataStorage);

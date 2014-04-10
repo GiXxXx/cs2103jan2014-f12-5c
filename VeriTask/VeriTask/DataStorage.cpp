@@ -21,6 +21,9 @@ DataStorage::DataStorage() {
 
     Date = DateConverter(timeNow.tm_year + 1900, timeNow.tm_mon + 1, timeNow.tm_mday);  */
 
+
+
+
 	if (taskIndex.size() == 0) {
 		_taskIndex = 0;
 	} else {
