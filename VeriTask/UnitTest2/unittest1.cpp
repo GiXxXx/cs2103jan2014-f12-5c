@@ -1143,6 +1143,31 @@ namespace UnitTest2 {
 			//ensure successful add
 			Assert::IsFalse((_undoData.retrieveTaskList()).empty());  
 
+			//test Undo for Mark
+			//search to retrieve task
+			string undoSearch0 = "search vocal range";
+			undoIdentifier.Identify(undoSearch0);
+			undoVeriTask.pushCommand(undoIdentifier.GetCommand(), undoIdentifier, undoUI, _undoData);
+			//ensure successful search
+			Assert::IsFalse((_undoData.retrieveTaskListToDisplay()).empty());
+			//ensure accurate search
+			Task undoMarkTask = ((_undoData.retrieveTaskListToDisplay()).front());
+			string undoMark1 = "expand vocal range";
+			Assert::AreEqual(undoMarkTask.getEvent(), undoMark1);
+
+			string undoMarkcommand = "mark 1 done";
+			undoIdentifier.Identify(undoMarkcommand);
+			undoVeriTask.pushCommand(undoIdentifier.GetCommand(), undoIdentifier, undoUI, _undoData);
+			//ensure accurate mark
+			string markStatus = "done";
+			Task undoMarkTask = ((_undoData.retrieveTaskListToDisplay()).front());
+			Assert::AreEqual(undoMarkTask.getStatus(), markStatus);
+			undoIdentifier.Identify(undoKeyword);
+			undoVeriTask.pushCommand(undoIdentifier.GetCommand(), undoIdentifier, undoUI, _undoData);
+			//ensure successful post-condition after undo
+			Task undoMarkTask2 = ((_undoData.retrieveTaskListToDisplay()).front());
+			Assert::IsTrue(undoMarkTask2.getStatus().empty());  
+
 			//test Undo for Edit
 			//search to retrieve task
 			string undoSearch1 = "search vocal range";
@@ -1201,7 +1226,7 @@ namespace UnitTest2 {
 			Task test5 = ((_undoData.retrieveTaskListToDisplay()).front());
 			Assert::AreEqual(test5.getDate(), str4);
 
-			//test Undo for Mark
+			
 		}
 
 	};
