@@ -14,8 +14,6 @@ using namespace std;
 class DataStorage {
 private:
 	vector<Task> _taskList;
-	vector<Task> _pastDueTaskList;
-	vector<Task> _doneTaskList;
 	vector<Task> _taskListToDisplay;
 	vector<Task>::iterator iter;
 	string _fileName;
@@ -41,7 +39,8 @@ public:
 	bool searchDataStatus(string keyword);
 	void markData(unsigned long long int taskID, string status);
 	void setTaskIndex(int taskIndex);
-	void setTaskListToDisplay(vector<Task> taskListToDisplay);
+	void updateTaskList(vector<Task> taskList);
+	void updateTaskListToDisplay(vector<Task> taskListToDisplay);
 	int getTaskIndex();
 };
 

@@ -7,7 +7,7 @@ void SearchTask::executeCommand(Identifier infoIdentifier, DataStorage &dataStor
 	if (!isFound) {
 		textUI.printSearchConfirmationNo();
 	} else {
-		textUI.printSearchConfirmationYes();
-		textUI.printTaskToDisplay(dataStorage);
+		//textUI.printSearchConfirmationYes();
+		//textUI.printTaskToDisplay(dataStorage);
 	}
 }

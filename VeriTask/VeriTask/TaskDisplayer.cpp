@@ -20,22 +20,26 @@ void TaskDisplayer::executeCommand(Identifier infoIdentifier, DataStorage &dataS
 	if (date != "        ") {
 		isFound = dataStorage.searchDataDate(date);
 		if (isFound) {
-			textUI.printSearchConfirmationYes();
-			textUI.printTaskToDisplay(dataStorage);
+			//textUI.printSearchConfirmationYes();
+			//textUI.printTaskToDisplay(dataStorage);
 		} else {
-			textUI.printSearchConfirmationNo();
+			//textUI.printSearchConfirmationNo();
 		}
 	}
 	if (status !="") {
-		isFound = dataStorage.searchDataStatus(keyword);
-		if (isFound) {
-			textUI.printSearchConfirmationYes();
-			textUI.printTaskToDisplay(dataStorage);
+		if (status == "all") {
+			isFound = dataStorage.searchData("");
 		} else {
-			textUI.printSearchConfirmationNo();
-		}
-	}
+		    isFound = dataStorage.searchDataStatus(keyword);
+		    if (isFound) {
+			   // textUI.printSearchConfirmationYes();
+			    //textUI.printTaskToDisplay(dataStorage);
+		    } else {
+			   // textUI.printSearchConfirmationNo();
+		    }
+	    }
 	if (date == "        " && status == "") {
-		textUI.printTask(dataStorage);
+		//textUI.printTask(dataStorage);
 		}
 	}
+}
