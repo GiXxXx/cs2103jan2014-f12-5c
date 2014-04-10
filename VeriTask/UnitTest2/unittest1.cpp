@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
-
+//@author A0101540A
 #include "AddTask.h"
 #include "Command.h"
 #include "CommandGetter.h"
@@ -8,17 +8,16 @@
 #include "DateGetter.h"
 #include "DeleteTask.h"
 #include "EditTask.h"
-#include "EndTimeGetter.h"
 #include "EventGetter.h"
 #include "Identifier.h"
 #include "KeywordGetter.h"
 #include "MarkTask.h"
 #include "SearchTask.h"
-#include "TimeGetter.h"
 #include "StatusGetter.h"
 #include "Task.h"
 #include "TaskNumGetter.h"
 #include "TextUI.h"
+#include "TimeGetter.h"
 #include "Tokenizer.h"
 #include "VeriTask.h"
 
@@ -28,7 +27,8 @@ namespace UnitTest2 {
 
 	TEST_CLASS(UnitTest1) {
 	public:
-		//test DateGetter.h, 11 tests, 2 cases each.
+
+		//@author A0100008H
 		TEST_METHOD(testMonthConverter) {
 			string testUserInput = "a test string for DateGetter methods";
 			string testCommand = "add";
@@ -534,9 +534,10 @@ namespace UnitTest2 {
 
 			testTokenizer.~Tokenizer();
 		}
-		/*
+		
+		//@author A0101540A
 		TEST_METHOD(testAddTimedTask) {
-			//unit test for the addition of a timed task
+			//integration test for the addition of a timed task, using Identifier class
 			//tests for correct initialisation of Task member attributes
 			//tests correct order of two timed tasks in data storage
 			//tests correct order of timed task and deadline task in data storage
@@ -544,22 +545,21 @@ namespace UnitTest2 {
 
 			string TestUserInput = "add stargazing session on 31/05/2011 from 19:30 to 22:00";
 			Identifier TestInfoIdentifier;
-			File filename;
-			VeriTask TaskManager(filename);
+	     	DataStorage _TestdataStorage("testAddTimedTask.txt");
+			VeriTask TaskManager(_TestdataStorage);
 			TextUI textUI;
-			DataStorage _TestdataStorage = TaskManager.getDataStorage();
-			
+						
 			//pre-condition: empty data storage upon program initialisation
 			Assert::IsTrue(_TestdataStorage.retrieveTaskList().empty()); 
 			
 			TestInfoIdentifier.Identify(TestUserInput);
-			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, filename);
+			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, _TestdataStorage);
 			
 			//post-condition: data storage no longer empty after add
 			Assert::IsFalse(_TestdataStorage.retrieveTaskList().empty());
 			
 			//check that member data attributes are initialised correctly for timed task
-			Task test1 =*((_TestdataStorage.retrieveTaskList()).begin());
+			Task test1 = ((_TestdataStorage.retrieveTaskList()).front());
 
 			string str1 = "20110531";
 			Assert::AreEqual(test1.getDate(), str1);
@@ -573,63 +573,66 @@ namespace UnitTest2 {
 			string str4 = "stargazing session";
 			Assert::AreEqual(test1.getEvent(), str4);
 
-			unsigned long long ID1 = 2011053119302200;
+			unsigned long long ID1 = 2011053119302200000;
 			Assert::AreEqual(ID1, test1.getID());
 			
 			//check that task has been added in correct order, comparing 2 timed tasks
 			string TestUserInput2 = "add birthday party on 01/03/2011 from 08:00 to 17:00";
 			TestInfoIdentifier.Identify(TestUserInput2);
-			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, filename);
+			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, _TestdataStorage);
 			
-			Task test2 =*((_TestdataStorage.retrieveTaskList()).begin());
+			Task test2 = ((_TestdataStorage.retrieveTaskList()).front());
 			string str5 = "birthday party";
 			Assert::AreEqual(str5, test2.getEvent());
 
 			//check that task has been added in correct order, comparing timed & deadline tasks
 			string TestUserInput3 = "add settle accounts by 01/04/2014";
 			TestInfoIdentifier.Identify(TestUserInput3);
-			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, filename);
+			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, _TestdataStorage);
 		
-			Task test3 =*((_TestdataStorage.retrieveTaskList()).end());
+			Task test3 = ((_TestdataStorage.retrieveTaskList()).back());
 			string str6 = "settle accounts";
 			Assert::AreEqual(str6, test3.getEvent());
 
 			//check that task has been added in correct order, comparing timed & floating tasks
 			string TestUserInput4 = "add arrange music score";
 			TestInfoIdentifier.Identify(TestUserInput4);
-			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, filename);
+			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, _TestdataStorage);
 
 			string TestUserInput5 = "add finish rearrangement by 02/04/2014 from 08:00 to 12:00";
 			TestInfoIdentifier.Identify(TestUserInput4);
-			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, filename);
+			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, _TestdataStorage);
 			
-			Task test4 =*((_TestdataStorage.retrieveTaskList()).end());
+			Task test4 = ((_TestdataStorage.retrieveTaskList()).back());
 			string str7 = "arrange music score";
 			Assert::AreEqual(str7, test4.getEvent());
+
+			TaskManager.~VeriTask();
 		}
 		
 		TEST_METHOD(testAddDeadlineTask) {
-			//unit test for the addition of a deadline task
+			//integration test for the addition of a deadline task, using Identifier class
 			//tests for correct initialisation of Task member attributes
 			//tests correct order of two deadline tasks in data storage
 			//tests correct order of deadline task and floating task in data storage
 
 			string InputADT = "add see sunrise by 19/05/2011";
+	
 			Identifier IdentifierADT;
-			File filename;
-			VeriTask TaskManager(filename);
-			IdentifierADT.Identify(InputADT);
+	     	DataStorage _TestdataStorage("testAddDeadlineTask.txt");
+			VeriTask TaskManager(_TestdataStorage);
 			TextUI textUI;
-			DataStorage _TestdataStorage = TaskManager.getDataStorage();
-			Task test1 =*((_TestdataStorage.retrieveTaskList()).begin());
 
 			//pre-condition: empty data storage upon program initialisation
 			Assert::IsTrue(_TestdataStorage.retrieveTaskList().empty()); 
 
-			TaskManager.pushCommand(IdentifierADT.GetCommand(), IdentifierADT, textUI, filename);
+			IdentifierADT.Identify(InputADT);
+			TaskManager.pushCommand(IdentifierADT.GetCommand(), IdentifierADT, textUI, _TestdataStorage);
 	
 			//post-condition: data storage no longer empty after add
 			Assert::IsFalse(_TestdataStorage.retrieveTaskList().empty());
+
+			Task test1 = ((_TestdataStorage.retrieveTaskList()).front());
 
 			//check that attributes have been initialised correctly for deadline tasks
 			string str1 = "20110519";
@@ -646,54 +649,55 @@ namespace UnitTest2 {
 
 			//don't test ID first
 			/* unsigned long long ID2 = 2011051999999999;
-			Assert::AreEqual(test1.getID(), ID2); 
+			Assert::AreEqual(test1.getID(), ID2); */
 			
 			//check that task has been added in correct order, comparing 2 deadline tasks
 			string InputADT2 = "add see sunset by 01/03/2011";
 			IdentifierADT.Identify(InputADT2);
-			TaskManager.pushCommand(IdentifierADT.GetCommand(), IdentifierADT, textUI, filename);
+			TaskManager.pushCommand(IdentifierADT.GetCommand(), IdentifierADT, textUI, _TestdataStorage);
 			
-			Task test2 =*((_TestdataStorage.retrieveTaskList()).begin());
+			Task test2 = ((_TestdataStorage.retrieveTaskList()).front());
 			string str5 = "see sunset";
 			Assert::AreEqual(str5, test2.getEvent());	
 
 			//check that task has been added in correct order, comparing deadline & floating tasks
 			string InputADT3 = "add watch Ghibli";
 			IdentifierADT.Identify(InputADT3);
-			TaskManager.pushCommand(IdentifierADT.GetCommand(), IdentifierADT, textUI, filename);
+			TaskManager.pushCommand(IdentifierADT.GetCommand(), IdentifierADT, textUI, _TestdataStorage);
 
 			string InputADT4 = "add see midnight by 19/03/2011";
 			IdentifierADT.Identify(InputADT4);
-			TaskManager.pushCommand(IdentifierADT.GetCommand(), IdentifierADT, textUI, filename);
+			TaskManager.pushCommand(IdentifierADT.GetCommand(), IdentifierADT, textUI, _TestdataStorage);
 
-			Task test3 =*((_TestdataStorage.retrieveTaskList()).end());
+			Task test3 = ((_TestdataStorage.retrieveTaskList()).back());
 			string str6 = "watch Ghibli";
 			Assert::AreEqual(str6, test3.getEvent());
+
+			TaskManager.~VeriTask();
 		} 
 
 		TEST_METHOD(testAddFloatingTask) {
-			//unit test for the addition of a floating task
+			//integration test for the addition of a floating task, using Identifier class
 			//tests for correct initialisation of Task member attributes
 			//tests correct order of two floating tasks in data storage
 
 			string TestAFT = "add move house";
 			Identifier TestInfoIdentifier1;
-			File filenameAFT;
-			VeriTask TaskManager1(filenameAFT);
-			TestInfoIdentifier1.Identify(TestAFT);
+	     	DataStorage _TestdataStorage("testAddFloatingTask.txt");
+			VeriTask TaskManager1(_TestdataStorage);
 			TextUI textUI;
-			DataStorage _TestdataStorage = TaskManager1.getDataStorage();
 			
 			//pre-condition: empty data storage upon program initialisation
 			Assert::IsTrue(_TestdataStorage.retrieveTaskList().empty()); 
 
-			TaskManager1.pushCommand(TestInfoIdentifier1.GetCommand(), TestInfoIdentifier1, textUI, filenameAFT);
+			TestInfoIdentifier1.Identify(TestAFT);
+			TaskManager1.pushCommand(TestInfoIdentifier1.GetCommand(), TestInfoIdentifier1, textUI, _TestdataStorage);
 		
 			//post-condition: data storage no longer empty after add
 			Assert::IsFalse(_TestdataStorage.retrieveTaskList().empty());
 			
 			//check that attributes have been initialised correctly for floating tasks
-			Task test1 =*((_TestdataStorage.retrieveTaskList()).begin());
+			Task test1 = ((_TestdataStorage.retrieveTaskList()).front());
 
 			string str1 = "move house";
 			Assert::AreEqual(test1.getEvent(), str1);
@@ -704,7 +708,7 @@ namespace UnitTest2 {
 			string str3 = "        ";
 			Assert::AreEqual(test1.getDate(), str3);
 
-			unsigned long long ID3 = 99999999999999991;
+			unsigned long long ID3 = 9999999999999999000;
 			Assert::AreEqual(test1.getID(), ID3);
 
 			//to-do: check for initialisation of 2nd floating task ID
@@ -712,26 +716,26 @@ namespace UnitTest2 {
 			//check that task has been added in correct order, comparing 2 floating tasks
 			string TestAFT2 = "add shift furniture";
 			TestInfoIdentifier1.Identify(TestAFT2);
-			TaskManager1.pushCommand(TestInfoIdentifier1.GetCommand(), TestInfoIdentifier1, textUI, filenameAFT);
+			TaskManager1.pushCommand(TestInfoIdentifier1.GetCommand(), TestInfoIdentifier1, textUI, _TestdataStorage);
 			
-			Task test2 =*((_TestdataStorage.retrieveTaskList()).end());
+			Task test2 = ((_TestdataStorage.retrieveTaskList()).back());
 			string str5 = "shift furniture";
 			Assert::AreEqual(test2.getEvent(), str5);
+
+			TaskManager1.~VeriTask();
 		}
 
 		TEST_METHOD(testSearch) {
-			//unit test for search
+			//integration test for search, using Identifier class and Add class
+			//search only by event description
 			//empty search
-			//negative search: using each data attribute, using multiple attribute combinations
-			//positive search: using each data attribute, using multiple attribute combinations
+			//negative search
 			//positive search: single result, multiple results
-			//multiple attribute search treats multiple attributes as multiple AND conditions
 
 			Identifier TestInfoIdentify;
-			File filenameS;
-			VeriTask TaskManagerS(filenameS);
+	     	DataStorage _TestdataStorageS("testSearch.txt");
+			VeriTask TaskManagerS(_TestdataStorageS);
 			TextUI textUI;
-			DataStorage _TestdataStorageS = TaskManagerS.getDataStorage();
 			
 			//pre-condition: empty data storage upon program initialisation
 			Assert::IsTrue((_TestdataStorageS.retrieveTaskList().empty()));
@@ -740,251 +744,337 @@ namespace UnitTest2 {
 			//empty search
 			string emptysearch = "search growlithe";
 			TestInfoIdentify.Identify(emptysearch);
-			TaskManagerS.pushCommand(TestInfoIdentify.GetCommand(), TestInfoIdentify, textUI, filenameS);
+			TaskManagerS.pushCommand(TestInfoIdentify.GetCommand(), TestInfoIdentify, textUI, _TestdataStorageS);
 			Assert::IsTrue((_TestdataStorageS.retrieveTaskListToDisplay()).empty());
 		
 			//add first task
 			string TestUserInput = "add stargazing session on 31/05/2011 from 19:30 to 22:00";
 			TestInfoIdentify.Identify(TestUserInput);
-			TaskManagerS.pushCommand(TestInfoIdentify.GetCommand(), TestInfoIdentify, textUI, filenameS);
+			TaskManagerS.pushCommand(TestInfoIdentify.GetCommand(), TestInfoIdentify, textUI, _TestdataStorageS);
 
 			//check that data storage no longer empty upon add
-			Assert::IsFalse((_TestdataStorageS.retrieveTaskListToDisplay()).empty());
+			Assert::IsFalse((_TestdataStorageS.retrieveTaskList()).empty());
 
 			//negative search
 			string NegSearch1 = "search sunset";
 			TestInfoIdentify.Identify(NegSearch1);
-			TaskManagerS.pushCommand(TestInfoIdentify.GetCommand(), TestInfoIdentify, textUI, filenameS);
+			TaskManagerS.pushCommand(TestInfoIdentify.GetCommand(), TestInfoIdentify, textUI, _TestdataStorageS);
 
 			Assert::IsTrue((_TestdataStorageS.retrieveTaskListToDisplay()).empty());
 
 			string NegSearch2 = "search 23/05/2011";
 			TestInfoIdentify.Identify(NegSearch1);
-			TaskManagerS.pushCommand(TestInfoIdentify.GetCommand(), TestInfoIdentify, textUI, filenameS);
+			TaskManagerS.pushCommand(TestInfoIdentify.GetCommand(), TestInfoIdentify, textUI, _TestdataStorageS);
 
 			Assert::IsTrue((_TestdataStorageS.retrieveTaskListToDisplay()).empty());
 
 			string NegSearch3 = "search 19:00";
 			TestInfoIdentify.Identify(NegSearch1);
-			TaskManagerS.pushCommand(TestInfoIdentify.GetCommand(), TestInfoIdentify, textUI, filenameS);
+			TaskManagerS.pushCommand(TestInfoIdentify.GetCommand(), TestInfoIdentify, textUI, _TestdataStorageS);
 
 			Assert::IsTrue((_TestdataStorageS.retrieveTaskListToDisplay()).empty());
 
 			//positive search: single result
 			string PosSearch1 = "search stargazing";
 			TestInfoIdentify.Identify(PosSearch1);
-			TaskManagerS.pushCommand(TestInfoIdentify.GetCommand(), TestInfoIdentify, textUI, filenameS);
-			Task testS =*((_TestdataStorageS.retrieveTaskListToDisplay()).begin());
+			TaskManagerS.pushCommand(TestInfoIdentify.GetCommand(), TestInfoIdentify, textUI, _TestdataStorageS);
+			Assert::IsFalse((_TestdataStorageS.retrieveTaskListToDisplay()).empty());
+			Task testS = ((_TestdataStorageS.retrieveTaskListToDisplay()).front());
 			string str1S = "stargazing session";
 			Assert::AreEqual(testS.getEvent(), str1S); 
 
-			string PosSearch2 = "search 31/05/2011";
+			//positive search: multiple results
+			string PS1 = "add chorale training on 31/07/2011 from 19:30 to 22:00";
+			TestInfoIdentify.Identify(PS1);
+			TaskManagerS.pushCommand(TestInfoIdentify.GetCommand(), TestInfoIdentify, textUI, _TestdataStorageS);
+			string PS2 = "add track training on 01/07/2011 from 19:30 to 22:00";
+			TestInfoIdentify.Identify(PS2);
+			TaskManagerS.pushCommand(TestInfoIdentify.GetCommand(), TestInfoIdentify, textUI, _TestdataStorageS);
+			string PS3 = "add finish training by 31/07/2012";
+			TestInfoIdentify.Identify(PS3);
+			TaskManagerS.pushCommand(TestInfoIdentify.GetCommand(), TestInfoIdentify, textUI, _TestdataStorageS);
+			string PS4 = "add baking on 31/06/2011";
+			TestInfoIdentify.Identify(PS4);
+			TaskManagerS.pushCommand(TestInfoIdentify.GetCommand(), TestInfoIdentify, textUI, _TestdataStorageS);
+			string PosSearch2 = "search training";
 			TestInfoIdentify.Identify(PosSearch2);
-			TaskManagerS.pushCommand(TestInfoIdentify.GetCommand(), TestInfoIdentify, textUI, filenameS);
-			Task testS =*((_TestdataStorageS.retrieveTaskListToDisplay()).begin());
-			string str1S = "stargazing session";
-			Assert::AreEqual(testS.getEvent(), str1S);
+			TaskManagerS.pushCommand(TestInfoIdentify.GetCommand(), TestInfoIdentify, textUI, _TestdataStorageS);
+			
+			unsigned int vectorsize = 3;
+			Assert::AreEqual(vectorsize, _TestdataStorageS.retrieveTaskListToDisplay().size()); 
 
-			string PosSearch3 = "search 19:30";
-			TestInfoIdentify.Identify(PosSearch3);
-			TaskManagerS.pushCommand(TestInfoIdentify.GetCommand(), TestInfoIdentify, textUI, filenameS);
-			Task testS =*((_TestdataStorageS.retrieveTaskListToDisplay()).begin());
-			string str1S = "stargazing session";
-			Assert::AreEqual(testS.getEvent(), str1S);
-
-			string PosSearch3 = "search 22:00";
-			TestInfoIdentify.Identify(PosSearch3);
-			TaskManagerS.pushCommand(TestInfoIdentify.GetCommand(), TestInfoIdentify, textUI, filenameS);
-			Task testS =*((_TestdataStorageS.retrieveTaskListToDisplay()).begin());
-			string str1S = "stargazing session";
-			Assert::AreEqual(testS.getEvent(), str1S);
+			TaskManagerS.~VeriTask();
 		}
 		
 		TEST_METHOD(testEditTimedTask) {
-			//Note: floating task can be changed to deadline and timed task, but other type changes are not allowed
+			//integration test for editing a timed task, using Identifier, Add and Search classes
+			//Note: floating task can be changed to deadline and timed task, and all other type changes are allowed
 
 			//initialise task
 			string TestUserInput = "add stargazing session on 31/05/2011 from 19:30 to 22:00";
 			Identifier TestETTIdentifier;
-			File filenameETT;
-			VeriTask TaskManagerETT(filenameETT);
+	     	DataStorage _TestdataStorageETT("testEditTimedTask.txt");
+			VeriTask TaskManagerETT(_TestdataStorageETT);
 			TextUI textUI;
-			DataStorage _TestdataStorageETT = TaskManagerETT.getDataStorage();
+
+			//pre-condition: empty data storage upon program initialisation
+			Assert::IsTrue((_TestdataStorageETT.retrieveTaskList().empty()));
+			Assert::IsTrue((_TestdataStorageETT.retrieveTaskListToDisplay()).empty());
 
 			TestETTIdentifier.Identify(TestUserInput);
-			TaskManagerETT.pushCommand(TestETTIdentifier.GetCommand(), TestETTIdentifier, textUI,filenameETT);
+			TaskManagerETT.pushCommand(TestETTIdentifier.GetCommand(), TestETTIdentifier, textUI,_TestdataStorageETT);
 			
+			//check that data storage no longer empty upon add
+			Assert::IsFalse((_TestdataStorageETT.retrieveTaskList()).empty());
+
 			string SearchCommand = "search stargazing";
 			TestETTIdentifier.Identify(SearchCommand);
-			TaskManagerETT.pushCommand(TestETTIdentifier.GetCommand(), TestETTIdentifier, textUI,filenameETT);
+			TaskManagerETT.pushCommand(TestETTIdentifier.GetCommand(), TestETTIdentifier, textUI, _TestdataStorageETT);
+
+			//ensure positive search
+			Assert::IsFalse((_TestdataStorageETT.retrieveTaskListToDisplay()).empty());
 
 			//edit timed task attributes
 			string TestUserInput2 = "edit 1 sunset";
 			TestETTIdentifier.Identify(TestUserInput2);
-			TaskManagerETT.pushCommand(TestETTIdentifier.GetCommand(), TestETTIdentifier, textUI, filenameETT);
+			TaskManagerETT.pushCommand(TestETTIdentifier.GetCommand(), TestETTIdentifier, textUI, _TestdataStorageETT);
 			
-			Task test2 =*((_TestdataStorageETT.retrieveTaskListToDisplay()).begin());
+			Task test2 = ((_TestdataStorageETT.retrieveTaskListToDisplay()).front());
 			string str1 = "sunset";
 			Assert::AreEqual(test2.getEvent(), str1);
 
 			string TestUserInput3 = "edit 1 on 01/03/2011";
 			TestETTIdentifier.Identify(TestUserInput3);
-			TaskManagerETT.pushCommand(TestETTIdentifier.GetCommand(), TestETTIdentifier, textUI,filenameETT);
+			TaskManagerETT.pushCommand(TestETTIdentifier.GetCommand(), TestETTIdentifier, textUI, _TestdataStorageETT);
 			string str2 = "20110301";
-			Assert::AreEqual(test2.getDate(), str2);
+			Task test3 = ((_TestdataStorageETT.retrieveTaskListToDisplay()).front());
+			Assert::AreEqual(test3.getDate(), str2);
 
 			string TestUserInput4 = "edit 1 from 12:00";
 			TestETTIdentifier.Identify(TestUserInput4);
-			TaskManagerETT.pushCommand(TestETTIdentifier.GetCommand(), TestETTIdentifier, textUI, filenameETT);
+			TaskManagerETT.pushCommand(TestETTIdentifier.GetCommand(), TestETTIdentifier, textUI, _TestdataStorageETT);
 			string str3 = "1200";
-			Assert::AreEqual(test2.getStartTime(), str3);
+			Task test4 = ((_TestdataStorageETT.retrieveTaskListToDisplay()).front());
+			Assert::AreEqual(test4.getStartTime(), str3);
 
 			string TestUserInput5 = "edit 1 at 19:00";
 			TestETTIdentifier.Identify(TestUserInput5);
-			TaskManagerETT.pushCommand(TestETTIdentifier.GetCommand(), TestETTIdentifier, textUI, filenameETT);
+			TaskManagerETT.pushCommand(TestETTIdentifier.GetCommand(), TestETTIdentifier, textUI, _TestdataStorageETT);
 			string str4 = "1900";
-			Assert::AreEqual(test2.getStartTime(), str4);
+			Task test5 = ((_TestdataStorageETT.retrieveTaskListToDisplay()).front());
+			Assert::AreEqual(test5.getStartTime(), str4);
 
-			string TestUserInput7 = "edit 1 to 03:00";
+			string TestUserInput7 = "edit 1 from 19:30 to 03:00";
 			TestETTIdentifier.Identify(TestUserInput7);
-			TaskManagerETT.pushCommand(TestETTIdentifier.GetCommand(), TestETTIdentifier, textUI, filenameETT);
+			TaskManagerETT.pushCommand(TestETTIdentifier.GetCommand(), TestETTIdentifier, textUI, _TestdataStorageETT);
 			string str7 = "0300";
-			Assert::AreEqual(test2.getEndTime(), str7);
+			Task test6 = ((_TestdataStorageETT.retrieveTaskListToDisplay()).front());
+			Assert::AreEqual(test6.getEndTime(), str7);
 
 			//test edit of multiple attributes and unordered data attribute input
 			string TestUserInput6 = "edit 1 fireworks from 17:00";
 			TestETTIdentifier.Identify(TestUserInput6);
-			TaskManagerETT.pushCommand(TestETTIdentifier.GetCommand(), TestETTIdentifier, textUI, filenameETT);
+			TaskManagerETT.pushCommand(TestETTIdentifier.GetCommand(), TestETTIdentifier, textUI, _TestdataStorageETT);
+			Task test7 = ((_TestdataStorageETT.retrieveTaskListToDisplay()).front());
 			string str5 = "1700";
-			Assert::AreEqual(test2.getStartTime(), str5);
+			Assert::AreEqual(test7.getStartTime(), str5);
 			string str6 = "fireworks";
-			Assert::AreEqual(test2.getEvent(), str6);
+			Assert::AreEqual(test7.getEvent(), str6);
 
-			string TestUserInput8 = "edit 1 to 2359 on 19/05/2011 movies";
+			string TestUserInput8 = "edit 1 from 17:00 to 2359 on 19/05/2011 movies";
 			TestETTIdentifier.Identify(TestUserInput8);
-			TaskManagerETT.pushCommand(TestETTIdentifier.GetCommand(), TestETTIdentifier, textUI, filenameETT);
+			TaskManagerETT.pushCommand(TestETTIdentifier.GetCommand(), TestETTIdentifier, textUI, _TestdataStorageETT);
+			Task test8 = ((_TestdataStorageETT.retrieveTaskListToDisplay()).front());
 			string str10 = "2359";
-			Assert::AreEqual(test2.getEndTime(), str10);
+			Assert::AreEqual(test8.getEndTime(), str10);
 			string str8 = "movies";
-			Assert::AreEqual(test2.getEvent(), str8);
+			Assert::AreEqual(test8.getEvent(), str8);
 			string str9 = "20110519";
-			Assert::AreEqual(test2.getDate(), str9);
+			Assert::AreEqual(test8.getDate(), str9);
+
+			TaskManagerETT.~VeriTask();
 		}
 
 		TEST_METHOD(testEditDeadlineTask) {
-	
+			//integration test for editing a deadline task, using Identifier, Add and Search classes
 			//initialise task
 			string TestUserInput = "add grow up by 11/04/2014";
+			
 			Identifier TestInfoIdentifier;
-			File filename;
-			VeriTask TaskManager(filename);
-			TestInfoIdentifier.Identify(TestUserInput);
+	     	DataStorage _TestdataStorage("testEditDeadlineTask.txt");
+			VeriTask TaskManager(_TestdataStorage);
 			TextUI textUI;
-			DataStorage _TestdataStorage = TaskManager.getDataStorage();
 
-			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, filename);
+			//pre-condition: empty data storage upon program initialisation
+			Assert::IsTrue((_TestdataStorage.retrieveTaskList().empty()));
+			Assert::IsTrue((_TestdataStorage.retrieveTaskListToDisplay()).empty());
+
+			TestInfoIdentifier.Identify(TestUserInput);
+			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, _TestdataStorage);
+
+			//ensure successful add
+			Assert::IsFalse((_TestdataStorage.retrieveTaskList().empty()));
+
+			//search to access Task to be edited
+			string SearchCommand = "search grow up";
+			TestInfoIdentifier.Identify(SearchCommand);
+			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, _TestdataStorage);
+
+			//ensure positive search
+			Assert::IsFalse((_TestdataStorage.retrieveTaskListToDisplay()).empty());
 
 			//edit deadline task attributes
 			string TestUserInput2 = "edit 1 be mugger";
 			TestInfoIdentifier.Identify(TestUserInput2);
-			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, filename);
+			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, _TestdataStorage);
 			
-			Task test2 =*((_TestdataStorage.retrieveTaskList()).begin());
+			Task test2 = ((_TestdataStorage.retrieveTaskList()).front());
 			string str1 = "be mugger";
 			Assert::AreEqual(test2.getEvent(), str1);
 
 			string TestUserInput3 = "edit 1 on 01/03/2011";
 			TestInfoIdentifier.Identify(TestUserInput3);
-			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, filename);
+			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, _TestdataStorage);
 			string str2 = "20110301";
-			Assert::AreEqual(test2.getDate(), str2);
+			Task test3 = ((_TestdataStorage.retrieveTaskList()).front());
+			Assert::AreEqual(test3.getDate(), str2);
 
 			string TestUserInput4 = "edit 1 by 31/03/2011 pass exam";
 			TestInfoIdentifier.Identify(TestUserInput4);
-			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, filename);
+			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, _TestdataStorage);
+			Task test4 = ((_TestdataStorage.retrieveTaskList()).front());
 			string str3 = "pass exam";
-			Assert::AreEqual(test2.getEvent(), str3);
+			Assert::AreEqual(test4.getEvent(), str3);
 			string str4 = "20110331";
-			Assert::AreEqual(test2.getDate(), str4);
+			Assert::AreEqual(test4.getDate(), str4);
+
+			TaskManager.~VeriTask();
 		}
 
 		TEST_METHOD(testEditFloatingTask) {
-			//floating task can be changed to deadline and timed task, but other type changes are not allowed
+			//integration test for editing a floating task, using Identifier, Add and Search classes
+			//floating task can be changed to deadline and timed task, and other type changes are allowed
 
 			//initialise task
 			string TestUserInput = "add complete drawing";
 			Identifier TestInfoIdentifier;
-			File filename;
-			VeriTask TaskManager(filename);
-			TestInfoIdentifier.Identify(TestUserInput);
+	     	DataStorage _TestdataStorage("testEditFloatingTask.txt");
+			VeriTask TaskManager(_TestdataStorage);
 			TextUI textUI;
-			DataStorage _TestdataStorage = TaskManager.getDataStorage();
 
-			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, filename);
+			//pre-condition: empty data storage upon program initialisation
+			Assert::IsTrue((_TestdataStorage.retrieveTaskList().empty()));
+			Assert::IsTrue((_TestdataStorage.retrieveTaskListToDisplay()).empty());
+			
+			TestInfoIdentifier.Identify(TestUserInput);
+			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, _TestdataStorage);
 
+			//ensure successful add
+			Assert::IsFalse((_TestdataStorage.retrieveTaskList().empty()));
+
+			//search to access Task to be edited
+			string SearchCommand = "search complete";
+			TestInfoIdentifier.Identify(SearchCommand);
+			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, _TestdataStorage);
+
+			//ensure positive search
+			Assert::IsFalse((_TestdataStorage.retrieveTaskListToDisplay()).empty());
+			
 			//edit task attributes
 			string TestUserInput2 = "edit 1 update portfolio";
 			TestInfoIdentifier.Identify(TestUserInput2);
-			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, filename);
+			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, _TestdataStorage);
 			
-			Task test2 =*((_TestdataStorage.retrieveTaskList()).begin());
+			Task test2 = ((_TestdataStorage.retrieveTaskListToDisplay()).front());
 			string str1 = "update portfolio";
 			Assert::AreEqual(test2.getEvent(), str1);
 
 			//add date to floating task; change to deadline task
 			string TestUserInput3 = "edit 1 on 01/03/2011";
 			TestInfoIdentifier.Identify(TestUserInput3);
-			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, filename);
+			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, _TestdataStorage);
 			string str2 = "20110301";
-			Assert::AreEqual(test2.getDate(), str2);
+			Task test3 = ((_TestdataStorage.retrieveTaskListToDisplay()).front());
+			Assert::AreEqual(test3.getDate(), str2);
 
 			//add date & time to floating task, change to timed task
 			string TestUserInput5 = "add buy pencil";
 			TestInfoIdentifier.Identify(TestUserInput5);
-			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, filename);
+			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, _TestdataStorage);
 		
-			Task test3 =*((_TestdataStorage.retrieveTaskListToDisplay()).end());
+			//search to access Task to be edited
+			string SearchCommand2 = "search buy";
+			TestInfoIdentifier.Identify(SearchCommand2);
+			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, _TestdataStorage);
+
+			//ensure positive search
+			Assert::IsFalse((_TestdataStorage.retrieveTaskListToDisplay()).empty());
+			
+			//ensure accurate search
+			Task test6 = ((_TestdataStorage.retrieveTaskListToDisplay()).front());
+			string str6 = "buy pencil";
+			Assert::AreEqual(test6.getEvent(), str6);
 
 			string TestUserInput4 = "edit 1 from 12:00 to 15:00 on 17/03/2010";
 			TestInfoIdentifier.Identify(TestUserInput4);
-			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, filename);
-			string str3 = "1200";
-			Assert::AreEqual(test3.getStartTime(), str3);
-			string str4 = "1500";
-			Assert::AreEqual(test3.getEndTime(), str4);
+			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, _TestdataStorage);
+			Task test4 = ((_TestdataStorage.retrieveTaskListToDisplay()).front());
 			string str5 = "20100317";
-			Assert::AreEqual(test3.getDate(), str4);
+			Assert::AreEqual(test4.getDate(), str5);
+			string str3 = "1200";
+			Assert::AreEqual(test4.getStartTime(), str3);
+			string str4 = "1500";
+			Assert::AreEqual(test4.getEndTime(), str4);		
+
+			TaskManager.~VeriTask();
 
 		}
 
 		TEST_METHOD(testMark) {
+			//integration test for mark, using Identifier, Add and Search classes
 			string testMark = "add complete drawing";
 			Identifier TestMarkIdentifier;
-			File filenameMark;
-			VeriTask TaskManagerMark(filenameMark);
-			TestMarkIdentifier.Identify(testMark);
+	     	DataStorage _TestdataStoreMark("testMark.txt");
+			VeriTask TaskManagerMark(_TestdataStoreMark);
 			TextUI textUIMark;
-			DataStorage _TestdataStoreMark = TaskManagerMark.getDataStorage();
 
-			TaskManagerMark.pushCommand(TestMarkIdentifier.GetCommand(), TestMarkIdentifier, textUIMark, filenameMark);
+			//pre-condition: empty data storage upon program initialisation
+			Assert::IsTrue((_TestdataStoreMark.retrieveTaskList().empty()));
+			Assert::IsTrue((_TestdataStoreMark.retrieveTaskListToDisplay()).empty());
+
+			TestMarkIdentifier.Identify(testMark);
+			TaskManagerMark.pushCommand(TestMarkIdentifier.GetCommand(), TestMarkIdentifier, textUIMark, _TestdataStoreMark);
 				
-			Task test2Mark =*((_TestdataStoreMark.retrieveTaskList()).begin());
+			//ensure successful add
+			Assert::IsFalse((_TestdataStoreMark.retrieveTaskList().empty()));
+
+			//search to access Task to be edited
+			string SearchCommand = "search drawing";
+			TestMarkIdentifier.Identify(SearchCommand);
+			TaskManagerMark.pushCommand(TestMarkIdentifier.GetCommand(), TestMarkIdentifier, textUIMark, _TestdataStoreMark);
+
+			//ensure positive search
+			Assert::IsFalse((_TestdataStoreMark.retrieveTaskListToDisplay()).empty());
 
 			string testMark2 = "mark 1 done";
 			TestMarkIdentifier.Identify(testMark2);
-			TaskManagerMark.pushCommand(TestMarkIdentifier.GetCommand(), TestMarkIdentifier, textUIMark, filenameMark);
+			TaskManagerMark.pushCommand(TestMarkIdentifier.GetCommand(), TestMarkIdentifier, textUIMark, _TestdataStoreMark);
 			string testMarkStatus = "done";
+			Task test2Mark = ((_TestdataStoreMark.retrieveTaskListToDisplay()).front());
 			Assert::AreEqual(test2Mark.getStatus(), testMarkStatus);
 
 			string testMark3 = "mark 1 cannot be done";
 			TestMarkIdentifier.Identify(testMark3);
-			TaskManagerMark.pushCommand(TestMarkIdentifier.GetCommand(), TestMarkIdentifier, textUIMark, filenameMark);
+			TaskManagerMark.pushCommand(TestMarkIdentifier.GetCommand(), TestMarkIdentifier, textUIMark, _TestdataStoreMark);
+			Task test3Mark = ((_TestdataStoreMark.retrieveTaskListToDisplay()).front());
 			string testMarkStatus2 = "cannot be done";
-			Assert::AreEqual(test2Mark.getStatus(), testMarkStatus2);
+			Assert::AreEqual(test3Mark.getStatus(), testMarkStatus2);
+
+			TaskManagerMark.~VeriTask();
 		}
 
 		TEST_METHOD(testDelete) {
-			//unit test for delete function
+			//integration test for delete function, using Identifier, Add and Search classes
 			//checks for deletion of a single task
 			//checks for deletion of first task in storage vector
 			//checks for deletion of second task in storage vector
@@ -994,17 +1084,16 @@ namespace UnitTest2 {
 
 			string testDel = "add complete drawing";
 			Identifier TestDelIdentifier;
-			File filenameDel;
-			VeriTask TaskManagerDel(filenameDel);
-			TestDelIdentifier.Identify(testDel);
+	     	DataStorage _TestdataStoreDel("testDelete.txt");
+			VeriTask TaskManagerDel(_TestdataStoreDel);
 			TextUI textUIDel;
-			DataStorage _TestdataStoreDel = TaskManagerDel.getDataStorage();
 
 			//precondition: begin with empty data store
 			Assert::IsTrue((_TestdataStoreDel.retrieveTaskList()).empty());  
 			Assert::IsTrue((_TestdataStoreDel.retrieveTaskListToDisplay()).empty()); 
 
-			TaskManagerDel.pushCommand(TestDelIdentifier.GetCommand(), TestDelIdentifier, textUIDel, filenameDel);
+			TestDelIdentifier.Identify(testDel);
+			TaskManagerDel.pushCommand(TestDelIdentifier.GetCommand(), TestDelIdentifier, textUIDel, _TestdataStoreDel);
 			
 			//check that task has been added
 			Assert::IsFalse((_TestdataStoreDel.retrieveTaskList()).empty()); 
@@ -1012,16 +1101,108 @@ namespace UnitTest2 {
 			//deletion of a single task
 			string testDel2 = "delete 1";
 			TestDelIdentifier.Identify(testDel2);
-			TaskManagerDel.pushCommand(TestDelIdentifier.GetCommand(), TestDelIdentifier, textUIDel, filenameDel);
+			TaskManagerDel.pushCommand(TestDelIdentifier.GetCommand(), TestDelIdentifier, textUIDel, _TestdataStoreDel);
 
 			//post-condition: task has been deleted
 			Assert::IsTrue((_TestdataStoreDel.retrieveTaskList()).empty()); 
+
+			TaskManagerDel.~VeriTask();
 		}
 
 		
 		TEST_METHOD(testUndo) {
+			//integration test for Undo, using Identifier, Add, Search, Edit, Mark and Delete
+			//tests single undo on each operation
+			//tests multiple undo
+
+			Identifier undoIdentifier;
+	     	DataStorage _undoData("testUndo.txt");
+			VeriTask undoVeriTask(_undoData);
+			TextUI undoUI;
+			string undoKeyword = "undo"; 
+
+			//precondition: begin with empty data store
+			Assert::IsTrue((_undoData.retrieveTaskList()).empty());  
+			Assert::IsTrue((_undoData.retrieveTaskListToDisplay()).empty()); 
+
+			//test undo for Add
+			string undo1 = "add expand vocal range";
+			undoIdentifier.Identify(undo1);
+			undoVeriTask.pushCommand(undoIdentifier.GetCommand(), undoIdentifier, undoUI, _undoData);
+			//ensure successful add
+			Assert::IsFalse((_undoData.retrieveTaskList()).empty());  
+
+			undoIdentifier.Identify(undoKeyword);
+			undoVeriTask.pushCommand(undoIdentifier.GetCommand(), undoIdentifier, undoUI, _undoData);
+			//ensure successful post-condition after undo
+			Assert::IsTrue((_undoData.retrieveTaskList()).empty());  
+
+			//re-add
+			undoIdentifier.Identify(undo1);
+			undoVeriTask.pushCommand(undoIdentifier.GetCommand(), undoIdentifier, undoUI, _undoData);
+			//ensure successful add
+			Assert::IsFalse((_undoData.retrieveTaskList()).empty());  
+
+			//test Undo for Edit
+			//search to retrieve task
+			string undoSearch1 = "search vocal range";
+			undoIdentifier.Identify(undoSearch1);
+			undoVeriTask.pushCommand(undoIdentifier.GetCommand(), undoIdentifier, undoUI, _undoData);
+			//ensure successful search
+			Assert::IsFalse((_undoData.retrieveTaskListToDisplay()).empty());
+			//ensure accurate search
+			Task test1 = ((_undoData.retrieveTaskListToDisplay()).front());
+			string str1 = "expand vocal range";
+			Assert::AreEqual(test1.getEvent(), str1);
+
+			string edit0 = "edit 1 expand vocal range and strengthen chest voice";
+			undoIdentifier.Identify(edit0);
+			undoVeriTask.pushCommand(undoIdentifier.GetCommand(), undoIdentifier, undoUI, _undoData);
+			Task test0 = ((_undoData.retrieveTaskListToDisplay()).front());
+			//ensure successful edit
+			string str0 = "expand vocal range and strengthen chest voice";
+			Assert::AreEqual(test0.getEvent(), str0);
+
+			undoIdentifier.Identify(undoKeyword);
+			undoVeriTask.pushCommand(undoIdentifier.GetCommand(), undoIdentifier, undoUI, _undoData);
+			//ensure successful post-condition after undo
+			Task test00 = ((_undoData.retrieveTaskListToDisplay()).front());
+			string str00 = "expand vocal range";
+			Assert::AreEqual(test00.getEvent(), str00);
+
+			string edit1 = "edit 1 from 12:00 to 15:00 on 17/03/2010";
+			undoIdentifier.Identify(edit1);
+			undoVeriTask.pushCommand(undoIdentifier.GetCommand(), undoIdentifier, undoUI, _undoData);
+			Task test2 = ((_undoData.retrieveTaskListToDisplay()).front());
+			//ensure successful edit
+			string str2 = "20100317";
+			Assert::AreEqual(test2.getDate(), str2);
+
+			undoIdentifier.Identify(undoKeyword);
+			undoVeriTask.pushCommand(undoIdentifier.GetCommand(), undoIdentifier, undoUI, _undoData);
+			//ensure successful post-condition after undo
+			Task test3 = ((_undoData.retrieveTaskListToDisplay()).front());
+			string str3 = "    ";
+			Assert::AreEqual(test3.getStartTime(), str3);
+			Assert::AreEqual(test3.getEndTime(), str3);
+			string str4 = "        ";
+			Assert::AreEqual(test3.getDate(), str4);
 				
-		}*/
-		
+			string edit2 = "edit 1 by 18/03/2011";
+			undoIdentifier.Identify(edit2);
+			undoVeriTask.pushCommand(undoIdentifier.GetCommand(), undoIdentifier, undoUI, _undoData);
+			Task test4 = ((_undoData.retrieveTaskListToDisplay()).front());
+			//ensure successful edit
+			string str5 = "201110318";
+			Assert::AreEqual(test4.getDate(), str5);
+			undoIdentifier.Identify(undoKeyword);
+			undoVeriTask.pushCommand(undoIdentifier.GetCommand(), undoIdentifier, undoUI, _undoData);
+			//ensure successful post-condition after undo
+			Task test5 = ((_undoData.retrieveTaskListToDisplay()).front());
+			Assert::AreEqual(test5.getDate(), str4);
+
+			//test Undo for Mark
+		}
+
 	};
 }

@@ -1,5 +1,6 @@
 #ifndef HEADER_TASK_
 #define HEADER_TASK_
+//@author A0101540A
 #include <iostream>
 #include <vector>
 #include <string>
@@ -16,25 +17,25 @@ private:
 	string _startTime;
 	string _endTime;
 	string _status;
-	double _ID;
+	int _index;
+	unsigned long long _ID;
 
 public:
-	Task(string event, string date, string startTime, string endTime);
+	Task(string event, string date, string startTime, string endTime, int index);
 	string getEvent();
 	string getDate();
 	string getStartTime();
 	string getEndTime();
 	string getStatus();
-	double getID();
+	unsigned long long getID();
+	int getIndex();
 
+	void setEvent(string event);
+	void setDate(string date);
+	void setStartTime(string startTime);
+	void setEndTime(string endTime);
 	void setStatus(string status);
-
-/*	string setDate(string Date);
-	string setStartTime(string StartTime);
-	string setEndTime(string EndTime);
-	string setEvent(string Event);
-	double setSeqenceNum(double SequenceNum);
-	 */
+	void setID(unsigned long long ID);
 };
 
 #endif
