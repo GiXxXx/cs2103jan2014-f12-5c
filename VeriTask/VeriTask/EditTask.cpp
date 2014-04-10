@@ -3,15 +3,17 @@
 void EditTask::executeCommand(Identifier infoIdentifier, DataStorage &dataStorage, TextUI textUI) {
 		int taskNum=std::stoi(infoIdentifier.GetTaskNum());
 		unsigned long long int taskIDToEdit = dataStorage.retrieveTaskID(taskNum);
+		vector<Task> updatedTaskListToDisplay = dataStorage.retrieveTaskListToDisplay();
+		vector<Task>::iterator iter;
 		Task temp = dataStorage.retrieveTask(taskNum);
 	
 		dataStorage.deleteData(taskIDToEdit);
+		updatedTaskListToDisplay.erase(updatedTaskListToDisplay.begin()+taskNum-1);
 
 		string date = infoIdentifier.GetDate();
 	    string startTime = infoIdentifier.GetStartTime();
 	    string endTime = infoIdentifier.GetEndTime();
 	    string event = infoIdentifier.GetEvent();
-		string status = UnDone;
 		int index = dataStorage.getTaskIndex();
 		dataStorage.setTaskIndex(dataStorage.getTaskIndex()+1);
 
@@ -31,17 +33,24 @@ void EditTask::executeCommand(Identifier infoIdentifier, DataStorage &dataStorag
 			event = temp.getEvent();
 		}
 
-		Task taskToEdit(event, date, startTime, endTime, UnDone, index);
+		Task taskToEdit(event, date, startTime, endTime, temp.getStatus(), index);
 	    dataStorage.saveData(taskToEdit);
 		dataStorage.saveFile();
 	//	dataStorage.searchDataDate(date);
-		vector<Task> updatedTaskListToDisplay = dataStorage.retrieveTaskListToDisplay();//
+	/*	vector<Task> updatedTaskListToDisplay = dataStorage.retrieveTaskListToDisplay();//
 		(updatedTaskListToDisplay.begin() + (taskNum - 1))->setDate(date);//
 		(updatedTaskListToDisplay.begin() + (taskNum - 1))->setStartTime(startTime);//
 		(updatedTaskListToDisplay.begin() + (taskNum - 1))->setEndTime(endTime);//
-		(updatedTaskListToDisplay.begin() + (taskNum - 1))->setEvent(event);//
-		dataStorage.setTaskListToDisplay(updatedTaskListToDisplay);//
+		(updatedTaskListToDisplay.begin() + (taskNum - 1))->setEvent(event);//*/
 
-		textUI.printTaskToDisplay(dataStorage);
-		textUI.printEditConfirmation();
+		for (iter=updatedTaskListToDisplay.begin(); iter<updatedTaskListToDisplay.end(); ++iter) {
+		if (iter->getID() > taskToEdit.getID()) {
+			updatedTaskListToDisplay.insert(iter, taskToEdit);
+			break;
+		}
+	}
+		dataStorage.updateTaskListToDisplay(updatedTaskListToDisplay);//
+
+		//textUI.printTaskToDisplay(dataStorage);
+		//textUI.printEditConfirmation();
 }

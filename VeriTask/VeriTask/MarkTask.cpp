@@ -11,7 +11,7 @@ void MarkTask::executeCommand(Identifier infoIdentifier, DataStorage &dataStorag
 		//dataStorage.searchDataDate(date);
 		vector<Task> updatedTaskListToDisplay = dataStorage.retrieveTaskListToDisplay();//
 		(updatedTaskListToDisplay.begin() + taskNum - 1)->setStatus(status);//
-		dataStorage.setTaskListToDisplay(updatedTaskListToDisplay);//
+		dataStorage.updateTaskListToDisplay(updatedTaskListToDisplay);//
 		//textUI.printTaskToDisplay(dataStorage);
 		//textUI.printMarkConfirmation();
 }
