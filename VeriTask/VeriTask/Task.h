@@ -1,6 +1,5 @@
 #ifndef HEADER_TASK_
 #define HEADER_TASK_
-//@author A0101540A
 #include <iostream>
 #include <vector>
 #include <string>
@@ -21,7 +20,7 @@ private:
 	unsigned long long _ID;
 
 public:
-	Task(string event, string date, string startTime, string endTime, string _status, int index);
+	Task(string event, string date, string startTime, string endTime, string status, int index);
 	string getEvent();
 	string getDate();
 	string getStartTime();
