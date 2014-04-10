@@ -122,7 +122,7 @@ void DataStorage::saveData(Task taskToSave) {
 	string date = taskToSave.getDate();
 	searchDataDate(date);
 
-	_taskListToDisplay = _taskList;
+	//_taskListToDisplay = _taskList;
 	/*_taskListToDisplay.clear();
 	for (unsigned int i=0; i<_taskList.size(); ++i) {
 		_taskListToDisplay.push_back(_taskList[i]);
@@ -253,10 +253,13 @@ void DataStorage::setTaskIndex(int taskIndex) {
 }
 
 int DataStorage::getTaskIndex() {
-	_taskIndex;
 	return _taskIndex;
 }
 
-void DataStorage::setTaskListToDisplay(vector<Task> taskListToDisplay){
+void DataStorage::updateTaskList(vector<Task> taskList){
+	_taskList = taskList;
+}
+
+void DataStorage::updateTaskListToDisplay(vector<Task> taskListToDisplay){
 	_taskListToDisplay = taskListToDisplay;
 }

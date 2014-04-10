@@ -10,7 +10,7 @@ void DeleteTask::executeCommand(Identifier infoIdentifier, DataStorage &dataStor
 
 	vector<Task> updatedTaskListToDisplay = dataStorage.retrieveTaskListToDisplay();//
 	updatedTaskListToDisplay.erase(updatedTaskListToDisplay.begin() + taskNum - 1);//
-	dataStorage.setTaskListToDisplay(updatedTaskListToDisplay);//
+	dataStorage.updateTaskListToDisplay(updatedTaskListToDisplay);//
 
 	//textUI.printTaskToDisplay(dataStorage);
 	//textUI.printDeleteConfirmation();

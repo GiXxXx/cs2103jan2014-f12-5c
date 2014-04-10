@@ -43,7 +43,6 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -69,14 +68,14 @@
     <ClInclude Include="DateGetter.h" />
     <ClInclude Include="DeleteTask.h" />
     <ClInclude Include="EditTask.h" />
+    <ClInclude Include="EndTimeGetter.h" />
     <ClInclude Include="EventGetter.h" />
+    <ClInclude Include="File.h" />
     <ClInclude Include="Identifier.h" />
     <ClInclude Include="KeywordGetter.h" />
     <ClInclude Include="MarkTask.h" />
-    <ClInclude Include="resource.h" />
-    <ClInclude Include="TimeGetter.h" />
+    <ClInclude Include="StartTimeGetter.h" />
     <ClInclude Include="StatusGetter.h" />
-    <ClInclude Include="TaskDisplayer.h" />
     <ClInclude Include="TaskNumGetter.h" />
     <ClInclude Include="TextUI.h" />
     <ClInclude Include="SearchTask.h" />
@@ -92,13 +91,14 @@
     <ClCompile Include="DateGetter.cpp" />
     <ClCompile Include="DeleteTask.cpp" />
     <ClCompile Include="EditTask.cpp" />
+    <ClCompile Include="EndTimeGetter.cpp" />
     <ClCompile Include="EventGetter.cpp" />
+    <ClCompile Include="File.cpp" />
     <ClCompile Include="Identifier.cpp" />
     <ClCompile Include="KeywordGetter.cpp" />
     <ClCompile Include="MarkTask.cpp" />
-    <ClCompile Include="TimeGetter.cpp" />
+    <ClCompile Include="StartTimeGetter.cpp" />
     <ClCompile Include="StatusGetter.cpp" />
-    <ClCompile Include="TaskDisplayer.cpp" />
     <ClCompile Include="TaskNumGetter.cpp" />
     <ClCompile Include="TextUI.cpp" />
     <ClCompile Include="Tokenizer.cpp" />
@@ -107,16 +107,6 @@
     <ClCompile Include="Command.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Task.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="VeriTask.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

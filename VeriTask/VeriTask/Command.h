@@ -15,6 +15,7 @@ const string DELETE_COMMAND = "delete";
 const string EDIT_COMMAND = "edit";
 const string SEARCH_COMMAND = "search";
 const string MARK_COMMAND = "mark";
+const string DISPLAY_COMMAND = "display";
 const string UNDO_COMMAND = "undo";
 const string ERROR_MESSAGE = "Invalid Command";
 
