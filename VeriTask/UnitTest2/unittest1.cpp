@@ -14,7 +14,7 @@
 #include "KeywordGetter.h"
 #include "MarkTask.h"
 #include "SearchTask.h"
-#include "StartTimeGetter.h"
+#include "TimeGetter.h"
 #include "StatusGetter.h"
 #include "Task.h"
 #include "TaskNumGetter.h"
@@ -28,7 +28,513 @@ namespace UnitTest2 {
 
 	TEST_CLASS(UnitTest1) {
 	public:
+		//test DateGetter.h, 11 tests, 2 cases each.
+		TEST_METHOD(testMonthConverter) {
+			string testUserInput = "a test string for DateGetter methods";
+			string testCommand = "add";
+			DateGetter testDateGetter(testUserInput,testCommand );
+			//test MonthConverter for different input of January
+			string testMonthJan1 = "january";
+			string expectedMonthOutputJan = "1";
+			testDateGetter.MonthConvertor(testMonthJan1);
+			Assert::AreEqual(expectedMonthOutputJan,testMonthJan1);
+
+			string testMonthJan2 = jan;
+			testDateGetter.MonthConvertor(testMonthJan2);
+			Assert::AreEqual(expectedMonthOutputJan,testMonthJan2);
+
+			//test MonthConvertor for different input of August
+			string testMonthAug1 = "august";
+			string expectedMonthOutputAug = "8";
+			testDateGetter.MonthConvertor(testMonthAug1);
+			Assert::AreEqual(expectedMonthOutputAug,testMonthAug1);
+
+			string testMonthAug2 = aug;
+			testDateGetter.MonthConvertor(testMonthAug2);
+			Assert::AreEqual(expectedMonthOutputAug,testMonthAug2);
+			testDateGetter.~DateGetter();
+		}
+
+		TEST_METHOD(testWeekConvertor) {
+			string testUserInput = "a test string for DateGetter methods";
+			string testCommand = "add";
+			DateGetter testDateGetter(testUserInput,testCommand );
+
+			//test WeekConvertor for Monday
+			string expectedWeekOutputMon = "0";
+			string testWeekMon1 = "Monday";
+			testDateGetter.WeekConvertor(testWeekMon1);
+			Assert::AreEqual(expectedWeekOutputMon,testWeekMon1);
+
+			string testWeekMon2 = "mon";
+			testDateGetter.WeekConvertor(testWeekMon2);
+			Assert::AreEqual(expectedWeekOutputMon,testWeekMon2);
+
+			//test WeekConvertor for Thursday
+			string expectedWeekOutputThu = "3";
+			string testWeekThu1 = "thursday";
+			testDateGetter.WeekConvertor(testWeekThu1);
+			Assert::AreEqual(expectedWeekOutputThu,testWeekThu1);
+
+			string testWeekThu2 = "thu";
+			testDateGetter.WeekConvertor(testWeekThu2);
+			Assert::AreEqual(expectedWeekOutputThu,testWeekThu2);
+
+			testDateGetter.~DateGetter();
+		}
+
+		TEST_METHOD(testGetDateForBeforeAfter) {
+			string testUserInput = "a test string for DateGetter methods";
+			string testCommand = "add";
+			DateGetter testDateGetter(testUserInput,testCommand );
+
+			//test before the first day of a year
+			string testDate1 = "20150101";
+			string expectedOutputDate1 = "20141231";
+			testDateGetter.GetDateForBeforeAfter(testDate1, before);
+			Assert::AreEqual(expectedOutputDate1,testDate1);
+
+			//test before someday in the middle of a year
+			string testDate2 = "20140719";
+			string expectedOutputDate2 = "20140718";
+			testDateGetter.GetDateForBeforeAfter(testDate2, before);
+			Assert::AreEqual(expectedOutputDate2,testDate2);
+
+			//test after last day of a year
+			string testDate3 = "20151231";
+			string expectedOutputDate3 = "20160101";
+			testDateGetter.GetDateForBeforeAfter(testDate3, after);
+			Assert::AreEqual(expectedOutputDate3,testDate3);
+
+			testDateGetter.~DateGetter();
+		}
+
+		TEST_METHOD(testDateConverter) {
+			string testUserInput = "a test string for DateGetter methods";
+			string testCommand = "add";
+			DateGetter testDateGetter(testUserInput,testCommand);
+
+			string actualOutput1 = testDateGetter.DateConverter(2015,11,15);
+			string expectedOutput1 = "20151115";
+			Assert::AreEqual(expectedOutput1,actualOutput1);
+
+			string actualOutput2 = testDateGetter.DateConverter(2016, 4, 7);
+			string expectedOutput2 = "20160407";
+			Assert::AreEqual(expectedOutput2,actualOutput2);
+
+			testDateGetter.~DateGetter();
+		}
+
+		TEST_METHOD(testGetDateFromDate) {
+			//test a input with slash
+			string testUserInput1 = "a test string for DateGetter methods: go home on 2014/05/05";
+			string testCommand = "add";
+			DateGetter testDateGetter1(testUserInput1,testCommand);
+
+			string actualOutputDate1 = testDateGetter1.GetDateFromDate(testUserInput1, on);
+			string expectedOutputDate1 = "20140505";
+			Assert::AreEqual(expectedOutputDate1,actualOutputDate1);
+			testDateGetter1.~DateGetter();
+
+			//test a more flexible input
+			string testUserInput2 = "a test string for DateGetter methods: go home on 07 May 2014";
+			DateGetter testDateGetter2(testUserInput2,testCommand);
+
+			string actualOutputDate2 = testDateGetter2.GetDateFromDate(testUserInput2, on);
+			string expectedOutputDate2 = "20140507";
+			Assert::AreEqual(expectedOutputDate2,actualOutputDate2);
+			testDateGetter1.~DateGetter();
+		}
+
+		TEST_METHOD(testGetDateFromWeek) {
+			//expected output for this test is subject to change in time
+			string testUserInput1 = "a test string for DateGetter methods: go home on Sunday";
+			string testCommand = "add";
+			DateGetter testDateGetter1(testUserInput1,testCommand);
+
+			string actualOutputDate1 = testDateGetter1.GetDateFromWeek(testUserInput1, on);
+			string expectedOutputDate1 = "20140413";
+			Assert::AreEqual(expectedOutputDate1,actualOutputDate1);
+
+			string testUserInput2 = "a test string for DateGetter methods: go home on next Monday";
+			DateGetter testDateGetter2(testUserInput2,testCommand);
+			string actualOutputDate2 = testDateGetter2.GetDateFromWeek(testUserInput2, on);
+			string expectedOutputDate2 = "20140414";
+			Assert::AreEqual(expectedOutputDate2,actualOutputDate2);
+
+			testDateGetter1.~DateGetter();
+			testDateGetter2.~DateGetter();
+		}
+
+		TEST_METHOD(testDateConvertFromDescription) {
+			string testUserInput1 = "a test string for DateGetter methods";
+			string testCommand = "add";
+			DateGetter testDateGetter1(testUserInput1,testCommand);
+
+			string actualOutputDate1 = testDateGetter1.DateConvertorFromDescription(dayAfterTmr, space);
+			string expectedOutputDate1 = "20140411";
+			Assert::AreEqual(expectedOutputDate1,actualOutputDate1);
+
+			//assume as 30 days
+			string actualOutputDate2 = testDateGetter1.DateConvertorFromDescription(month, "2");
+			string expectedOutputDate2 = "20140608";
+			Assert::AreEqual(expectedOutputDate2,actualOutputDate2);
+
+			testDateGetter1.~DateGetter();
+		}
 		
+		TEST_METHOD(testGetDateFromDescriptionOne) {
+			//expected output for this test is subject to change in time
+			string testUserInput1 = "a test string for DateGetter methods: finish revision by 2 weeks";
+			string testCommand = "add";
+			DateGetter testDateGetter1(testUserInput1,testCommand);
+
+			string actualOutputDate1 = testDateGetter1.GetDateFromDescriptionOne(testUserInput1, by);
+			string expectedOutputDate1 = "20140423";
+			Assert::AreEqual(expectedOutputDate1,actualOutputDate1);
+
+
+			string testUserInput2 = "a test string for DateGetter methods: finish revision in one month";
+			DateGetter testDateGetter2(testUserInput2,testCommand);
+
+			string actualOutputDate2 = testDateGetter2.GetDateFromDescriptionOne(testUserInput2, in);
+			string expectedOutputDate2 = "20140509";
+			Assert::AreEqual(expectedOutputDate2,actualOutputDate2);
+
+			testDateGetter1.~DateGetter();
+			testDateGetter2.~DateGetter();
+		}
+
+		TEST_METHOD(testGetDateFromDescriptionTwo) {
+			//expected output for this test is subject to change in time
+			string testUserInput1 = "a test string for DateGetter methods: finish revision on tomorrow";
+			string testCommand = "add";
+			DateGetter testDateGetter1(testUserInput1,testCommand);
+
+			string actualOutputDate1 = testDateGetter1.GetDateFromDescriptionTwo(testUserInput1, on);
+			string expectedOutputDate1 = "20140410";
+			Assert::AreEqual(expectedOutputDate1,actualOutputDate1);
+
+
+			string testUserInput2 = "a test string for DateGetter methods: finish revision after tomorrow";
+			//string testCommand = "add";
+			DateGetter testDateGetter2(testUserInput2,testCommand);
+
+			string actualOutputDate2 = testDateGetter2.GetDateFromDescriptionTwo(testUserInput2, after);
+			string expectedOutputDate2 = "20140410";
+			Assert::AreEqual(expectedOutputDate2,actualOutputDate2);
+
+			testDateGetter1.~DateGetter();
+			testDateGetter2.~DateGetter();
+		}
+
+		TEST_METHOD(testGetDateFromFestival) {
+			//test with national day
+			string testUserInput1 = "a test string for DateGetter methods: watch celebration on national day with family";
+			string testCommand = "add";
+			DateGetter testDateGetter1(testUserInput1,testCommand);
+
+			string actualOutputDate1 = testDateGetter1.GetDateFromFestival(testUserInput1, on);
+			string expectedOutputDate1 = "20140809";
+			Assert::AreEqual(expectedOutputDate1,actualOutputDate1);
+
+			//test with christmas day
+			string testUserInput2 = "a test string for DateGetter methods: prepare gifts by xmas day";
+			DateGetter testDateGetter2(testUserInput2,testCommand);
+
+			string actualOutputDate2 = testDateGetter2.GetDateFromFestival(testUserInput2, by);
+			string expectedOutputDate2 = "20141225";
+			Assert::AreEqual(expectedOutputDate2,actualOutputDate2);
+
+			testDateGetter1.~DateGetter();
+			testDateGetter2.~DateGetter();
+		}
+
+		TEST_METHOD(testDateGetterTokneize) {
+			//test a normal case where date info exists
+			string testUserInput1 = " a test string for TimeGetter methods: before 2014/04/10, v0.4 for CS2103 must be finshied";
+			string testCommand = "add";
+			DateGetter testDateGetter1(testUserInput1, testCommand);
+
+			string actualOutputDate1 = testDateGetter1.Tokenize();
+			string expectedOutputDate1 = "20140409";
+			Assert::AreEqual(expectedOutputDate1,actualOutputDate1);
+
+			//test a case where no date info available
+			string testUserInput2 = " a test string for TimeGetter methods: send the proposal before 21:00";
+			DateGetter testDateGetter2(testUserInput2,testCommand);
+			
+			string actualOutputDate2 = testDateGetter2.Tokenize();
+			string expectedOutputDate2 = "        ";
+			Assert::AreEqual(expectedOutputDate2,actualOutputDate2);
+
+			testDateGetter1.~DateGetter();
+			testDateGetter2.~DateGetter();
+		}
+
+		//test TimeGetter.h , 3 tests with multiple cases each.
+		TEST_METHOD(testGetTime) {
+			//test a normal case with standard time format
+			string testUserInput1 = "a test string for TimeGetter methods: submit assignment by 12:00";
+			string testCommand = "add";
+			TimeGetter testTimeGetter1(testUserInput1, testCommand);
+
+			string actualOutputTime1 = testTimeGetter1.getTime(testUserInput1, by);
+			string expectedOutputTime1 = "1200";
+			Assert::AreEqual(expectedOutputTime1,actualOutputTime1);
+
+			//test a normal case with abbreiviated format
+			string  testUserInput2 = "a test string for TimeGetter methods: submit assignment by 8pm";
+			TimeGetter testTimeGetter2(testUserInput2,testCommand);
+
+			string actualOutputTime2 = testTimeGetter2.getTime(testUserInput2,by);
+			string expectedOutputTime2 = "2000";
+			Assert::AreEqual(expectedOutputTime2,actualOutputTime2);
+
+			//test a case with no time info available
+			string  testUserInput3 = "a test string for TimeGetter methods: do not forget to do buy gift for mom's birthday";
+			TimeGetter testTimeGetter3(testUserInput3,testCommand);
+
+			string actualOutputTime3 = testTimeGetter3.getTime(testUserInput3,by);
+			string expectedOutputTime3 = "    ";
+			Assert::AreEqual(expectedOutputTime3,actualOutputTime3);
+			
+			testTimeGetter1.~TimeGetter();
+			testTimeGetter2.~TimeGetter();
+			testTimeGetter3.~TimeGetter();
+		}
+
+		TEST_METHOD(testConvertToTime) {
+			string testUserInput1 = "a test string for TimeGetter methods";
+			string testCommand = "add";
+			TimeGetter testTimeGetter(testUserInput1, testCommand);
+
+			string actualOutputTime1 = testTimeGetter.convertToTime("2014");
+			string expectedOutputTime1 = "2014";
+			Assert::AreEqual(expectedOutputTime1, actualOutputTime1);
+
+			string actualOutputTime2 = testTimeGetter.convertToTime("20:14");
+			string expectedOutputTime2 = "2014";
+			Assert::AreEqual(expectedOutputTime2, actualOutputTime2);
+
+			string actualOutputTime3 = testTimeGetter.convertToTime("8");
+			string expectedOutputTime3 = "0800";
+			Assert::AreEqual(expectedOutputTime3, actualOutputTime3);
+			/*
+			string actualOutputTime6 = testTimeGetter.convertToTime("9:10");
+			string expectedOutputTime6 = "0910";
+			Assert::AreEqual(expectedOutputTime6, actualOutputTime6);
+			*/
+			testTimeGetter.~TimeGetter();
+
+		}
+
+		TEST_METHOD(testTimeGetterTokenize) {
+			string testUserInput1 = "a test string for TimeGetter methods: set up unit test by 10p.m today";
+			string testCommand = "add";
+			TimeGetter testTimeGetter1(testUserInput1, testCommand);
+
+			string actualOutPutTime1 = testTimeGetter1.Tokenize();
+			string expectedOutputTime1 = "2200";
+			Assert::AreEqual(expectedOutputTime1, actualOutPutTime1);
+
+			string testUserInput2 = "a test string for TimeGetter methods: set up unit test by 22:00";
+			TimeGetter testTimeGetter2(testUserInput2,testCommand);
+
+			string actualOutPutTime2 = testTimeGetter2.Tokenize();
+			string expectedOutputTime2 = "2200";
+			Assert::AreEqual(expectedOutputTime2,actualOutPutTime2);
+
+			testTimeGetter1.~TimeGetter();
+			testTimeGetter2.~TimeGetter();
+		}
+		
+		//test CommandGetter.h
+		TEST_METHOD(testCommandGetterTokenize) {
+			//test command add
+			string testUserInput1 = "add have a meeting tonight";
+			CommandGetter testCommandGetter1(testUserInput1);
+
+			string actualCommand1 = testCommandGetter1.Tokenize();
+			string expectedCommand1 = Add;
+			Assert::AreEqual(expectedCommand1, actualCommand1);
+
+			//test command search
+			string testUserInput2 = "search apply for hostel";
+			CommandGetter testCommandGetter2(testUserInput2);
+
+			string actualCommand2 = testCommandGetter2.Tokenize();
+			string expectedCommand2 = Search;
+			Assert::AreEqual(expectedCommand2,actualCommand2);
+
+			//test command edit
+			string testUserInput3 = "edit 2 go home by 3pm";
+			CommandGetter testCommandGetter3(testUserInput3);
+
+			string actualCommand3 = testCommandGetter3.Tokenize();
+			string expectedCommand3 = Edit;
+			Assert::AreEqual(expectedCommand3,actualCommand3);
+
+			//test command mark
+			string testUserInput4 = "mark 1 done";
+			CommandGetter testCommandGetter4(testUserInput4);
+
+			string actualCommand4 = testCommandGetter4.Tokenize();
+			string expectedCommand4 = Mark;
+			Assert::AreEqual(expectedCommand4,actualCommand4);
+
+			//test command delete
+			string testUserInput5 = "delete 5";
+			CommandGetter testCommandGetter5(testUserInput5);
+
+			string actualCommand5 = testCommandGetter5.Tokenize();
+			string expectedCommand5 = Delete;
+			Assert::AreEqual(expectedCommand5,actualCommand5);
+
+			testCommandGetter1.~CommandGetter();
+			testCommandGetter2.~CommandGetter();
+			testCommandGetter3.~CommandGetter();
+			testCommandGetter4.~CommandGetter();
+			testCommandGetter5.~CommandGetter();
+		}
+
+		//test EventGetter.h
+		TEST_METHOD(testEventGetterTokenize) {
+			//test with unwanted spaces
+			string testUserInput1 = "   go home, take a shower, and do my homework!";
+			EventGetter testEventGetter1(testUserInput1, Add);
+			
+			string actualEvent1 = testEventGetter1.Tokenize();
+			string expectedEvent1 = "go home, take a shower, and do my homework!";
+			Assert::AreEqual(expectedEvent1,actualEvent1);
+
+			//test with unwanted symbols 
+			string testUserInput2 = "   ,,.go home, take a shower, and do my homework!";
+			EventGetter testEventGetter2(testUserInput2, Add);
+			
+			string actualEvent2 = testEventGetter2.Tokenize();
+			string expectedEvent2 = "go home, take a shower, and do my homework!";
+			Assert::AreEqual(expectedEvent2,actualEvent2);
+
+			testEventGetter1.~EventGetter();
+			testEventGetter2.~EventGetter();
+		}
+
+		//test keywordGetter.h
+		TEST_METHOD(testKeywordGetterTokenize) {
+			string testUserInput = "   myKey";
+			KeywordGetter testKeywordGetter(testUserInput, Search);
+
+			string actualKeyword = testKeywordGetter.Tokenize();
+			string expectedKeyword = "myKey";
+			Assert::AreEqual(expectedKeyword,actualKeyword);
+			testKeywordGetter.~KeywordGetter();
+		}
+
+		//test statusGetter.h
+		TEST_METHOD(testStatusGetterTokenize) {
+			//with mark done
+			string testUserInput1 = "   done";
+			StatusGetter testStatusGetter1(testUserInput1, Mark);
+
+			string actualKeyword1 = testStatusGetter1.Tokenize();
+			string expectedKeyword1 = "done";
+			Assert::AreEqual(expectedKeyword1,actualKeyword1);
+
+			//with mark cannot done
+			string testUserInput2 = "   cannot be done";
+			StatusGetter testStatusGetter2(testUserInput2, Mark);
+
+			string actualKeyword2 = testStatusGetter2.Tokenize();
+			string expectedKeyword2 = "cannot be done";
+			Assert::AreEqual(expectedKeyword2,actualKeyword2);
+			
+			testStatusGetter1.~StatusGetter();
+			testStatusGetter2.~StatusGetter();
+		}
+
+		//test TaskNumGetter.h
+		TEST_METHOD(testTaskNumGetterTokenize) {
+			string testUserInput1 = "   4";
+			TaskNumGetter testTaskNumGetter1(testUserInput1, Mark);
+
+			string actualKeyword1 = testTaskNumGetter1.Tokenize();
+			string expectedKeyword1 = "4";
+			Assert::AreEqual(expectedKeyword1,actualKeyword1);
+		}
+
+		//test tokenizer.h
+		TEST_METHOD(testchopInfo) {
+			string testUserInput = "a test string for Tokenizer.h methods";
+			Tokenizer testTokenizer(testUserInput);
+			int midPosition = 2;
+			
+			//test when within input size
+			int size1 = 7;
+			string testString = "a string to test the chopinfo method";
+			testTokenizer.chopInfo(testString, midPosition, size1);
+			string expectedInfo1 = "a to test the chopinfo method";
+			Assert::AreEqual(expectedInfo1,testString);
+
+			//test when beyond input size
+			int size2 = 100;
+			testTokenizer.chopInfo(testString, midPosition, size2);
+			string expectedInfo2 = "a ";
+			Assert::AreEqual(expectedInfo2,testString);
+
+			testTokenizer.~Tokenizer();
+		}
+		TEST_METHOD(testIsNumber) {
+			string testUserInput = "a test string for Tokenizer.h methods";
+			Tokenizer testTokenizer(testUserInput);
+			//test using a number
+			string testNumber1 = "2014";
+			Assert::IsTrue(testTokenizer.isNumber(testNumber1));
+
+			//test using a non-number
+			string testNumber2 = "Non-number";
+			Assert::IsFalse(testTokenizer.isNumber(testNumber2));
+
+			testTokenizer.~Tokenizer();
+		}
+		TEST_METHOD(testChangeDoubleDigit) {
+			string testUserInput = "a test string for Tokenizer.h methods";
+			Tokenizer testTokenizer(testUserInput);
+
+			//test with a single digit number
+			string testNumber1 = "5";
+			string expectedNumber1 = "05";
+			testTokenizer.ChangeDoubleDigit(testNumber1);
+			Assert::AreEqual(expectedNumber1,testNumber1);
+
+			//test with multiple digit number
+			string testNumber2 = "100";
+			string expectedNumber2 = "100";
+			testTokenizer.ChangeDoubleDigit(testNumber2);
+			Assert::AreEqual(expectedNumber2,testNumber2);
+
+			testTokenizer.~Tokenizer();
+		}
+
+		TEST_METHOD(testChangeToLowerCase) {
+			string testUserInput = "a test string for Tokenizer.h methods";
+			Tokenizer testTokenizer(testUserInput);
+
+			//test with all upper case
+			string testString1 = "THIS IS A UPPER-CASE STRING.";
+			testTokenizer.ChangeToLowerCase(testString1);
+			string expectedString1 = "this is a upper-case string.";
+			Assert::AreEqual(expectedString1,testString1);
+
+			//test will mix
+			string testString2 = "THis Is a MIXED-CASE STrInG.";
+			testTokenizer.ChangeToLowerCase(testString2);
+			string expectedString2 = "this is a mixed-case string.";
+			Assert::AreEqual(expectedString2,testString2);
+
+			testTokenizer.~Tokenizer();
+		}
+		/*
 		TEST_METHOD(testAddTimedTask) {
 			//unit test for the addition of a timed task
 			//tests for correct initialisation of Task member attributes
@@ -140,7 +646,7 @@ namespace UnitTest2 {
 
 			//don't test ID first
 			/* unsigned long long ID2 = 2011051999999999;
-			Assert::AreEqual(test1.getID(), ID2); */
+			Assert::AreEqual(test1.getID(), ID2); 
 			
 			//check that task has been added in correct order, comparing 2 deadline tasks
 			string InputADT2 = "add see sunset by 01/03/2011";
@@ -515,7 +1021,7 @@ namespace UnitTest2 {
 		
 		TEST_METHOD(testUndo) {
 				
-		}
-
+		}*/
+		
 	};
 }

@@ -9,7 +9,7 @@ StatusGetter::~StatusGetter(){
 }
 
 string StatusGetter::Tokenize(){
-	string status = NoStatus, temp = status;
+	string status = emptyString, temp = status;
 	int wordCount = zero, indicator = zero, sizeOne = TenUnit + FiveUnit, sizeTwo = TwoUnit * sizeOne - OneUnit, sizeThree = TenUnit + OneUnit;
 	unsigned int positionOne = zero;
 	unsigned int positionTwo = zero;
@@ -35,32 +35,39 @@ string StatusGetter::Tokenize(){
 	}
 
 	if(wordCount > OneUnit){
-		for(int i = zero; i < sizeOne; i++){
-			if(temp.find(MultiWordStatus[i]) != string::npos){
+		for(int i = zero; i < sizeTwo; i++){
+			if ((*uncategorizedInfo).find(MultiWordStatus[i]) != string::npos){
+		
 				if(i <= TenUnit + OneUnit){
 					status = Done;
+					break;
 				}
 				else if(i <= TenUnit + NineUnit){
 					status = UnDone;
+					break;
 				}
-				else if(i < sizeOne){
+				else if(i < sizeTwo){
 					status = CannotBeDone;
+					break;
 				}
 			}
 		}
 	}
 
-	if(wordCount == OneUnit || (status != Done && status != UnDone && status != CannotBeDone)){
-		for(int i = zero; i < sizeTwo; i++){
-			if(temp.find(OneWordStatus[i]) != string::npos){
+	if(wordCount == OneUnit || status == emptyString){
+		for(int i = zero; i < sizeOne; i++){
+			if ((*uncategorizedInfo).find(OneWordStatus[i]) != string::npos){
 				if(i < SixUnit){
 					status = UnDone;
+					break;
 				}
 				else if(i < TenUnit){
 					status = Done;
+					break;
 				}
-				else if(i < sizeTwo){
+				else if(i < sizeOne){
 					status = CannotBeDone;
+					break;
 				}
 			}
 		}
@@ -68,7 +75,7 @@ string StatusGetter::Tokenize(){
 
 	if(command == Display && (status != overdue || status != all)){
 		for(int i = zero; i < sizeThree; i++){
-			if(temp.find(overdueStatus[i]) != string::npos){
+			if ((*uncategorizedInfo).find(overdueStatus[i]) != string::npos){
 				if(i <= SevenUnit){
 		    		status = overdue;
 				}
@@ -85,7 +92,7 @@ string StatusGetter::Tokenize(){
 		}
 	}
 	else{
-		status = emptyString;
+		status = UnDone;
 	}
 
    	return status;

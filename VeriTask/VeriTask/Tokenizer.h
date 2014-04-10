@@ -43,6 +43,8 @@ const string tenSpaces = "          ";
 const string at = " at ";
 const string to = " to ";
 const string from = " from ";
+const string in = " in ";
+const string on = " on ";
 const string by = " by ";
 const string monday = "monday";
 const string tuesday = "tuesday";
@@ -60,6 +62,7 @@ const string sat = "sat";
 const string sun = "sun";
 const string Next = "next";
 const string This = "this";
+const string The = "the";
 const string Zero = "0";
 const string one = "1";
 const string two = "2";
@@ -154,6 +157,9 @@ const string MultiWordStatus[29] = {"have do", "have finished", "have complete",
 								  "haven't start", "not yet", "not do", "not complete", "not finish", "cannot do", "can't do", "cant do", "no time", "dont know",
 								  "not know", "how to", "cannot be done", "not able"};
 const string overdueStatus[11] = {"overdue", "passed due", "past due", "fail", "the due", "over due", "pass due", "past due", "all", "every", "full"};
+const string NoonStatus[7] = { "morning ", "afternoon ", "evening ", "noon ", "midnight ", "tonight ", "night " };
+const string correspondingTime[7] = { "1200", "1900", "2400", "1200", "2400", "2400", "2400" };
+
 class Tokenizer{
 
 protected:
