@@ -79,6 +79,8 @@ string TimeGetter::getTime(string Input, string keyword){
 				if (newPosition != string::npos){
 					string temp = tempTime.substr(start, newPosition);
 
+					temp = convertToTime(temp);
+
 					if (isNumber(temp)){
 						tempTime = temp;
 						if (indicator < ThreeUnit){
@@ -96,11 +98,17 @@ string TimeGetter::getTime(string Input, string keyword){
 				indicator++;
 			}
 
+			tempTime = convertToTime(tempTime);
+
 			if (hourStandard == zero){
 				sizeTwo = sizeOne;
-			}
 
-			tempTime = convertToTime(tempTime);
+				if (isNumber(tempTime)){
+					Time = tempTime;
+					chopInfo((*uncategorizedInfo), position, sizeTwo + keyword.size());
+					break;
+				}
+			}
 
 			if (isNumber(tempTime)){
 				Time = tempTime;
@@ -131,7 +139,7 @@ string TimeGetter::getTime(string Input, string keyword){
 
 string TimeGetter::getTimeFromMorning(string Input, string keyword){
 	string Time = LargeTime, tempTime, checker, duplicate = Input;
-	unsigned int position, startPos = start, sizeOne, sizeTwo;
+	unsigned int position, startPos = start, sizeOne;
 	int hourStandard = zero, indicator = zero;
 
 	ChangeToLowerCase(duplicate);
@@ -209,7 +217,7 @@ string TimeGetter::getTimeFromMorning(string Input, string keyword){
 
 string TimeGetter::convertToTime(string tempTime){
 	int position = tempTime.find(colon);
-	string hour, minute;
+	string hour = emptyString, minute = emptyString;
 
 	if (position == string::npos) {
 		position = tempTime.find(dot);
@@ -220,7 +228,7 @@ string TimeGetter::convertToTime(string tempTime){
 		minute = tempTime.substr(position + OneUnit);
 	}
 
-	if (isNumber(hour) && isNumber(minute)){
+	if (isNumber(hour) && isNumber(minute) && hour != emptyString && minute != emptyString){
 		if (hour.size() == OneUnit){
 			hour = Zero + hour;
 		}
@@ -230,6 +238,16 @@ string TimeGetter::convertToTime(string tempTime){
 		}
 
 		tempTime = hour + minute;
+	}
+	cout << "asdasd" << tempTime << endl;
+
+	if (isNumber(tempTime) && tempTime.size() <= TwoUnit){
+		if (tempTime.size() == OneUnit){
+			tempTime = Zero + tempTime + Zero + Zero;
+		}
+		else{
+			tempTime = tempTime + Zero + Zero;
+		}
 	}
 
 	return tempTime;

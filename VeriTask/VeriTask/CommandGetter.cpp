@@ -15,10 +15,10 @@ string CommandGetter::Tokenize(){
 	*uncategorizedInfo = *uncategorizedInfo + Spaces;
 	ChangeToLowerCase(command);
 	
-	string commandArray[SevenUnit] = {Add, Edit, Delete, Mark, Display, Search, Undo};
+	string commandArray[EightUnit] = {Add, Edit, Delete, Mark, Display, Search, Undo, Redo};
     bool isValid = false;
 
-	for(int i = zero; i < SevenUnit; i++){
+	for(int i = zero; i < EightUnit; i++){
 		if(command == commandArray[i]){
 			isValid = true;
 			break;
