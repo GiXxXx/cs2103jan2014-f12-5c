@@ -1,0 +1,16 @@
+﻿Build started 2014/4/10 14:10:49.
+     1>Project "C:\Users\Pang\Desktop\2103\cs2103jan2014-f12-5c\VeriTask\UnitTest2\UnitTest2.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         G:\Visual Studio\VC\bin\CL.exe /c /I"C:\Users\Pang\Desktop\2103\cs2103jan2014-f12-5c\VeriTask\VeriTask" /I"C:\Users\GAO JIACHENG\Desktop\New folder (4)\VeriTask\VeriTask" /I"G:\Visual Studio\VC\UnitTest\include" /IC:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDLL /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\UnitTest2.pch" /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /FC /errorReport:prompt unittest1.cpp
+         unittest1.cpp
+       Link:
+         G:\Visual Studio\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Pang\Desktop\2103\cs2103jan2014-f12-5c\VeriTask\Debug\UnitTest2.dll" /INCREMENTAL /NOLOGO /LIBPATH:C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask /LIBPATH:"G:\Visual Studio\VC\UnitTest\lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Pang\Desktop\2103\cs2103jan2014-f12-5c\VeriTask\Debug\UnitTest2.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Pang\Desktop\2103\cs2103jan2014-f12-5c\VeriTask\Debug\UnitTest2.lib" /MACHINE:X86 /DLL Debug\stdafx.obj
+         Debug\unittest1.obj
+         "C:\Users\Pang\Desktop\2103\cs2103jan2014-f12-5c\VeriTask\Debug\VeriTask.lib"
+            Creating library C:\Users\Pang\Desktop\2103\cs2103jan2014-f12-5c\VeriTask\Debug\UnitTest2.lib and object C:\Users\Pang\Desktop\2103\cs2103jan2014-f12-5c\VeriTask\Debug\UnitTest2.exp
+         UnitTest2.vcxproj -> C:\Users\Pang\Desktop\2103\cs2103jan2014-f12-5c\VeriTask\Debug\UnitTest2.dll
+     1>Done Building Project "C:\Users\Pang\Desktop\2103\cs2103jan2014-f12-5c\VeriTask\UnitTest2\UnitTest2.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.91
