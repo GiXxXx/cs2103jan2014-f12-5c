@@ -5,8 +5,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VeriTask", "VeriTask\VeriTa
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTest2", "UnitTest2\UnitTest2.vcxproj", "{BB25AEF3-F41C-4290-A6DF-25DA51087691}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UI", "UI\UI.vcxproj", "{B788E4C5-292E-46C3-A9D5-A2EBC1B854BE}"
+<<<<<<< local
+=======
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UI", "UI\UI.vcxproj", "{8CE4A7AD-CD1B-4E48-B49F-A1A8B1EA11BE}"
 EndProject
+>>>>>>> other
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -21,15 +24,14 @@ Global
 		{BB25AEF3-F41C-4290-A6DF-25DA51087691}.Debug|Win32.Build.0 = Debug|Win32
 		{BB25AEF3-F41C-4290-A6DF-25DA51087691}.Release|Win32.ActiveCfg = Release|Win32
 		{BB25AEF3-F41C-4290-A6DF-25DA51087691}.Release|Win32.Build.0 = Release|Win32
-		{B788E4C5-292E-46C3-A9D5-A2EBC1B854BE}.Debug|Win32.ActiveCfg = Debug|Win32
-		{B788E4C5-292E-46C3-A9D5-A2EBC1B854BE}.Debug|Win32.Build.0 = Debug|Win32
-		{B788E4C5-292E-46C3-A9D5-A2EBC1B854BE}.Release|Win32.ActiveCfg = Release|Win32
-		{B788E4C5-292E-46C3-A9D5-A2EBC1B854BE}.Release|Win32.Build.0 = Release|Win32
+<<<<<<< local
+=======
+		{8CE4A7AD-CD1B-4E48-B49F-A1A8B1EA11BE}.Debug|Win32.ActiveCfg = Debug|Win32
+		{8CE4A7AD-CD1B-4E48-B49F-A1A8B1EA11BE}.Release|Win32.ActiveCfg = Release|Win32
+		{8CE4A7AD-CD1B-4E48-B49F-A1A8B1EA11BE}.Release|Win32.Build.0 = Release|Win32
+>>>>>>> other
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(Performance) = preSolution
-		HasPerformanceSessions = true
 	EndGlobalSection
 EndGlobal

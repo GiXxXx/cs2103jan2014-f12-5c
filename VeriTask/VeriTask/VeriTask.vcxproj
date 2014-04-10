@@ -95,6 +95,7 @@
     <ClCompile Include="EventGetter.cpp" />
     <ClCompile Include="Identifier.cpp" />
     <ClCompile Include="KeywordGetter.cpp" />
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="MarkTask.cpp" />
     <ClCompile Include="TimeGetter.cpp" />
     <ClCompile Include="StatusGetter.cpp" />
@@ -105,7 +106,6 @@
     <ClCompile Include="VeriTask.cpp" />
     <ClCompile Include="SearchTask.cpp" />
     <ClCompile Include="Command.cpp" />
-    <ClCompile Include="Main.cpp" />
     <ClCompile Include="Task.cpp" />
   </ItemGroup>
   <ItemGroup>

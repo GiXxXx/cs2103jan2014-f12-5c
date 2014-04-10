@@ -27,7 +27,7 @@ DataStorage::DataStorage() {
 		 _taskIndex = stoi(taskIndex);
 	}
 
-	while(getline(readFile, event)){
+	while(getline(readFile, event)) {
 		getline(readFile, date);
 		getline(readFile, startTime);
 		getline(readFile, endTime);
@@ -35,11 +35,24 @@ DataStorage::DataStorage() {
 		getline(readFile, index);
 	    index_int = stoi(index);
 
-	Task task(event, date, startTime, endTime, index_int);
+	Task task(event, date, startTime, endTime, status, index_int);
 	_taskList.push_back(task);
+	_taskListToDisplay.push_back(task);
 }
 	readFile.close();
-	_taskListToDisplay = _taskList;
+	/*if (_taskListToDisplay.empty()) {
+		cout << "No match!\n";
+	} else {
+	for (unsigned int i=0; i<_taskListToDisplay.size(); i++) {
+		cout << i+1 << ". "
+			 << _taskListToDisplay[i].getEvent() << " " 
+			 << _taskListToDisplay[i].getDate() << " "
+			 << _taskListToDisplay[i].getStartTime() << " "
+			 << _taskListToDisplay[i].getEndTime() << " "
+			 << _taskListToDisplay[i].getStatus() << " "
+			 << endl;*/
+	
+	
 }
 
 DataStorage::DataStorage(string fileName) {
@@ -66,7 +79,7 @@ DataStorage::DataStorage(string fileName) {
 		getline(readFile, index);
 	    index_int = stoi(index);
 
-	Task task(event, date, startTime, endTime, index_int);
+	Task task(event, date, startTime, endTime, status, index_int);
 	_taskList.push_back(task);
 }
 	readFile.close();
@@ -109,7 +122,7 @@ void DataStorage::saveData(Task taskToSave) {
 	string date = taskToSave.getDate();
 	searchDataDate(date);
 
-	//_taskListToDisplay = _taskList;
+	_taskListToDisplay = _taskList;
 	/*_taskListToDisplay.clear();
 	for (unsigned int i=0; i<_taskList.size(); ++i) {
 		_taskListToDisplay.push_back(_taskList[i]);
@@ -242,4 +255,8 @@ void DataStorage::setTaskIndex(int taskIndex) {
 int DataStorage::getTaskIndex() {
 	_taskIndex;
 	return _taskIndex;
+}
+
+void DataStorage::setTaskListToDisplay(vector<Task> taskListToDisplay){
+	_taskListToDisplay = taskListToDisplay;
 }

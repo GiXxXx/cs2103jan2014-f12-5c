@@ -1,11 +1,17 @@
 #include "DeleteTask.h"	
 
-void DeleteTask::executeCommand(Identifier infoIdentifier, DataStorage &_dataStorage, TextUI textUI, File file) {
+void DeleteTask::executeCommand(Identifier infoIdentifier, DataStorage &dataStorage, TextUI textUI) {
 	int taskNum=std::stoi(infoIdentifier.GetTaskNum());;
-	unsigned long long taskIDToDelete = _dataStorage.retrieveTaskID(taskNum);
-	
-	_dataStorage.deleteData(taskIDToDelete);
-	file.saveFile(_dataStorage.retrieveTaskList(), _dataStorage.getTaskIndex());
-	textUI.printTaskToDisplay(_dataStorage);
-	textUI.printDeleteConfirmation();
+	unsigned long long int taskIDToDelete = dataStorage.retrieveTaskID(taskNum);
+	string date = dataStorage.retrieveTask(taskNum).getDate();
+	dataStorage.deleteData(taskIDToDelete);
+	dataStorage.saveFile();
+	//dataStorage.searchDataDate(date);
+
+	vector<Task> updatedTaskListToDisplay = dataStorage.retrieveTaskListToDisplay();//
+	updatedTaskListToDisplay.erase(updatedTaskListToDisplay.begin() + taskNum - 1);//
+	dataStorage.setTaskListToDisplay(updatedTaskListToDisplay);//
+
+	//textUI.printTaskToDisplay(dataStorage);
+	//textUI.printDeleteConfirmation();
 }
