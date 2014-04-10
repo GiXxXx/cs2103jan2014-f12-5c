@@ -52,7 +52,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\GAO JIACHENG\Desktop\V0.4\VeriTask\VeriTask;C:\Users\Pang\Desktop\2103\cs2103jan2014-f12-5c\VeriTask\VeriTask;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>E:\Study\University\SEM 4\CS2103-CS2103T\Project\Project\VeriTask\VeriTask;C:\Users\GAO JIACHENG\Desktop\V0.4\VeriTask\VeriTask;C:\Users\Pang\Desktop\2103\cs2103jan2014-f12-5c\VeriTask\VeriTask;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
