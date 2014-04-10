@@ -1200,6 +1200,8 @@ namespace UnitTest2 {
 			//ensure successful post-condition after undo
 			Task test5 = ((_undoData.retrieveTaskListToDisplay()).front());
 			Assert::AreEqual(test5.getDate(), str4);
+
+			//test Undo for Mark
 		}
 
 	};
