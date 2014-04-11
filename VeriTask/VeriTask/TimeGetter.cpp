@@ -79,8 +79,6 @@ string TimeGetter::getTime(string Input, string keyword){
 				if (newPosition != string::npos){
 					string temp = tempTime.substr(start, newPosition);
 
-					temp = convertToTime(temp);
-
 					if (isNumber(temp)){
 						tempTime = temp;
 						if (indicator < ThreeUnit){
@@ -102,15 +100,9 @@ string TimeGetter::getTime(string Input, string keyword){
 
 			if (hourStandard == zero){
 				sizeTwo = sizeOne;
-
-				if (isNumber(tempTime)){
-					Time = tempTime;
-					chopInfo((*uncategorizedInfo), position, sizeTwo + keyword.size());
-					break;
 				}
-			}
 
-			if (isNumber(tempTime)){
+			if (isNumber(tempTime) && tempTime.size() == FourUnit){
 				Time = tempTime;
 
 				if (hourStandard == OneUnit || hourStandard == zero){
@@ -238,16 +230,6 @@ string TimeGetter::convertToTime(string tempTime){
 		}
 
 		tempTime = hour + minute;
-	}
-	cout << "asdasd" << tempTime << endl;
-
-	if (isNumber(tempTime) && tempTime.size() <= TwoUnit){
-		if (tempTime.size() == OneUnit){
-			tempTime = Zero + tempTime + Zero + Zero;
-		}
-		else{
-			tempTime = tempTime + Zero + Zero;
-		}
 	}
 
 	return tempTime;
