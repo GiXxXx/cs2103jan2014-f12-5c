@@ -27,7 +27,7 @@ void Identifier::Identify(string userInput) {
 	EventGetter EventIdentifier(userInput, Command);
 	Event = EventIdentifier.Tokenize();
 	
-	if(StartTime != LargeTime && Date == LargeDate){
+	if(StartTime != LargeTime && Date == LargeDate && Command == Add){
 		string dummyString = dummy;
 		DateGetter dummyDateIdentifier(dummyString, Add);
 		Date = dummyDateIdentifier.Tokenize();
