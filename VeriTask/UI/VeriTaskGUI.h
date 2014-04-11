@@ -412,7 +412,7 @@ namespace UI {
 			 if (newIdentifier->GetCommand() == "add") {
 			 
 			 string str1 = "Command: " + newIdentifier->GetCommand();
-			 string str2 = "Date: " + newIdentifier->GetDate() + " StartTime: " + newIdentifier->GetStartTime()+ " EndTime: " + newIdentifier->GetEndTime(); 
+			 string str2 = "Date: " + newIdentifier->GetDate() + " TimeOne: " + newIdentifier->GetStartTime()+ " TimeTwo: " + newIdentifier->GetEndTime(); 
 			 string str3 = "Event: " + newIdentifier->GetEvent();
 			
 			 feedbackBox->Text = gcnew String((str1 + "\r\n" + str2 + "\r\n" + str3).c_str());
@@ -442,7 +442,7 @@ namespace UI {
 			 
 			 string str1 = "Command: " + newIdentifier->GetCommand();
 			 string str2 = "Task Number: " + newIdentifier->GetTaskNum();
-			 string str3 = "Date Modification: " + newIdentifier->GetDate() + "StartTime Modification: " + newIdentifier->GetStartTime() + " EndTime Modification: " + newIdentifier->GetEndTime();
+			 string str3 = "Date Modification: " + newIdentifier->GetDate() + "TimeOne Modification: " + newIdentifier->GetStartTime() + " TimeTwo Modification: " + newIdentifier->GetEndTime();
 			 string str4 = "Event Modification: " + newIdentifier->GetEvent();
 			 feedbackBox->Text = gcnew String((str1 + "\r\n" + str2 + "\r\n" + str3 + "\r\n" + str4).c_str());
 			 }
