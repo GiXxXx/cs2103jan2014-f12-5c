@@ -40,6 +40,14 @@ string TimeGetter::Tokenize(){
 		}
 	}
 
+	if (time == LargeTime && command == Edit){
+		string checker = (*uncategorizedInfo).substr(start, FourUnit);
+		if (isNumber(checker) && checker.size() == FourUnit){
+			time = checker;
+			*uncategorizedInfo = (*uncategorizedInfo).substr(FourUnit);
+		}
+	}
+
 	return time;
 }
 
@@ -70,6 +78,10 @@ string TimeGetter::getTime(string Input, string keyword){
 
 			tempTime = tempTime.substr(start, sizeOne);
 
+			if (isNumber(tempTime) && hourStandard == zero){
+				tempTime = emptyString;
+			}
+
 			string apm[SixUnit] = { amOne, amTwo, amThree, pmOne, pmTwo, pmThree };
 			unsigned int indicator = zero;
 
@@ -78,6 +90,7 @@ string TimeGetter::getTime(string Input, string keyword){
 
 				if (newPosition != string::npos){
 					string temp = tempTime.substr(start, newPosition);
+					temp = convertToTime(temp);
 
 					if (isNumber(temp)){
 						tempTime = temp;
@@ -91,7 +104,7 @@ string TimeGetter::getTime(string Input, string keyword){
 						sizeTwo = sizeOne;
 						break;
 					}
-					tempTime = convertToTime(temp);
+					tempTime = temp;
 				}
 
 				indicator++;
@@ -103,20 +116,31 @@ string TimeGetter::getTime(string Input, string keyword){
 				sizeTwo = sizeOne;
 				}
 
-			if (isNumber(tempTime) && tempTime.size() == FourUnit){
+			if (isNumber(tempTime) && tempTime.size() == FourUnit && stoi(tempTime) < 2400){
 				Time = tempTime;
 
 				if (hourStandard == OneUnit || hourStandard == zero){
+					if (hourStandard == OneUnit && (stoi(tempTime) >= 1200 && stoi(tempTime) < 1300)){
+						int TimeNumber = stoi(tempTime) - 1200;
+						ostringstream ss;
+						if (TimeNumber < TenUnit){
+							ss << zero << zero << zero << TimeNumber;
+						}
+						else{
+							ss << zero << zero << TimeNumber;
+						}
+						Time = ss.str();
+					}
 					chopInfo((*uncategorizedInfo), position, sizeTwo + keyword.size());
 					break;
 				}
 
-				if (hourStandard == TwoUnit){
+				if (hourStandard == TwoUnit && stoi(tempTime) < 1200){
 					int TimeNumber = std::stoi(tempTime);
 					TimeNumber = hourAdder + TimeNumber;
-					stringstream in;
-					in << TimeNumber;
-					Time = in.str();
+					ostringstream ss;
+					ss << TimeNumber;
+					Time = ss.str();
 					chopInfo((*uncategorizedInfo), position, sizeTwo + keyword.size());
 					break;
 				}
@@ -233,7 +257,7 @@ string TimeGetter::convertToTime(string tempTime){
 		tempTime = hour + minute;
 	}
 
-	if (isNumber(tempTime) && tempTime.size() <= TwoUnit){
+	if (isNumber(tempTime) && tempTime.size() <= TwoUnit && std::stoi(tempTime) <= 12){
 		if (tempTime.size() == OneUnit){
 			tempTime = Zero + tempTime + Zero + Zero;
 		}
