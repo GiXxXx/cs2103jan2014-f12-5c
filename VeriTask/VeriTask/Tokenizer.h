@@ -22,6 +22,7 @@ const string Delete = "delete";
 const string Edit = "edit";
 const string Undo = "undo";
 const string Redo = "redo";
+const string Exit = "exit";
 const string Display = "display";
 const string Done = "done";
 const string Search = "search";

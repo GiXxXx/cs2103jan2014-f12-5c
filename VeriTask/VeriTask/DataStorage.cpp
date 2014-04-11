@@ -202,9 +202,9 @@ bool DataStorage::searchDataDate(string keyword) {
 			    _taskListToDisplay.push_back(*iter);
 		    }
 
-		if (tempDate == "        ") {
-			_taskListToDisplay.push_back(*iter);
-		}
+//		if (tempDate == "        ") {
+//			_taskListToDisplay.push_back(*iter);
+//		}
 
 	}
 
@@ -222,7 +222,7 @@ bool DataStorage::searchDataStatus(string keyword) {
 	for (iter=_taskList.begin(); iter<_taskList.end(); ++iter) {
 		string tempStatus = iter->getStatus();
 		
-		if (tempStatus.find(keyword)!=string::npos) {
+		if (tempStatus == keyword) {
 			    _taskListToDisplay.push_back(*iter);
 		    }
 	}
