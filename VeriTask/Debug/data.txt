@@ -1,133 +1,253 @@
-29
-go home
-20140408
-1500
+105
+go to cs tutorial
+20140404
     
-done
-3
-go home
-20140408
-1500
-    
-undone
-2
-go home
-20140410
-1900
-2100
-undone
-17
-gogogogogo
-20140410
+1000
+overdue
+53
+watch movie
+20140404
     
     
-undone
-4
-haha
-20140411
-0800
-0900
-undone
-9
-lololol
-20140411
+overdue
+34
+get up from bed
+20140405
+    
+1000
+overdue
+79
+prepare 2150 presentation
+20140405
+    
+2400
+overdue
+71
+ie2150 project
+20140405
     
     
-undone
-13
-go home
-        
-    
-    
-undone
-8
-hoahahohao
-        
-    
-    
-undone
-11
-go hooooooooooo
-        
-    
-    
-undone
-14
-hohohoho
-        
-    
-    
-undone
-15
-hohohohoh
-        
-    
-    
-undone
-16
-hh
-        
-    
-    
-undone
-18
-go homehomehome
-        
-    
-    
-undone
-19
-gogogoogogogogogogo
-        
-    
-    
-undone
-20
-hahahhahaha
-        
-    
-    
-undone
-21
-hhhhhhhhhhhhhhhhhhhh
-        
-    
-    
-undone
-22
-go home
-        
-    
-    
-undone
-23
-1
-        
-    
-    
-undone
+overdue
+51
+tennis session
+20140406
+2000
+2200
+overdue
 24
-2
-        
+CS meeting
+20140406
+1200
+1800
+overdue
+18
+buy a new schoolbag
+20140406
     
     
-undone
-25
-3
-        
+overdue
+63
+finish veritask
+20140406
     
     
-undone
-26
-4
-        
-    
-    
-undone
-27
-8
-        
-    
-    
-undone
+overdue
+81
+IE2150 meeting
+20140407
+1200
+1400
+overdue
 28
+tuition
+20140407
+0900
+1100
+overdue
+26
+buy milk
+20140407
+    
+    
+overdue
+44
+ST3131 assigenment
+20140408
+    
+    
+overdue
+22
+cs quiz
+20140408
+    
+    
+overdue
+30
+meet with friends
+20140409
+1200
+1800
+overdue
+36
+IE2130 homework
+20140409
+    
+    
+overdue
+42
+EG presentation
+20140410
+1300
+1400
+overdue
+32
+attend cs2103 lecture
+20140411
+1600
+1800
+
+75
+sth tr  8pm
+20140411
+2400
+    
+undone
+103
+v0.4
+20140411
+    
+    
+
+47
+finish 2103
+20140411
+    
+    
+
+73
+submit V0.5
+20140414
+2359
+    
+
+100
+submit v0.5
+20140414
+    
+    
+undone
+96
+go to school
+20140414
+    
+    
+undone
+98
+go to school
+20140414
+    
+    
+undone
+101
+IE2150 presentation
+20140415
+    
+    
+
+10
+CS exam
+20140426
+    
+    
+
+8
+final exams
+20140427
+    
+    
+
+61
+return to China
+20140507
+    
+    
+
+55
+go home
+20140601
+    
+    
+
+49
+go to Beijing
+20140622
+    
+    
+
+65
+find a decent job
+20160601
+    
+    
+
+57
+graduate from NUS
+20160601
+    
+    
+
+67
+go to seattle for ti6
+20160801
+    
+    
+
+83
+go to gym
+        
+    
+    
+
+20
+get ready for final
+        
+    
+    
+
+38
+buy air ticket
+        
+    
+    
+
+40
+have some good rest
+        
+    
+    
+
+46
+reach 5000mmr
+        
+    
+    
+
+59
+get married before age 35
+        
+    
+    
+
+69
+by some milk
+        
+    
+    
+
+77
+cs2103 is so hard!!!
+        
+    
+    
+
+85
