@@ -43,13 +43,18 @@ void EditTask::executeCommand(Identifier infoIdentifier, DataStorage &dataStorag
 		(updatedTaskListToDisplay.begin() + (taskNum - 1))->setEndTime(endTime);//
 		(updatedTaskListToDisplay.begin() + (taskNum - 1))->setEvent(event);//*/
 
+		if (date != temp.getDate()) {
+			bool isFound = dataStorage.searchDataDate(date);
+		} else {
 		for (iter=updatedTaskListToDisplay.begin(); iter<updatedTaskListToDisplay.end(); ++iter) {
-		if (iter->getID() > taskToEdit.getID()) {
-			updatedTaskListToDisplay.insert(iter, taskToEdit);
-			break;
+			if (iter->getID() > taskToEdit.getID()) {
+				updatedTaskListToDisplay.insert(iter, taskToEdit);
+				break;
+			}
 		}
-	}
 		dataStorage.updateTaskListToDisplay(updatedTaskListToDisplay);//
+	}
+		
 
 		//textUI.printTaskToDisplay(dataStorage);
 		//textUI.printEditConfirmation();
