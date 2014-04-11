@@ -1,0 +1,31 @@
+﻿Build started 10/4/2014 9:52:59 PM.
+     1>Project "C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\VeriTask.vcxproj" on node 2 (Build target(s)).
+     1>Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\YuJia\Desktop\NewProject\VeriTask\Debug\VeriTask.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\YuJia\Desktop\NewProject\VeriTask\Debug\VeriTask.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\YuJia\Desktop\NewProject\VeriTask\Debug\VeriTask.lib" /MACHINE:X86 Debug\VeriTask.res
+         Debug\AddTask.obj
+         Debug\CommandGetter.obj
+         Debug\DataStorage.obj
+         Debug\DateGetter.obj
+         Debug\DeleteTask.obj
+         Debug\EditTask.obj
+         Debug\EventGetter.obj
+         Debug\Identifier.obj
+         Debug\KeywordGetter.obj
+         Debug\Main.obj
+         Debug\MarkTask.obj
+         Debug\TimeGetter.obj
+         Debug\StatusGetter.obj
+         Debug\TaskDisplayer.obj
+         Debug\TaskNumGetter.obj
+         Debug\TextUI.obj
+         Debug\Tokenizer.obj
+         Debug\VeriTask.obj
+         Debug\SearchTask.obj
+         Debug\Command.obj
+         Debug\Task.obj
+         VeriTask.vcxproj -> C:\Users\YuJia\Desktop\NewProject\VeriTask\Debug\VeriTask.exe
+     1>Done Building Project "C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\VeriTask.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.57
