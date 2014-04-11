@@ -1160,8 +1160,8 @@ namespace UnitTest2 {
 			undoVeriTask.pushCommand(undoIdentifier.GetCommand(), undoIdentifier, undoUI, _undoData);
 			//ensure accurate mark
 			string markStatus = "done";
-			Task undoMarkTask = ((_undoData.retrieveTaskListToDisplay()).front());
-			Assert::AreEqual(undoMarkTask.getStatus(), markStatus);
+			Task undoMarkTask3 = ((_undoData.retrieveTaskListToDisplay()).front());
+			Assert::AreEqual(undoMarkTask3.getStatus(), markStatus);
 			undoIdentifier.Identify(undoKeyword);
 			undoVeriTask.pushCommand(undoIdentifier.GetCommand(), undoIdentifier, undoUI, _undoData);
 			//ensure successful post-condition after undo
@@ -1226,7 +1226,66 @@ namespace UnitTest2 {
 			Task test5 = ((_undoData.retrieveTaskListToDisplay()).front());
 			Assert::AreEqual(test5.getDate(), str4);
 
+			//test Undo for Delete
+			//search to retrieve task
+			string undoSearchTask = "search vocal range";
+			undoIdentifier.Identify(undoSearchTask);
+			undoVeriTask.pushCommand(undoIdentifier.GetCommand(), undoIdentifier, undoUI, _undoData);
+			//ensure successful search
+			Assert::IsFalse((_undoData.retrieveTaskListToDisplay()).empty());
+			//ensure accurate search
+			Task test7 = ((_undoData.retrieveTaskListToDisplay()).front());
+			string undoDel = "expand vocal range";
+			Assert::AreEqual(test7.getEvent(), undoDel);
+
+			//deletion of a single task
+			string testDel2 = "delete 1";
+			undoIdentifier.Identify(testDel2);
+			undoVeriTask.pushCommand(undoIdentifier.GetCommand(), undoIdentifier, undoUI, _undoData);
+
+			//post-condition: task has been deleted
+			Assert::IsTrue((_undoData.retrieveTaskList()).empty()); 
+
+			undoIdentifier.Identify(undoKeyword);
+			undoVeriTask.pushCommand(undoIdentifier.GetCommand(), undoIdentifier, undoUI, _undoData);
+			//ensure successful post-condition after undo
+			Task test6 = ((_undoData.retrieveTaskListToDisplay()).front());
+			Assert::AreEqual(test6.getEvent(), undoDel);
 			
+			string MulUndo1 = "add skype friend";
+			string MulUndo2 = "search friend";
+			string MulUndo3 = "mark 1 done";
+			string MulUndo4 = "edit 1 by 21/03/2011 from 05:00 to 07:00";
+			string MulUndo5 = "edit 1 skype friend everyday";
+			string MulUndo6 = "delete 1";
+			undoIdentifier.Identify(MulUndo1);
+			undoVeriTask.pushCommand(undoIdentifier.GetCommand(), undoIdentifier, undoUI, _undoData);
+			undoIdentifier.Identify(MulUndo2);
+			undoVeriTask.pushCommand(undoIdentifier.GetCommand(), undoIdentifier, undoUI, _undoData);
+			undoIdentifier.Identify(MulUndo3);
+			undoVeriTask.pushCommand(undoIdentifier.GetCommand(), undoIdentifier, undoUI, _undoData);
+			undoIdentifier.Identify(MulUndo4);
+			undoVeriTask.pushCommand(undoIdentifier.GetCommand(), undoIdentifier, undoUI, _undoData);
+			undoIdentifier.Identify(MulUndo5);
+			undoVeriTask.pushCommand(undoIdentifier.GetCommand(), undoIdentifier, undoUI, _undoData);
+			undoIdentifier.Identify(MulUndo6);
+			undoVeriTask.pushCommand(undoIdentifier.GetCommand(), undoIdentifier, undoUI, _undoData);
+
+			undoIdentifier.Identify(undoKeyword);
+			undoVeriTask.pushCommand(undoIdentifier.GetCommand(), undoIdentifier, undoUI, _undoData);
+			undoIdentifier.Identify(undoKeyword);
+			undoVeriTask.pushCommand(undoIdentifier.GetCommand(), undoIdentifier, undoUI, _undoData);
+			undoIdentifier.Identify(undoKeyword);
+			undoVeriTask.pushCommand(undoIdentifier.GetCommand(), undoIdentifier, undoUI, _undoData);
+			undoIdentifier.Identify(undoKeyword);
+			undoVeriTask.pushCommand(undoIdentifier.GetCommand(), undoIdentifier, undoUI, _undoData);
+			undoIdentifier.Identify(undoKeyword);
+			undoVeriTask.pushCommand(undoIdentifier.GetCommand(), undoIdentifier, undoUI, _undoData);
+			undoIdentifier.Identify(undoKeyword);
+			undoVeriTask.pushCommand(undoIdentifier.GetCommand(), undoIdentifier, undoUI, _undoData);
+
+			unsigned int undoSize = 1;
+			Assert::AreEqual((_undoData.retrieveTaskList()).size(), undoSize); 
 		}
 
 	};
