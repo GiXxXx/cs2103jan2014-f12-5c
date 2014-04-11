@@ -172,13 +172,13 @@ string DateGetter::GetDateFromWeek(string &Input, string keyword){
 		if (position != string::npos){
 			tempDate = duplicate.substr(position + keyword.size());
 
-			positionOne = tempDate.find_first_of(space);
+			positionOne = tempDate.find_first_of(punctuationSet);
 			week = tempDate.substr(start, positionOne);
 			size = positionOne;
 
 			if (week == Next){
 				positionOne = positionOne + OneUnit;
-				positionTwo = tempDate.find_first_of(space, positionOne);
+				positionTwo = tempDate.find_first_of(punctuationSet, positionOne);
 				size = positionTwo;
 				week = tempDate.substr(positionOne, positionTwo - positionOne);
 				taskDayOfWeek = std::stoi(seven);
@@ -186,7 +186,7 @@ string DateGetter::GetDateFromWeek(string &Input, string keyword){
 
 			if (week == This){
 				positionOne = positionOne + OneUnit;
-				positionTwo = tempDate.find_first_of(space, positionOne);
+				positionTwo = tempDate.find_first_of(punctuationSet, positionOne);
 				size = positionTwo;
 				week = tempDate.substr(positionOne, positionTwo - positionOne);
 			}

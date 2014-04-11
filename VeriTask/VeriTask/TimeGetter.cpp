@@ -55,8 +55,8 @@ string TimeGetter::getTime(string Input, string keyword){
 
 		if (position != string::npos){
 			tempTime = duplicate.substr(position + keyword.size());
-			sizeOne = tempTime.find_first_of(space);
-			sizeTwo = tempTime.find_first_of(space, sizeOne + OneUnit);
+			sizeOne = tempTime.find_first_of(punctuationSet);
+			sizeTwo = tempTime.find_first_of(punctuationSet, sizeOne + OneUnit);
 
 			checker = tempTime.substr(sizeOne + OneUnit, sizeTwo - sizeOne - OneUnit);
 
@@ -91,6 +91,7 @@ string TimeGetter::getTime(string Input, string keyword){
 						sizeTwo = sizeOne;
 						break;
 					}
+					tempTime = convertToTime(temp);
 				}
 
 				indicator++;
@@ -230,6 +231,15 @@ string TimeGetter::convertToTime(string tempTime){
 		}
 
 		tempTime = hour + minute;
+	}
+
+	if (isNumber(tempTime) && tempTime.size() <= TwoUnit){
+		if (tempTime.size() == OneUnit){
+			tempTime = Zero + tempTime + Zero + Zero;
+		}
+		else{
+			tempTime = tempTime + Zero + Zero;
+		}
 	}
 
 	return tempTime;
