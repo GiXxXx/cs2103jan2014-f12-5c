@@ -55,8 +55,8 @@ string TimeGetter::getTime(string Input, string keyword){
 
 		if (position != string::npos){
 			tempTime = duplicate.substr(position + keyword.size());
-			sizeOne = tempTime.find_first_of(space);
-			sizeTwo = tempTime.find_first_of(space, sizeOne + OneUnit);
+			sizeOne = tempTime.find_first_of(punctuationSet);
+			sizeTwo = tempTime.find_first_of(punctuationSet, sizeOne + OneUnit);
 
 			checker = tempTime.substr(sizeOne + OneUnit, sizeTwo - sizeOne - OneUnit);
 
@@ -79,8 +79,6 @@ string TimeGetter::getTime(string Input, string keyword){
 				if (newPosition != string::npos){
 					string temp = tempTime.substr(start, newPosition);
 
-					temp = convertToTime(temp);
-
 					if (isNumber(temp)){
 						tempTime = temp;
 						if (indicator < ThreeUnit){
@@ -93,6 +91,7 @@ string TimeGetter::getTime(string Input, string keyword){
 						sizeTwo = sizeOne;
 						break;
 					}
+					tempTime = convertToTime(temp);
 				}
 
 				indicator++;
@@ -102,15 +101,9 @@ string TimeGetter::getTime(string Input, string keyword){
 
 			if (hourStandard == zero){
 				sizeTwo = sizeOne;
-
-				if (isNumber(tempTime)){
-					Time = tempTime;
-					chopInfo((*uncategorizedInfo), position, sizeTwo + keyword.size());
-					break;
 				}
-			}
 
-			if (isNumber(tempTime)){
+			if (isNumber(tempTime) && tempTime.size() == FourUnit){
 				Time = tempTime;
 
 				if (hourStandard == OneUnit || hourStandard == zero){
@@ -239,7 +232,6 @@ string TimeGetter::convertToTime(string tempTime){
 
 		tempTime = hour + minute;
 	}
-	cout << "asdasd" << tempTime << endl;
 
 	if (isNumber(tempTime) && tempTime.size() <= TwoUnit){
 		if (tempTime.size() == OneUnit){
