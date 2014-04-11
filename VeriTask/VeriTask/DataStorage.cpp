@@ -37,7 +37,7 @@ DataStorage::DataStorage() {
 
 	Task task(event, date, startTime, endTime, status, index_int);
 	
-	if (date != "        ") {
+	/*if (date != "        ") {
 	if (localYear*10000+localMonth*100+localDate > stoi(date)) {
 		task.setStatus("overdue");
 	} else if (localYear*10000+localMonth*100+localDate == stoi(date)) {
@@ -52,7 +52,7 @@ DataStorage::DataStorage() {
 			}
 		}
 	}
-	}
+	}*/
 
 	_taskList.push_back(task);
 	if ((date == "        ") || localYear*10000+localMonth*100+localDate == std::stoi(date)) {
@@ -202,9 +202,9 @@ bool DataStorage::searchDataDate(string keyword) {
 			    _taskListToDisplay.push_back(*iter);
 		    }
 
-//		if (tempDate == "        ") {
-//			_taskListToDisplay.push_back(*iter);
-//		}
+		if (tempDate == "        ") {
+			_taskListToDisplay.push_back(*iter);
+		}
 
 	}
 

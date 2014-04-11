@@ -1,28 +1,10 @@
-105
-go to cs tutorial
-20140404
-    
-1000
-overdue
-53
+116
 watch movie
 20140404
     
     
 overdue
 34
-get up from bed
-20140405
-    
-1000
-overdue
-79
-prepare 2150 presentation
-20140405
-    
-2400
-overdue
-71
 ie2150 project
 20140405
     
@@ -41,12 +23,6 @@ CS meeting
 1800
 overdue
 18
-buy a new schoolbag
-20140406
-    
-    
-overdue
-63
 finish veritask
 20140406
     
@@ -77,12 +53,6 @@ ST3131 assigenment
     
 overdue
 22
-cs quiz
-20140408
-    
-    
-overdue
-30
 meet with friends
 20140409
 1200
@@ -95,36 +65,66 @@ IE2130 homework
     
 overdue
 42
+cs quiz
+20140409
+    
+    
+overdue
+106
 EG presentation
 20140410
 1300
 1400
 overdue
 32
-attend cs2103 lecture
+buy a new schoolbag
 20140411
+1100
+1800
+overdue
+115
+task
+20140411
+1200
+1400
+overdue
+108
+task to do
+20140411
+1200
+1800
+undone
+107
+more tash to do
+20140411
+1300
+1400
+overdue
+109
+v0.4
+20140412
+1400
+    
+overdue
+112
+attend cs2103 lecture
+20140412
 1600
 1800
 
-75
-sth tr  8pm
-20140411
-2400
-    
-undone
-103
-v0.4
-20140411
-    
+113
+get married
+20140412
+3000
     
 
-47
+111
 finish 2103
-20140411
+20140412
     
     
 
-73
+114
 submit V0.5
 20140414
 2359
@@ -233,12 +233,6 @@ reach 5000mmr
     
 
 59
-get married before age 35
-        
-    
-    
-
-69
 by some milk
         
     
