@@ -30,7 +30,7 @@ void TaskDisplayer::executeCommand(Identifier infoIdentifier, DataStorage &dataS
 		if (status == "all") {
 			isFound = dataStorage.searchData("");
 		} else {
-		    isFound = dataStorage.searchDataStatus(keyword);
+		    isFound = dataStorage.searchDataStatus(status);
 		    if (isFound) {
 			   // textUI.printSearchConfirmationYes();
 			    //textUI.printTaskToDisplay(dataStorage);

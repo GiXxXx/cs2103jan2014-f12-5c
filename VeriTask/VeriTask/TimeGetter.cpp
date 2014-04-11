@@ -55,8 +55,8 @@ string TimeGetter::getTime(string Input, string keyword){
 
 		if (position != string::npos){
 			tempTime = duplicate.substr(position + keyword.size());
-			sizeOne = tempTime.find_first_of(space);
-			sizeTwo = tempTime.find_first_of(space, sizeOne + OneUnit);
+			sizeOne = tempTime.find_first_of(punctuationSet);
+			sizeTwo = tempTime.find_first_of(punctuationSet, sizeOne + OneUnit);
 
 			checker = tempTime.substr(sizeOne + OneUnit, sizeTwo - sizeOne - OneUnit);
 
@@ -91,18 +91,19 @@ string TimeGetter::getTime(string Input, string keyword){
 						sizeTwo = sizeOne;
 						break;
 					}
+					tempTime = convertToTime(temp);
 				}
 
 				indicator++;
 			}
 
-			if (hourStandard == zero){
-				sizeTwo = sizeOne;
-			}
-
 			tempTime = convertToTime(tempTime);
 
-			if (isNumber(tempTime)){
+			if (hourStandard == zero){
+				sizeTwo = sizeOne;
+				}
+
+			if (isNumber(tempTime) && tempTime.size() == FourUnit){
 				Time = tempTime;
 
 				if (hourStandard == OneUnit || hourStandard == zero){
@@ -131,7 +132,7 @@ string TimeGetter::getTime(string Input, string keyword){
 
 string TimeGetter::getTimeFromMorning(string Input, string keyword){
 	string Time = LargeTime, tempTime, checker, duplicate = Input;
-	unsigned int position, startPos = start, sizeOne, sizeTwo;
+	unsigned int position, startPos = start, sizeOne;
 	int hourStandard = zero, indicator = zero;
 
 	ChangeToLowerCase(duplicate);
@@ -209,7 +210,7 @@ string TimeGetter::getTimeFromMorning(string Input, string keyword){
 
 string TimeGetter::convertToTime(string tempTime){
 	int position = tempTime.find(colon);
-	string hour, minute;
+	string hour = emptyString, minute = emptyString;
 
 	if (position == string::npos) {
 		position = tempTime.find(dot);
@@ -220,7 +221,7 @@ string TimeGetter::convertToTime(string tempTime){
 		minute = tempTime.substr(position + OneUnit);
 	}
 
-	if (isNumber(hour) && isNumber(minute)){
+	if (isNumber(hour) && isNumber(minute) && hour != emptyString && minute != emptyString){
 		if (hour.size() == OneUnit){
 			hour = Zero + hour;
 		}
@@ -230,6 +231,15 @@ string TimeGetter::convertToTime(string tempTime){
 		}
 
 		tempTime = hour + minute;
+	}
+
+	if (isNumber(tempTime) && tempTime.size() <= TwoUnit){
+		if (tempTime.size() == OneUnit){
+			tempTime = Zero + tempTime + Zero + Zero;
+		}
+		else{
+			tempTime = tempTime + Zero + Zero;
+		}
 	}
 
 	return tempTime;

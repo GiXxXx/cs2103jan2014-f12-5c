@@ -67,6 +67,11 @@ string DateGetter::Tokenize(){
 
 		if (Date == LargeDate && command == Display){
 			*uncategorizedInfo = (*uncategorizedInfo).substr(FourUnit);
+			string checker = (*uncategorizedInfo).substr(start, EightUnit);
+			if (isNumber(checker) && checker.size() == EightUnit){
+				Date = checker;
+				*uncategorizedInfo = (*uncategorizedInfo).substr(EightUnit);
+			}
 		}
 	}
 
@@ -155,7 +160,7 @@ string DateGetter::GetDateFromWeek(string &Input, string keyword){
 	int taskDayOfWeek = zero;
 	unsigned int positionOne, positionTwo, position, startPos = start;
 	unsigned int size;
-	string week, tempDate;
+	string week = emptyString, tempDate;
 	string Date = LargeDate;
 	string duplicate = Input;
 
@@ -167,13 +172,13 @@ string DateGetter::GetDateFromWeek(string &Input, string keyword){
 		if (position != string::npos){
 			tempDate = duplicate.substr(position + keyword.size());
 
-			positionOne = tempDate.find_first_of(space);
+			positionOne = tempDate.find_first_of(punctuationSet);
 			week = tempDate.substr(start, positionOne);
 			size = positionOne;
 
 			if (week == Next){
 				positionOne = positionOne + OneUnit;
-				positionTwo = tempDate.find_first_of(space, positionOne);
+				positionTwo = tempDate.find_first_of(punctuationSet, positionOne);
 				size = positionTwo;
 				week = tempDate.substr(positionOne, positionTwo - positionOne);
 				taskDayOfWeek = std::stoi(seven);
@@ -181,7 +186,7 @@ string DateGetter::GetDateFromWeek(string &Input, string keyword){
 
 			if (week == This){
 				positionOne = positionOne + OneUnit;
-				positionTwo = tempDate.find_first_of(space, positionOne);
+				positionTwo = tempDate.find_first_of(punctuationSet, positionOne);
 				size = positionTwo;
 				week = tempDate.substr(positionOne, positionTwo - positionOne);
 			}
@@ -189,8 +194,40 @@ string DateGetter::GetDateFromWeek(string &Input, string keyword){
 			if (week == Week || week == Weeks){
 				week = sun;
 			}
+		}
 
-			if (!isNumber(week)){
+		if (week == emptyString && keyword == at && position == string::npos){
+			startPos = zero;
+			do{
+				position = duplicate.find(space + This, startPos);
+
+				if (position != string::npos){
+					taskDayOfWeek = zero;
+				}
+				else if (position == string::npos){
+					position = duplicate.find(space + Next, startPos);
+					taskDayOfWeek = SevenUnit;
+				}
+
+				if (position != string::npos){
+					int begin = position + SixUnit;
+					int end = duplicate.find_first_of(space, begin);
+					week = duplicate.substr(begin, end - begin);
+					string checker = week;
+					WeekConvertor(checker);
+					if (isNumber(checker)){
+						keyword = emptyString;
+						size = week.size() + SixUnit;
+						break;
+					}
+				}
+
+				startPos = position + OneUnit;
+
+			} while (position != string::npos);
+		}
+
+			if (!isNumber(week) && week != emptyString){
 
 				WeekConvertor(week);
 
@@ -242,8 +279,8 @@ string DateGetter::GetDateFromWeek(string &Input, string keyword){
 			}
 
 			startPos = position + OneUnit;
-		}
-	} while (position != string::npos);
+
+	} while (position != string::npos && Date == LargeDate);
 
 	return Date;
 }
