@@ -1,3 +1,4 @@
+C:\USERS\YUJIA\DESKTOP\NEWPROJECT\VERITASK\VERITASK\DEBUG\ADDTASK.OBJ
 C:\USERS\YUJIA\DESKTOP\NEWPROJECT\VERITASK\VERITASK\DEBUG\COMMANDGETTER.OBJ
 C:\USERS\YUJIA\DESKTOP\NEWPROJECT\VERITASK\VERITASK\DEBUG\DATASTORAGE.OBJ
 C:\USERS\YUJIA\DESKTOP\NEWPROJECT\VERITASK\VERITASK\DEBUG\DATEGETTER.OBJ
@@ -6,7 +7,6 @@ C:\USERS\YUJIA\DESKTOP\NEWPROJECT\VERITASK\VERITASK\DEBUG\EDITTASK.OBJ
 C:\USERS\YUJIA\DESKTOP\NEWPROJECT\VERITASK\VERITASK\DEBUG\EVENTGETTER.OBJ
 C:\USERS\YUJIA\DESKTOP\NEWPROJECT\VERITASK\VERITASK\DEBUG\IDENTIFIER.OBJ
 C:\USERS\YUJIA\DESKTOP\NEWPROJECT\VERITASK\VERITASK\DEBUG\KEYWORDGETTER.OBJ
-C:\USERS\YUJIA\DESKTOP\NEWPROJECT\VERITASK\VERITASK\DEBUG\MAIN.OBJ
 C:\USERS\YUJIA\DESKTOP\NEWPROJECT\VERITASK\VERITASK\DEBUG\MARKTASK.OBJ
 C:\USERS\YUJIA\DESKTOP\NEWPROJECT\VERITASK\VERITASK\DEBUG\TIMEGETTER.OBJ
 C:\USERS\YUJIA\DESKTOP\NEWPROJECT\VERITASK\VERITASK\DEBUG\STATUSGETTER.OBJ
@@ -18,9 +18,7 @@ C:\USERS\YUJIA\DESKTOP\NEWPROJECT\VERITASK\VERITASK\DEBUG\VERITASK.OBJ
 C:\USERS\YUJIA\DESKTOP\NEWPROJECT\VERITASK\VERITASK\DEBUG\SEARCHTASK.OBJ
 C:\USERS\YUJIA\DESKTOP\NEWPROJECT\VERITASK\VERITASK\DEBUG\COMMAND.OBJ
 C:\USERS\YUJIA\DESKTOP\NEWPROJECT\VERITASK\VERITASK\DEBUG\TASK.OBJ
-C:\USERS\YUJIA\DESKTOP\NEWPROJECT\VERITASK\VERITASK\DEBUG\ADDTASK.OBJ
 C:\USERS\YUJIA\DESKTOP\NEWPROJECT\VERITASK\VERITASK\DEBUG\VC110.PDB
-C:\USERS\YUJIA\DESKTOP\NEWPROJECT\VERITASK\DEBUG\VERITASK.LIB
 C:\USERS\YUJIA\DESKTOP\NEWPROJECT\VERITASK\VERITASK\DEBUG\VERITASK.RES
 C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\AddTask.obj
 C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\Command.obj
@@ -32,7 +30,6 @@ C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\EditTask.obj
 C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\EventGetter.obj
 C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\Identifier.obj
 C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\KeywordGetter.obj
-C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\Main.obj
 C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\MarkTask.obj
 C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\SearchTask.obj
 C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\StatusGetter.obj
@@ -46,15 +43,12 @@ C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\VeriTask.obj
 C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\cl.command.1.tlog
 C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\CL.read.1.tlog
 C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\CL.write.1.tlog
-C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\Lib-link-cvtres.read.1.tlog
-C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\Lib-link-cvtres.write.1.tlog
-C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\Lib-link.read.1.tlog
-C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\Lib-link.write.1.tlog
-C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\lib.command.1.tlog
+C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\link.command.1.tlog
+C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\link.read.1.tlog
+C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\link.write.1.tlog
 C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\rc.command.1.tlog
 C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\rc.read.1.tlog
 C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\rc.write.1.tlog
 C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\VeriTask.res
 C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\vc110.idb
 C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\Debug\vc110.pdb
-C:\Users\YuJia\Desktop\NewProject\VeriTask\Debug\VeriTask.lib
