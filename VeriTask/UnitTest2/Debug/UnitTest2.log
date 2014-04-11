@@ -1,0 +1,44 @@
+﻿Build started 10/4/2014 8:19:31 PM.
+     1>Project "C:\Users\YuJia\Desktop\NewProject\VeriTask\UnitTest2\UnitTest2.vcxproj" on node 2 (Rebuild target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Users\Pang\Desktop\2103\cs2103jan2014-f12-5c\VeriTask\VeriTask" /I"C:\Users\GAO JIACHENG\Desktop\New folder (4)\VeriTask\VeriTask" /I"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\UnitTest\include" /IC:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDLL /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp"Debug\UnitTest2.pch" /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /FC /errorReport:prompt stdafx.cpp
+         stdafx.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Users\Pang\Desktop\2103\cs2103jan2014-f12-5c\VeriTask\VeriTask" /I"C:\Users\GAO JIACHENG\Desktop\New folder (4)\VeriTask\VeriTask" /I"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\UnitTest\include" /IC:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDLL /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\UnitTest2.pch" /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /FC /errorReport:prompt unittest1.cpp
+         unittest1.cpp
+     1>c:\users\yujia\desktop\newproject\veritask\unittest2\unittest1.cpp(549): error C2664: 'VeriTask::VeriTask(const VeriTask &)' : cannot convert parameter 1 from 'DataStorage' to 'const VeriTask &'
+                 Reason: cannot convert from 'DataStorage' to 'const VeriTask'
+                 No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+     1>c:\users\yujia\desktop\newproject\veritask\unittest2\unittest1.cpp(623): error C2664: 'VeriTask::VeriTask(const VeriTask &)' : cannot convert parameter 1 from 'DataStorage' to 'const VeriTask &'
+                 Reason: cannot convert from 'DataStorage' to 'const VeriTask'
+                 No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+     1>c:\users\yujia\desktop\newproject\veritask\unittest2\unittest1.cpp(687): error C2664: 'VeriTask::VeriTask(const VeriTask &)' : cannot convert parameter 1 from 'DataStorage' to 'const VeriTask &'
+                 Reason: cannot convert from 'DataStorage' to 'const VeriTask'
+                 No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+     1>c:\users\yujia\desktop\newproject\veritask\unittest2\unittest1.cpp(737): error C2664: 'VeriTask::VeriTask(const VeriTask &)' : cannot convert parameter 1 from 'DataStorage' to 'const VeriTask &'
+                 Reason: cannot convert from 'DataStorage' to 'const VeriTask'
+                 No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+     1>c:\users\yujia\desktop\newproject\veritask\unittest2\unittest1.cpp(817): error C2664: 'VeriTask::VeriTask(const VeriTask &)' : cannot convert parameter 1 from 'DataStorage' to 'const VeriTask &'
+                 Reason: cannot convert from 'DataStorage' to 'const VeriTask'
+                 No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+     1>c:\users\yujia\desktop\newproject\veritask\unittest2\unittest1.cpp(905): error C2664: 'VeriTask::VeriTask(const VeriTask &)' : cannot convert parameter 1 from 'DataStorage' to 'const VeriTask &'
+                 Reason: cannot convert from 'DataStorage' to 'const VeriTask'
+                 No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+     1>c:\users\yujia\desktop\newproject\veritask\unittest2\unittest1.cpp(962): error C2664: 'VeriTask::VeriTask(const VeriTask &)' : cannot convert parameter 1 from 'DataStorage' to 'const VeriTask &'
+                 Reason: cannot convert from 'DataStorage' to 'const VeriTask'
+                 No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+     1>c:\users\yujia\desktop\newproject\veritask\unittest2\unittest1.cpp(1038): error C2664: 'VeriTask::VeriTask(const VeriTask &)' : cannot convert parameter 1 from 'DataStorage' to 'const VeriTask &'
+                 Reason: cannot convert from 'DataStorage' to 'const VeriTask'
+                 No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+     1>c:\users\yujia\desktop\newproject\veritask\unittest2\unittest1.cpp(1088): error C2664: 'VeriTask::VeriTask(const VeriTask &)' : cannot convert parameter 1 from 'DataStorage' to 'const VeriTask &'
+                 Reason: cannot convert from 'DataStorage' to 'const VeriTask'
+                 No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+     1>c:\users\yujia\desktop\newproject\veritask\unittest2\unittest1.cpp(1120): error C2664: 'VeriTask::VeriTask(const VeriTask &)' : cannot convert parameter 1 from 'DataStorage' to 'const VeriTask &'
+                 Reason: cannot convert from 'DataStorage' to 'const VeriTask'
+                 No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+     1>c:\users\yujia\desktop\newproject\veritask\unittest2\unittest1.cpp(1163): error C2374: 'undoMarkTask' : redefinition; multiple initialization
+                 c:\users\yujia\desktop\newproject\veritask\unittest2\unittest1.cpp(1154) : see declaration of 'undoMarkTask'
+     1>Done Building Project "C:\Users\YuJia\Desktop\NewProject\VeriTask\UnitTest2\UnitTest2.vcxproj" (Rebuild target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:01.27
