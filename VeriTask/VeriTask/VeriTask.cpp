@@ -11,9 +11,7 @@ void VeriTask::pushCommand(string commandWord, Identifier infoIdentifier, TextUI
 	cout << commandWord <<" = " << ADD_COMMAND <<  endl;
 	if (commandWord == ADD_COMMAND) {
 		newTask = new AddTask;
-		cout << "asdasdasdasfsedfsdfsdfdgsdg1" << endl;
 		newTask->executeCommand(infoIdentifier, dataStorage, textUI);
-		cout << "asdasdasdasfsedfsdfsdfdgsdg2" << endl;
 	}
 	if (commandWord == DELETE_COMMAND) {
 		newTask = new DeleteTask;
@@ -31,6 +29,10 @@ void VeriTask::pushCommand(string commandWord, Identifier infoIdentifier, TextUI
 		newTask = new MarkTask;
 		newTask->executeCommand(infoIdentifier, dataStorage, textUI);
 	}
+	if (commandWord == DISPLAY_COMMAND) {
+		newTask = new TaskDisplayer;
+		newTask->executeCommand(infoIdentifier, dataStorage, textUI);
+	}
 	if (commandWord == "exit") { // change it
 		return;
 	}
@@ -39,14 +41,23 @@ void VeriTask::pushCommand(string commandWord, Identifier infoIdentifier, TextUI
 		//newTask->executeCommand(infoIdentifier, dataStorage, textUI);
 		commandList.push_back(newTask);
 	   // commandList.back()->executeCommand(infoIdentifier, dataStorage, textUI);
-	    undoList.push_back(dataStorage);
+	    taskListVector.push_back(dataStorage.retrieveTaskList());
+		taskListToDisplayVector.push_back(dataStorage.retrieveTaskListToDisplay());
+		taskIndexVector.push_back(dataStorage.getTaskIndex());
 	}
 
 	if (commandWord == UNDO_COMMAND) {
-		undoList.pop_back();
-	    DataStorage newDataStorage = undoList.back();
-		commandList.pop_back();
-		textUI.printTaskToDisplay(newDataStorage);
+		taskListVector.pop_back();
+		taskListToDisplayVector.pop_back();
+		taskIndexVector.pop_back();
+	    vector<Task> updatedTaskList = taskListVector.back();
+		vector<Task> updatedTaskListToDisplay = taskListToDisplayVector.back();
+		int newTaskIndex = taskIndexVector.back();
+		dataStorage.updateTaskList(updatedTaskList);
+		dataStorage.updateTaskListToDisplay(updatedTaskListToDisplay);
+		dataStorage.setTaskIndex(newTaskIndex);
+		//commandList.pop_back();
+		//textUI.printTaskToDisplay(newDataStorage);
 	}	
 }
 

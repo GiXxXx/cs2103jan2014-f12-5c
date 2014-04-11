@@ -17,7 +17,9 @@ using namespace std;
 class VeriTask {
 private:
 	vector<Command*> commandList;
-	vector<DataStorage> undoList;
+	vector<vector<Task>> taskListVector;
+	vector<vector<Task>> taskListToDisplayVector;
+	vector<int> taskIndexVector;
 	
 public:
 	VeriTask(/*DataStorage&*/);
