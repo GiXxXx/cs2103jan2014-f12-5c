@@ -61,16 +61,16 @@ string StatusGetter::Tokenize(){
 	if (wordCount == OneUnit || (status != Done && status != UnDone && status != CannotBeDone)){
 		for (int i = zero; i < sizeOne; i++){
 			if (temp.find(OneWordStatus[i]) != string::npos){
-				if (i < SixUnit){
-					status = UnDone;
+				if (i <= FourUnit){
+					status = CannotBeDone;
 					break;
 				}
 				else if (i < TenUnit){
-					status = Done;
+					status = UnDone;
 					break;
 				}
 				else if (i < sizeOne){
-					status = CannotBeDone;
+					status = Done;
 					break;
 				}
 			}
