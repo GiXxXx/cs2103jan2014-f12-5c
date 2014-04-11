@@ -12,14 +12,14 @@ void Identifier::Identify(string userInput) {
 	index++;
 	CommandGetter CommandIdentifier(userInput);
 	Command = CommandIdentifier.Tokenize();
+	TaskNumGetter TaskNumIdentifier(userInput, Command);
+	TaskNum = TaskNumIdentifier.Tokenize();
 	DateGetter DateIdentifier(userInput, Command);
 	Date = DateIdentifier.Tokenize();
 	TimeGetter StartTimeIdentifier(userInput, Command);
 	StartTime = StartTimeIdentifier.Tokenize();
 	TimeGetter EndTimeIdentifier(userInput, Command);
 	EndTime = EndTimeIdentifier.Tokenize();
-	TaskNumGetter TaskNumIdentifier(userInput, Command);
-	TaskNum = TaskNumIdentifier.Tokenize();
 	StatusGetter StatusIdentifier(userInput, Command);
 	Status = StatusIdentifier.Tokenize();
 	KeywordGetter KeywordIdentifier(userInput, Command);
