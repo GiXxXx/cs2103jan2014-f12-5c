@@ -47,7 +47,7 @@ string DateGetter::tokenize() {
 		while (Date == EMPTY_DATE && indicator < NINE_UNIT) {
 
 			keyword = PREPOSITION[indicator];
-
+			cout << "asdasd = " << "fk u " << endl;
 			Date = getDateFromDate(*_uncategorizedInfo, keyword);
 
 			if (Date == EMPTY_DATE) {
@@ -151,7 +151,8 @@ string DateGetter::getDateFromDate(string &Input, string keyword) {
 				elementTwo = tempDate.substr(positionOne + ONE_UNIT, positionTwo - positionOne - ONE_UNIT);
 				elementThree = tempDate.substr(positionTwo + ONE_UNIT, FOUR_UNIT);
 
-				unsigned int endPos = tempDate.find_first_of(SPACE);
+				unsigned int endPos = tempDate.find_first_of(PUNCTUATION_SET, positionTwo + ONE_UNIT);
+				cout << "cnm = " << elementTwo << endl;
 
 				if (!isNumber(elementTwo)) {
 					convertMonth(elementTwo);
@@ -639,23 +640,23 @@ void DateGetter::convertMonth(string &Month) {
 	changeToLowerCase(Month);
 
 	if (Month == JAN || Month == JANUARY) {
-		Month = ONE_UNIT;
+		Month = ONE_STRING;
 	} else if (Month == FEB || Month == FEBRUARY) {
-		Month = TWO_UNIT;
+		Month = TWO_STRING;
 	} else if (Month == MAR || Month == MARCH) {
-		Month = THREE_UNIT;
+		Month = THREE_STRING;
 	} else if (Month == APR || Month == APRIL) {
-		Month = FOUR_UNIT;
+		Month = FOUR_STRING;
 	} else if (Month == MAY) {
-		Month = FIVE_UNIT;
+		Month = FIVE_STRING;
 	} else if (Month == JUN || Month == JUNE) {
-		Month = SIX_UNIT;
+		Month = SIX_STRING;
 	} else if (Month == JUL || Month == JULY) {
-		Month = SEVEN_UNIT;
+		Month = SEVEN_STRING;
 	} else if (Month == AUG || Month == AUGUST) {
-		Month = EIGHT_UNIT;
+		Month = EIGHT_STRING;
 	} else if (Month == SEP || Month == SEPTEMBER) {
-		Month = NINE_UNIT;
+		Month = NINE_STRING;
 	} else if (Month == OCT || Month == OCTOBER) {
 		Month = TEN_UNIT;
 	} else if (Month == NOV || Month == NOVEMBER) {
