@@ -27,9 +27,6 @@ void Identifier::identify(string userInput) {
 	} catch (string userInput) {
 	}
 
-	assert(stoi(_taskNum) < ZERO);
-
-
 	try{
 		DateGetter dateIdentifier(userInput, _command);
 		_date = dateIdentifier.tokenize();
@@ -37,7 +34,7 @@ void Identifier::identify(string userInput) {
 	} catch (string userInput) {
 	}
 
-	assert(_date.size() != EIGHT_UNIT);
+	assert(_date.size() == EIGHT_UNIT);
 
 	try{
 		TimeGetter startTimeIdentifier(userInput, _command);
@@ -46,7 +43,7 @@ void Identifier::identify(string userInput) {
 	} catch (string userInput) {
 	}
 
-	assert(_startTime.size() != FOUR_UNIT);
+	assert(_startTime.size() == FOUR_UNIT);
 
 	try{
 		TimeGetter endTimeIdentifier(userInput, _command);
@@ -55,7 +52,7 @@ void Identifier::identify(string userInput) {
 	} catch (string userInput) {
 	}
 
-	assert(_endTime.size() != FOUR_UNIT);
+	assert(_endTime.size() == FOUR_UNIT);
 
 	try{
 		StatusGetter statusIdentifier(userInput, _command);
