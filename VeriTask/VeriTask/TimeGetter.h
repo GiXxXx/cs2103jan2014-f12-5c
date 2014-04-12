@@ -47,13 +47,6 @@ public:
 	//Pos-req: Date format returned
 	string convertToTime(string);
 
-	//This function is used to convert from description
-	//of morning to the time format: morning to 1200
-	//evening to 2400
-	//Pre-req: two string input
-	//Pos-req: Date format returned
-	string timeConverterFromNoonStatus(string, string);
-
 	//This function is used to call the getTime method
 	//so as to get a Date from the user input.
 	//Pre-req: command is add or edit.

@@ -148,7 +148,7 @@ string DateGetter::getDateFromDate(string &Input, string keyword) {
 				unsigned int endPos = tempDate.find_first_of(SPACE);
 
 				if (!isNumber(elementTwo)) {
-					monthConvertor(elementTwo);
+					convertMonth(elementTwo);
 				}
 
 				if (!isNumber(elementThree)) {
@@ -260,7 +260,7 @@ string DateGetter::getDateFromWeek(string &Input, string keyword) {
 					week = duplicate.substr(begin, end - begin);
 
 					string checker = week;
-					weekConvertor(checker);
+					convertWeek(checker);
 
 					if (isNumber(checker)) {
 						keyword = EMPTY_STRING;
@@ -277,7 +277,7 @@ string DateGetter::getDateFromWeek(string &Input, string keyword) {
 		//get the date when items like friday, this friday is identified
 		if (!isNumber(week) && week != EMPTY_STRING) {
 
-			weekConvertor(week);
+			convertWeek(week);
 
 			if (isNumber(week)) {
 				taskDayOfWeek = taskDayOfWeek + std::stoi(week);
@@ -629,7 +629,7 @@ string DateGetter::convertToDate(int year, int month, int day) {
 	return outstr.str();
 }
 
-void DateGetter::monthConvertor(string &Month) {
+void DateGetter::convertMonth(string &Month) {
 	changeToLowerCase(Month);
 
 	if (Month == JAN || Month == JANUARY) {
@@ -661,7 +661,7 @@ void DateGetter::monthConvertor(string &Month) {
 	return;
 }
 
-void DateGetter::weekConvertor(string &Week) {
+void DateGetter::convertWeek(string &Week) {
 	changeToLowerCase(Week);
 
 	if (Week == MON || Week == MONDAY) {
