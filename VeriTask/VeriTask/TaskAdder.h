@@ -17,7 +17,7 @@
 
 using namespace std;
 
-const string UNDONE = "undone";
+//const string UNDONE = "undone";
 
 class TaskAdder:public Operation {
 public:

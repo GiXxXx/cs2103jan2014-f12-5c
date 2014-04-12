@@ -18,9 +18,9 @@
 
 using namespace std;
 
-const string EMPTY_DATE = "        ";
-const string EMPTY_STRING = "";
-const string ALL = "all";
+//const string EMPTY_DATE = "        ";
+//const string EMPTY_STRING = "";
+//const string ALL = "all";
 
 
 class TaskDisplayer: public Operation {
