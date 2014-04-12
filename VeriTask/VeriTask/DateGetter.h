@@ -30,14 +30,14 @@ public:
 	//used to calculate Date in the other functions;
 	//Pre-req: string inputed
 	//Pos-req: nil.
-	void monthConvertor(string&);
+	void convertMonth(string&);
 
 	//This function convert words like fri, friday, FRIDAY
 	//to string made of numbers like "1", "10" which will be
 	//used to calculate Date in the other functions;
 	//Pre-req: string inputed
 	//Pos-req: nil.
-	void weekConvertor(string&);
+	void convertWeek(string&);
 
 	//This function is used to perform decrement or increment to
 	//the date by one day when the keyword is before or after.
