@@ -12,6 +12,7 @@ StatusGetter::~StatusGetter() {
 string StatusGetter::tokenize() {
 	string status = NO_STATUS;
 	string temp = status;
+	string duplicate = *_uncategorizedInfo;
 	int wordCount = ZERO;
 	int indicator = ZERO;
 	int sizeOne = TEN_UNIT + FIVE_UNIT;
@@ -21,18 +22,20 @@ string StatusGetter::tokenize() {
 	unsigned int positionTwo = ZERO;
 	unsigned int startPos = ZERO;
 
-	positionOne = (*_uncategorizedInfo).find_first_not_of(PUNCTUATION_SET, startPos);
+	changeToLowerCase(duplicate);
+
+	positionOne = (duplicate).find_first_not_of(PUNCTUATION_SET, startPos);
 
 	if (positionOne != string::npos) {
-		temp = (*_uncategorizedInfo).substr(positionOne);
+		temp = (duplicate).substr(positionOne);
 	}
 
 	//check number of words inside the user input
 	while (positionOne != string::npos && startPos != string::npos) {
-		positionOne = (*_uncategorizedInfo).find_first_not_of(PUNCTUATION_SET, startPos);
+		positionOne = (duplicate).find_first_not_of(PUNCTUATION_SET, startPos);
 
 		if (positionOne != string::npos) {
-			positionTwo = (*_uncategorizedInfo).find_first_of(PUNCTUATION_SET, positionOne);
+			positionTwo = (duplicate).find_first_of(PUNCTUATION_SET, positionOne);
 		}
 
 		if (positionTwo != string::npos && positionOne != string::npos) {

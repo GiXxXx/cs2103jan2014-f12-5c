@@ -1,6 +1,7 @@
 //@author A0101568J
 
 #include "DateGetter.h"
+#include <exception>
 
 
 DateGetter::DateGetter(string& uncategorizedInfo, string Command) :Tokenizer(uncategorizedInfo), _command(Command) { 
@@ -13,6 +14,7 @@ DateGetter::~DateGetter(void) {
 string DateGetter::tokenize() {
 	string Date = EMPTY_DATE;
 	string keyword;
+	string save = *_uncategorizedInfo;
 	unsigned int indicator = ZERO;
 
 	if (_command == ADD || _command == EDIT || _command == DISPLAY) {
@@ -77,7 +79,7 @@ string DateGetter::tokenize() {
 
 		//if the command is display and afterall no date is retrieved
 		//remove the preposition "by" added at the beginning
-/*		if (Date == EMPTY_DATE && _command == DISPLAY) {
+		if (Date == EMPTY_DATE && _command == DISPLAY) {
 			*_uncategorizedInfo = (*_uncategorizedInfo).substr(FOUR_UNIT);
 			string checker = (*_uncategorizedInfo).substr(START, EIGHT_UNIT);
 
@@ -86,7 +88,11 @@ string DateGetter::tokenize() {
 				*_uncategorizedInfo = (*_uncategorizedInfo).substr(EIGHT_UNIT);
 			}
 		}
-*/
+
+		if (isNumber(Date) && Date.size() <= NINE_UNIT && stoi(Date) > MAX_DATE) {
+			*_uncategorizedInfo = save;
+		}
+
 //		if (Date == EMPTY_DATE && _command == EDIT) {
 //			string checker = (*_uncategorizedInfo).substr(START, EIGHT_UNIT);
 //
@@ -280,7 +286,7 @@ string DateGetter::getDateFromWeek(string &Input, string keyword) {
 			convertWeek(week);
 
 			if (isNumber(week)) {
-				taskDayOfWeek = taskDayOfWeek + std::stoi(week);
+				taskDayOfWeek = taskDayOfWeek + stoi(week);
 				localTime = time(NULL);
 				localtime_s(&timenow, &localTime);
 
@@ -588,9 +594,9 @@ string DateGetter::getDateForBeforeAfter(string Date, string keyword) {
 		time_t local = time(NULL);
 		localtime_s(&timeNow, &local);
 
-		timeNow.tm_year = std::stoi(year) - YEAR_ADDER;
-		timeNow.tm_mon = std::stoi(month) - ONE_UNIT;
-		timeNow.tm_mday = std::stoi(day);
+		timeNow.tm_year = stoi(year) - YEAR_ADDER;
+		timeNow.tm_mon = stoi(month) - ONE_UNIT;
+		timeNow.tm_mday = stoi(day);
 
 		if (keyword == BEFORE) {
 			timeNow.tm_mday--;
@@ -686,8 +692,16 @@ void DateGetter::convertWeek(string &Week) {
 string DateGetter::convertDateFromDescription(string description, string descriptionTwo) {
 	int adder = ZERO;
 
-	if (isNumber(descriptionTwo)) {
-		adder = std::stoi(descriptionTwo);
+	try {
+		if (descriptionTwo.size() > NINE_UNIT) {
+			throw descriptionTwo;
+		}
+	} catch (string e) {
+		descriptionTwo = EMPTY_STRING;
+	}
+
+	if (isNumber(descriptionTwo) && descriptionTwo.size() != ZERO) {
+		adder = stoi(descriptionTwo);
 	}
 
 	//decide which kind of days set to be added
