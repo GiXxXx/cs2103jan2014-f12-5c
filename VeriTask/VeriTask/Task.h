@@ -13,8 +13,8 @@
 
 using namespace std;
 
-const string EMPTY_DATE = "        ";
-const string EMPTY_TIME = "    ";
+const string EMPTY_DATES = "        ";
+const string EMPTY_TIMES = "    ";
 
 const int TWO_POSITION = 2;
 const int SIX_POSITION = 6;
@@ -32,8 +32,8 @@ const int TWO_ZEROS = 100;
 const int ONE_NINE_ZERO_ZERO = 1900;
 const int ONE = 1;
 
-const string DONE = "done";
-const string OVERDUE = "overdue";
+const string DONE_STATUS = "done";
+const string OVERDUE_STATUS = "overdue";
 
 class Task {
 
@@ -60,20 +60,20 @@ private:
 		
 		//if there is no date, set it to be 999999, so that it will be sorted
 		//to the back as floating task.
-		if (date == EMPTY_DATE) {
+		if (date == EMPTY_DATES) {
 			date_Int = LARGE_DATE;
 		} else {
 			date_Int = stoi(date.substr(TWO_POSITION, SIX_POSITION));
 		}
 		
 		//if there is no time, set it to be 9999
-		if (startTime == EMPTY_TIME) {
+		if (startTime == EMPTY_TIMES) {
 			startTime_Int = LARGE_TIME;
 		} else {
 			startTime_Int = stoi(startTime);
 		}
 	
-		if (endTime == EMPTY_TIME) {
+		if (endTime == EMPTY_TIMES) {
 			endTime_Int = LARGE_TIME;
 		} else {
 			endTime_Int = stoi(endTime);
@@ -102,14 +102,14 @@ private:
 	    
 		//check whether a task is overdue
 		//if a task is not marked as done and has passed deadline, then it's overdue
-		if ((date != EMPTY_DATE) && (status != DONE)) {
+		if ((date != EMPTY_DATES) && (status != DONE_STATUS)) {
 			if (localYear * FOUR_ZEROS + localMonth * TWO_ZEROS + localDate > stoi(date)) {
-				status = OVERDUE;
+				status = OVERDUE_STATUS;
 			} else if (localYear * FOUR_ZEROS + localMonth * TWO_ZEROS + localDate == stoi(date)) {
 				//deadline task is overdue if time now is later than deadline
-				if ((startTime != EMPTY_TIME) && (endTime == EMPTY_TIME)) {
+				if ((startTime != EMPTY_TIMES) && (endTime == EMPTY_TIMES)) {
 					if ((localHour * TWO_ZEROS + localMin) > stoi(startTime)) {
-					status = OVERDUE;
+					status = OVERDUE_STATUS;
 					}
 				}
 				
@@ -117,7 +117,7 @@ private:
 				//of the task
 				if ((startTime != EMPTY_TIME) && (endTime != EMPTY_TIME)) {
 					if ((localHour * 100 + localMin) > stoi(endTime)) {
-						status = OVERDUE;
+						status = OVERDUE_STATUS;
 					}
 				}
 			}

@@ -22,13 +22,6 @@ using namespace std;
 
 const string FILENAME = "data.txt";
 
-const string EMPTY_DATE ="        ";
-
-const int FOUR_ZEROS = 10000;
-const int TWO_ZEROS = 100;
-const int ONE_NINE_ZERO_ZERO = 1900;
-const int ONE =1;
-
 class DataStorage {
 private:
 	vector<Task> _taskList; //stores all tasks, serve as a temporage storage
@@ -87,7 +80,7 @@ private:
 			int localMonth = timeNow.tm_mon + ONE;
 			int localDate = timeNow.tm_mday;
 
-			if ((_iter->getDate() == EMPTY_DATE) || 
+			if ((_iter->getDate() == EMPTY_DATES) || 
 				localYear * FOUR_ZEROS + localMonth * TWO_ZEROS + localDate == std::stoi(_iter->getDate())) {
 				_taskListToDisplay.push_back(*_iter);
 			}
