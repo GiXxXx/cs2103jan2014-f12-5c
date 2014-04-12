@@ -17,9 +17,9 @@
 
 using namespace std;
 
-const string EMPTY_DATE = "        ";
-const string EMPTY_TIME = "    ";
-const string EMPTY_STRING = "";
+//const string EMPTY_DATE = "        ";
+//const string EMPTY_TIME = "    ";
+//const string EMPTY_STRING = "";
 
 class TaskEditer:public Operation {
 public:

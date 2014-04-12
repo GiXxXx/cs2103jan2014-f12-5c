@@ -22,6 +22,8 @@ const string DISPLAY_COMMAND = "display";
 const string UNDO_COMMAND = "undo";
 const string REDO_COMMAND = "redo";
 
+
+
 class Operation {
 public:
 	Operation(void);
