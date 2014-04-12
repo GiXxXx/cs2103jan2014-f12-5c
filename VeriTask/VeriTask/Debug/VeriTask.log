@@ -1,50 +1,62 @@
-﻿Build started 12/4/2014 1:55:45 PM.
-     1>Project "C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\VeriTask.vcxproj" on node 2 (Build target(s)).
+﻿Build started 12/4/2014 4:22:15 PM.
+     1>Project "C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\VeriTask.vcxproj" on node 2 (Rebuild target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt AddTask.cpp Command.cpp DataStorage.cpp DateGetter.cpp DeleteTask.cpp EditTask.cpp Identifier.cpp MarkTask.cpp SearchTask.cpp Task.cpp TaskDisplayer.cpp TextUI.cpp TimeGetter.cpp VeriTask.cpp
-         TimeGetter.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt TaskAdder.cpp CommandGetter.cpp DataStorage.cpp DateGetter.cpp TaskDeleter.cpp TaskEditer.cpp EventGetter.cpp Identifier.cpp KeywordGetter.cpp TaskMarker.cpp TimeGetter.cpp StatusGetter.cpp TaskDisplayer.cpp TaskNumGetter.cpp TextUI.cpp Tokenizer.cpp VeriTask.cpp TaskSearcher.cpp Operation.cpp Task.cpp
          Task.cpp
+     1>c:\users\yujia\desktop\newproject\veritask\veritask\Task.h(118): error C2065: 'EMPTY_TIME' : undeclared identifier
+         Operation.cpp
+     1>c:\users\yujia\desktop\newproject\veritask\veritask\Task.h(118): error C2065: 'EMPTY_TIME' : undeclared identifier
+     1>c:\users\yujia\desktop\newproject\veritask\veritask\Tokenizer.h(206): error C2373: 'OVERDUE_STATUS' : redefinition; different type modifiers
+                 c:\users\yujia\desktop\newproject\veritask\veritask\Task.h(36) : see declaration of 'OVERDUE_STATUS'
+         TaskSearcher.cpp
+     1>c:\users\yujia\desktop\newproject\veritask\veritask\Task.h(118): error C2065: 'EMPTY_TIME' : undeclared identifier
+     1>c:\users\yujia\desktop\newproject\veritask\veritask\Tokenizer.h(206): error C2373: 'OVERDUE_STATUS' : redefinition; different type modifiers
+                 c:\users\yujia\desktop\newproject\veritask\veritask\Task.h(36) : see declaration of 'OVERDUE_STATUS'
+         VeriTask.cpp
+     1>c:\users\yujia\desktop\newproject\veritask\veritask\Task.h(118): error C2065: 'EMPTY_TIME' : undeclared identifier
+     1>c:\users\yujia\desktop\newproject\veritask\veritask\Tokenizer.h(206): error C2373: 'OVERDUE_STATUS' : redefinition; different type modifiers
+                 c:\users\yujia\desktop\newproject\veritask\veritask\Task.h(36) : see declaration of 'OVERDUE_STATUS'
+         Tokenizer.cpp
+         TextUI.cpp
+     1>c1xx : fatal error C1083: Cannot open source file: 'TextUI.cpp': No such file or directory
+         TaskNumGetter.cpp
+     1>TaskNumGetter.cpp(13): error C2065: 'EMPTYSTRING' : undeclared identifier
+     1>TaskNumGetter.cpp(14): error C2065: 'PUNCTUATIONSET' : undeclared identifier
+     1>TaskNumGetter.cpp(15): error C2065: 'PUNCTUATIONSET' : undeclared identifier
+     1>TaskNumGetter.cpp(33): error C2065: 'EMPTYSTRING' : undeclared identifier
+         TaskDisplayer.cpp
+     1>c:\users\yujia\desktop\newproject\veritask\veritask\Task.h(118): error C2065: 'EMPTY_TIME' : undeclared identifier
+     1>c:\users\yujia\desktop\newproject\veritask\veritask\Tokenizer.h(206): error C2373: 'OVERDUE_STATUS' : redefinition; different type modifiers
+                 c:\users\yujia\desktop\newproject\veritask\veritask\Task.h(36) : see declaration of 'OVERDUE_STATUS'
+         StatusGetter.cpp
+         TimeGetter.cpp
+         TaskMarker.cpp
+     1>c:\users\yujia\desktop\newproject\veritask\veritask\Task.h(118): error C2065: 'EMPTY_TIME' : undeclared identifier
+     1>c:\users\yujia\desktop\newproject\veritask\veritask\Tokenizer.h(206): error C2373: 'OVERDUE_STATUS' : redefinition; different type modifiers
+                 c:\users\yujia\desktop\newproject\veritask\veritask\Task.h(36) : see declaration of 'OVERDUE_STATUS'
+         KeywordGetter.cpp
          Identifier.cpp
-         EditTask.cpp
+         EventGetter.cpp
+         TaskEditer.cpp
+     1>c:\users\yujia\desktop\newproject\veritask\veritask\Task.h(118): error C2065: 'EMPTY_TIME' : undeclared identifier
+     1>c:\users\yujia\desktop\newproject\veritask\veritask\Tokenizer.h(206): error C2373: 'OVERDUE_STATUS' : redefinition; different type modifiers
+                 c:\users\yujia\desktop\newproject\veritask\veritask\Task.h(36) : see declaration of 'OVERDUE_STATUS'
+         TaskDeleter.cpp
+     1>c:\users\yujia\desktop\newproject\veritask\veritask\Task.h(118): error C2065: 'EMPTY_TIME' : undeclared identifier
+     1>c:\users\yujia\desktop\newproject\veritask\veritask\Tokenizer.h(206): error C2373: 'OVERDUE_STATUS' : redefinition; different type modifiers
+                 c:\users\yujia\desktop\newproject\veritask\veritask\Task.h(36) : see declaration of 'OVERDUE_STATUS'
          DateGetter.cpp
          DataStorage.cpp
+     1>c:\users\yujia\desktop\newproject\veritask\veritask\Task.h(118): error C2065: 'EMPTY_TIME' : undeclared identifier
+     1>DataStorage.cpp(84): error C2065: 'EMPTY_DATE' : undeclared identifier
+         CommandGetter.cpp
+         TaskAdder.cpp
+     1>c:\users\yujia\desktop\newproject\veritask\veritask\Task.h(118): error C2065: 'EMPTY_TIME' : undeclared identifier
+     1>c:\users\yujia\desktop\newproject\veritask\veritask\Tokenizer.h(206): error C2373: 'OVERDUE_STATUS' : redefinition; different type modifiers
+                 c:\users\yujia\desktop\newproject\veritask\veritask\Task.h(36) : see declaration of 'OVERDUE_STATUS'
          Generating Code...
-         Compiling...
-         VeriTask.cpp
-         TextUI.cpp
-         TaskDisplayer.cpp
-         SearchTask.cpp
-         MarkTask.cpp
-         DeleteTask.cpp
-         Command.cpp
-         AddTask.cpp
-         Generating Code...
-       Lib:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\Lib.exe /OUT:"C:\Users\YuJia\Desktop\NewProject\VeriTask\Debug\VeriTask.lib" /NOLOGO Debug\VeriTask.res
-         Debug\AddTask.obj
-         Debug\CommandGetter.obj
-         Debug\DataStorage.obj
-         Debug\DateGetter.obj
-         Debug\DeleteTask.obj
-         Debug\EditTask.obj
-         Debug\EventGetter.obj
-         Debug\Identifier.obj
-         Debug\KeywordGetter.obj
-         Debug\MarkTask.obj
-         Debug\TimeGetter.obj
-         Debug\StatusGetter.obj
-         Debug\TaskDisplayer.obj
-         Debug\TaskNumGetter.obj
-         Debug\TextUI.obj
-         Debug\Tokenizer.obj
-         Debug\VeriTask.obj
-         Debug\SearchTask.obj
-         Debug\Command.obj
-         Debug\Task.obj
-     1>LINK : warning LNK4068: /MACHINE not specified; defaulting to X86
-         VeriTask.vcxproj -> C:\Users\YuJia\Desktop\NewProject\VeriTask\Debug\VeriTask.lib
-     1>Done Building Project "C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\VeriTask.vcxproj" (Build target(s)).
+     1>Done Building Project "C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\VeriTask.vcxproj" (Rebuild target(s)) -- FAILED.
 
-Build succeeded.
+Build FAILED.
 
-Time Elapsed 00:00:11.24
+Time Elapsed 00:00:18.80

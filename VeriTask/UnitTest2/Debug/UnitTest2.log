@@ -1,23 +1,17 @@
-﻿Build started 12/4/2014 3:17:23 PM.
+﻿Build started 12/4/2014 4:22:34 PM.
      1>Project "C:\Users\YuJia\Desktop\NewProject\VeriTask\UnitTest2\UnitTest2.vcxproj" on node 2 (Rebuild target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Users\Pang\Desktop\2103\cs2103jan2014-f12-5c\VeriTask\VeriTask" /I"C:\Users\GAO JIACHENG\Desktop\New folder (4)\VeriTask\VeriTask" /I"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\UnitTest\include" /IC:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDLL /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp"Debug\UnitTest2.pch" /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /FC /errorReport:prompt stdafx.cpp
          stdafx.cpp
-     1>c:\users\yujia\desktop\newproject\veritask\veritask\datastorage.h(25): error C2370: 'EMPTY_DATE' : redefinition; different storage class
-                 c:\users\yujia\desktop\newproject\veritask\veritask\task.h(16) : see declaration of 'EMPTY_DATE'
-     1>c:\users\yujia\desktop\newproject\veritask\veritask\datastorage.h(27): error C2370: 'FOUR_ZEROS' : redefinition; different storage class
-                 c:\users\yujia\desktop\newproject\veritask\veritask\task.h(29) : see declaration of 'FOUR_ZEROS'
-     1>c:\users\yujia\desktop\newproject\veritask\veritask\datastorage.h(28): error C2370: 'TWO_ZEROS' : redefinition; different storage class
-                 c:\users\yujia\desktop\newproject\veritask\veritask\task.h(30) : see declaration of 'TWO_ZEROS'
-     1>c:\users\yujia\desktop\newproject\veritask\veritask\datastorage.h(29): error C2370: 'ONE_NINE_ZERO_ZERO' : redefinition; different storage class
-                 c:\users\yujia\desktop\newproject\veritask\veritask\task.h(32) : see declaration of 'ONE_NINE_ZERO_ZERO'
-     1>c:\users\yujia\desktop\newproject\veritask\veritask\datastorage.h(30): error C2370: 'ONE' : redefinition; different storage class
-                 c:\users\yujia\desktop\newproject\veritask\veritask\task.h(33) : see declaration of 'ONE'
-     1>c:\users\yujia\desktop\newproject\veritask\veritask\datastorage.h(90): error C2088: '==' : illegal for class
-     1>c:\users\yujia\desktop\newproject\veritask\veritask\task.h(16): error C2370: 'EMPTY_DATE' : redefinition; different storage class
-                 c:\users\yujia\desktop\newproject\veritask\veritask\task.h(16) : see declaration of 'EMPTY_DATE'
-     1>c:\users\yujia\desktop\newproject\veritask\veritask\task.h(17): error C2370: 'EMPTY_TIME' : redefinition; different storage class
-                 c:\users\yujia\desktop\newproject\veritask\veritask\task.h(17) : see declaration of 'EMPTY_TIME'
+     1>c:\users\yujia\desktop\newproject\veritask\veritask\task.h(36): error C2373: 'OVERDUE_STATUS' : redefinition; different type modifiers
+                 c:\users\yujia\desktop\newproject\veritask\veritask\tokenizer.h(206) : see declaration of 'OVERDUE_STATUS'
+     1>c:\users\yujia\desktop\newproject\veritask\veritask\task.h(107): error C2440: '=' : cannot convert from 'const std::string [11]' to 'std::string'
+     1>c:\users\yujia\desktop\newproject\veritask\veritask\task.h(112): error C2440: '=' : cannot convert from 'const std::string [11]' to 'std::string'
+     1>c:\users\yujia\desktop\newproject\veritask\veritask\task.h(120): error C2440: '=' : cannot convert from 'const std::string [11]' to 'std::string'
+     1>c:\users\yujia\desktop\newproject\veritask\veritask\task.h(16): error C2370: 'EMPTY_DATES' : redefinition; different storage class
+                 c:\users\yujia\desktop\newproject\veritask\veritask\task.h(16) : see declaration of 'EMPTY_DATES'
+     1>c:\users\yujia\desktop\newproject\veritask\veritask\task.h(17): error C2370: 'EMPTY_TIMES' : redefinition; different storage class
+                 c:\users\yujia\desktop\newproject\veritask\veritask\task.h(17) : see declaration of 'EMPTY_TIMES'
      1>c:\users\yujia\desktop\newproject\veritask\veritask\task.h(19): error C2370: 'TWO_POSITION' : redefinition; different storage class
                  c:\users\yujia\desktop\newproject\veritask\veritask\task.h(19) : see declaration of 'TWO_POSITION'
      1>c:\users\yujia\desktop\newproject\veritask\veritask\task.h(20): error C2370: 'SIX_POSITION' : redefinition; different storage class
@@ -40,22 +34,13 @@
                  c:\users\yujia\desktop\newproject\veritask\veritask\task.h(32) : see declaration of 'ONE_NINE_ZERO_ZERO'
      1>c:\users\yujia\desktop\newproject\veritask\veritask\task.h(33): error C2370: 'ONE' : redefinition; different storage class
                  c:\users\yujia\desktop\newproject\veritask\veritask\task.h(33) : see declaration of 'ONE'
-     1>c:\users\yujia\desktop\newproject\veritask\veritask\task.h(35): error C2370: 'DONE' : redefinition; different storage class
-                 c:\users\yujia\desktop\newproject\veritask\veritask\task.h(35) : see declaration of 'DONE'
-     1>c:\users\yujia\desktop\newproject\veritask\veritask\task.h(36): error C2370: 'OVERDUE' : redefinition; different storage class
-                 c:\users\yujia\desktop\newproject\veritask\veritask\task.h(36) : see declaration of 'OVERDUE'
+     1>c:\users\yujia\desktop\newproject\veritask\veritask\task.h(35): error C2370: 'DONE_STATUS' : redefinition; different storage class
+                 c:\users\yujia\desktop\newproject\veritask\veritask\task.h(35) : see declaration of 'DONE_STATUS'
+                 c:\users\yujia\desktop\newproject\veritask\veritask\tokenizer.h(206) : see declaration of 'OVERDUE_STATUS'
      1>c:\users\yujia\desktop\newproject\veritask\veritask\task.h(38): error C2011: 'Task' : 'class' type redefinition
                  c:\users\yujia\desktop\newproject\veritask\veritask\task.h(38) : see declaration of 'Task'
-     1>c:\users\yujia\desktop\newproject\veritask\veritask\taskdisplayer.h(21): error C2370: 'EMPTY_DATE' : redefinition; different storage class
-                 c:\users\yujia\desktop\newproject\veritask\veritask\task.h(16) : see declaration of 'EMPTY_DATE'
-     1>c:\users\yujia\desktop\newproject\veritask\veritask\taskediter.h(20): error C2370: 'EMPTY_DATE' : redefinition; different storage class
-                 c:\users\yujia\desktop\newproject\veritask\veritask\task.h(16) : see declaration of 'EMPTY_DATE'
-     1>c:\users\yujia\desktop\newproject\veritask\veritask\taskediter.h(21): error C2370: 'EMPTY_TIME' : redefinition; different storage class
-                 c:\users\yujia\desktop\newproject\veritask\veritask\task.h(17) : see declaration of 'EMPTY_TIME'
-     1>c:\users\yujia\desktop\newproject\veritask\veritask\taskediter.h(22): error C2370: 'EMPTY_STRING' : redefinition; different storage class
-                 c:\users\yujia\desktop\newproject\veritask\veritask\taskdisplayer.h(22) : see declaration of 'EMPTY_STRING'
      1>Done Building Project "C:\Users\YuJia\Desktop\NewProject\VeriTask\UnitTest2\UnitTest2.vcxproj" (Rebuild target(s)) -- FAILED.
 
 Build FAILED.
 
-Time Elapsed 00:00:01.06
+Time Elapsed 00:00:00.98
