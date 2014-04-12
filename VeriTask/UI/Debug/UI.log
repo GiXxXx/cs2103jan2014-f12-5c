@@ -1,15 +1,11 @@
-﻿Build started 2014/4/11 7:37:05.
-     1>Project "C:\Users\GAO JIACHENG\Desktop\V0.4\VeriTask\UI\UI.vcxproj" on node 2 (Build target(s)).
+﻿Build started 12/4/2014 10:49:05 AM.
+     1>Project "C:\Users\YuJia\Desktop\NewProject\VeriTask\UI\UI.vcxproj" on node 3 (Rebuild target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\VC\bin\CL.exe /c /I"E:\Study\University\SEM 4\CS2103-CS2103T\Project\Project\VeriTask\VeriTask" /I"C:\Users\GAO JIACHENG\Desktop\V0.4\VeriTask\VeriTask" /I"C:\Users\Pang\Desktop\2103\cs2103jan2014-f12-5c\VeriTask\VeriTask" /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\\" /AI"C:\Program Files (x86)\Windows Kits\8.0\References\CommonConfiguration\Neutral" /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\\" /Zi /clr /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /TP /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\mscorlib.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Drawing.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Windows.Forms.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xml.dll" /analyze- /errorReport:prompt /clr:nostdlib VeriTaskGUI.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"E:\Study\University\SEM 4\CS2103-CS2103T\Project\Project\VeriTask\VeriTask" /I"C:\Users\GAO JIACHENG\Desktop\V0.4\VeriTask\VeriTask" /I"C:\Users\Pang\Desktop\2103\cs2103jan2014-f12-5c\VeriTask\VeriTask" /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\\" /AI"C:\Program Files (x86)\Windows Kits\8.0\References\CommonConfiguration\Neutral" /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\\" /Zi /clr /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /TP /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\mscorlib.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Drawing.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Windows.Forms.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xml.dll" /analyze- /errorReport:prompt /clr:nostdlib VeriTaskGUI.cpp
          VeriTaskGUI.cpp
-       Link:
-         C:\Program Files (x86)\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\GAO JIACHENG\Desktop\V0.4\VeriTask\Debug\UI.exe" /INCREMENTAL /NOLOGO /ASSEMBLYRESOURCE:Debug\UI.VeriTaskGUI.resources /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\GAO JIACHENG\Desktop\V0.4\VeriTask\Debug\UI.pdb" /ASSEMBLYDEBUG /TLBID:1 /ENTRY:"main" /DYNAMICBASE /FIXED:NO /NXCOMPAT /MACHINE:X86 Debug\VeriTaskGUI.obj
-         "Debug\.NETFramework,Version=v4.5.AssemblyAttributes.obj"
-         "C:\Users\GAO JIACHENG\Desktop\V0.4\VeriTask\Debug\VeriTask.lib"
-         UI.vcxproj -> C:\Users\GAO JIACHENG\Desktop\V0.4\VeriTask\Debug\UI.exe
-     1>Done Building Project "C:\Users\GAO JIACHENG\Desktop\V0.4\VeriTask\UI\UI.vcxproj" (Build target(s)).
+     1>c:\users\yujia\desktop\newproject\veritask\ui\VeriTaskGUI.h(3): fatal error C1083: Cannot open include file: 'Identifier.h': No such file or directory
+     1>Done Building Project "C:\Users\YuJia\Desktop\NewProject\VeriTask\UI\UI.vcxproj" (Rebuild target(s)) -- FAILED.
 
-Build succeeded.
+Build FAILED.
 
-Time Elapsed 00:00:03.47
+Time Elapsed 00:00:00.85
