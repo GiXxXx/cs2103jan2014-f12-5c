@@ -1,3 +1,5 @@
+//@author A0101039X
+
 #include "TaskDisplayer.h"
 
 
@@ -5,41 +7,27 @@ TaskDisplayer::TaskDisplayer(void) {
 }
 
 
-TaskDisplayer::~TaskDisplayer(void) {
-}
+void TaskDisplayer::executeCommand(Identifier infoIdentifier, DataStorage &dataStorage) {
+	//retrieve relevant user input
+	string date = infoIdentifier.getDate();
+	string status = infoIdentifier.getStatus();
 
-void TaskDisplayer::executeCommand(Identifier infoIdentifier, DataStorage &dataStorage, TextUI textUI) {
-	string date = infoIdentifier.GetDate();
-	string startTime = infoIdentifier.GetStartTime();
-	string endTime = infoIdentifier.GetEndTime();
-	string event = infoIdentifier.GetEvent();
-	string keyword = infoIdentifier.GetKeyword();
-	string status = infoIdentifier.GetStatus();
-	bool isFound;
-
-	if (date != "        ") {
-		isFound = dataStorage.searchDataDate(date);
-		if (isFound) {
-			//textUI.printSearchConfirmationYes();
-			//textUI.printTaskToDisplay(dataStorage);
-		} else {
-			//textUI.printSearchConfirmationNo();
-		}
+	//display tasks of a certain date
+	if (date != EMPTY_DATE) {
+		dataStorage.searchDate(date);
 	}
-	if (status !="") {
-		if (status == "all") {
-			isFound = dataStorage.searchData("");
+
+	//display tasks based on status
+	if (status !=EMPTY_STRING) {
+		if (status == ALL) {
+			dataStorage.searchData(EMPTY_STRING);
 		} else {
-		    isFound = dataStorage.searchDataStatus(status);
-		    if (isFound) {
-			   // textUI.printSearchConfirmationYes();
-			    //textUI.printTaskToDisplay(dataStorage);
-		    } else {
-			   // textUI.printSearchConfirmationNo();
-		    }
+		    dataStorage.searchStatus(status);
 	    }
-	if (date == "        " && status == "") {
-		//textUI.printTask(dataStorage);
+
+	//display all tasks
+	if (date == EMPTY_DATE && status == EMPTY_STRING) {
+		dataStorage.searchData(EMPTY_STRING);
 		}
 	}
 }
