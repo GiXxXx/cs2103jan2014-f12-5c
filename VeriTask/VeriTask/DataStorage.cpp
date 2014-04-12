@@ -16,20 +16,20 @@ DataStorage::DataStorage(string fileName) {
 	_searchTaskToday();
 }
 
-inline vector<Task> DataStorage::retrieveTaskList() {
+vector<Task> DataStorage::retrieveTaskList() {
 	return _taskList;
 }
 
-inline vector<Task> DataStorage::retrieveTaskListToDisplay() {
+vector<Task> DataStorage::retrieveTaskListToDisplay() {
 	return _taskListToDisplay;
 }
 
-inline unsigned long long int DataStorage::retrieveTaskID(int taskNum) {
+unsigned long long int DataStorage::retrieveTaskID(int taskNum) {
 	unsigned long long int taskID = _taskListToDisplay[taskNum - 1].getID();
 	return taskID;
 }
 
-inline Task DataStorage::retrieveTask(int taskNum) {
+Task DataStorage::retrieveTask(int taskNum) {
 	Task task = _taskListToDisplay[taskNum - 1];
 	return task;
 }
@@ -141,14 +141,14 @@ void DataStorage::saveFile() {
 	write.close();
 }
 
-inline void DataStorage::setTaskIndex(int taskIndex) {
+void DataStorage::setTaskIndex(int taskIndex) {
 	_taskIndex = taskIndex;
 }
 
-inline int DataStorage::getTaskIndex() {
+int DataStorage::getTaskIndex() {
 	return _taskIndex;
 }
 
-inline void DataStorage::updateTaskListToDisplay(vector<Task> taskListToDisplay) {
+void DataStorage::updateTaskListToDisplay(vector<Task> taskListToDisplay) {
 	_taskListToDisplay = taskListToDisplay;
 }

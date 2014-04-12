@@ -127,18 +127,18 @@ private:
 public:
 	Task(string event, string date, string startTime, string endTime, string status, int index);
 	
-	inline string getEvent();
-	inline string getDate();
-	inline string getStartTime();
-	inline string getEndTime();
-	inline string getStatus();
-	inline unsigned long long getID();
-	inline int getIndex();
+	string getEvent();
+	string getDate();
+	string getStartTime();
+	string getEndTime();
+	string getStatus();
+	unsigned long long getID();
+	int getIndex();
 
-	inline void setEvent(string event);
-	inline void setDate(string date);
-	inline void setStartTime(string startTime);
-	inline void setEndTime(string endTime);
-	inline void setStatus(string status);
-	inline void setID(unsigned long long ID);
+	void setEvent(string event);
+	void setDate(string date);
+	void setStartTime(string startTime);
+	void setEndTime(string endTime);
+	void setStatus(string status);
+	void setID(unsigned long long ID);
 };
