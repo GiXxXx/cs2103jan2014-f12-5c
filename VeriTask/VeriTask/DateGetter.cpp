@@ -12,7 +12,7 @@ DateGetter::~DateGetter(void) {
 }
 
 string DateGetter::tokenize() {
-	string Date = EMPTY_DATE;
+	string date = EMPTY_DATE;
 	string keyword;
 	string save = *_uncategorizedInfo;
 	unsigned int indicator = ZERO;
@@ -39,38 +39,38 @@ string DateGetter::tokenize() {
 			string checker = (*_uncategorizedInfo).substr(posOne, posTwo - posOne);
 
 			if (isNumber(checker) && checker.size() == EIGHT_UNIT) {
-				Date = checker;
+				date = checker;
 				chopInfo(*_uncategorizedInfo, posOne, checker.size());
 			}
 		}
 
-		while (Date == EMPTY_DATE && indicator < NINE_UNIT) {
+		while (date == EMPTY_DATE && indicator < NINE_UNIT) {
 
 			keyword = PREPOSITION[indicator];
 			cout << "asdasd = " << "fk u " << endl;
-			Date = getDateFromDate(*_uncategorizedInfo, keyword);
+			date = getDateFromDate(*_uncategorizedInfo, keyword);
 
-			if (Date == EMPTY_DATE) {
-				Date = getDateFromWeek(*_uncategorizedInfo, keyword);
+			if (date == EMPTY_DATE) {
+				date = getDateFromWeek(*_uncategorizedInfo, keyword);
 			}
 
-			if (Date == EMPTY_DATE) {
-				Date = getDateFromNumberOfDays(*_uncategorizedInfo, keyword);
+			if (date == EMPTY_DATE) {
+				date = getDateFromNumberOfDays(*_uncategorizedInfo, keyword);
 			}
 
-			if (Date == EMPTY_DATE) {
-				Date = getDateFromTomorrow(*_uncategorizedInfo, keyword);
+			if (date == EMPTY_DATE) {
+				date = getDateFromTomorrow(*_uncategorizedInfo, keyword);
 			}
 
-			if (Date == EMPTY_DATE) {
-				Date = getDateFromFestival(*_uncategorizedInfo, keyword);
+			if (date == EMPTY_DATE) {
+				date = getDateFromFestival(*_uncategorizedInfo, keyword);
 			}
 
 			//if a date is rerieved when the preposition is before
 			//or after, do increment or decrement
-			Date = getDateForBeforeAfter(Date, keyword);
+			date = getDateForBeforeAfter(date, keyword);
 
-			if (Date != EMPTY_DATE) {
+			if (date != EMPTY_DATE) {
 				break;
 			}
 
@@ -79,31 +79,22 @@ string DateGetter::tokenize() {
 
 		//if the command is display and afterall no date is retrieved
 		//remove the preposition "by" added at the beginning
-		if (Date == EMPTY_DATE && _command == DISPLAY) {
+		if (date == EMPTY_DATE && _command == DISPLAY) {
 			*_uncategorizedInfo = (*_uncategorizedInfo).substr(FOUR_UNIT);
 			string checker = (*_uncategorizedInfo).substr(START, EIGHT_UNIT);
 
 			if (isNumber(checker) && checker.size() == EIGHT_UNIT) {
-				Date = checker;
+				date = checker;
 				*_uncategorizedInfo = (*_uncategorizedInfo).substr(EIGHT_UNIT);
 			}
 		}
 
-		if (isNumber(Date) && Date.size() <= NINE_UNIT && stoi(Date) > MAX_DATE) {
+		if (isNumber(date) && date.size() <= NINE_UNIT && stoi(date) > MAX_DATE) {
 			*_uncategorizedInfo = save;
 		}
-
-//		if (Date == EMPTY_DATE && _command == EDIT) {
-//			string checker = (*_uncategorizedInfo).substr(START, EIGHT_UNIT);
-//
-//			if (isNumber(checker) && checker.size() == EIGHT_UNIT) {
-//				Date = checker;
-//				*_uncategorizedInfo = (*_uncategorizedInfo).substr(EIGHT_UNIT);
-//			}
-//		}
 	}
 
-	return Date;
+	return date;
 }
 
 

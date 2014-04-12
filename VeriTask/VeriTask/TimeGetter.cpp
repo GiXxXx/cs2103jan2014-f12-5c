@@ -51,14 +51,6 @@ string TimeGetter::tokenize() {
 		*_uncategorizedInfo = save;
 	}
 
-//	if (time == EMPTY_TIME && _command == EDIT) {
-//		string checker = (*_uncategorizedInfo).substr(START, FOUR_UNIT);
-//		if (isNumber(checker) && checker.size() == FOUR_UNIT) {
-//			time = checker;
-//			*_uncategorizedInfo = (*_uncategorizedInfo).substr(FOUR_UNIT);
-//		}
-//	}
-
 	return time;
 }
 
