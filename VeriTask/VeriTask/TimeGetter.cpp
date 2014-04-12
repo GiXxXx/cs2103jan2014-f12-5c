@@ -16,8 +16,8 @@ string TimeGetter::tokenize() {
 	unsigned int indicator = ZERO;
 
 	if (_command == ADD || _command == EDIT) {
-		unsigned int posOne = (*_uncategorizedInfo).find_first_not_of(PUNCTUATIONSET);
-		unsigned int posTwo = (*_uncategorizedInfo).find_first_of(PUNCTUATIONSET, posOne);
+		unsigned int posOne = (*_uncategorizedInfo).find_first_not_of(PUNCTUATION_SET);
+		unsigned int posTwo = (*_uncategorizedInfo).find_first_of(PUNCTUATION_SET, posOne);
 
 		//get thr time from rigid input
 		//eg. 1330 go home
@@ -74,8 +74,8 @@ string TimeGetter::getTime(string Input, string keyword) {
 
 		if (position != string::npos) {
 			tempTime = duplicate.substr(position + keyword.size());
-			sizeOne = tempTime.find_first_of(PUNCTUATIONSET);
-			sizeTwo = tempTime.find_first_of(PUNCTUATIONSET, sizeOne + ONE_UNIT);
+			sizeOne = tempTime.find_first_of(PUNCTUATION_SET);
+			sizeTwo = tempTime.find_first_of(PUNCTUATION_SET, sizeOne + ONE_UNIT);
 
 			checker = tempTime.substr(sizeOne + ONE_UNIT, sizeTwo - sizeOne - ONE_UNIT);
 
@@ -91,7 +91,7 @@ string TimeGetter::getTime(string Input, string keyword) {
 			tempTime = tempTime.substr(START, sizeOne);
 
 			if (isNumber(tempTime) && hourStandard == ZERO) {
-				tempTime = EMPTYSTRING;
+				tempTime = EMPTY_STRING;
 			}
 
 			//following to check the hour standard for
@@ -256,8 +256,8 @@ string TimeGetter::getTimeFromMorning(string Input, string keyword) {
 
 string TimeGetter::convertToTime(string tempTime) {
 	int position = tempTime.find(COLON);
-	string hour = EMPTYSTRING;
-	string minute = EMPTYSTRING;
+	string hour = EMPTY_STRING;
+	string minute = EMPTY_STRING;
 
 	if (position == string::npos) {
 		position = tempTime.find(DOT);
@@ -268,7 +268,8 @@ string TimeGetter::convertToTime(string tempTime) {
 		minute = tempTime.substr(position + ONE_UNIT);
 	}
 
-	if (isNumber(hour) && isNumber(minute) && hour != EMPTYSTRING && minute != EMPTYSTRING) {
+	if (isNumber(hour) && isNumber(minute) 
+		&& hour != EMPTY_STRING && minute != EMPTY_STRING) {
 		if (hour.size() == ONE_UNIT) {
 			hour = ZERO_STRING + hour;
 		}

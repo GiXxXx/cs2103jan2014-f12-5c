@@ -11,21 +11,21 @@ EventGetter::~EventGetter() {
 }
 
 string EventGetter:: tokenize() {
-	string Event = EMPTYSTRING;
+	string Event = EMPTY_STRING;
 	unsigned int position = (*_uncategorizedInfo).find_last_not_of(SPACE);
 	unsigned int startPos = START;
 
 	if (position == string::npos) {
-		Event = EMPTYSTRING;
+		Event = EMPTY_STRING;
 	} else if (_command == ADD || _command == EDIT) {
 		Event = (*_uncategorizedInfo).substr(START, position + ONE_UNIT);
-    	unsigned int positionOne = Event.find_first_not_of(PUNCTUATIONSET);
+    	unsigned int positionOne = Event.find_first_not_of(PUNCTUATION_SET);
 
 		if (positionOne != string::npos) {
         	Event = Event.substr(positionOne);
 		}
 
-        positionOne = Event.find_last_not_of(PUNCTUATIONSET);
+        positionOne = Event.find_last_not_of(PUNCTUATION_SET);
 
 		//remove the extra punctuation at the end of
 		//the string, and replace the extra punctuations
@@ -37,9 +37,9 @@ string EventGetter:: tokenize() {
     		Event = Event.substr(START, positionOne + ONE_UNIT);
 
 			for (int i = ZERO; i < FIVE_UNIT; i++) {
-				positionOne = punctuations.find(PUNCTUATIONARRAY[i]);
+				positionOne = punctuations.find(PUNCTUATION_ARRAY[i]);
 				if (positionOne != string::npos) {
-					Event = Event + PUNCTUATIONARRAY[i];
+					Event = Event + PUNCTUATION_ARRAY[i];
 					break;
 				}
 			}
@@ -47,10 +47,10 @@ string EventGetter:: tokenize() {
 
 		//remove all the extra punctuations start from the beginning
 		do {
-			positionOne = Event.find_first_of(PUNCTUATIONSET, startPos);
+			positionOne = Event.find_first_of(PUNCTUATION_SET, startPos);
 
 			if (positionOne != string::npos) {
-				unsigned int positionTwo = Event.find_first_not_of(PUNCTUATIONSET, positionOne);
+				unsigned int positionTwo = Event.find_first_not_of(PUNCTUATION_SET, positionOne);
 				unsigned int size = ZERO;
 
 				if (positionTwo != string::npos) {
@@ -62,9 +62,9 @@ string EventGetter:: tokenize() {
     				unsigned int position;
 
 	    			for (int i = ZERO; i < SIX_UNIT; i++) {
-	    		    	position = temp.find(PUNCTUATIONARRAY[i]);
+	    		    	position = temp.find(PUNCTUATION_ARRAY[i]);
 	    	          	if (position != string::npos) {
-	    			    	Event = Event.substr(START, positionOne) + PUNCTUATIONARRAY[i]
+	    			    	Event = Event.substr(START, positionOne) + PUNCTUATION_ARRAY[i]
 								    + SPACE + Event.substr(positionTwo);
 	    		    		break;
 	    	    		}

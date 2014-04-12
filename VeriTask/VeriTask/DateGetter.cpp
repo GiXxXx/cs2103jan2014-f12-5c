@@ -19,7 +19,7 @@ string DateGetter::tokenize() {
 		//if the command word is display, add a preposition to the
 		//beginning of the string for retrieveing date
 		if (_command == DISPLAY) {
-			unsigned int position = (*_uncategorizedInfo).find_first_not_of(PUNCTUATIONSET);
+			unsigned int position = (*_uncategorizedInfo).find_first_not_of(PUNCTUATION_SET);
 
 			if (position != string::npos) {
 				*_uncategorizedInfo = (*_uncategorizedInfo).substr(position);
@@ -27,8 +27,8 @@ string DateGetter::tokenize() {
 			}
 		}
 
-		unsigned int posOne = (*_uncategorizedInfo).find_first_not_of(PUNCTUATIONSET);
-		unsigned int posTwo = (*_uncategorizedInfo).find_first_of(PUNCTUATIONSET, posOne);
+		unsigned int posOne = (*_uncategorizedInfo).find_first_not_of(PUNCTUATION_SET);
+		unsigned int posTwo = (*_uncategorizedInfo).find_first_of(PUNCTUATION_SET, posOne);
 
 		//for rigid format input
 		//if the first eight char is eight digits, return it as date
@@ -199,7 +199,7 @@ string DateGetter::getDateFromWeek(string &Input, string keyword) {
 	unsigned int position;
 	unsigned int startPos = START;
 	unsigned int size;
-	string week = EMPTYSTRING, tempDate;
+	string week = EMPTY_STRING, tempDate;
 	string Date = EMPTY_DATE;
 	string duplicate = Input;
 
@@ -211,7 +211,7 @@ string DateGetter::getDateFromWeek(string &Input, string keyword) {
 		if (position != string::npos) {
 			tempDate = duplicate.substr(position + keyword.size());
 
-			positionOne = tempDate.find_first_of(PUNCTUATIONSET);
+			positionOne = tempDate.find_first_of(PUNCTUATION_SET);
 			week = tempDate.substr(START, positionOne);
 			size = positionOne;
 
@@ -219,7 +219,7 @@ string DateGetter::getDateFromWeek(string &Input, string keyword) {
 			//but like on this friday, on next friday
 			if (week == NEXT) {
 				positionOne = positionOne + ONE_UNIT;
-				positionTwo = tempDate.find_first_of(PUNCTUATIONSET, positionOne);
+				positionTwo = tempDate.find_first_of(PUNCTUATION_SET, positionOne);
 				size = positionTwo;
 				week = tempDate.substr(positionOne, positionTwo - positionOne);
 				taskDayOfWeek = SEVEN_UNIT;
@@ -227,7 +227,7 @@ string DateGetter::getDateFromWeek(string &Input, string keyword) {
 
 			if (week == THIS) {
 				positionOne = positionOne + ONE_UNIT;
-				positionTwo = tempDate.find_first_of(PUNCTUATIONSET, positionOne);
+				positionTwo = tempDate.find_first_of(PUNCTUATION_SET, positionOne);
 				size = positionTwo;
 				week = tempDate.substr(positionOne, positionTwo - positionOne);
 			}
@@ -241,7 +241,7 @@ string DateGetter::getDateFromWeek(string &Input, string keyword) {
 
 		//situation whn user haveno preposition
 		//sample typing:go home and have dinner this friday
-		if (week == EMPTYSTRING && keyword == AT && position == string::npos) {
+		if (week == EMPTY_STRING && keyword == AT && position == string::npos) {
 			startPos = ZERO;
 			do {
 				position = duplicate.find(SPACE + THIS, startPos);
@@ -263,7 +263,7 @@ string DateGetter::getDateFromWeek(string &Input, string keyword) {
 					weekConvertor(checker);
 
 					if (isNumber(checker)) {
-						keyword = EMPTYSTRING;
+						keyword = EMPTY_STRING;
 						size = week.size() + SIX_UNIT;
 						break;
 					}
@@ -275,7 +275,7 @@ string DateGetter::getDateFromWeek(string &Input, string keyword) {
 		}
 
 		//get the date when items like friday, this friday is identified
-		if (!isNumber(week) && week != EMPTYSTRING) {
+		if (!isNumber(week) && week != EMPTY_STRING) {
 
 			weekConvertor(week);
 
@@ -371,7 +371,7 @@ string DateGetter::getDateFromTomorrow(string& Input, string keyword) {
 
 					//if immediately after the keyword, words like "today", "tomorrow" are
 					//found, convert to date and chop original string
-					if (positionOne == ZERO && tempDate.find_first_of(PUNCTUATIONSET) == size) {
+					if (positionOne == ZERO && tempDate.find_first_of(PUNCTUATION_SET) == size) {
 						Date = convertDateFromDescription(description[indicator], SPACE);
 						chopInfo(Input, position, description[indicator].size() + keyword.size());
 						break;

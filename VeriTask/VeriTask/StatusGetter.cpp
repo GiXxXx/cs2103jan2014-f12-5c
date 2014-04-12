@@ -10,7 +10,7 @@ StatusGetter::~StatusGetter() {
 }
 
 string StatusGetter::tokenize() {
-	string status = NOSTATUS;
+	string status = NO_STATUS;
 	string temp = status;
 	int wordCount = ZERO;
 	int indicator = ZERO;
@@ -21,7 +21,7 @@ string StatusGetter::tokenize() {
 	unsigned int positionTwo = ZERO;
 	unsigned int startPos = ZERO;
 
-	positionOne = (*_uncategorizedInfo).find_first_not_of(PUNCTUATIONSET, startPos);
+	positionOne = (*_uncategorizedInfo).find_first_not_of(PUNCTUATION_SET, startPos);
 
 	if (positionOne != string::npos) {
 		temp = (*_uncategorizedInfo).substr(positionOne);
@@ -29,10 +29,10 @@ string StatusGetter::tokenize() {
 
 	//check number of words inside the user input
 	while (positionOne != string::npos && startPos != string::npos) {
-		positionOne = (*_uncategorizedInfo).find_first_not_of(PUNCTUATIONSET, startPos);
+		positionOne = (*_uncategorizedInfo).find_first_not_of(PUNCTUATION_SET, startPos);
 
 		if (positionOne != string::npos) {
-			positionTwo = (*_uncategorizedInfo).find_first_of(PUNCTUATIONSET, positionOne);
+			positionTwo = (*_uncategorizedInfo).find_first_of(PUNCTUATION_SET, positionOne);
 		}
 
 		if (positionTwo != string::npos && positionOne != string::npos) {
@@ -43,7 +43,7 @@ string StatusGetter::tokenize() {
 	}
 
 	if (wordCount == ZERO) {
-		status = EMPTYSTRING;
+		status = EMPTY_STRING;
 	}
 
 	//if more than one word, check status from the
@@ -107,7 +107,7 @@ string StatusGetter::tokenize() {
 			status = status;
 		}
 	} else {
-		status = EMPTYSTRING;
+		status = EMPTY_STRING;
 	}
 
 	return status;
