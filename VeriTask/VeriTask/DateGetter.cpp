@@ -1,323 +1,378 @@
+//@author A0101568J
+
 #include "DateGetter.h"
 
 
-DateGetter::DateGetter(string& uncategorizedInfo, string Command) :Tokenizer(uncategorizedInfo), command(Command){
+DateGetter::DateGetter(string& uncategorizedInfo, string Command) :Tokenizer(uncategorizedInfo), _command(Command) { 
 }
 
 
-DateGetter::~DateGetter(void){
+DateGetter::~DateGetter(void) {
 }
 
-string DateGetter::Tokenize(){
-	string Date = LargeDate, keyword;
-	unsigned int indicator = zero;
+string DateGetter::tokenize() {
+	string Date = EMPTY_DATE;
+	string keyword;
+	unsigned int indicator = ZERO;
 
-	if (command == Add || command == Edit || command == Display){
-		if (command == Display){
-			unsigned int position = (*uncategorizedInfo).find_first_not_of(space);
+	if (_command == ADD || _command == EDIT || _command == DISPLAY) {
+		//if the command word is display, add a preposition to the
+		//beginning of the string for retrieveing date
+		if (_command == DISPLAY) {
+			unsigned int position = (*_uncategorizedInfo).find_first_not_of(PUNCTUATIONSET);
 
-			if (position != string::npos){
-				*uncategorizedInfo = (*uncategorizedInfo).substr(position);
-				*uncategorizedInfo = by + *uncategorizedInfo;
+			if (position != string::npos) {
+				*_uncategorizedInfo = (*_uncategorizedInfo).substr(position);
+				*_uncategorizedInfo = BY + *_uncategorizedInfo;
 			}
 		}
 
-		unsigned int posOne = (*uncategorizedInfo).find_first_not_of(space);
-		unsigned int posTwo = (*uncategorizedInfo).find_first_of(space, posOne);
+		unsigned int posOne = (*_uncategorizedInfo).find_first_not_of(PUNCTUATIONSET);
+		unsigned int posTwo = (*_uncategorizedInfo).find_first_of(PUNCTUATIONSET, posOne);
 
-		if (posOne != string::npos){
-			string checker = (*uncategorizedInfo).substr(posOne, posTwo - posOne);
+		//for rigid format input
+		//if the first eight char is eight digits, return it as date
+		//and chop the string
+		if (posOne != string::npos) {
+			string checker = (*_uncategorizedInfo).substr(posOne, posTwo - posOne);
 
-			if (isNumber(checker) && checker.size() == EightUnit){
+			if (isNumber(checker) && checker.size() == EIGHT_UNIT) {
 				Date = checker;
-				chopInfo(*uncategorizedInfo, posOne, checker.size());
+				chopInfo(*_uncategorizedInfo, posOne, checker.size());
 			}
 		}
 
-		while (Date == LargeDate && indicator < NineUnit){
+		while (Date == EMPTY_DATE && indicator < NINE_UNIT) {
 
-			keyword = preposition[indicator];
+			keyword = PREPOSITION[indicator];
 
-			Date = GetDateFromDate(*uncategorizedInfo, keyword);
+			Date = getDateFromDate(*_uncategorizedInfo, keyword);
 
-			if (Date == LargeDate){
-				Date = GetDateFromWeek(*uncategorizedInfo, keyword);
+			if (Date == EMPTY_DATE) {
+				Date = getDateFromWeek(*_uncategorizedInfo, keyword);
 			}
 
-			if (Date == LargeDate){
-				Date = GetDateFromDescriptionOne(*uncategorizedInfo, keyword);
+			if (Date == EMPTY_DATE) {
+				Date = getDateFromNumberOfDays(*_uncategorizedInfo, keyword);
 			}
 
-			if (Date == LargeDate){
-				Date = GetDateFromDescriptionTwo(*uncategorizedInfo, keyword);
+			if (Date == EMPTY_DATE) {
+				Date = getDateFromTomorrow(*_uncategorizedInfo, keyword);
 			}
 
-			if (Date == LargeDate){
-				Date = GetDateFromFestival(*uncategorizedInfo, keyword);
+			if (Date == EMPTY_DATE) {
+				Date = getDateFromFestival(*_uncategorizedInfo, keyword);
 			}
 
-			GetDateForBeforeAfter(Date, keyword);
+			//if a date is rerieved when the preposition is before
+			//or after, do increment or decrement
+			Date = getDateForBeforeAfter(Date, keyword);
 
-			if (Date != LargeDate){
+			if (Date != EMPTY_DATE) {
 				break;
 			}
 
-			indicator += OneUnit;
+			indicator += ONE_UNIT;
 		}
 
-		if (Date == LargeDate && command == Display){
-			*uncategorizedInfo = (*uncategorizedInfo).substr(FourUnit);
-			string checker = (*uncategorizedInfo).substr(start, EightUnit);
-			if (isNumber(checker) && checker.size() == EightUnit){
-				Date = checker;
-				*uncategorizedInfo = (*uncategorizedInfo).substr(EightUnit);
-			}
-		}
+		//if the command is display and afterall no date is retrieved
+		//remove the preposition "by" added at the beginning
+/*		if (Date == EMPTY_DATE && _command == DISPLAY) {
+			*_uncategorizedInfo = (*_uncategorizedInfo).substr(FOUR_UNIT);
+			string checker = (*_uncategorizedInfo).substr(START, EIGHT_UNIT);
 
-		if (Date == LargeDate && command == Edit){
-			string checker = (*uncategorizedInfo).substr(start, EightUnit);
-			if (isNumber(checker) && checker.size() == EightUnit){
+			if (isNumber(checker) && checker.size() == EIGHT_UNIT) {
 				Date = checker;
-				*uncategorizedInfo = (*uncategorizedInfo).substr(EightUnit);
+				*_uncategorizedInfo = (*_uncategorizedInfo).substr(EIGHT_UNIT);
 			}
 		}
+*/
+//		if (Date == EMPTY_DATE && _command == EDIT) {
+//			string checker = (*_uncategorizedInfo).substr(START, EIGHT_UNIT);
+//
+//			if (isNumber(checker) && checker.size() == EIGHT_UNIT) {
+//				Date = checker;
+//				*_uncategorizedInfo = (*_uncategorizedInfo).substr(EIGHT_UNIT);
+//			}
+//		}
 	}
 
 	return Date;
 }
 
 
-string DateGetter::GetDateFromDate(string &Input, string keyword){
-	string Date = LargeDate, tempDate, elementOne, elementTwo, elementThree, duplicate = Input;
-	unsigned int position, startPos = start, positionOne, positionTwo;
-	ChangeToLowerCase(duplicate);
+string DateGetter::getDateFromDate(string &Input, string keyword) {
+	string Date = EMPTY_DATE;
+	string tempDate;
+	string elementOne;
+	string elementTwo;
+	string elementThree;
+	string duplicate = Input;
+	unsigned int position;
+	unsigned int startPos = START;
+	unsigned int positionOne;
+	unsigned int positionTwo;
 
-	do{
+	changeToLowerCase(duplicate);
+
+	do {
 		position = duplicate.find(keyword, startPos);
 
-		if (position != string::npos){
+		if (position != string::npos) {
 			tempDate = duplicate.substr(position + keyword.size());
 
-			positionOne = tempDate.find_first_of(slash);
-			positionTwo = tempDate.find_last_of(slash);
+			positionOne = tempDate.find_first_of(SLASH);
+			positionTwo = tempDate.find_last_of(SLASH);
 
-			if (positionOne == string::npos || positionTwo == string::npos || positionOne == positionTwo){
-				positionOne = tempDate.find_first_of(dot);
-				positionTwo = tempDate.find_last_of(dot);
+			if (positionOne == string::npos || positionTwo == string::npos || positionOne == positionTwo) {
+				positionOne = tempDate.find_first_of(DOT);
+				positionTwo = tempDate.find_last_of(DOT);
 			}
 
-			if (positionOne == string::npos || positionTwo == string::npos || positionOne == positionTwo){
-				positionOne = tempDate.find_first_of(dash);
-				positionTwo = tempDate.find_last_of(dash);
+			if (positionOne == string::npos || positionTwo == string::npos || positionOne == positionTwo) {
+				positionOne = tempDate.find_first_of(DASH);
+				positionTwo = tempDate.find_last_of(DASH);
 			}
 
-			if (positionOne == string::npos || positionTwo == string::npos || positionOne == positionTwo){
-				positionOne = tempDate.find_first_of(space);
-				positionTwo = tempDate.find_first_of(space, positionOne + OneUnit);
+			if (positionOne == string::npos || positionTwo == string::npos || positionOne == positionTwo) {
+				positionOne = tempDate.find_first_of(SPACE);
+				positionTwo = tempDate.find_first_of(SPACE, positionOne + ONE_UNIT);
 			}
 
-			if (positionOne != string::npos && positionTwo != string::npos && positionOne != positionTwo){
-				elementOne = tempDate.substr(start, positionOne);
-				elementTwo = tempDate.substr(positionOne + OneUnit, positionTwo - positionOne - OneUnit);
-				elementThree = tempDate.substr(positionTwo + OneUnit, FourUnit);
+			//if formate like 2014-11-22, 2014/11/22, 22 11 2014..is detected, get all the numbers as elements
+			if (positionOne != string::npos && positionTwo != string::npos && positionOne != positionTwo) {
+				elementOne = tempDate.substr(START, positionOne);
+				elementTwo = tempDate.substr(positionOne + ONE_UNIT, positionTwo - positionOne - ONE_UNIT);
+				elementThree = tempDate.substr(positionTwo + ONE_UNIT, FOUR_UNIT);
 
-				unsigned int endPos = tempDate.find_first_of(space);
+				unsigned int endPos = tempDate.find_first_of(SPACE);
 
-				if (!isNumber(elementTwo)){
-					MonthConvertor(elementTwo);
+				if (!isNumber(elementTwo)) {
+					monthConvertor(elementTwo);
 				}
 
-				if (!isNumber(elementThree)){
-					elementThree = tempDate.substr(positionTwo + OneUnit, TwoUnit);
+				if (!isNumber(elementThree)) {
+					elementThree = tempDate.substr(positionTwo + ONE_UNIT, TWO_UNIT);
 				}
 
-				if (!isNumber(elementThree)){
-					elementThree = tempDate.substr(positionTwo + OneUnit, OneUnit);
+				if (!isNumber(elementThree)) {
+					elementThree = tempDate.substr(positionTwo + ONE_UNIT, ONE_UNIT);
 				}
 
-				ChangeDoubleDigit(elementOne);
-				ChangeDoubleDigit(elementTwo);
-				ChangeDoubleDigit(elementThree);
+				changeDoubleDigit(elementOne);
+				changeDoubleDigit(elementTwo);
+				changeDoubleDigit(elementThree);
 
-				if (elementOne.size() == FourUnit){
+				if (elementOne.size() == FOUR_UNIT) {
 					tempDate = elementOne + elementTwo + elementThree;
 				}
 
-				if (elementThree.size() == FourUnit){
+				if (elementThree.size() == FOUR_UNIT) {
 					tempDate = elementThree + elementTwo + elementOne;
 				}
 
-				if (isNumber(tempDate)){
+				//after convert the numbers to the date format
+				//check whether the date is the correct format type
+				//if yes, return date and chop original string
+				//if no, return empty date and no chop
+				if (isNumber(tempDate)) {
 					Date = tempDate;
-					chopInfo((*uncategorizedInfo), position, endPos + keyword.size());
+					chopInfo((*_uncategorizedInfo), position, endPos + keyword.size());
 					break;
 				}
 			}
 
-			startPos = position + OneUnit;
+			startPos = position + ONE_UNIT;
 		}
 	} while (position != string::npos);
 
 	return Date;
 }
 
-string DateGetter::GetDateFromWeek(string &Input, string keyword){
+string DateGetter::getDateFromWeek(string &Input, string keyword) {
 	char buffer[100] = { 0 };
 	time_t localTime;
 	struct tm timenow;
-	int taskDayOfWeek = zero;
-	unsigned int positionOne, positionTwo, position, startPos = start;
+	int taskDayOfWeek = ZERO;
+	unsigned int positionOne;
+	unsigned int positionTwo;
+	unsigned int position;
+	unsigned int startPos = START;
 	unsigned int size;
-	string week = emptyString, tempDate;
-	string Date = LargeDate;
+	string week = EMPTYSTRING, tempDate;
+	string Date = EMPTY_DATE;
 	string duplicate = Input;
 
-	ChangeToLowerCase(duplicate);
+	changeToLowerCase(duplicate);
 
-	do{
+	do {
 		position = duplicate.find(keyword, startPos);
 
-		if (position != string::npos){
+		if (position != string::npos) {
 			tempDate = duplicate.substr(position + keyword.size());
 
-			positionOne = tempDate.find_first_of(punctuationSet);
-			week = tempDate.substr(start, positionOne);
+			positionOne = tempDate.find_first_of(PUNCTUATIONSET);
+			week = tempDate.substr(START, positionOne);
 			size = positionOne;
 
-			if (week == Next){
-				positionOne = positionOne + OneUnit;
-				positionTwo = tempDate.find_first_of(punctuationSet, positionOne);
+			//case when not typing the week alone like on friday
+			//but like on this friday, on next friday
+			if (week == NEXT) {
+				positionOne = positionOne + ONE_UNIT;
+				positionTwo = tempDate.find_first_of(PUNCTUATIONSET, positionOne);
 				size = positionTwo;
 				week = tempDate.substr(positionOne, positionTwo - positionOne);
-				taskDayOfWeek = std::stoi(seven);
+				taskDayOfWeek = SEVEN_UNIT;
 			}
 
-			if (week == This){
-				positionOne = positionOne + OneUnit;
-				positionTwo = tempDate.find_first_of(punctuationSet, positionOne);
+			if (week == THIS) {
+				positionOne = positionOne + ONE_UNIT;
+				positionTwo = tempDate.find_first_of(PUNCTUATIONSET, positionOne);
 				size = positionTwo;
 				week = tempDate.substr(positionOne, positionTwo - positionOne);
 			}
 
-			if (week == Week || week == Weeks){
-				week = sun;
+			//by this week, in this week
+			//the deadline will be the sunday
+			if (week == WEEK || week == WEEKS) {
+				week = SUN;
 			}
 		}
 
-		if (week == emptyString && keyword == at && position == string::npos){
-			startPos = zero;
-			do{
-				position = duplicate.find(space + This, startPos);
+		//situation whn user haveno preposition
+		//sample typing:go home and have dinner this friday
+		if (week == EMPTYSTRING && keyword == AT && position == string::npos) {
+			startPos = ZERO;
+			do {
+				position = duplicate.find(SPACE + THIS, startPos);
 
-				if (position != string::npos){
-					taskDayOfWeek = zero;
+				if (position != string::npos) {
+					taskDayOfWeek = ZERO;
 				}
-				else if (position == string::npos){
-					position = duplicate.find(space + Next, startPos);
-					taskDayOfWeek = SevenUnit;
+				else if (position == string::npos) {
+					position = duplicate.find(SPACE + NEXT, startPos);
+					taskDayOfWeek = SEVEN_UNIT;
 				}
 
-				if (position != string::npos){
-					int begin = position + SixUnit;
-					int end = duplicate.find_first_of(space, begin);
+				if (position != string::npos) {
+					int begin = position + SIX_UNIT;
+					int end = duplicate.find_first_of(SPACE, begin);
 					week = duplicate.substr(begin, end - begin);
+
 					string checker = week;
-					WeekConvertor(checker);
-					if (isNumber(checker)){
-						keyword = emptyString;
-						size = week.size() + SixUnit;
+					weekConvertor(checker);
+
+					if (isNumber(checker)) {
+						keyword = EMPTYSTRING;
+						size = week.size() + SIX_UNIT;
 						break;
 					}
 				}
 
-				startPos = position + OneUnit;
+				startPos = position + SIX_UNIT;
 
 			} while (position != string::npos);
 		}
 
-			if (!isNumber(week) && week != emptyString){
+		//get the date when items like friday, this friday is identified
+		if (!isNumber(week) && week != EMPTYSTRING) {
 
-				WeekConvertor(week);
+			weekConvertor(week);
 
-				if (isNumber(week)){
-					taskDayOfWeek = taskDayOfWeek + std::stoi(week);
-					localTime = time(NULL);
-					localtime_s(&timenow, &localTime);
+			if (isNumber(week)) {
+				taskDayOfWeek = taskDayOfWeek + std::stoi(week);
+				localTime = time(NULL);
+				localtime_s(&timenow, &localTime);
 
-					strftime(buffer, 100, "%Y-%m-%A-%d", &timenow);
+				strftime(buffer, 100, "%Y-%m-%A-%d", &timenow);
 
-					int currentDayOfWeek = (timenow.tm_wday + 6) % 7;
-					int currentYear = timenow.tm_year + 1900;
-					int currentMonth = timenow.tm_mon + 1;
-					int currentday = timenow.tm_mday;
-					int currentTotalDay = timenow.tm_yday;
-					int taskDay;
-					int taskMonth = currentMonth;
-					int taskYear = currentYear;
+				int currentDayOfWeek = (timenow.tm_wday + SIX_UNIT) % SEVEN_UNIT;
+				int currentYear = timenow.tm_year + YEAR_ADDER;
+				int currentMonth = timenow.tm_mon + ONE_UNIT;
+				int currentday = timenow.tm_mday;
+				int currentTotalDay = timenow.tm_yday;
+				int taskDay;
+				int taskMonth = currentMonth;
+				int taskYear = currentYear;
 
-					taskDay = currentday + taskDayOfWeek - currentDayOfWeek;
+				taskDay = currentday + taskDayOfWeek - currentDayOfWeek;
 
-					if ((currentMonth == 1 || currentMonth == 3 || currentMonth == 5 || currentMonth == 7 || currentMonth == 8
-						|| currentMonth == 10 || currentMonth == 12) && taskDay>31){
-						taskDay = taskDay - 31;
+				if ((currentMonth == ONE_UNIT || currentMonth == THREE_UNIT || 
+					currentMonth == FIVE_UNIT || currentMonth == SEVEN_UNIT || 
+					currentMonth == EIGHT_UNIT || currentMonth == TEN_UNIT || 
+					currentMonth == TEN_UNIT+ TWO_UNIT) && taskDay > MONTH_DAYS) {
+					taskDay = taskDay - MONTH_DAYS;
+					++taskMonth;
+					} else if ((currentMonth == FOUR_UNIT || currentMonth == SIX_UNIT ||
+				    currentMonth == NINE_UNIT || currentMonth == TEN_UNIT + ONE_UNIT)
+					&& taskDay > TEN_UNIT * THREE_UNIT) {
+					taskDay = taskDay - TEN_UNIT * THREE_UNIT;
+		     			++taskMonth;
+			    	} else if (currentMonth == TWO_UNIT && currentYear % FOUR_UNIT == ZERO
+						&& taskDay > TEN_UNIT * THREE_UNIT - ONE_UNIT) {
+						taskDay = taskDay - (TEN_UNIT * THREE_UNIT - ONE_UNIT);
+						++taskMonth;
+					} else if (currentMonth == TWO_UNIT && currentYear % FOUR_UNIT != ZERO 
+						&& taskDay > TEN_UNIT * THREE_UNIT - TWO_UNIT) {
+						taskDay = taskDay - (TEN_UNIT * THREE_UNIT - TWO_UNIT);
 						++taskMonth;
 					}
-					else if ((currentMonth == 4 || currentMonth == 6 || currentMonth == 9 || currentMonth == 11) && taskDay>30){
-						taskDay = taskDay - 30;
-						++taskMonth;
-					}
-					else if (currentMonth == 2 && currentYear % 4 == 0 && taskDay>29){
-						taskDay = taskDay - 29;
-						++taskMonth;
-					}
-					else if (currentMonth == 2 && currentYear % 4 != 0 && taskDay>28){
-						taskDay = taskDay - 28;
-						++taskMonth;
-					}
 
-					if (taskMonth>12){
-						taskMonth = taskMonth - 12;
+					if (taskMonth > TEN_UNIT + TWO_UNIT) {
+						taskMonth = taskMonth - (TEN_UNIT + TWO_UNIT);
 						++taskYear;
 					}
 
-					Date = DateConverter(taskYear, taskMonth, taskDay);
+					Date = convertToDate(taskYear, taskMonth, taskDay);
 					chopInfo(Input, position, size + keyword.size());
 					break;
 				}
 			}
 
-			startPos = position + OneUnit;
+			startPos = position + ONE_UNIT;
 
-	} while (position != string::npos && Date == LargeDate);
+	} while (position != string::npos && Date == EMPTY_DATE);
 
 	return Date;
 }
 
-string DateGetter::GetDateFromDescriptionTwo(string& Input, string keyword){
-	string Date = LargeDate, tempDate, duplicate = Input;
-	unsigned int position, startPos = start, positionOne, positionTwo, indicator = zero, size;
-	string description[SevenUnit] = { theDayAfterTomorrow, theDayAfterTmr, dayAfterTomorrow, dayAfterTmr, tomorrow, tmr, today };
+string DateGetter::getDateFromTomorrow(string& Input, string keyword) {
+	string Date = EMPTY_DATE;
+	string tempDate;
+	string duplicate = Input;
 
-	ChangeToLowerCase(duplicate);
+	unsigned int position, startPos = START;
+	unsigned int positionOne;
+	unsigned int positionTwo;
+	unsigned int indicator = ZERO;
+	unsigned int size;
+	string description[SEVEN_UNIT] = { THE_DAY_AFTER_TOMORROW, THE_DAY_AFTER_TMR, 
+		                               DAY_AFTER_TOMORROW, DAY_AFTER_TMR,
+									   TOMORROW, TMR, TODAY };
 
-	if (keyword == after){
-		indicator = FourUnit;
+	changeToLowerCase(duplicate);
+
+	//exclude the case for after the day after tomorrow
+	if (keyword == AFTER) {
+		indicator = FOUR_UNIT;
 	}
 
-	do{
+	do {
 		position = duplicate.find(keyword, startPos);
 
-		if (position != string::npos){
+		if (position != string::npos) {
 			tempDate = duplicate.substr(position + keyword.size());
 
-			while (Date == LargeDate && indicator < SevenUnit){
+			while (Date == EMPTY_DATE && indicator < SEVEN_UNIT) {
 				positionOne = tempDate.find(description[indicator]);
 
-				if (positionOne != string::npos){
+				if (positionOne != string::npos) {
 					size = description[indicator].size();
 
-					if (positionOne == zero && tempDate.find_first_of(space) == size){
-						Date = DateConvertorFromDescription(description[indicator], space);
+					//if immediately after the keyword, words like "today", "tomorrow" are
+					//found, convert to date and chop original string
+					if (positionOne == ZERO && tempDate.find_first_of(PUNCTUATIONSET) == size) {
+						Date = convertDateFromDescription(description[indicator], SPACE);
 						chopInfo(Input, position, description[indicator].size() + keyword.size());
 						break;
 					}
@@ -326,34 +381,37 @@ string DateGetter::GetDateFromDescriptionTwo(string& Input, string keyword){
 				indicator++;
 			}
 
-			startPos = position + OneUnit;
+			startPos = position + ONE_UNIT;
 		}
 
-	} while (position != string::npos && Date == LargeDate);
+	} while (position != string::npos && Date == EMPTY_DATE);
 
-	indicator = zero;
+	indicator = ZERO;
 
-	while (Date == LargeDate && indicator < SevenUnit && keyword == at){
+	//when no keyword is identified and no date found
+	//try to find "today", "the day afer..." alone
+	while (Date == EMPTY_DATE && indicator < SEVEN_UNIT && keyword == AT) {
 		positionOne = duplicate.find(description[indicator]);
 
-		if (positionOne == zero){
-			Date = DateConvertorFromDescription(description[indicator], space);
+		if (positionOne == ZERO) {
+			Date = convertDateFromDescription(description[indicator], SPACE);
 			chopInfo(Input, positionOne, description[indicator].size());
 			break;
-		}
-		else{
+		} else {
 			positionTwo = duplicate.rfind(description[indicator]);
 
-			if (positionTwo != string::npos){
-				string checker = duplicate.substr(positionTwo + description[indicator].size() + OneUnit, TenUnit);
+			if (positionTwo != string::npos) {
+				string checker = duplicate.substr(positionTwo + description[indicator].size()
+					+ ONE_UNIT, TEN_UNIT);
 
-				if (checker == tenSpaces){
-					Date = DateConvertorFromDescription(description[indicator], space);
+				//if there are two words indicating date found, make the word
+				//appear first or last as the top priority when identify the date
+				if (checker == TEN_SPACES && positionOne != START) {
+					Date = convertDateFromDescription(description[indicator], SPACE);
 					chopInfo(Input, positionTwo, description[indicator].size());
 					break;
-				}
-				else{
-					Date = DateConvertorFromDescription(description[indicator], space);
+				} else {
+					Date = convertDateFromDescription(description[indicator], SPACE);
 					chopInfo(Input, positionOne, description[indicator].size());
 					break;
 				}
@@ -366,35 +424,56 @@ string DateGetter::GetDateFromDescriptionTwo(string& Input, string keyword){
 	return Date;
 }
 
-string DateGetter::GetDateFromDescriptionOne(string& Input, string keyword){
-	string Date = LargeDate, tempDate, element, number, duplicate = Input;
-	unsigned int position, startPos = start, positionOne, indicator = zero;
-	string description[EightUnit] = { days, day, months, month, years, year, Week, Weeks };
-	string descriptionTwo[SixUnit] = { space + This + space + Week, space + This + space + month, space + This + space + year,
-		space + Next + space + Week, space + Next + space + month, space + Next + space + year };
+string DateGetter::getDateFromNumberOfDays(string& Input, string keyword) {
+	string Date = EMPTY_DATE;
+	string tempDate;
+	string element;
+	string number;
+	string duplicate = Input;
 
-	ChangeToLowerCase(duplicate);
+	unsigned int position;
+	unsigned int startPos = START;
+	unsigned int positionOne;
+	unsigned int indicator = ZERO;
 
-	do{
+	string description[EIGHT_UNIT] = { DAYS, DAY, MONTH, MONTHS,
+		                               YEAR, YEARS, WEEK, WEEKS };
+
+	string descriptionTwo[SIX_UNIT] = { SPACE + THIS + SPACE + WEEK, 
+		                                SPACE + THIS + SPACE + MONTH,
+		                                SPACE + THIS + SPACE + YEAR,
+										SPACE + NEXT + SPACE + WEEK,
+										SPACE + NEXT + SPACE + MONTH,
+										SPACE + NEXT + SPACE + YEAR, };
+
+	changeToLowerCase(duplicate);
+
+	do {
 		position = duplicate.find(keyword, startPos);
 
-		if (position != string::npos){
-			while (Date == LargeDate && indicator < EightUnit){
+		if (position != string::npos) {
+			while (Date == EMPTY_DATE && indicator < EIGHT_UNIT) {
 				tempDate = duplicate.substr(position);
 				positionOne = tempDate.find(description[indicator]);
 
-				if (positionOne != string::npos && positionOne != zero && tempDate.substr(positionOne - OneUnit, OneUnit) == space){
-					tempDate = tempDate.substr(keyword.size(), positionOne - OneUnit - keyword.size());
+				if (positionOne != string::npos && positionOne != ZERO 
+					&& tempDate.substr(positionOne - ONE_UNIT, ONE_UNIT) == SPACE) {
+					tempDate = tempDate.substr(keyword.size(), 
+						positionOne - ONE_UNIT - keyword.size());
 
 					number = tempDate;
 
-					if (!isNumber(tempDate) && tempDate != This && tempDate != Next){
+					//situation when there is no digit between eg. in three days
+					//instead of in 3 days, convert the word to digit
+					//return zero if the word is nbot representing a number
+					if (!isNumber(tempDate) && tempDate != THIS && tempDate != NEXT) {
 						number = changeWordToNumber(tempDate);
 					}
 
-					if (number != Zero){
-						Date = DateConvertorFromDescription(description[indicator], number);
-						chopInfo(Input, position, keyword.size() + OneUnit + tempDate.size() + description[indicator].size());
+					if (number != ZERO_STRING) {
+						Date = convertDateFromDescription(description[indicator], number);
+						chopInfo(Input, position, keyword.size() + ONE_UNIT + 
+							tempDate.size() + description[indicator].size());
 						break;
 					}
 				}
@@ -402,20 +481,23 @@ string DateGetter::GetDateFromDescriptionOne(string& Input, string keyword){
 				indicator++;
 			}
 
-			startPos = position + OneUnit;
+			startPos = position + ONE_UNIT;
 		}
 
 	} while (position != string::npos);
 
-	if (Date == LargeDate && keyword == at){
-		for (int i = zero; i < SixUnit; i++){
+	//when no date is identified at the end
+	//directly find the keywords
+	//eg. this year, this week
+	if (Date == EMPTY_DATE && keyword == AT) {
+		for (int i = ZERO; i < SIX_UNIT; i++) {
 			position = duplicate.find(descriptionTwo[i]);
 
-			if (position != string::npos){
-				string temp = descriptionTwo[i].substr(SixUnit);
-				number = descriptionTwo[i].substr(OneUnit, FourUnit);
-				Date = DateConvertorFromDescription(temp, number);
-				chopInfo(*uncategorizedInfo, position, descriptionTwo[i].size());
+			if (position != string::npos) {
+				string temp = descriptionTwo[i].substr(SIX_UNIT);
+				number = descriptionTwo[i].substr(ONE_UNIT, FOUR_UNIT);
+				Date = convertDateFromDescription(temp, number);
+				chopInfo(*_uncategorizedInfo, position, descriptionTwo[i].size());
 			}
 		}
 	}
@@ -423,47 +505,63 @@ string DateGetter::GetDateFromDescriptionOne(string& Input, string keyword){
 	return Date;
 }
 
-string DateGetter::GetDateFromFestival(string &Input, string keyword){
-	string Date = LargeDate, tempDate, element, number, duplicate = Input, dateAdder, dummyString = dummy;
-	unsigned int position, startPos = start, positionOne, positionTwo, indicator = zero, size = TenUnit + TenUnit + ThreeUnit;
+string DateGetter::getDateFromFestival(string &Input, string keyword) {
+	string Date = EMPTY_DATE;
+	string tempDate;
+	string element;
+	string number;
+	string duplicate = Input;
+	string dateAdder;
+	string dummyString = DUMMY;
+	unsigned int position;
+	unsigned int startPos = START;
+	unsigned int positionOne;
+	unsigned int positionTwo;
+	unsigned int indicator = ZERO;
+	unsigned int size = TEN_UNIT + TEN_UNIT + THREE_UNIT;
 
-	ChangeToLowerCase(duplicate);
+	changeToLowerCase(duplicate);
 
-	dateAdder = GetDateFromDescriptionTwo(dummyString, by);
-	dateAdder = dateAdder.substr(start, FourUnit);
+	dateAdder = getDateFromTomorrow(dummyString, BY);
+	dateAdder = dateAdder.substr(START, FOUR_UNIT);
 
-	do{
+	do {
 		position = duplicate.find(keyword, startPos);
 
-		if (position != string::npos){
-			while (Date == LargeDate && indicator < size){
+		if (position != string::npos) {
+			while (Date == EMPTY_DATE && indicator < size) {
 				tempDate = duplicate.substr(position);
-				positionOne = tempDate.find(festivals[indicator]);
+				positionOne = tempDate.find(FESTIVAL[indicator]);
 
-				if (positionOne != string::npos){
-					if (positionOne == keyword.size()){
-						Date = dateAdder + festivalDates[indicator];
-						chopInfo(Input, position, keyword.size() + festivals[indicator].size());
+				if (positionOne != string::npos) {
+					if (positionOne == keyword.size()) {
+						Date = dateAdder + FESTIVAL_DATE[indicator];
+						chopInfo(Input, position, keyword.size() + FESTIVAL[indicator].size());
 						break;
-					}
-					else{
+					} else {
 						positionTwo = keyword.size();
-						tempDate = tempDate.substr(positionTwo, positionOne - positionTwo - OneUnit);
+						tempDate = tempDate.substr(positionTwo, 
+							       positionOne - positionTwo - ONE_UNIT);
 
-						if (tempDate == This){
-							Date = dateAdder + festivalDates[indicator];
-							chopInfo(Input, position, keyword.size() + OneUnit + tempDate.size() + festivals[indicator].size());
+						//situations when input have
+						//this national day, the national day, next national day, the next.. 
+						if (tempDate == THIS || tempDate == THE) {
+							Date = dateAdder + FESTIVAL_DATE[indicator];
+							chopInfo(Input, position, keyword.size() + ONE_UNIT
+								     + tempDate.size() + FESTIVAL[indicator].size());
 							break;
-						}
+						} else if (tempDate == NEXT || tempDate == THE + NEXT) {
+							Date = dateAdder + FESTIVAL_DATE[indicator];
+							int dateNumber = stoi(Date);
+							dateNumber = dateNumber + TEN_THOUSAND;
 
-						if (tempDate == Next){
-							Date = dateAdder + festivalDates[indicator];
-							int dateNumber = std::stoi(Date);
-							dateNumber = dateNumber + tenThousand;
 							ostringstream out;
 							out << dateNumber;
 							Date = out.str();
-							chopInfo(Input, position, keyword.size() + OneUnit + tempDate.size() + festivals[indicator].size());
+
+							chopInfo(Input, position, keyword.size() + 
+								     ONE_UNIT + tempDate.size() + 
+									 FESTIVAL[indicator].size());
 							break;
 						}
 					}
@@ -472,7 +570,7 @@ string DateGetter::GetDateFromFestival(string &Input, string keyword){
 				indicator++;
 			}
 
-			startPos = position + OneUnit;
+			startPos = position + ONE_UNIT;
 		}
 
 	} while (position != string::npos);
@@ -480,47 +578,50 @@ string DateGetter::GetDateFromFestival(string &Input, string keyword){
 	return Date;
 }
 
-void DateGetter::GetDateForBeforeAfter(string &Date, string keyword){
-	if (Date != LargeDate && (keyword == before || keyword == after)){
-		string year = Date.substr(start, FourUnit);
-		string month = Date.substr(FourUnit, TwoUnit);
-		string day = Date.substr(SixUnit, TwoUnit);
+string DateGetter::getDateForBeforeAfter(string Date, string keyword) {
+	if (Date != EMPTY_DATE && (keyword == BEFORE || keyword == AFTER)) {
+		string year = Date.substr(START, FOUR_UNIT);
+		string month = Date.substr(FOUR_UNIT, TWO_UNIT);
+		string day = Date.substr(SIX_UNIT, TWO_UNIT);
+
 		struct tm timeNow;
 		time_t local = time(NULL);
 		localtime_s(&timeNow, &local);
-		timeNow.tm_year = std::stoi(year) - yearAdder;
-		timeNow.tm_mon = std::stoi(month) - OneUnit;
+
+		timeNow.tm_year = std::stoi(year) - YEAR_ADDER;
+		timeNow.tm_mon = std::stoi(month) - ONE_UNIT;
 		timeNow.tm_mday = std::stoi(day);
 
-		if (keyword == before){
+		if (keyword == BEFORE) {
 			timeNow.tm_mday--;
-		}
-		else{
+		} else {
 			timeNow.tm_mday++;
 		}
 
 		time_t newTime = mktime(&timeNow);
 		localtime_s(&timeNow, &newTime);
 
-		Date = DateConverter(timeNow.tm_year + yearAdder, timeNow.tm_mon + OneUnit, timeNow.tm_mday);
+		Date = convertToDate(timeNow.tm_year + YEAR_ADDER,
+			                 timeNow.tm_mon + ONE_UNIT,
+							 timeNow.tm_mday);
 	}
 
-	return;
+	return Date;
 }
 
-string DateGetter::DateConverter(int year, int month, int day){
+string DateGetter::convertToDate(int year, int month, int day) {
 	ostringstream outstr;
 
 	outstr << year;
 
-	if (month < 10){
-		outstr << zero;
+	if (month < TEN_UNIT) {
+		outstr << ZERO;
 	}
 
 	outstr << month;
 
-	if (day < 10){
-		outstr << zero;
+	if (day < TEN_UNIT) {
+		outstr << ZERO;
 	}
 
 	outstr << day;
@@ -528,105 +629,83 @@ string DateGetter::DateConverter(int year, int month, int day){
 	return outstr.str();
 }
 
-void DateGetter::MonthConvertor(string &Month){
-	ChangeToLowerCase(Month);
+void DateGetter::monthConvertor(string &Month) {
+	changeToLowerCase(Month);
 
-	if (Month == jan || Month == january){
-		Month = one;
-	}
-	else if (Month == feb || Month == february){
-		Month = two;
-	}
-	else if (Month == mar || Month == march){
-		Month = three;
-	}
-	else if (Month == apr || Month == april){
-		Month = four;
-	}
-	else if (Month == may){
-		Month = five;
-	}
-	else if (Month == jun || Month == june){
-		Month = six;
-	}
-	else if (Month == jul || Month == july){
-		Month = seven;
-	}
-	else if (Month == aug || Month == august){
-		Month = eight;
-	}
-	else if (Month == sep || Month == september){
-		Month = nine;
-	}
-	else if (Month == octo || Month == october){
-		Month = ten;
-	}
-	else if (Month == nov || Month == november){
-		Month = eleven;
-	}
-	else if (Month == dece || Month == december){
-		Month = twelve;
+	if (Month == JAN || Month == JANUARY) {
+		Month = ONE_UNIT;
+	} else if (Month == FEB || Month == FEBRUARY) {
+		Month = TWO_UNIT;
+	} else if (Month == MAR || Month == MARCH) {
+		Month = THREE_UNIT;
+	} else if (Month == APR || Month == APRIL) {
+		Month = FOUR_UNIT;
+	} else if (Month == MAY) {
+		Month = FIVE_UNIT;
+	} else if (Month == JUN || Month == JUNE) {
+		Month = SIX_UNIT;
+	} else if (Month == JUL || Month == JULY) {
+		Month = SEVEN_UNIT;
+	} else if (Month == AUG || Month == AUGUST) {
+		Month = EIGHT_UNIT;
+	} else if (Month == SEP || Month == SEPTEMBER) {
+		Month = NINE_UNIT;
+	} else if (Month == OCT || Month == OCTOBER) {
+		Month = TEN_UNIT;
+	} else if (Month == NOV || Month == NOVEMBER) {
+		Month = ELEVEN;
+	} else if (Month == DEC || Month == DECEMBER) {
+		Month = TWELVE;
 	}
 
 	return;
 }
 
-void DateGetter::WeekConvertor(string &Week){
-	ChangeToLowerCase(Week);
+void DateGetter::weekConvertor(string &Week) {
+	changeToLowerCase(Week);
 
-	if (Week == mon || Week == monday){
-		Week = Zero;
+	if (Week == MON || Week == MONDAY) {
+		Week = ZERO_STRING;
+	} else if (Week == TUE || Week == TUESDAY) {
+		Week = ONE_STRING;
+	} else if (Week == WED || Week == WEDNESDAY) {
+		Week = TWO_STRING;
+	} else if (Week == THU || Week == THURSDAY) {
+		Week = THREE_STRING;
+	} else if (Week == FRI || Week == FRIDAY) {
+		Week = FOUR_STRING;
+	} else if (Week == SAT || Week == SATURDAY) {
+		Week = FIVE_STRING;
+	} else if (Week == SUN || Week == SUNDAY) {
+		Week = SIX_STRING;
 	}
-	else if (Week == tue || Week == tuesday){
-		Week = one;
-	}
-	else if (Week == wed || Week == wednesday){
-		Week = two;
-	}
-	else if (Week == thu || Week == thursday){
-		Week = three;
-	}
-	else if (Week == fri || Week == friday){
-		Week = four;
-	}
-	else if (Week == sat || Week == saturday){
-		Week = five;
-	}
-	else if (Week == sun || Week == sunday){
-		Week = six;
-	}
+
 	return;
 }
 
-string DateGetter::DateConvertorFromDescription(string description, string descriptionTwo){
-	int adder = zero;
+string DateGetter::convertDateFromDescription(string description, string descriptionTwo) {
+	int adder = ZERO;
 
-	if (isNumber(descriptionTwo)){
+	if (isNumber(descriptionTwo)) {
 		adder = std::stoi(descriptionTwo);
 	}
 
-	if (description == day || description == days){
-		adder = adder * OneUnit;
-	}
-
-	if (description == Week || description == Weeks){
-		adder = adder * SevenUnit;
-	}
-
-	if (description == month || description == months){
-		adder = adder * TenUnit * ThreeUnit;
-	}
-
-	if (description == year || description == years){
-		adder = adder * yearDays;
-	}
-
-	if (description == tmr || description == tomorrow){
-		adder = adder + OneUnit;
-	}
-
-	if (description == theDayAfterTmr || description == theDayAfterTomorrow || description == dayAfterTmr || description == dayAfterTomorrow){
-		adder = adder + TwoUnit;
+	//decide which kind of days set to be added
+	//eg. if add weeks, seven days together will
+	//be the base adding unit
+	if (description == DAY || description == DAYS) {
+		adder = adder * ONE_UNIT;
+	} else if (description == WEEK || description == WEEKS) {
+		adder = adder * SEVEN_UNIT;
+	} else if (description == MONTH || description == MONTHS) {
+		adder = adder * TEN_UNIT * THREE_UNIT;
+	} else if (description == YEAR || description == YEARS) {
+		adder = adder * YEAR_DAYS;
+	} else if (description == TMR || description == TOMORROW) {
+		adder = adder + ONE_UNIT;
+	} else if (description == THE_DAY_AFTER_TMR || description == THE_DAY_AFTER_TOMORROW
+		        || description == DAY_AFTER_TMR || description == DAY_AFTER_TOMORROW) {
+		adder = adder + TWO_UNIT;
 	}
 
 	time_t local = time(NULL);
@@ -636,23 +715,22 @@ string DateGetter::DateConvertorFromDescription(string description, string descr
 	time_t newTime = mktime(&timeNow);
 	localtime_s(&timeNow, &newTime);
 
-	if (description == year || description == years){
-		if (descriptionTwo == This){
-			timeNow.tm_mday = monthDay;
-			timeNow.tm_mon = yearMonth;
+	//if the format is on this year, by this year
+	//return the last day of the year as deadline
+	if (description == YEAR || description == YEARS) {
+		if (descriptionTwo == THIS) {
+			timeNow.tm_mday = MONTH_DAYS;
+			timeNow.tm_mon = YEAR_MONTHS;
+		} else if (descriptionTwo == NEXT) {
+			timeNow.tm_mday = MONTH_DAYS;
+			timeNow.tm_mon = YEAR_MONTHS;
+			timeNow.tm_year += ONE_UNIT;
 		}
-		else if (descriptionTwo == Next){
-			timeNow.tm_mday = monthDay;
-			timeNow.tm_mon = yearMonth;
-			timeNow.tm_year += OneUnit;
-		}
-	}
-
-	if (description == month || description == months){
-		if (descriptionTwo == This){
+	} else if (description == MONTH || description == MONTHS) {
+		if (descriptionTwo == THIS) {
 			int temp = timeNow.tm_mon;
 
-			while (timeNow.tm_mon == temp){
+			while (timeNow.tm_mon == temp) {
 				timeNow.tm_mday++;
 				newTime = mktime(&timeNow);
 				localtime_s(&timeNow, &newTime);
@@ -662,11 +740,10 @@ string DateGetter::DateConvertorFromDescription(string description, string descr
 			newTime = mktime(&timeNow);
 			localtime_s(&timeNow, &newTime);
 
-		}
-		else if (descriptionTwo == Next){
-			int temp = timeNow.tm_mon + OneUnit;
+		} else if (descriptionTwo == NEXT) {
+			int temp = timeNow.tm_mon + ONE_UNIT;
 
-			while (timeNow.tm_mon <= temp){
+			while (timeNow.tm_mon <= temp) {
 				timeNow.tm_mday++;
 				newTime = mktime(&timeNow);
 				localtime_s(&timeNow, &newTime);
@@ -678,11 +755,11 @@ string DateGetter::DateConvertorFromDescription(string description, string descr
 		}
 	}
 
-	int Year = timeNow.tm_year + yearAdder;
-	int Month = timeNow.tm_mon + OneUnit;
+	int Year = timeNow.tm_year + YEAR_ADDER;
+	int Month = timeNow.tm_mon + ONE_UNIT;
 	int Day = timeNow.tm_mday;
 
-	string Date = DateConverter(Year, Month, Day);
+	string Date = convertToDate(Year, Month, Day);
 
 	return Date;
 }

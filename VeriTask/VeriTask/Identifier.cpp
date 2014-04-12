@@ -1,69 +1,83 @@
+//@author A0101568J
+
 #include "Identifier.h"
 
 
-Identifier::Identifier(){
-	index = 0;
+Identifier::Identifier() {
+	_index = ZERO;
 }
 
-Identifier::~Identifier(){
+Identifier::~Identifier() {
 }
 
-void Identifier::Identify(string userInput) {
-	index++;
-	CommandGetter CommandIdentifier(userInput);
-	Command = CommandIdentifier.Tokenize();
-	TaskNumGetter TaskNumIdentifier(userInput, Command);
-	TaskNum = TaskNumIdentifier.Tokenize();
-	DateGetter DateIdentifier(userInput, Command);
-	Date = DateIdentifier.Tokenize();
-	TimeGetter StartTimeIdentifier(userInput, Command);
-	StartTime = StartTimeIdentifier.Tokenize();
-	TimeGetter EndTimeIdentifier(userInput, Command);
-	EndTime = EndTimeIdentifier.Tokenize();
-	StatusGetter StatusIdentifier(userInput, Command);
-	Status = StatusIdentifier.Tokenize();
-	KeywordGetter KeywordIdentifier(userInput, Command);
-	Keyword = KeywordIdentifier.Tokenize();
-	EventGetter EventIdentifier(userInput, Command);
-	Event = EventIdentifier.Tokenize();
+void Identifier::identify(string userInput) {
+	_index++;
+
+	CommandGetter commandIdentifier(userInput);
+	_command = commandIdentifier.tokenize();
+
+	TaskNumGetter taskNumIdentifier(userInput, _command);
+	_taskNum = taskNumIdentifier.tokenize();
+
+	DateGetter dateIdentifier(userInput, _command);
+	_date = dateIdentifier.tokenize();
+
+	TimeGetter startTimeIdentifier(userInput, _command);
+	_startTime = startTimeIdentifier.tokenize();
+
+	TimeGetter endTimeIdentifier(userInput, _command);
+	_endTime = endTimeIdentifier.tokenize();
+
+	StatusGetter statusIdentifier(userInput, _command);
+	_status = statusIdentifier.tokenize();
+
+	KeywordGetter keywordIdentifier(userInput, _command);
+	_keyword = keywordIdentifier.tokenize();
+
+	EventGetter eventIdentifier(userInput, _command);
+	_event = eventIdentifier.tokenize();
 	
-	if(StartTime != LargeTime && Date == LargeDate && Command == Add){
-		string dummyString = dummy;
-		DateGetter dummyDateIdentifier(dummyString, Add);
-		Date = dummyDateIdentifier.Tokenize();
+	//If In the end, there is no date identified from the user input
+	//when there are a specific time given, make the date returned 
+	//ne date of the day.
+	//This only applies to the condition when adding a task.
+	if (_startTime != EMPTY_TIME && _date == EMPTY_DATE && _command == ADD) {
+		string dummyString = DUMMY;
+		DateGetter dummyDateIdentifier(dummyString, ADD);
+		_date = dummyDateIdentifier.tokenize();
 	}
 }
 
-string Identifier::GetDate(){
-	return Date;
+string Identifier::getDate() {
+	return _date;
 }
 
-string Identifier::GetStartTime(){
-	return StartTime;
+string Identifier::getStartTime() {
+	return _startTime;
 }
 
-string Identifier::GetEndTime(){
-	return EndTime;
+string Identifier::getEndTime() {
+	return _endTime;
 }
 
-string Identifier::GetEvent(){
-	return Event;
+string Identifier::getEvent() {
+	return _event;
 }
 
-string Identifier::GetTaskNum(){
-	return TaskNum;
+string Identifier::getTaskNum() {
+	return _taskNum;
 }
 
-string Identifier::GetKeyword(){
-	return Keyword;
+string Identifier::getKeyword() {
+	return _keyword;
 }
 
-string Identifier::GetCommand(){
-	return Command;
+string Identifier::getCommand() {
+	return _command;
 }
 
-string Identifier::GetStatus(){
-	return Status;
+string Identifier::getStatus() {
+	return _status;
 }
 
 /*int Identifier::getIndex() {
