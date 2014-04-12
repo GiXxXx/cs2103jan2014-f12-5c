@@ -1,29 +1,20 @@
-﻿Build started 12/4/2014 5:12:44 PM.
-     1>Project "C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\VeriTask.vcxproj" on node 2 (Rebuild target(s)).
+﻿Build started 12/4/2014 5:23:25 PM.
+     1>Project "C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\VeriTask.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt TaskAdder.cpp CommandGetter.cpp DataStorage.cpp DateGetter.cpp TaskDeleter.cpp TaskEditer.cpp EventGetter.cpp Identifier.cpp KeywordGetter.cpp TaskMarker.cpp TimeGetter.cpp StatusGetter.cpp TaskDisplayer.cpp TaskNumGetter.cpp Tokenizer.cpp VeriTask.cpp TaskSearcher.cpp Operation.cpp Task.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt DataStorage.cpp Operation.cpp Task.cpp TaskAdder.cpp TaskDeleter.cpp TaskDisplayer.cpp TaskEditer.cpp TaskMarker.cpp TaskSearcher.cpp VeriTask.cpp
+         DataStorage.cpp
+         Generating Code...
+         Compiling...
+         VeriTask.cpp
+         TaskSearcher.cpp
+         TaskMarker.cpp
+         TaskEditer.cpp
+         TaskDisplayer.cpp
+         TaskDeleter.cpp
+         TaskAdder.cpp
          Task.cpp
          Operation.cpp
-         TaskSearcher.cpp
-         VeriTask.cpp
-         Tokenizer.cpp
-         TaskNumGetter.cpp
-         TaskDisplayer.cpp
-         StatusGetter.cpp
-         TimeGetter.cpp
-         TaskMarker.cpp
-         KeywordGetter.cpp
-         Identifier.cpp
-         EventGetter.cpp
-         TaskEditer.cpp
-         TaskDeleter.cpp
-         DateGetter.cpp
-         DataStorage.cpp
-         CommandGetter.cpp
-         TaskAdder.cpp
          Generating Code...
-       ResourceCompile:
-         C:\Program Files (x86)\Windows Kits\8.0\bin\x86\rc.exe /l"0x0409" /nologo /fo"Debug\VeriTask.res" VeriTask.rc 
        Lib:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\Lib.exe /OUT:"C:\Users\YuJia\Desktop\NewProject\VeriTask\Debug\VeriTask.lib" /NOLOGO Debug\VeriTask.res
          Debug\TaskAdder.obj
@@ -47,8 +38,8 @@
          Debug\Task.obj
      1>LINK : warning LNK4068: /MACHINE not specified; defaulting to X86
          VeriTask.vcxproj -> C:\Users\YuJia\Desktop\NewProject\VeriTask\Debug\VeriTask.lib
-     1>Done Building Project "C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\VeriTask.vcxproj" (Rebuild target(s)).
+     1>Done Building Project "C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\VeriTask.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:13.72
+Time Elapsed 00:00:08.02
