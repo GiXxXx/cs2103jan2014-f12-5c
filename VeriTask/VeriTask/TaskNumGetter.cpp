@@ -10,14 +10,14 @@ TaskNumGetter::~TaskNumGetter() {
 }
 
 string TaskNumGetter::tokenize() {
-	string TaskNumber = EMPTYSTRING;
-	unsigned int position = (*_uncategorizedInfo).find_first_not_of(PUNCTUATIONSET);
-	unsigned int positionTwo = (*_uncategorizedInfo).find_first_of(PUNCTUATIONSET, position);
+	string TaskNumber = EMPTY_STRING;
+	unsigned int position = (*_uncategorizedInfo).find_first_not_of(PUNCTUATION_SET);
+	unsigned int positionTwo = (*_uncategorizedInfo).find_first_of(PUNCTUATION_SET, position);
 
 	if ((_command == EDIT || _command == MARK) && position != string::npos) {
 		TaskNumber =  (*_uncategorizedInfo).substr(position, positionTwo - position);
 		chopInfo(*_uncategorizedInfo, START, positionTwo);
-	} else if (_command == DELETE && position != string::npos) {
+	} else if (_command == DEL && position != string::npos) {
 		TaskNumber =  (*_uncategorizedInfo).substr(position, positionTwo - position);
 	}
 
@@ -30,7 +30,7 @@ string TaskNumGetter::tokenize() {
 	}
 
 	if (TaskNumber == ZERO_STRING) {
-		TaskNumber = EMPTYSTRING;
+		TaskNumber = EMPTY_STRING;
 	}
 
 	return TaskNumber;

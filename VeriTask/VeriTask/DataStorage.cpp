@@ -81,7 +81,7 @@ void DataStorage::searchDate(string keyword) {
 
 	 for (_iter = _taskList.begin(); _iter < _taskList.end(); ++_iter) {
 	    bool isDateFound = _iter->getDate().find(keyword) != string::npos;
-		bool isDateEmpty = _iter->getDate() == EMPTY_DATE;
+		bool isDateEmpty = _iter->getDate() == EMPTY_DATES;
 		
 		//tasks with matching date and floating tasks are to be displayed
 		if (isDateFound) {

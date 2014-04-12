@@ -78,7 +78,6 @@
     <ClInclude Include="StatusGetter.h" />
     <ClInclude Include="TaskDisplayer.h" />
     <ClInclude Include="TaskNumGetter.h" />
-    <ClInclude Include="TextUI.h" />
     <ClInclude Include="TaskSearcher.h" />
     <ClInclude Include="Operation.h" />
     <ClInclude Include="Task.h" />
@@ -100,7 +99,6 @@
     <ClCompile Include="StatusGetter.cpp" />
     <ClCompile Include="TaskDisplayer.cpp" />
     <ClCompile Include="TaskNumGetter.cpp" />
-    <ClCompile Include="TextUI.cpp" />
     <ClCompile Include="Tokenizer.cpp" />
     <ClCompile Include="VeriTask.cpp" />
     <ClCompile Include="TaskSearcher.cpp" />

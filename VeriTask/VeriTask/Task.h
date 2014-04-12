@@ -32,8 +32,8 @@ const int TWO_ZEROS = 100;
 const int ONE_NINE_ZERO_ZERO = 1900;
 const int ONE = 1;
 
-const string DONE_STATUS = "done";
-const string OVERDUE_STATUS = "overdue";
+const string STATUS_DONE = "done";
+const string STATUS_OVERDUE = "overdue";
 
 class Task {
 
@@ -102,22 +102,22 @@ private:
 	    
 		//check whether a task is overdue
 		//if a task is not marked as done and has passed deadline, then it's overdue
-		if ((date != EMPTY_DATES) && (status != DONE_STATUS)) {
+		if ((date != EMPTY_DATES) && (status != STATUS_DONE)) {
 			if (localYear * FOUR_ZEROS + localMonth * TWO_ZEROS + localDate > stoi(date)) {
-				status = OVERDUE_STATUS;
+				status = STATUS_OVERDUE;
 			} else if (localYear * FOUR_ZEROS + localMonth * TWO_ZEROS + localDate == stoi(date)) {
 				//deadline task is overdue if time now is later than deadline
 				if ((startTime != EMPTY_TIMES) && (endTime == EMPTY_TIMES)) {
 					if ((localHour * TWO_ZEROS + localMin) > stoi(startTime)) {
-					status = OVERDUE_STATUS;
+					status = STATUS_OVERDUE;
 					}
 				}
 				
 				//duration task is marked as overdue if time now is later than end time
 				//of the task
-				if ((startTime != EMPTY_TIME) && (endTime != EMPTY_TIME)) {
+				if ((startTime != EMPTY_TIMES) && (endTime != EMPTY_TIMES)) {
 					if ((localHour * 100 + localMin) > stoi(endTime)) {
-						status = OVERDUE_STATUS;
+						status = STATUS_OVERDUE;
 					}
 				}
 			}

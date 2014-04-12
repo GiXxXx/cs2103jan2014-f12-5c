@@ -17,7 +17,7 @@ string CommandGetter::tokenize() {
 	*_uncategorizedInfo = *_uncategorizedInfo + SPACES;
 	changeToLowerCase(_command);
 	
-	string commandArray[NINE_UNIT] = {ADD, EDIT, DELETE, MARK, DISPLAY, SEARCH,
+	string commandArray[NINE_UNIT] = {ADD, EDIT, DEL, MARK, DISPLAY, SEARCH,
 		                              UNDO, REDO, EXIT};
     bool isValid = false;
 

@@ -215,7 +215,7 @@ string TimeGetter::getTimeFromMorning(string Input, string keyword) {
 
 			//for the cases this morning
 			if (sizeOne != string::npos) {
-				int checkerOne = duplicate.find(THIS);
+				int checkerOne = duplicate.find(THIS_STRING);
 				int checkerTwo = duplicate.find(NEXT);
 				int checkerThree = duplicate.find(THE);
 				int checker = ZERO;

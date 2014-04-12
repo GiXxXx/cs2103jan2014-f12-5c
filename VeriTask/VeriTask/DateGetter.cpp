@@ -225,7 +225,7 @@ string DateGetter::getDateFromWeek(string &Input, string keyword) {
 				taskDayOfWeek = SEVEN_UNIT;
 			}
 
-			if (week == THIS) {
+			if (week == THIS_STRING) {
 				positionOne = positionOne + ONE_UNIT;
 				positionTwo = tempDate.find_first_of(PUNCTUATION_SET, positionOne);
 				size = positionTwo;
@@ -244,7 +244,7 @@ string DateGetter::getDateFromWeek(string &Input, string keyword) {
 		if (week == EMPTY_STRING && keyword == AT && position == string::npos) {
 			startPos = ZERO;
 			do {
-				position = duplicate.find(SPACE + THIS, startPos);
+				position = duplicate.find(SPACE + THIS_STRING, startPos);
 
 				if (position != string::npos) {
 					taskDayOfWeek = ZERO;
@@ -439,9 +439,9 @@ string DateGetter::getDateFromNumberOfDays(string& Input, string keyword) {
 	string description[EIGHT_UNIT] = { DAYS, DAY, MONTH, MONTHS,
 		                               YEAR, YEARS, WEEK, WEEKS };
 
-	string descriptionTwo[SIX_UNIT] = { SPACE + THIS + SPACE + WEEK, 
-		                                SPACE + THIS + SPACE + MONTH,
-		                                SPACE + THIS + SPACE + YEAR,
+	string descriptionTwo[SIX_UNIT] = { SPACE + THIS_STRING + SPACE + WEEK, 
+		                                SPACE + THIS_STRING + SPACE + MONTH,
+		                                SPACE + THIS_STRING + SPACE + YEAR,
 										SPACE + NEXT + SPACE + WEEK,
 										SPACE + NEXT + SPACE + MONTH,
 										SPACE + NEXT + SPACE + YEAR, };
@@ -466,7 +466,7 @@ string DateGetter::getDateFromNumberOfDays(string& Input, string keyword) {
 					//situation when there is no digit between eg. in three days
 					//instead of in 3 days, convert the word to digit
 					//return zero if the word is nbot representing a number
-					if (!isNumber(tempDate) && tempDate != THIS && tempDate != NEXT) {
+					if (!isNumber(tempDate) && tempDate != THIS_STRING && tempDate != NEXT) {
 						number = changeWordToNumber(tempDate);
 					}
 
@@ -545,7 +545,7 @@ string DateGetter::getDateFromFestival(string &Input, string keyword) {
 
 						//situations when input have
 						//this national day, the national day, next national day, the next.. 
-						if (tempDate == THIS || tempDate == THE) {
+						if (tempDate == THIS_STRING || tempDate == THE) {
 							Date = dateAdder + FESTIVAL_DATE[indicator];
 							chopInfo(Input, position, keyword.size() + ONE_UNIT
 								     + tempDate.size() + FESTIVAL[indicator].size());
@@ -718,7 +718,7 @@ string DateGetter::convertDateFromDescription(string description, string descrip
 	//if the format is on this year, by this year
 	//return the last day of the year as deadline
 	if (description == YEAR || description == YEARS) {
-		if (descriptionTwo == THIS) {
+		if (descriptionTwo == THIS_STRING) {
 			timeNow.tm_mday = MONTH_DAYS;
 			timeNow.tm_mon = YEAR_MONTHS;
 		} else if (descriptionTwo == NEXT) {
@@ -727,7 +727,7 @@ string DateGetter::convertDateFromDescription(string description, string descrip
 			timeNow.tm_year += ONE_UNIT;
 		}
 	} else if (description == MONTH || description == MONTHS) {
-		if (descriptionTwo == THIS) {
+		if (descriptionTwo == THIS_STRING) {
 			int temp = timeNow.tm_mon;
 
 			while (timeNow.tm_mon == temp) {
