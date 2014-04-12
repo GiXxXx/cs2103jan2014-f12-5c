@@ -7,7 +7,7 @@
 * Task task;
 * task.retrieveTaskID();
 */
-
+#pragma once
 #include <string>
 #include <ctime>
 
