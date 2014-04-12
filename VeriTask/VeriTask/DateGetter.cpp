@@ -47,7 +47,7 @@ string DateGetter::tokenize() {
 		while (date == EMPTY_DATE && indicator < NINE_UNIT) {
 
 			keyword = PREPOSITION[indicator];
-			cout << "asdasd = " << "fk u " << endl;
+
 			date = getDateFromDate(*_uncategorizedInfo, keyword);
 
 			if (date == EMPTY_DATE) {
@@ -94,12 +94,17 @@ string DateGetter::tokenize() {
 		}
 	}
 
+	if (date.size() != EIGHT_UNIT) {
+		date = EMPTY_DATE;
+		*_uncategorizedInfo = save;
+	}
+
 	return date;
 }
 
 
 string DateGetter::getDateFromDate(string &Input, string keyword) {
-	string Date = EMPTY_DATE;
+	string date = EMPTY_DATE;
 	string tempDate;
 	string elementOne;
 	string elementTwo;
@@ -114,6 +119,13 @@ string DateGetter::getDateFromDate(string &Input, string keyword) {
 
 	do {
 		position = duplicate.find(keyword, startPos);
+
+		string numbers = duplicate.substr(position + FOUR_UNIT, EIGHT_UNIT);
+
+		if (isNumber(numbers)) {
+			date = numbers;
+			chopInfo(*_uncategorizedInfo, position + FOUR_UNIT, EIGHT_UNIT);
+		}
 
 		if (position != string::npos) {
 			tempDate = duplicate.substr(position + keyword.size());
@@ -136,6 +148,11 @@ string DateGetter::getDateFromDate(string &Input, string keyword) {
 				positionTwo = tempDate.find_first_of(SPACE, positionOne + ONE_UNIT);
 			}
 
+			if (positionOne == string::npos || positionTwo == string::npos || positionOne == positionTwo) {
+				positionOne = tempDate.find_first_of(DOT);
+				positionTwo = tempDate.find_first_of(DOT, positionOne + ONE_UNIT);
+			}
+
 			//if formate like 2014-11-22, 2014/11/22, 22 11 2014..is detected, get all the numbers as elements
 			if (positionOne != string::npos && positionTwo != string::npos && positionOne != positionTwo) {
 				elementOne = tempDate.substr(START, positionOne);
@@ -143,7 +160,6 @@ string DateGetter::getDateFromDate(string &Input, string keyword) {
 				elementThree = tempDate.substr(positionTwo + ONE_UNIT, FOUR_UNIT);
 
 				unsigned int endPos = tempDate.find_first_of(PUNCTUATION_SET, positionTwo + ONE_UNIT);
-				cout << "cnm = " << elementTwo << endl;
 
 				if (!isNumber(elementTwo)) {
 					convertMonth(elementTwo);
@@ -174,7 +190,7 @@ string DateGetter::getDateFromDate(string &Input, string keyword) {
 				//if yes, return date and chop original string
 				//if no, return empty date and no chop
 				if (isNumber(tempDate)) {
-					Date = tempDate;
+					date = tempDate;
 					chopInfo((*_uncategorizedInfo), position, endPos + keyword.size());
 					break;
 				}
@@ -184,7 +200,7 @@ string DateGetter::getDateFromDate(string &Input, string keyword) {
 		}
 	} while (position != string::npos);
 
-	return Date;
+	return date;
 }
 
 string DateGetter::getDateFromWeek(string &Input, string keyword) {
@@ -198,7 +214,7 @@ string DateGetter::getDateFromWeek(string &Input, string keyword) {
 	unsigned int startPos = START;
 	unsigned int size;
 	string week = EMPTY_STRING, tempDate;
-	string Date = EMPTY_DATE;
+	string date = EMPTY_DATE;
 	string duplicate = Input;
 
 	changeToLowerCase(duplicate);
@@ -321,7 +337,7 @@ string DateGetter::getDateFromWeek(string &Input, string keyword) {
 						++taskYear;
 					}
 
-					Date = convertToDate(taskYear, taskMonth, taskDay);
+					date = convertToDate(taskYear, taskMonth, taskDay);
 					chopInfo(Input, position, size + keyword.size());
 					break;
 				}
@@ -329,13 +345,13 @@ string DateGetter::getDateFromWeek(string &Input, string keyword) {
 
 			startPos = position + ONE_UNIT;
 
-	} while (position != string::npos && Date == EMPTY_DATE);
+	} while (position != string::npos && date == EMPTY_DATE);
 
-	return Date;
+	return date;
 }
 
 string DateGetter::getDateFromTomorrow(string& Input, string keyword) {
-	string Date = EMPTY_DATE;
+	string date = EMPTY_DATE;
 	string tempDate;
 	string duplicate = Input;
 
@@ -361,7 +377,7 @@ string DateGetter::getDateFromTomorrow(string& Input, string keyword) {
 		if (position != string::npos) {
 			tempDate = duplicate.substr(position + keyword.size());
 
-			while (Date == EMPTY_DATE && indicator < SEVEN_UNIT) {
+			while (date == EMPTY_DATE && indicator < SEVEN_UNIT) {
 				positionOne = tempDate.find(description[indicator]);
 
 				if (positionOne != string::npos) {
@@ -370,7 +386,7 @@ string DateGetter::getDateFromTomorrow(string& Input, string keyword) {
 					//if immediately after the keyword, words like "today", "tomorrow" are
 					//found, convert to date and chop original string
 					if (positionOne == ZERO && tempDate.find_first_of(PUNCTUATION_SET) == size) {
-						Date = convertDateFromDescription(description[indicator], SPACE);
+						date = convertDateFromDescription(description[indicator], SPACE);
 						chopInfo(Input, position, description[indicator].size() + keyword.size());
 						break;
 					}
@@ -382,17 +398,17 @@ string DateGetter::getDateFromTomorrow(string& Input, string keyword) {
 			startPos = position + ONE_UNIT;
 		}
 
-	} while (position != string::npos && Date == EMPTY_DATE);
+	} while (position != string::npos && date == EMPTY_DATE);
 
 	indicator = ZERO;
 
 	//when no keyword is identified and no date found
 	//try to find "today", "the day afer..." alone
-	while (Date == EMPTY_DATE && indicator < SEVEN_UNIT && keyword == AT) {
+	while (date == EMPTY_DATE && indicator < SEVEN_UNIT && keyword == AT) {
 		positionOne = duplicate.find(description[indicator]);
 
 		if (positionOne == ZERO) {
-			Date = convertDateFromDescription(description[indicator], SPACE);
+			date = convertDateFromDescription(description[indicator], SPACE);
 			chopInfo(Input, positionOne, description[indicator].size());
 			break;
 		} else {
@@ -405,11 +421,11 @@ string DateGetter::getDateFromTomorrow(string& Input, string keyword) {
 				//if there are two words indicating date found, make the word
 				//appear first or last as the top priority when identify the date
 				if (checker == TEN_SPACES && positionOne != START) {
-					Date = convertDateFromDescription(description[indicator], SPACE);
+					date = convertDateFromDescription(description[indicator], SPACE);
 					chopInfo(Input, positionTwo, description[indicator].size());
 					break;
 				} else {
-					Date = convertDateFromDescription(description[indicator], SPACE);
+					date = convertDateFromDescription(description[indicator], SPACE);
 					chopInfo(Input, positionOne, description[indicator].size());
 					break;
 				}
@@ -419,11 +435,11 @@ string DateGetter::getDateFromTomorrow(string& Input, string keyword) {
 		indicator++;
 	}
 
-	return Date;
+	return date;
 }
 
 string DateGetter::getDateFromNumberOfDays(string& Input, string keyword) {
-	string Date = EMPTY_DATE;
+	string date = EMPTY_DATE;
 	string tempDate;
 	string element;
 	string number;
@@ -450,7 +466,7 @@ string DateGetter::getDateFromNumberOfDays(string& Input, string keyword) {
 		position = duplicate.find(keyword, startPos);
 
 		if (position != string::npos) {
-			while (Date == EMPTY_DATE && indicator < EIGHT_UNIT) {
+			while (date == EMPTY_DATE && indicator < EIGHT_UNIT) {
 				tempDate = duplicate.substr(position);
 				positionOne = tempDate.find(description[indicator]);
 
@@ -469,7 +485,7 @@ string DateGetter::getDateFromNumberOfDays(string& Input, string keyword) {
 					}
 
 					if (number != ZERO_STRING) {
-						Date = convertDateFromDescription(description[indicator], number);
+						date = convertDateFromDescription(description[indicator], number);
 						chopInfo(Input, position, keyword.size() + ONE_UNIT + 
 							tempDate.size() + description[indicator].size());
 						break;
@@ -487,24 +503,24 @@ string DateGetter::getDateFromNumberOfDays(string& Input, string keyword) {
 	//when no date is identified at the end
 	//directly find the keywords
 	//eg. this year, this week
-	if (Date == EMPTY_DATE && keyword == AT) {
+	if (date == EMPTY_DATE && keyword == AT) {
 		for (int i = ZERO; i < SIX_UNIT; i++) {
 			position = duplicate.find(descriptionTwo[i]);
 
 			if (position != string::npos) {
 				string temp = descriptionTwo[i].substr(SIX_UNIT);
 				number = descriptionTwo[i].substr(ONE_UNIT, FOUR_UNIT);
-				Date = convertDateFromDescription(temp, number);
+				date = convertDateFromDescription(temp, number);
 				chopInfo(*_uncategorizedInfo, position, descriptionTwo[i].size());
 			}
 		}
 	}
 
-	return Date;
+	return date;
 }
 
 string DateGetter::getDateFromFestival(string &Input, string keyword) {
-	string Date = EMPTY_DATE;
+	string date = EMPTY_DATE;
 	string tempDate;
 	string element;
 	string number;
@@ -527,13 +543,13 @@ string DateGetter::getDateFromFestival(string &Input, string keyword) {
 		position = duplicate.find(keyword, startPos);
 
 		if (position != string::npos) {
-			while (Date == EMPTY_DATE && indicator < size) {
+			while (date == EMPTY_DATE && indicator < size) {
 				tempDate = duplicate.substr(position);
 				positionOne = tempDate.find(FESTIVAL[indicator]);
 
 				if (positionOne != string::npos) {
 					if (positionOne == keyword.size()) {
-						Date = dateAdder + FESTIVAL_DATE[indicator];
+						date = dateAdder + FESTIVAL_DATE[indicator];
 						chopInfo(Input, position, keyword.size() + FESTIVAL[indicator].size());
 						break;
 					} else {
@@ -544,18 +560,18 @@ string DateGetter::getDateFromFestival(string &Input, string keyword) {
 						//situations when input have
 						//this national day, the national day, next national day, the next.. 
 						if (tempDate == THIS_STRING || tempDate == THE) {
-							Date = dateAdder + FESTIVAL_DATE[indicator];
+							date = dateAdder + FESTIVAL_DATE[indicator];
 							chopInfo(Input, position, keyword.size() + ONE_UNIT
 								     + tempDate.size() + FESTIVAL[indicator].size());
 							break;
 						} else if (tempDate == NEXT || tempDate == THE + NEXT) {
-							Date = dateAdder + FESTIVAL_DATE[indicator];
-							int dateNumber = stoi(Date);
+							date = dateAdder + FESTIVAL_DATE[indicator];
+							int dateNumber = stoi(date);
 							dateNumber = dateNumber + TEN_THOUSAND;
 
 							ostringstream out;
 							out << dateNumber;
-							Date = out.str();
+							date = out.str();
 
 							chopInfo(Input, position, keyword.size() + 
 								     ONE_UNIT + tempDate.size() + 
@@ -573,14 +589,14 @@ string DateGetter::getDateFromFestival(string &Input, string keyword) {
 
 	} while (position != string::npos);
 
-	return Date;
+	return date;
 }
 
-string DateGetter::getDateForBeforeAfter(string Date, string keyword) {
-	if (Date != EMPTY_DATE && (keyword == BEFORE || keyword == AFTER)) {
-		string year = Date.substr(START, FOUR_UNIT);
-		string month = Date.substr(FOUR_UNIT, TWO_UNIT);
-		string day = Date.substr(SIX_UNIT, TWO_UNIT);
+string DateGetter::getDateForBeforeAfter(string date, string keyword) {
+	if (date != EMPTY_DATE && (keyword == BEFORE || keyword == AFTER)) {
+		string year = date.substr(START, FOUR_UNIT);
+		string month = date.substr(FOUR_UNIT, TWO_UNIT);
+		string day = date.substr(SIX_UNIT, TWO_UNIT);
 
 		struct tm timeNow;
 		time_t local = time(NULL);
@@ -599,12 +615,12 @@ string DateGetter::getDateForBeforeAfter(string Date, string keyword) {
 		time_t newTime = mktime(&timeNow);
 		localtime_s(&timeNow, &newTime);
 
-		Date = convertToDate(timeNow.tm_year + YEAR_ADDER,
+		date = convertToDate(timeNow.tm_year + YEAR_ADDER,
 			                 timeNow.tm_mon + ONE_UNIT,
 							 timeNow.tm_mday);
 	}
 
-	return Date;
+	return date;
 }
 
 string DateGetter::convertToDate(int year, int month, int day) {
@@ -765,7 +781,7 @@ string DateGetter::convertDateFromDescription(string description, string descrip
 	int Month = timeNow.tm_mon + ONE_UNIT;
 	int Day = timeNow.tm_mday;
 
-	string Date = convertToDate(Year, Month, Day);
+	string date = convertToDate(Year, Month, Day);
 
-	return Date;
+	return date;
 }
