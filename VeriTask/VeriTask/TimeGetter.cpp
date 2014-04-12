@@ -1,104 +1,119 @@
+//@author A0101568J
+
 #include "TimeGetter.h"
 
 
-TimeGetter::TimeGetter(string& uncategorizedInfo, string Command) :Tokenizer(uncategorizedInfo), command(Command){
+TimeGetter::TimeGetter(string& uncategorizedInfo, string Command) :Tokenizer(uncategorizedInfo), _command(Command) {
 }
 
 
-TimeGetter::~TimeGetter(){
+TimeGetter::~TimeGetter() {
 }
 
-string TimeGetter::Tokenize(){
-	string time = LargeTime, tempTime;
-	unsigned int indicator = zero;
+string TimeGetter::tokenize() {
+	string time = EMPTY_TIME;
+	string tempTime;
+	unsigned int indicator = ZERO;
 
-	if (command == Add || command == Edit){
-		unsigned int posOne = (*uncategorizedInfo).find_first_not_of(space);
-		unsigned int posTwo = (*uncategorizedInfo).find_first_of(space, posOne);
+	if (_command == ADD || _command == EDIT) {
+		unsigned int posOne = (*_uncategorizedInfo).find_first_not_of(PUNCTUATIONSET);
+		unsigned int posTwo = (*_uncategorizedInfo).find_first_of(PUNCTUATIONSET, posOne);
 
-		if (posOne != string::npos){
-			string checker = (*uncategorizedInfo).substr(posOne, posTwo - posOne);
+		//get thr time from rigid input
+		//eg. 1330 go home
+		if (posOne != string::npos) {
+			string checker = (*_uncategorizedInfo).substr(posOne, posTwo - posOne);
 
-			if (isNumber(checker) && checker.size() == FourUnit){
+			if (isNumber(checker) && checker.size() == FOUR_UNIT) {
 				time = checker;
-				chopInfo(*uncategorizedInfo, posOne, checker.size());
+				chopInfo(*_uncategorizedInfo, posOne, checker.size());
 			}
 		}
 
-		while (time == LargeTime && indicator < NineUnit){
-			time = getTime(*uncategorizedInfo, preposition[indicator]);
+		while (time == EMPTY_TIME && indicator < NINE_UNIT) {
+			time = getTime(*_uncategorizedInfo, PREPOSITION[indicator]);
 
 			indicator++;
 		}
 
-		indicator = zero;
+		indicator = ZERO;
 
-		while (time == LargeTime && indicator < NineUnit){
-			time = getTimeFromMorning(*uncategorizedInfo, preposition[indicator]);
+		while (time == EMPTY_TIME && indicator < NINE_UNIT) {
+			time = getTimeFromMorning(*_uncategorizedInfo, PREPOSITION[indicator]);
 
 			indicator++;
 		}
 	}
 
-	if (time == LargeTime && command == Edit){
-		string checker = (*uncategorizedInfo).substr(start, FourUnit);
-		if (isNumber(checker) && checker.size() == FourUnit){
-			time = checker;
-			*uncategorizedInfo = (*uncategorizedInfo).substr(FourUnit);
-		}
-	}
+//	if (time == EMPTY_TIME && _command == EDIT) {
+//		string checker = (*_uncategorizedInfo).substr(START, FOUR_UNIT);
+//		if (isNumber(checker) && checker.size() == FOUR_UNIT) {
+//			time = checker;
+//			*_uncategorizedInfo = (*_uncategorizedInfo).substr(FOUR_UNIT);
+//		}
+//	}
 
 	return time;
 }
 
-string TimeGetter::getTime(string Input, string keyword){
-	string Time = LargeTime, tempTime, checker, duplicate = Input;
-	unsigned int position, startPos = start, sizeOne, sizeTwo;
-	int hourStandard = zero;
+string TimeGetter::getTime(string Input, string keyword) {
+	string Time = EMPTY_TIME;
+	string tempTime;
+	string checker;
+	string duplicate = Input;
+	unsigned int position;
+	unsigned startPos = START;
+	unsigned sizeOne;
+	unsigned sizeTwo;
+	int hourStandard = ZERO;
 
-	ChangeToLowerCase(duplicate);
+	changeToLowerCase(duplicate);
 
-	do{
+	do {
 		position = duplicate.find(keyword, startPos);
 
-		if (position != string::npos){
+		if (position != string::npos) {
 			tempTime = duplicate.substr(position + keyword.size());
-			sizeOne = tempTime.find_first_of(punctuationSet);
-			sizeTwo = tempTime.find_first_of(punctuationSet, sizeOne + OneUnit);
+			sizeOne = tempTime.find_first_of(PUNCTUATIONSET);
+			sizeTwo = tempTime.find_first_of(PUNCTUATIONSET, sizeOne + ONE_UNIT);
 
-			checker = tempTime.substr(sizeOne + OneUnit, sizeTwo - sizeOne - OneUnit);
+			checker = tempTime.substr(sizeOne + ONE_UNIT, sizeTwo - sizeOne - ONE_UNIT);
 
-			if (checker == pmOne || checker == pmTwo || checker == pmThree){
-				hourStandard = TwoUnit;
+			//check the hourStandard:12-hour or 24-hour
+			//when input is like 7 pm, 8 pm(with a space between)
+			if (checker == PM_ONE || checker == PM_TWO || checker == PM_THREE) {
+				hourStandard = TWO_UNIT;
+			} else if (checker == AM_ONE || checker == AM_TWO || checker == AM_THREE) {
+				hourStandard = ONE_UNIT;
 			}
 
-			if (checker == amOne || checker == amTwo || checker == amThree){
-				hourStandard = OneUnit;
+			//get the numbers in front of the am, pm
+			tempTime = tempTime.substr(START, sizeOne);
+
+			if (isNumber(tempTime) && hourStandard == ZERO) {
+				tempTime = EMPTYSTRING;
 			}
 
-			tempTime = tempTime.substr(start, sizeOne);
+			//following to check the hour standard for
+			//8pm 7am(no space)
+			string apm[SIX_UNIT] = { AM_ONE, AM_TWO, AM_THREE, 
+				                     PM_ONE, PM_TWO, PM_THREE };
 
-			if (isNumber(tempTime) && hourStandard == zero){
-				tempTime = emptyString;
-			}
+			unsigned int indicator = ZERO;
 
-			string apm[SixUnit] = { amOne, amTwo, amThree, pmOne, pmTwo, pmThree };
-			unsigned int indicator = zero;
-
-			while (!isNumber(tempTime) && indicator < SixUnit){
+			while (!isNumber(tempTime) && indicator < SIX_UNIT) {
 				unsigned int newPosition = tempTime.find(apm[indicator]);
 
-				if (newPosition != string::npos){
-					string temp = tempTime.substr(start, newPosition);
+				if (newPosition != string::npos) {
+					string temp = tempTime.substr(START, newPosition);
 					temp = convertToTime(temp);
 
-					if (isNumber(temp)){
+					if (isNumber(temp)) {
 						tempTime = temp;
-						if (indicator < ThreeUnit){
-							hourStandard = OneUnit;
-						}
-						else{
-							hourStandard = TwoUnit;
+						if (indicator < THREE_UNIT) {
+							hourStandard = ONE_UNIT;
+						} else {
+							hourStandard = TWO_UNIT;
 						}
 
 						sizeTwo = sizeOne;
@@ -112,67 +127,72 @@ string TimeGetter::getTime(string Input, string keyword){
 
 			tempTime = convertToTime(tempTime);
 
-			if (hourStandard == zero){
+			if (hourStandard == ZERO) {
 				sizeTwo = sizeOne;
 				}
 
-			if (isNumber(tempTime) && tempTime.size() == FourUnit && stoi(tempTime) < 2400){
+			//convert the thing infront of am, pm to hours. e.g 7 am to 0700
+			if (isNumber(tempTime) && tempTime.size() == FOUR_UNIT && stoi(tempTime) < HOUR_ADDER) {
 				Time = tempTime;
 
-				if (hourStandard == OneUnit || hourStandard == zero){
-					if (hourStandard == OneUnit && (stoi(tempTime) >= 1200 && stoi(tempTime) < 1300)){
-						int TimeNumber = stoi(tempTime) - 1200;
+				if (hourStandard == ONE_UNIT || hourStandard == ZERO) {
+					if (hourStandard == ONE_UNIT && (stoi(tempTime) >= HOUR_ADDER && stoi(tempTime) < ONE_PM)) {
+						int TimeNumber = stoi(tempTime) - HOUR_ADDER;
 						ostringstream ss;
-						if (TimeNumber < TenUnit){
-							ss << zero << zero << zero << TimeNumber;
-						}
-						else{
-							ss << zero << zero << TimeNumber;
+
+						if (TimeNumber < TEN_UNIT) {
+							ss << ZERO << ZERO << ZERO << TimeNumber;
+						} else {
+							ss << ZERO << ZERO << TimeNumber;
 						}
 						Time = ss.str();
 					}
-					chopInfo((*uncategorizedInfo), position, sizeTwo + keyword.size());
+					chopInfo((*_uncategorizedInfo), position, sizeTwo + keyword.size());
 					break;
 				}
 
-				if (hourStandard == TwoUnit && stoi(tempTime) < 1200){
+				if (hourStandard == TWO_UNIT && stoi(tempTime) < HOUR_ADDER) {
 					int TimeNumber = std::stoi(tempTime);
-					TimeNumber = hourAdder + TimeNumber;
+					TimeNumber = HOUR_ADDER + TimeNumber;
 					ostringstream ss;
 					ss << TimeNumber;
 					Time = ss.str();
-					chopInfo((*uncategorizedInfo), position, sizeTwo + keyword.size());
+					chopInfo((*_uncategorizedInfo), position, sizeTwo + keyword.size());
 					break;
 				}
 			}
 		}
 
-		startPos = position + OneUnit;
+		startPos = position + ONE_UNIT;
 
 	} while (position != string::npos);
 
 	return Time;
 }
 
-string TimeGetter::getTimeFromMorning(string Input, string keyword){
-	string Time = LargeTime, tempTime, checker, duplicate = Input;
-	unsigned int position, startPos = start, sizeOne;
-	int hourStandard = zero, indicator = zero;
+string TimeGetter::getTimeFromMorning(string Input, string keyword) {
+	string Time = EMPTY_TIME;
+	string tempTime;
+	string checker;
+	string duplicate = Input;
+	unsigned int position, startPos = START, sizeOne;
+	int hourStandard = ZERO, indicator = ZERO;
 
-	ChangeToLowerCase(duplicate);
+	changeToLowerCase(duplicate);
 
-	do{
+	do {
 		position = duplicate.find(keyword, startPos);
 
-		if (position != string::npos){
+		if (position != string::npos) {
 			tempTime = duplicate.substr(position + keyword.size());
 
-			while (Time == LargeTime && indicator < SevenUnit){
-				sizeOne = tempTime.find(NoonStatus[indicator]);
+			while (Time == EMPTY_TIME && indicator < SEVEN_UNIT) {
+				sizeOne = tempTime.find(NOON_STATUS[indicator]);
 
-				if (sizeOne != string::npos){
-					Time = correspondingTime[indicator];
-					chopInfo(*uncategorizedInfo, position, position + NoonStatus[indicator].size() - OneUnit);
+				if (sizeOne != string::npos) {
+					Time = CORRESPONDING_TIME[indicator];
+					chopInfo(*_uncategorizedInfo, position, position + 
+						     NOON_STATUS[indicator].size() - ONE_UNIT);
 					break;
 				}
 
@@ -180,47 +200,49 @@ string TimeGetter::getTimeFromMorning(string Input, string keyword){
 			}
 		}
 
-		startPos = position + OneUnit;
+		startPos = position + ONE_UNIT;
 
 	} while (position != string::npos);
 
-	indicator = zero;
+	indicator = ZERO;
 	sizeOne = string::npos;
 
-	if (Time == LargeTime && position == string::npos && keyword == at){
-		while (Time == LargeTime && indicator < SevenUnit){
-			sizeOne = duplicate.find(NoonStatus[indicator]);
+	//when there is no prepositions identified
+	//e.g today morning
+	if (Time == EMPTY_TIME && position == string::npos && keyword == AT) {
+		while (Time == EMPTY_TIME && indicator < SEVEN_UNIT) {
+			sizeOne = duplicate.find(NOON_STATUS[indicator]);
 
-			if (sizeOne != string::npos){
-				int checkerOne = duplicate.find(This);
-				int checkerTwo = duplicate.find(Next);
-				int checkerThree = duplicate.find(The);
-				int checker = zero;
+			//for the cases this morning
+			if (sizeOne != string::npos) {
+				int checkerOne = duplicate.find(THIS);
+				int checkerTwo = duplicate.find(NEXT);
+				int checkerThree = duplicate.find(THE);
+				int checker = ZERO;
 
-				Time = correspondingTime[indicator];
+				Time = CORRESPONDING_TIME[indicator];
 
-				if (checkerOne != string::npos && sizeOne - checkerOne == FiveUnit){
+				if (checkerOne != string::npos && sizeOne - checkerOne == FIVE_UNIT) {
 					sizeOne = checkerOne;
-					checker = FourUnit;
+					checker = FOUR_UNIT;
 				}
 
-				if (checkerTwo != string::npos && sizeOne - checkerTwo == FiveUnit){
+				if (checkerTwo != string::npos && sizeOne - checkerTwo == FIVE_UNIT) {
 					sizeOne = checkerTwo;
-					checker = FourUnit;
+					checker = FOUR_UNIT;
 				}
 
-				if (checkerThree != string::npos && sizeOne - checkerThree == FourUnit){
+				if (checkerThree != string::npos && sizeOne - checkerThree == FOUR_UNIT) {
 					sizeOne = checkerThree;
-					checker = ThreeUnit;
+					checker = THREE_UNIT;
 				}
 
-				if (checker != zero)
+				if (checker != ZERO)
 				{
-					chopInfo(*uncategorizedInfo, sizeOne, checker + NoonStatus[indicator].size());
+					chopInfo(*_uncategorizedInfo, sizeOne, checker + NOON_STATUS[indicator].size());
 					break;
-				}
-				else{
-					chopInfo(*uncategorizedInfo, sizeOne, NoonStatus[indicator].size() - OneUnit);
+				} else {
+					chopInfo(*_uncategorizedInfo, sizeOne, NOON_STATUS[indicator].size() - ONE_UNIT);
 					break;
 				}
 			}
@@ -232,37 +254,39 @@ string TimeGetter::getTimeFromMorning(string Input, string keyword){
 	return Time;
 }
 
-string TimeGetter::convertToTime(string tempTime){
-	int position = tempTime.find(colon);
-	string hour = emptyString, minute = emptyString;
+string TimeGetter::convertToTime(string tempTime) {
+	int position = tempTime.find(COLON);
+	string hour = EMPTYSTRING;
+	string minute = EMPTYSTRING;
 
 	if (position == string::npos) {
-		position = tempTime.find(dot);
+		position = tempTime.find(DOT);
 	}
 
 	if (position != string::npos) {
-		hour = tempTime.substr(start, position - start);
-		minute = tempTime.substr(position + OneUnit);
+		hour = tempTime.substr(START, position - START);
+		minute = tempTime.substr(position + ONE_UNIT);
 	}
 
-	if (isNumber(hour) && isNumber(minute) && hour != emptyString && minute != emptyString){
-		if (hour.size() == OneUnit){
-			hour = Zero + hour;
+	if (isNumber(hour) && isNumber(minute) && hour != EMPTYSTRING && minute != EMPTYSTRING) {
+		if (hour.size() == ONE_UNIT) {
+			hour = ZERO_STRING + hour;
 		}
 
-		if (minute.size() == OneUnit){
-			minute = minute + Zero;
+		if (minute.size() == ONE_UNIT) {
+			minute = minute + ZERO_STRING;
 		}
 
 		tempTime = hour + minute;
 	}
 
-	if (isNumber(tempTime) && tempTime.size() <= TwoUnit && std::stoi(tempTime) <= 12){
-		if (tempTime.size() == OneUnit){
-			tempTime = Zero + tempTime + Zero + Zero;
-		}
-		else{
-			tempTime = tempTime + Zero + Zero;
+	//when only a pure number striung is inputed
+	//convert to time: eg. 8 to 0800
+	if (isNumber(tempTime) && tempTime.size() <= TWO_UNIT && std::stoi(tempTime) <= 12) {
+		if (tempTime.size() == ONE_UNIT) {
+			tempTime = ZERO_STRING + tempTime + ZERO_STRING + ZERO_STRING;
+		} else {
+			tempTime = tempTime + ZERO_STRING + ZERO_STRING;
 		}
 	}
 

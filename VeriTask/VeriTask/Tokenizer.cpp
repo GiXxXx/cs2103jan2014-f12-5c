@@ -1,101 +1,100 @@
+//@author A0101568J
+
 #include "Tokenizer.h"
 
-Tokenizer::Tokenizer(string &userInput){
+Tokenizer::Tokenizer(string &userInput) {
 	string temp = userInput;
-	uncategorizedInfo = &userInput;
-	*uncategorizedInfo = temp + Spaces;
+	_uncategorizedInfo = &userInput;
+	*_uncategorizedInfo = temp + SPACES;
 }
 
-Tokenizer::~Tokenizer(){
+Tokenizer::~Tokenizer() {
 }
 
-void Tokenizer::chopInfo(string &oldInfo, int position, int size){
+void Tokenizer::chopInfo(string &oldInfo, int position, int size) {
 	unsigned int EndPos = position + size;
 
-	if (EndPos < oldInfo.size()){
-		oldInfo = oldInfo.substr(start, position) + oldInfo.substr(position + size);
+	if (EndPos < oldInfo.size()) {
+		oldInfo = oldInfo.substr(START, position) + oldInfo.substr(position + size);
+	} else {
+		oldInfo = oldInfo.substr(START, position);
 	}
 
-	else{
-		oldInfo = oldInfo.substr(start, position);
-	}
 	return;
 }
 
-bool Tokenizer::isNumber(string test){
-	unsigned int matchCount = 0;
+bool Tokenizer::isNumber(string test) { 
+	unsigned int matchCount = ZERO;
 	bool result = false;
 
-	for (unsigned int i = 0; i < test.size(); i++){
-		for (unsigned int j = 0; j < 10; j++){
-			if (test[i] == number[j]){
+	for (unsigned int i = ZERO; i < test.size(); i++) {
+		for (unsigned int j = ZERO; j < TEN_UNIT; j++) {
+			if (test[i] == NUMBER[j]) {
 				matchCount++;
 			}
 		}
 	}
 
-	if (matchCount == test.size() && matchCount != zero){
+	if (matchCount == test.size() && matchCount != ZERO) {
 		result = true;
 	}
 
 	return result;
 }
 
-void Tokenizer::ChangeToLowerCase(string &input){
-	for (unsigned int i = 0; i < input.size(); i++){
-		if (input[i] >= A && input[i] <= Z){
-			input[i] = input[i] - (A - a);
+void Tokenizer::changeToLowerCase(string &input) {
+	for (unsigned int i = ZERO; i < input.size(); i++) {
+		if (input[i] >= UPPER_A && input[i] <= UPPER_Z) {
+			input[i] = input[i] - (UPPER_A - LOWER_A);
 		}
 	}
 
 	return;
 }
 
-string Tokenizer::changeWordToNumber(string input){
-	int first = zero, second = zero;
-	unsigned int position = input.find_first_of(space);
-	string elementOne, elementTwo;
+string Tokenizer::changeWordToNumber(string input) {
+	int first = ZERO;
+	int second = ZERO;
+	unsigned int position = input.find_first_of(SPACE);
+	string elementOne;
+	string elementTwo;
 
-	if (position == string::npos){
+	//find the position of space
+	//to checke whether there are two words or one
+	if (position == string::npos) {
 		elementOne = input;
-		elementTwo = space;
-	}
-	else{
-		elementOne = input.substr(start, position);
-		elementTwo = input.substr(position + OneUnit);
+		elementTwo = SPACE;
+	} else {
+		elementOne = input.substr(START, position);
+		elementTwo = input.substr(position + ONE_UNIT);
 	}
 
-	if (elementTwo == space){
-		for (int i = zero; i < TenUnit; i++){
-			if (elementOne == ones[i]){
+	if (elementTwo == SPACE) {
+		for (int i = ZERO; i < TEN_UNIT; i++) {
+			if (elementOne == ONES[i]) {
 				first = i;
-
-				if (first == zero){
-					first = TenUnit * TenUnit;
-				}
-
 				break;
 			}
 		}
-	}
-	else{
-		for (int i = zero; i < TenUnit + TenUnit; i++){
-			if (elementOne == tens[i]){
-				first = i * TenUnit;
+	} else {
+		for (int i = ZERO; i < TEN_UNIT + TEN_UNIT; i++) {
+			if (elementOne == TENS[i]) {
+				first = i * TEN_UNIT;
 				break;
 			}
 		}
 
-		for (int i = zero; i < TenUnit; i++){
-			if (elementTwo == ones[i]){
+		for (int i = ZERO; i < TEN_UNIT; i++) {
+			if (elementTwo == ONES[i]) {
 				second = i;
 				break;
 			}
 		}
 	}
 
-	if (elementOne == astring && elementTwo == space){
-		first = OneUnit;
+	//situation when "a" is inputed, return "1" as coresponding No.
+	if (elementOne == STRING_A && elementTwo == SPACE) {
+		first = ONE_UNIT;
 	}
 
 	int result = first + second;
@@ -107,16 +106,16 @@ string Tokenizer::changeWordToNumber(string input){
 	return out.str();
 }
 
-void Tokenizer::ChangeDoubleDigit(string &Number){
-	if (isNumber(Number)){
-		if (std::stoi(Number) < 10 && Number.size() == OneUnit){
-			Number = Zero + Number;
+void Tokenizer::changeDoubleDigit(string &Number) {
+	if (isNumber(Number)) {
+		if (stoi(Number) < 10 && Number.size() ==ONE_UNIT) {
+			Number = ZERO_STRING + Number;
 		}
 	}
 
 	return;
 }
 
-string Tokenizer::Tokenize(){
-	return *uncategorizedInfo;
+string Tokenizer::tokenize() {
+	return *_uncategorizedInfo;
 }
