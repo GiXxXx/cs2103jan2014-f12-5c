@@ -100,24 +100,24 @@ public:
 	//this method retrieves _taskList;
 	//Pre-req: nil.
 	//Post-req: it returns _taskList.
-	inline vector<Task> retrieveTaskList();
+	vector<Task> retrieveTaskList();
 
 	//this method retrieves _taskListToDisplay; it is reposible to interact with
 	//GUI to update the task sheet on GUI
 	//Pre-req: nil.
 	//Post-req: it returns _taskListToDisplay.
-	inline vector<Task> retrieveTaskListToDisplay();
+	vector<Task> retrieveTaskListToDisplay();
 	
 	//this method retrieves the task ID of a particular task from
 	//_taskListToDisplay
 	//Pre-req: task number of the task
 	//Post-req: task ID of the selected task
-	inline unsigned long long int retrieveTaskID(int);
+	unsigned long long int retrieveTaskID(int);
 
 	//this method retrieves a particular task from _taskListToDisplay
 	//Pre-req: task number of the task
 	//Post-req: the selected task
-	inline Task retrieveTask(int);
+	Task retrieveTask(int);
 
 	//this method adds a new task to the tasklist in out temporary
 	//storage, _taskList
@@ -162,17 +162,17 @@ public:
 	//this method is used to set the running index
 	//Pre-req: the index to be set
 	//Post-req: nil
-	inline void setTaskIndex(int taskIndex);
+	void setTaskIndex(int taskIndex);
 	
 	//this method is used to retrieve the running index
 	//Pre-req: nil
 	//Post-req: running index
-	inline int getTaskIndex();
+	int getTaskIndex();
 
 	//this method is used to update _taskListToDisplay after operations from
 	//the user
 	//Pre-req: task list to be updated to
 	//Post-req: nil
-	inline void updateTaskListToDisplay(vector<Task> taskListToDisplay);
+	void updateTaskListToDisplay(vector<Task> taskListToDisplay);
 	
 };

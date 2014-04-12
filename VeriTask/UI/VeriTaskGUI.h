@@ -1,13 +1,11 @@
 #pragma once
 
-#include "Identifier.h"
-#include "VeriTask.h"
-#include "TextUI.h"
 #include <vector>
 #include <string.h>
 #include <msclr/marshal_cppstd.h>
 #include <cliext\vector>
-
+#include "Identifier.h"
+#include "VeriTask.h"
 
 namespace UI {
 
@@ -29,12 +27,11 @@ namespace UI {
 		DataStorage *dataStorage;
 		VeriTask* taskManager;
 
-	    private: bool *_dragging;
-		private: Point *_offset;
-		private: Point *_start_point;
+	    bool *_dragging;
+		Point *_offset;
+		Point *_start_point;
 
-	private: 
-		System::Windows::Forms::ColumnHeader^  columnHeader1;
+	private: System::Windows::Forms::ColumnHeader^  columnHeader1;
 	private: System::Windows::Forms::Button^  closeButton;
 	private: System::Windows::Forms::Button^  minimizeButton;
 	private: System::Windows::Forms::Label^  VeriTaskTitle;
@@ -42,8 +39,6 @@ namespace UI {
 	private: System::Windows::Forms::Label^  label2;
 	private: System::Windows::Forms::Label^  label3;
 	private: System::Windows::Forms::Label^  label4;
-
-			 TextUI* textUI;
 
 	public:
 		VeriTaskGUI(void)
@@ -55,7 +50,6 @@ namespace UI {
 			
 			newIdentifier = new Identifier;
 			taskManager = new VeriTask;
-			textUI = new TextUI; 
 			dataStorage = new DataStorage ;
 		}
 
@@ -69,9 +63,8 @@ namespace UI {
 			{
 				delete components;
 				delete newIdentifier;
-			//	delete dataStorage;
+				delete dataStorage;
 				delete taskManager;
-				delete textUI;
 			}
 		}
 	private: System::Windows::Forms::ListView^  taskSheet;
@@ -327,16 +320,13 @@ namespace UI {
 					 }
 					 newTask->SubItems->Add(gcnew String(str.c_str()));
 
-					 if (status == UnDone) {
+					 if (status == UNDONE) {
 						 newTask->ForeColor = Color::Black;
-					 }
-					 if (status == Done) {
+					 } else if (status == DONE) {
 						 newTask->ForeColor = Color::Blue;
-					 }
-					 if (status == CannotBeDone) {
+					 } else if (status == CANNOT_BE_DONE) {
 						 newTask->ForeColor = Color::Yellow;
-					 }
-					 if (status == overdue) {
+					 } else if (status == OVERDUE) {
 						 newTask->ForeColor = Color::DarkRed;
 					 }
 
@@ -357,9 +347,9 @@ namespace UI {
 				 }
 
 				 std::string unmanagedInputString = marshal_as<std::string>(commandBox->Text);
-			     newIdentifier->Identify(unmanagedInputString); 
-				 std::string command = newIdentifier->GetCommand();
-				 taskManager->pushCommand(command, *newIdentifier, *textUI, *dataStorage);
+			     newIdentifier->identify(unmanagedInputString); 
+				 std::string command = newIdentifier->getCommand();
+				 taskManager->doCommand(command, *newIdentifier, *dataStorage);
 				 TaskVectorToDisplay = dataStorage->retrieveTaskListToDisplay();
 				 itemNum = TaskVectorToDisplay.size();
 				 for (unsigned int taskIndex=0; taskIndex< itemNum; taskIndex++) {
@@ -378,16 +368,16 @@ namespace UI {
 					 }
 					 newTask->SubItems->Add(gcnew String(str.c_str()));
 
-					 if (status == UnDone) {
+					 if (status == UNDONE) {
 						 newTask->ForeColor = Color::Black;
 					 }
-					 if (status == Done) {
+					 if (status == DONE) {
 						 newTask->ForeColor = Color::Gray;
 					 }
-					 if (status == CannotBeDone) {
+					 if (status == CANNOT_BE_DONE) {
 						 newTask->ForeColor = Color::Blue;
 					 }
-					 if (status == overdue) {
+					 if (status == OVERDUE) {
 						 newTask->ForeColor = Color::DarkRed;
 					 }
 
@@ -407,69 +397,69 @@ namespace UI {
 			 }
 
 			 std::string unmanagedInputString = marshal_as<std::string>(commandBox->Text);
-			 newIdentifier->Identify(unmanagedInputString); 
+			 newIdentifier->identify(unmanagedInputString); 
 			 
-			 if (newIdentifier->GetCommand() == "add") {
+			 if (newIdentifier->getCommand() == "add") {
 			 
-			 string str1 = "Command: " + newIdentifier->GetCommand();
-			 string str2 = "Date: " + newIdentifier->GetDate() + " TimeOne: " + newIdentifier->GetStartTime()+ " TimeTwo: " + newIdentifier->GetEndTime(); 
-			 string str3 = "Event: " + newIdentifier->GetEvent();
+			 string str1 = "Command: " + newIdentifier->getCommand();
+			 string str2 = "Date: " + newIdentifier->getDate() + " TimeOne: " + newIdentifier->getStartTime()+ " TimeTwo: " + newIdentifier->getEndTime(); 
+			 string str3 = "Event: " + newIdentifier->getEvent();
 			
 			 feedbackBox->Text = gcnew String((str1 + "\r\n" + str2 + "\r\n" + str3).c_str());
 			 } 
 			 
-			 if (newIdentifier->GetCommand() == "delete") {
-			 string str1 = "Command: " + newIdentifier->GetCommand();
-			 string str2 = "Task Number: " + newIdentifier->GetTaskNum();
+			 if (newIdentifier->getCommand() == "delete") {
+			 string str1 = "Command: " + newIdentifier->getCommand();
+			 string str2 = "Task Number: " + newIdentifier->getTaskNum();
 			 feedbackBox->Text = gcnew String((str1 + "\r\n" + str2).c_str());
 			 }
 
-			 if (newIdentifier->GetCommand() == "search") {
-			 string str1 = "Command: " + newIdentifier->GetCommand();
-			 string str2 = "Keyword: " + newIdentifier->GetKeyword();
+			 if (newIdentifier->getCommand() == "search") {
+			 string str1 = "Command: " + newIdentifier->getCommand();
+			 string str2 = "Keyword: " + newIdentifier->getKeyword();
 			 feedbackBox->Text = gcnew String((str1 + "\r\n" + str2).c_str());
 			 }
 
-			 if (newIdentifier->GetCommand() == "mark") {
+			 if (newIdentifier->getCommand() == "mark") {
 			 
-			 string str1 = "Command: " + newIdentifier->GetCommand();
-			 string str2 = "Task Number: " + newIdentifier->GetTaskNum();
-			 string str3 = "Status: " + newIdentifier->GetStatus();
+			 string str1 = "Command: " + newIdentifier->getCommand();
+			 string str2 = "Task Number: " + newIdentifier->getTaskNum();
+			 string str3 = "Status: " + newIdentifier->getStatus();
 			 feedbackBox->Text = gcnew String((str1 + "\r\n" + str2+ "\r\n" + str3).c_str());
 			 }
 
-			 if (newIdentifier->GetCommand() == "edit") {
+			 if (newIdentifier->getCommand() == "edit") {
 			 
-			 string str1 = "Command: " + newIdentifier->GetCommand();
-			 string str2 = "Task Number: " + newIdentifier->GetTaskNum();
-			 string str3 = "Date Modification: " + newIdentifier->GetDate() + "TimeOne Modification: " + newIdentifier->GetStartTime() + " TimeTwo Modification: " + newIdentifier->GetEndTime();
-			 string str4 = "Event Modification: " + newIdentifier->GetEvent();
+			 string str1 = "Command: " + newIdentifier->getCommand();
+			 string str2 = "Task Number: " + newIdentifier->getTaskNum();
+			 string str3 = "Date Modification: " + newIdentifier->getDate() + "TimeOne Modification: " + newIdentifier->getStartTime() + " TimeTwo Modification: " + newIdentifier->getEndTime();
+			 string str4 = "Event Modification: " + newIdentifier->getEvent();
 			 feedbackBox->Text = gcnew String((str1 + "\r\n" + str2 + "\r\n" + str3 + "\r\n" + str4).c_str());
 			 }
 			 
-			 if (newIdentifier->GetCommand() == "display") {
+			 if (newIdentifier->getCommand() == "display") {
 			 
-			 string str1 = "Command: " + newIdentifier->GetCommand();
-			 string str2 = "Task Condition: " + newIdentifier->GetStatus();
-			 string str3 = "Date of task to be displayed: " + newIdentifier->GetDate();
+			 string str1 = "Command: " + newIdentifier->getCommand();
+			 string str2 = "Task Condition: " + newIdentifier->getStatus();
+			 string str3 = "Date of task to be displayed: " + newIdentifier->getDate();
 			 feedbackBox->Text = gcnew String((str1 + "\r\n" + str2 + "\r\n" + str3).c_str());
 			 }
 			 
-			 if (newIdentifier->GetCommand() == "undo") {
+			 if (newIdentifier->getCommand() == "undo") {
 			 
-			 string str1 = "Command: " + newIdentifier->GetCommand();
+			 string str1 = "Command: " + newIdentifier->getCommand();
 			 feedbackBox->Text = gcnew String(str1.c_str());
 			 }
 
-			 if (newIdentifier->GetCommand() == "redo") {
+			 if (newIdentifier->getCommand() == "redo") {
 			 
-			 string str1 = "Command: " + newIdentifier->GetCommand();
+			 string str1 = "Command: " + newIdentifier->getCommand();
 			 feedbackBox->Text = gcnew String(str1.c_str());
 			 }
 
-			 if (newIdentifier->GetCommand() == "exit") {
+			 if (newIdentifier->getCommand() == "exit") {
 			 
-			 string str1 = "Command: " + newIdentifier->GetCommand();
+			 string str1 = "Command: " + newIdentifier->getCommand();
 			 feedbackBox->Text = gcnew String(str1.c_str());
 			 }
 	}
