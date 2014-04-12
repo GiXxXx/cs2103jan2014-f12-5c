@@ -12,10 +12,10 @@ Task::Task(string event, string date, string startTime, string endTime, string s
 	unsigned long long int endTime_Int;
 
 	if(date == "        "){
-		date_Int = 99999999;
+		date_Int = 99999;
 	}
 	else{
-		date_Int = std::stoi(_date);
+		date_Int = std::stoi(_date.substr(2,6));
 	}
 	if(startTime == "    "){
 		startTime_Int = 9999;
@@ -30,9 +30,35 @@ Task::Task(string event, string date, string startTime, string endTime, string s
 		endTime_Int = std::stoi(_endTime);
 	}
 
-	//index = index/10000000000000.0;
+	struct tm timeNow;
+	time_t localTime = time(NULL);
 
-	_ID = date_Int * 100000000000 + startTime_Int * 10000000  + endTime_Int * 1000 + index;
+	localtime_s(&timeNow, &localTime);
+
+	int localYear = timeNow.tm_year + 1900;
+	int localMonth = timeNow.tm_mon + 1;
+	int localDate = timeNow.tm_mday;
+	int localHour = timeNow.tm_hour;
+	int localMin = timeNow.tm_min;
+	
+	if ((date != "        ") && (status != "done")) {
+	if (localYear*10000+localMonth*100+localDate > stoi(date)) {
+		_status = "overdue";
+	} else if (localYear*10000+localMonth*100+localDate == stoi(date)) {
+		if ((startTime != "    ") && (endTime == "    ")) {
+			if ((localHour*100+localMin) > stoi(startTime)) {
+				_status = "overdue";
+			}
+		}
+		if ((startTime != "    ") && (endTime != "    ")) {
+			if ((localHour*100+localMin) > stoi(endTime)) {
+				_status = "overdue";
+			}
+		}
+	}
+	}
+
+	_ID = date_Int * 10000000000000 + startTime_Int * 1000000000  + endTime_Int * 100000 + index;
 }
 
 string Task::getEvent() {
