@@ -605,8 +605,6 @@ namespace UnitTest2 {
 			Task test4 = ((_TestdataStorage.retrieveTaskList()).front());
 			string str7 = "arrange music score";
 			Assert::AreEqual(str7, test4.getEvent());
-
-			TaskManager.~VeriTask();
 		}
 		
 		TEST_METHOD(testAddDeadlineTask) {
@@ -620,7 +618,6 @@ namespace UnitTest2 {
 	     	DataStorage _TestdataStorage("testAddDeadlineTask.txt");
 			VeriTask TaskManager;
 			  
-
 			//pre-condition: empty data storage upon program initialisation
 			Assert::IsTrue(_TestdataStorage.retrieveTaskList().empty()); 
 
@@ -668,8 +665,6 @@ namespace UnitTest2 {
 			Task test3 = ((_TestdataStorage.retrieveTaskList()).back());
 			string str6 = "watch Ghibli";
 			Assert::AreEqual(str6, test3.getEvent());
-
-			TaskManager.~VeriTask();
 		} 
 
 		TEST_METHOD(testAddFloatingTask) {
@@ -715,8 +710,6 @@ namespace UnitTest2 {
 			Task test2 = ((_TestdataStorage.retrieveTaskList()).back());
 			string str5 = "shift furniture";
 			Assert::AreEqual(str5, test2.getEvent());
-
-			TaskManager1.~VeriTask();
 		}
 
 		TEST_METHOD(testSearch) {
@@ -795,8 +788,6 @@ namespace UnitTest2 {
 			
 			unsigned int vectorsize = 3;
 			Assert::AreEqual(vectorsize, _TestdataStorageS.retrieveTaskListToDisplay().size()); 
-
-			TaskManagerS.~VeriTask();
 		}
 		
 		TEST_METHOD(testEditTimedTask) {
@@ -809,7 +800,6 @@ namespace UnitTest2 {
 	     	DataStorage _TestdataStorageETT("testEditTimedTask.txt");
 			VeriTask TaskManagerETT;
 			  
-
 			//pre-condition: empty data storage upon program initialisation
 			Assert::IsTrue((_TestdataStorageETT.retrieveTaskList().empty()));
 			Assert::IsTrue((_TestdataStorageETT.retrieveTaskListToDisplay()).empty());
@@ -912,8 +902,6 @@ namespace UnitTest2 {
 			Assert::AreEqual(str9, test8.getEvent());
 			string str10 = "20110519";
 			Assert::AreEqual(str10, test8.getDate());
-			
-			TaskManagerETT.~VeriTask();
 		}
 
 		TEST_METHOD(testEditDeadlineTask) {
@@ -974,8 +962,6 @@ namespace UnitTest2 {
 			Assert::AreEqual(str3, test4.getEvent());
 			string str4 = "20110331";
 			Assert::AreEqual(str4, test4.getDate());
-
-			TaskManager.~VeriTask();
 		}
 
 		TEST_METHOD(testEditFloatingTask) {
@@ -1059,8 +1045,6 @@ namespace UnitTest2 {
 			Assert::AreEqual(str5, test5.getStartTime());
 			string str6 = "1500";
 			Assert::AreEqual(str6, test5.getEndTime());		
-
-			TaskManager.~VeriTask();
 		}
 
 		TEST_METHOD(testMark) {
@@ -1100,8 +1084,6 @@ namespace UnitTest2 {
 			Task test3Mark = ((_TestdataStoreMark.retrieveTaskListToDisplay()).front());
 			string testMarkStatus2 = "cannot be done";
 			Assert::AreEqual(testMarkStatus2, test3Mark.getStatus());
-
-			TaskManagerMark.~VeriTask();
 		}
 
 		TEST_METHOD(testDelete) {
@@ -1138,8 +1120,6 @@ namespace UnitTest2 {
 
 			//post-condition: task has been deleted
 			Assert::IsTrue((_TestdataStoreDel.retrieveTaskList()).empty()); 
-
-			TaskManagerDel.~VeriTask();
 		}
 
 		
@@ -1314,8 +1294,6 @@ namespace UnitTest2 {
 			}		
 			unsigned int undoSize = 1;
 			Assert::AreEqual(undoSize, _undoData.retrieveTaskList().size()); 
-
-			undoVeriTask.~VeriTask();
 		}
 
 		TEST_METHOD(testRedo) {
@@ -1568,8 +1546,6 @@ namespace UnitTest2 {
 			}
 			//post-condition: the empty vector is restored
 			Assert::IsTrue(_redoData.retrieveTaskList().empty()); 
-
-			redoVeriTask.~VeriTask();
 		}
 
 	};
