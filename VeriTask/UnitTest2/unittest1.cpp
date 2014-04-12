@@ -15,6 +15,7 @@
 #include "SearchTask.h"
 #include "StatusGetter.h"
 #include "Task.h"
+#include "TaskDisplayer.h"
 #include "TaskNumGetter.h"
 #include "TextUI.h"
 #include "TimeGetter.h"
@@ -562,18 +563,18 @@ namespace UnitTest2 {
 			Task test1 = ((_TestdataStorage.retrieveTaskList()).front());
 
 			string str1 = "20110531";
-			Assert::AreEqual(test1.getDate(), str1);
+			Assert::AreEqual(str1, test1.getDate());
 
 			string str2 = "1930";
-			Assert::AreEqual(test1.getStartTime(), str2);
+			Assert::AreEqual(str2, test1.getStartTime());
 
 			string str3 = "2200";
-			Assert::AreEqual(test1.getEndTime(), str3);
+			Assert::AreEqual(str3, test1.getEndTime());
 
 			string str4 = "stargazing session";
-			Assert::AreEqual(test1.getEvent(), str4);
+			Assert::AreEqual(str4, test1.getEvent());
 
-			unsigned long long ID1 = 2011053119302200000;
+			unsigned long long ID1 = 1105311930220000000;
 			Assert::AreEqual(ID1, test1.getID());
 			
 			//check that task has been added in correct order, comparing 2 timed tasks
@@ -603,7 +604,7 @@ namespace UnitTest2 {
 			TestInfoIdentifier.Identify(TestUserInput4);
 			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, _TestdataStorage);
 			
-			Task test4 = ((_TestdataStorage.retrieveTaskList()).back());
+			Task test4 = ((_TestdataStorage.retrieveTaskList()).front());
 			string str7 = "arrange music score";
 			Assert::AreEqual(str7, test4.getEvent());
 
@@ -617,7 +618,6 @@ namespace UnitTest2 {
 			//tests correct order of deadline task and floating task in data storage
 
 			string InputADT = "add see sunrise by 19/05/2011";
-	
 			Identifier IdentifierADT;
 	     	DataStorage _TestdataStorage("testAddDeadlineTask.txt");
 			VeriTask TaskManager;
@@ -632,9 +632,8 @@ namespace UnitTest2 {
 			//post-condition: data storage no longer empty after add
 			Assert::IsFalse(_TestdataStorage.retrieveTaskList().empty());
 
-			Task test1 = ((_TestdataStorage.retrieveTaskList()).front());
-
 			//check that attributes have been initialised correctly for deadline tasks
+			Task test1 = ((_TestdataStorage.retrieveTaskList()).front());
 			string str1 = "20110519";
 			Assert::AreEqual(str1, test1.getDate());
 
@@ -647,9 +646,8 @@ namespace UnitTest2 {
 			string str4 = "see sunrise";
 			Assert::AreEqual(str4, test1.getEvent());
 
-			//don't test ID first
-			/* unsigned long long ID2 = 2011051999999999;
-			Assert::AreEqual(test1.getID(), ID2); */
+			unsigned long long ID2 = 1105199999999900000;
+			Assert::AreEqual(ID2, test1.getID()); 
 			
 			//check that task has been added in correct order, comparing 2 deadline tasks
 			string InputADT2 = "add see sunset by 01/03/2011";
@@ -669,7 +667,7 @@ namespace UnitTest2 {
 			IdentifierADT.Identify(InputADT4);
 			TaskManager.pushCommand(IdentifierADT.GetCommand(), IdentifierADT, textUI, _TestdataStorage);
 
-			Task test3 = ((_TestdataStorage.retrieveTaskList()).back());
+			Task test3 = ((_TestdataStorage.retrieveTaskList()).front());
 			string str6 = "watch Ghibli";
 			Assert::AreEqual(str6, test3.getEvent());
 
@@ -700,19 +698,17 @@ namespace UnitTest2 {
 			Task test1 = ((_TestdataStorage.retrieveTaskList()).front());
 
 			string str1 = "move house";
-			Assert::AreEqual(test1.getEvent(), str1);
+			Assert::AreEqual(str1, test1.getEvent());
 
 			string str2 = "    ";
-			Assert::AreEqual(test1.getStartTime(), str2);
-			Assert::AreEqual(test1.getEndTime(), str2);
+			Assert::AreEqual(str2, test1.getStartTime());
+			Assert::AreEqual(str2, test1.getEndTime());
 			string str3 = "        ";
-			Assert::AreEqual(test1.getDate(), str3);
+			Assert::AreEqual(str3, test1.getDate());
 
-			unsigned long long ID3 = 9999999999999999000;
-			Assert::AreEqual(test1.getID(), ID3);
-
-			//to-do: check for initialisation of 2nd floating task ID
-			
+			unsigned long long ID3 = 999999999999900000;
+			Assert::AreEqual(ID3, test1.getID());
+		
 			//check that task has been added in correct order, comparing 2 floating tasks
 			string TestAFT2 = "add shift furniture";
 			TestInfoIdentifier1.Identify(TestAFT2);
@@ -720,7 +716,7 @@ namespace UnitTest2 {
 			
 			Task test2 = ((_TestdataStorage.retrieveTaskList()).back());
 			string str5 = "shift furniture";
-			Assert::AreEqual(test2.getEvent(), str5);
+			Assert::AreEqual(str5, test2.getEvent());
 
 			TaskManager1.~VeriTask();
 		}
@@ -781,7 +777,7 @@ namespace UnitTest2 {
 			Assert::IsFalse((_TestdataStorageS.retrieveTaskListToDisplay()).empty());
 			Task testS = ((_TestdataStorageS.retrieveTaskListToDisplay()).front());
 			string str1S = "stargazing session";
-			Assert::AreEqual(testS.getEvent(), str1S); 
+			Assert::AreEqual(str1S, testS.getEvent()); 
 
 			//positive search: multiple results
 			string PS1 = "add chorale training on 31/07/2011 from 19:30 to 22:00";
@@ -827,10 +823,10 @@ namespace UnitTest2 {
 			//check that data storage no longer empty upon add
 			Assert::IsFalse((_TestdataStorageETT.retrieveTaskList()).empty());
 
+			//search to retrieve task
 			string SearchCommand = "search stargazing";
 			TestETTIdentifier.Identify(SearchCommand);
 			TaskManagerETT.pushCommand(TestETTIdentifier.GetCommand(), TestETTIdentifier, textUI, _TestdataStorageETT);
-
 			//ensure positive search
 			Assert::IsFalse((_TestdataStorageETT.retrieveTaskListToDisplay()).empty());
 
@@ -838,15 +834,14 @@ namespace UnitTest2 {
 			string TestUserInput2 = "edit 1 sunset";
 			TestETTIdentifier.Identify(TestUserInput2);
 			TaskManagerETT.pushCommand(TestETTIdentifier.GetCommand(), TestETTIdentifier, textUI, _TestdataStorageETT);
-			
 			Task test2 = ((_TestdataStorageETT.retrieveTaskList()).front());
 			string str1 = "sunset";
-			Assert::AreEqual(test2.getEvent(), str1);
+			Assert::AreEqual(str1, test2.getEvent());
 
+			//search to retrieve task
 			string SearchCommand2 = "search sunset";
 			TestETTIdentifier.Identify(SearchCommand2);
 			TaskManagerETT.pushCommand(TestETTIdentifier.GetCommand(), TestETTIdentifier, textUI, _TestdataStorageETT);
-
 			//ensure positive search
 			Assert::IsFalse((_TestdataStorageETT.retrieveTaskListToDisplay()).empty());
 
@@ -855,8 +850,9 @@ namespace UnitTest2 {
 			TaskManagerETT.pushCommand(TestETTIdentifier.GetCommand(), TestETTIdentifier, textUI, _TestdataStorageETT);
 			string str2 = "20110301";
 			Task test3 = ((_TestdataStorageETT.retrieveTaskList()).front());
-			Assert::AreEqual(test3.getDate(), str2);
+			Assert::AreEqual(str2, test3.getDate());
 
+			//search to retrieve task
 			TestETTIdentifier.Identify(SearchCommand2);
 			TaskManagerETT.pushCommand(TestETTIdentifier.GetCommand(), TestETTIdentifier, textUI, _TestdataStorageETT);
 
@@ -865,8 +861,9 @@ namespace UnitTest2 {
 			TaskManagerETT.pushCommand(TestETTIdentifier.GetCommand(), TestETTIdentifier, textUI, _TestdataStorageETT);
 			string str3 = "1200";
 			Task test4 = ((_TestdataStorageETT.retrieveTaskList()).front());
-			Assert::AreEqual(test4.getStartTime(), str3);
+			Assert::AreEqual(str3, test4.getStartTime());
 
+			//search to retrieve task
 			TestETTIdentifier.Identify(SearchCommand2);
 			TaskManagerETT.pushCommand(TestETTIdentifier.GetCommand(), TestETTIdentifier, textUI, _TestdataStorageETT);
 
@@ -875,46 +872,49 @@ namespace UnitTest2 {
 			TaskManagerETT.pushCommand(TestETTIdentifier.GetCommand(), TestETTIdentifier, textUI, _TestdataStorageETT);
 			string str4 = "1900";
 			Task test5 = ((_TestdataStorageETT.retrieveTaskList()).front());
-			Assert::AreEqual(test5.getStartTime(), str4);
-
+			Assert::AreEqual(str4, test5.getStartTime());
+			
+			//search to retrieve task
 			TestETTIdentifier.Identify(SearchCommand2);
 			TaskManagerETT.pushCommand(TestETTIdentifier.GetCommand(), TestETTIdentifier, textUI, _TestdataStorageETT);
 
 			string TestUserInput7 = "edit 1 from 19:30 to 03:00";
 			TestETTIdentifier.Identify(TestUserInput7);
 			TaskManagerETT.pushCommand(TestETTIdentifier.GetCommand(), TestETTIdentifier, textUI, _TestdataStorageETT);
-			string str7 = "0300";
+			string str5 = "0300";
 			Task test6 = ((_TestdataStorageETT.retrieveTaskList()).front());
-			Assert::AreEqual(test6.getEndTime(), str7);
+			Assert::AreEqual(str5, test6.getEndTime());
 
 			//test edit of multiple attributes 
+			//search to retrieve task
 			TestETTIdentifier.Identify(SearchCommand2);
 			TaskManagerETT.pushCommand(TestETTIdentifier.GetCommand(), TestETTIdentifier, textUI, _TestdataStorageETT);
-			string TestUserInput6 = "edit 1 fireworks from 17:00";
+			string TestUserInput6 = "edit 1 fireworks from 17:00 to 03:00";
 			TestETTIdentifier.Identify(TestUserInput6);
 			TaskManagerETT.pushCommand(TestETTIdentifier.GetCommand(), TestETTIdentifier, textUI, _TestdataStorageETT);
 			
 			Task test7 = ((_TestdataStorageETT.retrieveTaskList()).front());
-			string str5 = "1700";
-			Assert::AreEqual(test7.getStartTime(), str5);
-			string str6 = "fireworks";
-			Assert::AreEqual(test7.getEvent(), str6);
+			string str6 = "1700";
+			Assert::AreEqual(str6, test7.getStartTime());
+			string str7 = "fireworks";
+			Assert::AreEqual(str7, test7.getEvent());
 
 			//test edit of multiple attributes and unordered data attribute input
+			//search to retrieve task
 			string SearchCommand3 = "search fireworks";
 			TestETTIdentifier.Identify(SearchCommand3);
 			TaskManagerETT.pushCommand(TestETTIdentifier.GetCommand(), TestETTIdentifier, textUI, _TestdataStorageETT);
-			string TestUserInput8 = "edit 1 from 17:00 to 2359 on 19/05/2011 movies";
+			string TestUserInput8 = "edit 1 from 17:00 to 23:59 on 19/05/2011 movies";
 			TestETTIdentifier.Identify(TestUserInput8);
 			TaskManagerETT.pushCommand(TestETTIdentifier.GetCommand(), TestETTIdentifier, textUI, _TestdataStorageETT);
 			
 			Task test8 = ((_TestdataStorageETT.retrieveTaskList()).front());
-			string str10 = "2359";
-			Assert::AreEqual(test8.getEndTime(), str10);
-			string str8 = "movies";
-			Assert::AreEqual(test8.getEvent(), str8);
-			string str9 = "20110519";
-			Assert::AreEqual(test8.getDate(), str9);
+			string str8 = "2359";
+			Assert::AreEqual(str8, test8.getEndTime());
+			string str9 = "movies";
+			Assert::AreEqual(str9, test8.getEvent());
+			string str10 = "20110519";
+			Assert::AreEqual(str10, test8.getDate());
 			
 			TaskManagerETT.~VeriTask();
 		}
@@ -946,7 +946,7 @@ namespace UnitTest2 {
 			
 			Task test2 = ((_TestdataStorage.retrieveTaskList()).front());
 			string str1 = "be mugger";
-			Assert::AreEqual(test2.getEvent(), str1);
+			Assert::AreEqual(str1, test2.getEvent());
 
 			//search to access Task to be edited
 			string SearchCommand = "search mugger";
@@ -961,7 +961,7 @@ namespace UnitTest2 {
 			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, _TestdataStorage);
 			string newstring = "20110301";
 			Task test3 = ((_TestdataStorage.retrieveTaskList()).front());
-			Assert::AreEqual(test3.getDate(), newstring);
+			Assert::AreEqual(newstring, test3.getDate());
 
 			//search to access Task to be edited
 			string SearchCommand2 = "search mugger";
@@ -976,9 +976,9 @@ namespace UnitTest2 {
 			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, _TestdataStorage);
 			Task test4 = ((_TestdataStorage.retrieveTaskList()).front());
 			string str3 = "pass exam";
-			Assert::AreEqual(test4.getEvent(), str3);
+			Assert::AreEqual(str3, test4.getEvent());
 			string str4 = "20110331";
-			Assert::AreEqual(test4.getDate(), str4);
+			Assert::AreEqual(str4, test4.getDate());
 
 			TaskManager.~VeriTask();
 		}
@@ -1019,7 +1019,7 @@ namespace UnitTest2 {
 			
 			Task test2 = ((_TestdataStorage.retrieveTaskList()).front());
 			string str1 = "update portfolio";
-			Assert::AreEqual(test2.getEvent(), str1);
+			Assert::AreEqual(str1, test2.getEvent());
 
 			//search to access Task to be edited
 			string SearchCommand3 = "search update";
@@ -1035,7 +1035,7 @@ namespace UnitTest2 {
 			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, _TestdataStorage);
 			string str2 = "20110301";
 			Task test3 = ((_TestdataStorage.retrieveTaskList()).front());
-			Assert::AreEqual(test3.getDate(), str2);
+			Assert::AreEqual(str2, test3.getDate());
 
 			//add date & time to floating task, change to timed task
 			string TestUserInput5 = "add buy pencil";
@@ -1051,20 +1051,20 @@ namespace UnitTest2 {
 			Assert::IsFalse((_TestdataStorage.retrieveTaskListToDisplay()).empty());
 			
 			//ensure accurate search
-			Task test6 = ((_TestdataStorage.retrieveTaskListToDisplay()).front());
-			string str6 = "buy pencil";
-			Assert::AreEqual(test6.getEvent(), str6);
+			Task test4 = ((_TestdataStorage.retrieveTaskListToDisplay()).front());
+			string str3 = "buy pencil";
+			Assert::AreEqual(str3, test4.getEvent());
 
 			string TestUserInput4 = "edit 1 from 12:00 to 15:00 on 17/03/2010";
 			TestInfoIdentifier.Identify(TestUserInput4);
 			TaskManager.pushCommand(TestInfoIdentifier.GetCommand(), TestInfoIdentifier, textUI, _TestdataStorage);
-			Task test4 = ((_TestdataStorage.retrieveTaskList()).front());
-			string str5 = "20100317";
-			Assert::AreEqual(test4.getDate(), str5);
-			string str3 = "1200";
-			Assert::AreEqual(test4.getStartTime(), str3);
-			string str4 = "1500";
-			Assert::AreEqual(test4.getEndTime(), str4);		
+			Task test5 = ((_TestdataStorage.retrieveTaskList()).front());
+			string str4 = "20100317";
+			Assert::AreEqual(str4, test5.getDate());
+			string str5 = "1200";
+			Assert::AreEqual(str5, test5.getStartTime());
+			string str6 = "1500";
+			Assert::AreEqual(str6, test5.getEndTime());		
 
 			TaskManager.~VeriTask();
 		}
@@ -1078,20 +1078,19 @@ namespace UnitTest2 {
 			TextUI textUIMark;
 
 			//pre-condition: empty data storage upon program initialisation
-			Assert::IsTrue((_TestdataStoreMark.retrieveTaskList().empty()));
-			Assert::IsTrue((_TestdataStoreMark.retrieveTaskListToDisplay()).empty());
+			Assert::IsTrue(_TestdataStoreMark.retrieveTaskList().empty());
+			Assert::IsTrue(_TestdataStoreMark.retrieveTaskListToDisplay().empty());
 
 			TestMarkIdentifier.Identify(testMark);
 			TaskManagerMark.pushCommand(TestMarkIdentifier.GetCommand(), TestMarkIdentifier, textUIMark, _TestdataStoreMark);
 				
 			//ensure successful add
-			Assert::IsFalse((_TestdataStoreMark.retrieveTaskList().empty()));
+			Assert::IsFalse(_TestdataStoreMark.retrieveTaskList().empty());
 
 			//search to access Task to be edited
 			string SearchCommand = "search drawing";
 			TestMarkIdentifier.Identify(SearchCommand);
 			TaskManagerMark.pushCommand(TestMarkIdentifier.GetCommand(), TestMarkIdentifier, textUIMark, _TestdataStoreMark);
-
 			//ensure positive search
 			Assert::IsFalse((_TestdataStoreMark.retrieveTaskListToDisplay()).empty());
 
@@ -1100,14 +1099,14 @@ namespace UnitTest2 {
 			TaskManagerMark.pushCommand(TestMarkIdentifier.GetCommand(), TestMarkIdentifier, textUIMark, _TestdataStoreMark);
 			string testMarkStatus = "done";
 			Task test2Mark = ((_TestdataStoreMark.retrieveTaskListToDisplay()).front());
-			Assert::AreEqual(test2Mark.getStatus(), testMarkStatus);
+			Assert::AreEqual(testMarkStatus, test2Mark.getStatus());
 
 			string testMark3 = "mark 1 cannot be done";
 			TestMarkIdentifier.Identify(testMark3);
 			TaskManagerMark.pushCommand(TestMarkIdentifier.GetCommand(), TestMarkIdentifier, textUIMark, _TestdataStoreMark);
 			Task test3Mark = ((_TestdataStoreMark.retrieveTaskListToDisplay()).front());
 			string testMarkStatus2 = "cannot be done";
-			Assert::AreEqual(test3Mark.getStatus(), testMarkStatus2);
+			Assert::AreEqual(testMarkStatus2, test3Mark.getStatus());
 
 			TaskManagerMark.~VeriTask();
 		}
@@ -1128,12 +1127,11 @@ namespace UnitTest2 {
 			TextUI textUIDel;
 
 			//precondition: begin with empty data store
-			Assert::IsTrue((_TestdataStoreDel.retrieveTaskList()).empty());  
-			Assert::IsTrue((_TestdataStoreDel.retrieveTaskListToDisplay()).empty()); 
+			Assert::IsTrue(_TestdataStoreDel.retrieveTaskList().empty());  
+			Assert::IsTrue(_TestdataStoreDel.retrieveTaskListToDisplay().empty()); 
 
 			TestDelIdentifier.Identify(testDel);
 			TaskManagerDel.pushCommand(TestDelIdentifier.GetCommand(), TestDelIdentifier, textUIDel, _TestdataStoreDel);
-			
 			//check that task has been added
 			Assert::IsFalse((_TestdataStoreDel.retrieveTaskList()).empty()); 
 
@@ -1161,26 +1159,26 @@ namespace UnitTest2 {
 			string undoKeyword = "undo"; 
 
 			//precondition: begin with empty data store
-			Assert::IsTrue((_undoData.retrieveTaskList()).empty());  
-			Assert::IsTrue((_undoData.retrieveTaskListToDisplay()).empty()); 
+			Assert::IsTrue(_undoData.retrieveTaskList().empty());  
+			Assert::IsTrue(_undoData.retrieveTaskListToDisplay().empty()); 
 
 			//test undo for Add
 			string undo1 = "add expand vocal range";
 			undoIdentifier.Identify(undo1);
 			undoVeriTask.pushCommand(undoIdentifier.GetCommand(), undoIdentifier, undoUI, _undoData);
 			//ensure successful add
-			Assert::IsFalse((_undoData.retrieveTaskList()).empty());  
+			Assert::IsFalse(_undoData.retrieveTaskList().empty());  
 
 			undoIdentifier.Identify(undoKeyword);
 			undoVeriTask.pushCommand(undoIdentifier.GetCommand(), undoIdentifier, undoUI, _undoData);
 			//ensure successful post-condition after undo
-			Assert::IsTrue((_undoData.retrieveTaskList()).empty());  
+			Assert::IsTrue(_undoData.retrieveTaskList().empty());  
 
 			//re-add
 			undoIdentifier.Identify(undo1);
 			undoVeriTask.pushCommand(undoIdentifier.GetCommand(), undoIdentifier, undoUI, _undoData);
 			//ensure successful add
-			Assert::IsFalse((_undoData.retrieveTaskList()).empty());  
+			Assert::IsFalse(_undoData.retrieveTaskList().empty());  
 
 			//test Undo for Mark
 			//search to retrieve task
@@ -1188,25 +1186,25 @@ namespace UnitTest2 {
 			undoIdentifier.Identify(undoSearch0);
 			undoVeriTask.pushCommand(undoIdentifier.GetCommand(), undoIdentifier, undoUI, _undoData);
 			//ensure successful search
-			Assert::IsFalse((_undoData.retrieveTaskListToDisplay()).empty());
+			Assert::IsFalse(_undoData.retrieveTaskListToDisplay().empty());
 			//ensure accurate search
-			Task undoMarkTask = ((_undoData.retrieveTaskListToDisplay()).front());
+			Task undoMarkTask1 = (_undoData.retrieveTaskListToDisplay().front());
 			string undoMark1 = "expand vocal range";
-			Assert::AreEqual(undoMarkTask.getEvent(), undoMark1);
+			Assert::AreEqual(undoMark1, undoMarkTask1.getEvent());
 
 			string undoMarkcommand = "mark 1 done";
 			undoIdentifier.Identify(undoMarkcommand);
 			undoVeriTask.pushCommand(undoIdentifier.GetCommand(), undoIdentifier, undoUI, _undoData);
 			//ensure accurate mark
-			string markStatus = "done";
-			Task undoMarkTask3 = ((_undoData.retrieveTaskListToDisplay()).front());
-			Assert::AreEqual(undoMarkTask3.getStatus(), markStatus);
+			string markStatus1 = "done";
+			Task undoMarkTask2 = ((_undoData.retrieveTaskListToDisplay()).front());
+			Assert::AreEqual(markStatus1, undoMarkTask2.getStatus());
 			undoIdentifier.Identify(undoKeyword);
 			undoVeriTask.pushCommand(undoIdentifier.GetCommand(), undoIdentifier, undoUI, _undoData);
 			//ensure successful post-condition after undo
-			Task undoMarkTask2 = ((_undoData.retrieveTaskListToDisplay()).front());
+			Task undoMarkTask3 = ((_undoData.retrieveTaskListToDisplay()).front());
 			string markStatus2 = "undone";
-			Assert::AreEqual(markStatus2, undoMarkTask2.getStatus());  
+			Assert::AreEqual(markStatus2, undoMarkTask3.getStatus());  
 
 			//test Undo for Edit
 			//search to retrieve task
@@ -1214,16 +1212,16 @@ namespace UnitTest2 {
 			undoIdentifier.Identify(undoSearch1);
 			undoVeriTask.pushCommand(undoIdentifier.GetCommand(), undoIdentifier, undoUI, _undoData);
 			//ensure successful search
-			Assert::IsFalse((_undoData.retrieveTaskListToDisplay()).empty());
+			Assert::IsFalse(_undoData.retrieveTaskListToDisplay().empty());
 			//ensure accurate search
-			Task test0 = ((_undoData.retrieveTaskListToDisplay()).front());
+			Task test0 = (_undoData.retrieveTaskListToDisplay().front());
 			string str0 = "expand vocal range";
 			Assert::AreEqual(str0, test0.getEvent());
 
 			string edit1 = "edit 1 expand vocal range and strengthen chest voice";
 			undoIdentifier.Identify(edit1);
 			undoVeriTask.pushCommand(undoIdentifier.GetCommand(), undoIdentifier, undoUI, _undoData);
-			Task test1 = ((_undoData.retrieveTaskList()).front());
+			Task test1 = (_undoData.retrieveTaskList().front());
 			//ensure successful edit
 			string str1 = "expand vocal range and strengthen chest voice";
 			Assert::AreEqual(str1, test1.getEvent());
@@ -1231,14 +1229,14 @@ namespace UnitTest2 {
 			undoIdentifier.Identify(undoKeyword);
 			undoVeriTask.pushCommand(undoIdentifier.GetCommand(), undoIdentifier, undoUI, _undoData);
 			//ensure successful post-condition after undo
-			Task test2 = ((_undoData.retrieveTaskList()).front());
+			Task test2 = (_undoData.retrieveTaskList().front());
 			string str2 = "expand vocal range";
 			Assert::AreEqual(str2, test2.getEvent());
 
 			string edit2 = "edit 1 from 12:00 to 15:00 on 17/03/2010";
 			undoIdentifier.Identify(edit2);
 			undoVeriTask.pushCommand(undoIdentifier.GetCommand(), undoIdentifier, undoUI, _undoData);
-			Task test3 = ((_undoData.retrieveTaskList()).front());
+			Task test3 = (_undoData.retrieveTaskList().front());
 			//ensure successful edit
 			string str3 = "20100317";
 			Assert::AreEqual(str3, test3.getDate());
@@ -1246,7 +1244,7 @@ namespace UnitTest2 {
 			undoIdentifier.Identify(undoKeyword);
 			undoVeriTask.pushCommand(undoIdentifier.GetCommand(), undoIdentifier, undoUI, _undoData);
 			//ensure successful post-condition after undo
-			Task test4 = ((_undoData.retrieveTaskList()).front());
+			Task test4 = (_undoData.retrieveTaskList().front());
 			string str4 = "    ";
 			Assert::AreEqual(str4, test4.getStartTime());
 			Assert::AreEqual(str4, test4.getEndTime());
@@ -1256,14 +1254,14 @@ namespace UnitTest2 {
 			string edit3 = "edit 1 by 18/03/2011";
 			undoIdentifier.Identify(edit3);
 			undoVeriTask.pushCommand(undoIdentifier.GetCommand(), undoIdentifier, undoUI, _undoData);
-			Task test5 = ((_undoData.retrieveTaskList()).front());
+			Task test5 = (_undoData.retrieveTaskList().front());
 			//ensure successful edit
 			string str6 = "20110318";
 			Assert::AreEqual(str6, test5.getDate());
 			undoIdentifier.Identify(undoKeyword);
 			undoVeriTask.pushCommand(undoIdentifier.GetCommand(), undoIdentifier, undoUI, _undoData);
 			//ensure successful post-condition after undo
-			Task test6 = ((_undoData.retrieveTaskList()).front());
+			Task test6 = (_undoData.retrieveTaskList().front());
 			Assert::AreEqual(test6.getDate(), str5);
 
 			//test Undo for Delete
@@ -1272,9 +1270,9 @@ namespace UnitTest2 {
 			undoIdentifier.Identify(undoSearchTask);
 			undoVeriTask.pushCommand(undoIdentifier.GetCommand(), undoIdentifier, undoUI, _undoData);
 			//ensure successful search
-			Assert::IsFalse((_undoData.retrieveTaskListToDisplay()).empty());
+			Assert::IsFalse(_undoData.retrieveTaskListToDisplay().empty());
 			//ensure accurate search
-			Task test7 = ((_undoData.retrieveTaskList()).front());
+			Task test7 = (_undoData.retrieveTaskList().front());
 			string undoDel = "expand vocal range";
 			Assert::AreEqual(undoDel, test7.getEvent());
 
@@ -1282,14 +1280,13 @@ namespace UnitTest2 {
 			string testDel2 = "delete 1";
 			undoIdentifier.Identify(testDel2);
 			undoVeriTask.pushCommand(undoIdentifier.GetCommand(), undoIdentifier, undoUI, _undoData);
-
 			//post-condition: task has been deleted
-			Assert::IsTrue((_undoData.retrieveTaskList()).empty()); 
+			Assert::IsTrue(_undoData.retrieveTaskList().empty()); 
 
 			undoIdentifier.Identify(undoKeyword);
 			undoVeriTask.pushCommand(undoIdentifier.GetCommand(), undoIdentifier, undoUI, _undoData);
-			//ensure successful post-condition after undo
-			Task test8 = ((_undoData.retrieveTaskList()).front());
+			//ensure successful post-condition after undo of delete
+			Task test8 = (_undoData.retrieveTaskList().front());
 			Assert::AreEqual(undoDel, test8.getEvent());
 			
 			string MulUndo1 = "add skype friend";
@@ -1339,27 +1336,27 @@ namespace UnitTest2 {
 			string undoKeyword = "undo";
 
 			//precondition: begin with empty data store
-			Assert::IsTrue((_redoData.retrieveTaskList()).empty());  
-			Assert::IsTrue((_redoData.retrieveTaskListToDisplay()).empty()); 
+			Assert::IsTrue(_redoData.retrieveTaskList().empty());  
+			Assert::IsTrue(_redoData.retrieveTaskListToDisplay().empty()); 
 
 			//test redo for Add
 			string redo1 = "add expand vocal range";
 			redoIdentifier.Identify(redo1);
 			redoVeriTask.pushCommand(redoIdentifier.GetCommand(), redoIdentifier, redoUI, _redoData);
 			//ensure successful add
-			Assert::IsFalse((_redoData.retrieveTaskList()).empty());  
+			Assert::IsFalse(_redoData.retrieveTaskList().empty());  
 
 			//undo Add
 			redoIdentifier.Identify(undoKeyword);
 			redoVeriTask.pushCommand(redoIdentifier.GetCommand(), redoIdentifier, redoUI, _redoData);
 			//ensure successful post-condition after undo
-			Assert::IsTrue((_redoData.retrieveTaskList()).empty());  
+			Assert::IsTrue(_redoData.retrieveTaskList().empty());  
 
 			//redo the add
 			redoIdentifier.Identify(redoKeyword);
 			redoVeriTask.pushCommand(redoIdentifier.GetCommand(), redoIdentifier, redoUI, _redoData);
 			//ensure successful add
-			Assert::IsFalse((_redoData.retrieveTaskList()).empty());  
+			Assert::IsFalse(_redoData.retrieveTaskList().empty());  
 
 			//test Undo for Mark
 			//search to retrieve task
@@ -1367,9 +1364,9 @@ namespace UnitTest2 {
 			redoIdentifier.Identify(redoSearch0);
 			redoVeriTask.pushCommand(redoIdentifier.GetCommand(), redoIdentifier, redoUI, _redoData);
 			//ensure successful search
-			Assert::IsFalse((_redoData.retrieveTaskListToDisplay()).empty());
+			Assert::IsFalse(_redoData.retrieveTaskListToDisplay().empty());
 			//ensure accurate search
-			Task redoMarkTask = ((_redoData.retrieveTaskListToDisplay()).front());
+			Task redoMarkTask = (_redoData.retrieveTaskListToDisplay().front());
 			string redoMark1 = "expand vocal range";
 			Assert::AreEqual(redoMarkTask.getEvent(), redoMark1);
 
@@ -1474,6 +1471,7 @@ namespace UnitTest2 {
 			//ensure accurate search
 			Task dateEditTask = ((_redoData.retrieveTaskListToDisplay()).front());
 			Assert::AreEqual(str1, dateEditTask.getEvent());
+
 			//edit of date attribute
 			string edit3 = "edit 1 by 18/03/2011";
 			redoIdentifier.Identify(edit3);
@@ -1482,12 +1480,14 @@ namespace UnitTest2 {
 			//ensure successful single edit
 			string str6 = "20110318";
 			Assert::AreEqual(str6, test5.getDate());
+
 			//undo of single attribute edit
 			redoIdentifier.Identify(undoKeyword);
 			redoVeriTask.pushCommand(redoIdentifier.GetCommand(), redoIdentifier, redoUI, _redoData);
 			//ensure successful post-condition after undo
 			Task test6 = ((_redoData.retrieveTaskList()).front());
 			Assert::AreEqual(str3, test6.getDate());
+
 			//redo of single attribute edit
 			redoIdentifier.Identify(redoKeyword);
 			redoVeriTask.pushCommand(redoIdentifier.GetCommand(), redoIdentifier, redoUI, _redoData);
@@ -1497,7 +1497,7 @@ namespace UnitTest2 {
 			Assert::AreEqual(redoMulEdit2, RedosingleEdit.getEndTime());
 			Assert::AreEqual(str6, RedosingleEdit.getDate());
 
-			//test Undo for Delete
+			//test Redo for Delete
 			//search to retrieve task
 			string redoSearch2 = "search vocal range";
 			redoIdentifier.Identify(redoSearch2);
@@ -1509,12 +1509,6 @@ namespace UnitTest2 {
 			string undoDel = "expand vocal range and strengthen chest voice";
 			Assert::AreEqual(undoDel, test7.getEvent());
 
-			//search to retrieve task
-			string delSearch = "search vocal range";
-			redoIdentifier.Identify(delSearch);
-			redoVeriTask.pushCommand(redoIdentifier.GetCommand(), redoIdentifier, redoUI, _redoData);
-			//ensure successful search
-			Assert::IsFalse((_redoData.retrieveTaskListToDisplay()).empty());
 			//deletion of a single task
 			string testDel2 = "delete 1";
 			redoIdentifier.Identify(testDel2);
@@ -1563,6 +1557,7 @@ namespace UnitTest2 {
 			}
 			Assert::IsTrue(_redoData.retrieveTaskList().empty()); 
 
+			//first redo: delete is undone
 			redoIdentifier.Identify(redoKeyword);
 			redoVeriTask.pushCommand(redoIdentifier.GetCommand(), redoIdentifier, redoUI, _redoData);
 			Assert::IsFalse(_redoData.retrieveTaskList().empty()); 
@@ -1577,6 +1572,7 @@ namespace UnitTest2 {
 			redoIdentifier.Identify(redoKeyword);
 			redoVeriTask.pushCommand(redoIdentifier.GetCommand(), redoIdentifier, redoUI, _redoData);
 			}
+			//post-condition: the empty vector is restored
 			Assert::IsTrue(_redoData.retrieveTaskList().empty()); 
 
 			redoVeriTask.~VeriTask();
