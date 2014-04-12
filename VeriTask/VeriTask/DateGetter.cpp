@@ -73,6 +73,14 @@ string DateGetter::Tokenize(){
 				*uncategorizedInfo = (*uncategorizedInfo).substr(EightUnit);
 			}
 		}
+
+		if (Date == LargeDate && command == Edit){
+			string checker = (*uncategorizedInfo).substr(start, EightUnit);
+			if (isNumber(checker) && checker.size() == EightUnit){
+				Date = checker;
+				*uncategorizedInfo = (*uncategorizedInfo).substr(EightUnit);
+			}
+		}
 	}
 
 	return Date;
