@@ -1,0 +1,30 @@
+﻿Build started 2014/4/11 2:19:46.
+     1>Project "C:\Users\GAO JIACHENG\Desktop\V0.4\VeriTask\VeriTask\VeriTask.vcxproj" on node 2 (Build target(s)).
+     1>Link:
+         C:\Program Files (x86)\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\GAO JIACHENG\Desktop\V0.4\VeriTask\Release\VeriTask.exe" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\GAO JIACHENG\Desktop\V0.4\VeriTask\Release\VeriTask.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\GAO JIACHENG\Desktop\V0.4\VeriTask\Release\VeriTask.lib" /MACHINE:X86 /SAFESEH Release\VeriTask.res
+         Release\AddTask.obj
+         Release\CommandGetter.obj
+         Release\DataStorage.obj
+         Release\DateGetter.obj
+         Release\DeleteTask.obj
+         Release\EditTask.obj
+         Release\EventGetter.obj
+         Release\Identifier.obj
+         Release\KeywordGetter.obj
+         Release\MarkTask.obj
+         Release\TimeGetter.obj
+         Release\StatusGetter.obj
+         Release\TaskDisplayer.obj
+         Release\TaskNumGetter.obj
+         Release\TextUI.obj
+         Release\Tokenizer.obj
+         Release\VeriTask.obj
+         Release\SearchTask.obj
+         Release\Command.obj
+         Release\Task.obj
+     1>LINK : fatal error LNK1561: entry point must be defined
+     1>Done Building Project "C:\Users\GAO JIACHENG\Desktop\V0.4\VeriTask\VeriTask\VeriTask.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.64
