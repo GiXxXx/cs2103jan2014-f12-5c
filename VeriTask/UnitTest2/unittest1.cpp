@@ -1187,12 +1187,12 @@ namespace UnitTest2 {
 			undoVeriTask.doCommand(undoIdentifier.GetCommand(), undoIdentifier, _undoData);
 			//ensure accurate mark
 			string markStatus1 = "done";
-			Task undoMarkTask2 = ((_undoData.retrieveTaskListToDisplay()).front());
+			Task undoMarkTask2 = (_undoData.retrieveTaskListToDisplay().front());
 			Assert::AreEqual(markStatus1, undoMarkTask2.getStatus());
 			undoIdentifier.Identify(undoKeyword);
 			undoVeriTask.doCommand(undoIdentifier.GetCommand(), undoIdentifier, _undoData);
 			//ensure successful post-condition after undo
-			Task undoMarkTask3 = ((_undoData.retrieveTaskListToDisplay()).front());
+			Task undoMarkTask3 = (_undoData.retrieveTaskListToDisplay().front());
 			string markStatus2 = "undone";
 			Assert::AreEqual(markStatus2, undoMarkTask3.getStatus());  
 
