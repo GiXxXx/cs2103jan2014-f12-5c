@@ -13,12 +13,11 @@
 
 #pragma once
 #include <iostream>
+#include <sstream>
+#include <ctime>
+#include <algorithm>
 #include <vector>
 #include <string>
-#include <algorithm>
-#include <string>
-#include <ctime>
-#include <sstream>
 
 using namespace std;
 

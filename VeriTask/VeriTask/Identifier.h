@@ -11,6 +11,7 @@
 */
 
 #pragma once
+#include "assert.h"
 #include "CommandGetter.h"
 #include "DateGetter.h"
 #include "EndTimeGetter.h"
