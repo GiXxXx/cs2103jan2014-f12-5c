@@ -11,7 +11,7 @@ VeriTask::~VeriTask() {
 };
 
 void VeriTask::doCommand(string commandWord, Identifier infoIdentifier, DataStorage& dataStorage) {
-	if ((commandWord != UNDO_COMMAND) || (commandWord != REDO_COMMAND)) {
+	if ((commandWord != UNDO_COMMAND) && (commandWord != REDO_COMMAND)) {
 		_undoList.push_back(dataStorage);
 		
 		//using command pattern
