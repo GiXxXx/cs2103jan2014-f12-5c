@@ -665,7 +665,7 @@ namespace UnitTest2 {
 			IdentifierADT.identify(InputADT4);
 			TaskManager.doCommand(IdentifierADT.getCommand(), IdentifierADT, _TestdataStorage);
 
-			Task test3 = ((_TestdataStorage.retrieveTaskList()).front());
+			Task test3 = ((_TestdataStorage.retrieveTaskList()).back());
 			string str6 = "watch Ghibli";
 			Assert::AreEqual(str6, test3.getEvent());
 
@@ -704,7 +704,7 @@ namespace UnitTest2 {
 			string str3 = "        ";
 			Assert::AreEqual(str3, test1.getDate());
 
-			unsigned long long ID3 = 999999999999900000;
+			unsigned long long ID3 = 9999999999999900000;
 			Assert::AreEqual(ID3, test1.getID());
 		
 			//check that task has been added in correct order, comparing 2 floating tasks
@@ -1126,6 +1126,10 @@ namespace UnitTest2 {
 			TaskManagerDel.doCommand(TestDelIdentifier.getCommand(), TestDelIdentifier, _TestdataStoreDel);
 			//check that task has been added
 			Assert::IsFalse((_TestdataStoreDel.retrieveTaskList()).empty()); 
+
+			string searchCommand = "search complete";
+			TestDelIdentifier.identify(searchCommand);
+			TaskManagerDel.doCommand(TestDelIdentifier.getCommand(), TestDelIdentifier, _TestdataStoreDel);
 
 			//deletion of a single task
 			string testDel2 = "delete 1";
