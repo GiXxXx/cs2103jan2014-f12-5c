@@ -81,7 +81,7 @@ string TimeGetter::getTime(string Input, string keyword) {
 		if (position != string::npos) {
 			tempTime = duplicate.substr(position + keyword.size());
 			sizeOne = tempTime.find_first_of(PUNCTUATION_SET);
-			sizeTwo = tempTime.find_first_of(PUNCTUATION_SET, sizeOne + ONE_UNIT);
+			sizeTwo = tempTime.find_first_of(SPACE, sizeOne + ONE_UNIT);
 
 			checker = tempTime.substr(sizeOne + ONE_UNIT, sizeTwo - sizeOne - ONE_UNIT);
 
