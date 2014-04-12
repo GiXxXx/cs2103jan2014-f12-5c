@@ -1,20 +1,8 @@
-﻿Build started 12/4/2014 5:23:25 PM.
+﻿Build started 12/4/2014 6:13:10 PM.
      1>Project "C:\Users\YuJia\Desktop\NewProject\VeriTask\VeriTask\VeriTask.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt DataStorage.cpp Operation.cpp Task.cpp TaskAdder.cpp TaskDeleter.cpp TaskDisplayer.cpp TaskEditer.cpp TaskMarker.cpp TaskSearcher.cpp VeriTask.cpp
-         DataStorage.cpp
-         Generating Code...
-         Compiling...
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt VeriTask.cpp
          VeriTask.cpp
-         TaskSearcher.cpp
-         TaskMarker.cpp
-         TaskEditer.cpp
-         TaskDisplayer.cpp
-         TaskDeleter.cpp
-         TaskAdder.cpp
-         Task.cpp
-         Operation.cpp
-         Generating Code...
        Lib:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\Lib.exe /OUT:"C:\Users\YuJia\Desktop\NewProject\VeriTask\Debug\VeriTask.lib" /NOLOGO Debug\VeriTask.res
          Debug\TaskAdder.obj
@@ -42,4 +30,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:08.02
+Time Elapsed 00:00:01.54
