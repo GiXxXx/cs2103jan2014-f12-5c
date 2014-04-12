@@ -13,6 +13,7 @@ TimeGetter::~TimeGetter() {
 string TimeGetter::tokenize() {
 	string time = EMPTY_TIME;
 	string tempTime;
+	string save = *_uncategorizedInfo;
 	unsigned int indicator = ZERO;
 
 	if (_command == ADD || _command == EDIT) {
@@ -43,6 +44,11 @@ string TimeGetter::tokenize() {
 
 			indicator++;
 		}
+	}
+
+	if (isNumber(time) && time.size() <= NINE_UNIT
+			&& stoi(time) >= HOUR_ADDER * TWO_UNIT) {
+		*_uncategorizedInfo = save;
 	}
 
 //	if (time == EMPTY_TIME && _command == EDIT) {
@@ -125,14 +131,18 @@ string TimeGetter::getTime(string Input, string keyword) {
 				indicator++;
 			}
 
-			tempTime = convertToTime(tempTime);
+			try {
+				tempTime = convertToTime(tempTime);
+				throw tempTime;
+			} catch (string tempTime) {
+			}
 
 			if (hourStandard == ZERO) {
 				sizeTwo = sizeOne;
 				}
 
 			//convert the thing infront of am, pm to hours. e.g 7 am to 0700
-			if (isNumber(tempTime) && tempTime.size() == FOUR_UNIT && stoi(tempTime) < HOUR_ADDER) {
+			if (isNumber(tempTime) && tempTime.size() == FOUR_UNIT && stoi(tempTime) < HOUR_ADDER * TWO_UNIT) {
 				Time = tempTime;
 
 				if (hourStandard == ONE_UNIT || hourStandard == ZERO) {
@@ -151,7 +161,8 @@ string TimeGetter::getTime(string Input, string keyword) {
 					break;
 				}
 
-				if (hourStandard == TWO_UNIT && stoi(tempTime) < HOUR_ADDER) {
+				if (hourStandard == TWO_UNIT && tempTime.size() <= NINE_UNIT 
+					&& stoi(tempTime) < HOUR_ADDER) {
 					int TimeNumber = std::stoi(tempTime);
 					TimeNumber = HOUR_ADDER + TimeNumber;
 					ostringstream ss;
@@ -280,10 +291,10 @@ string TimeGetter::convertToTime(string tempTime) {
 
 		tempTime = hour + minute;
 	}
-
-	//when only a pure number striung is inputed
-	//convert to time: eg. 8 to 0800
-	if (isNumber(tempTime) && tempTime.size() <= TWO_UNIT && std::stoi(tempTime) <= 12) {
+	
+	//when only a pure number string is inputed. convet to 4 digit
+	if (isNumber(tempTime) && tempTime.size() <= TWO_UNIT
+		&& stoi(tempTime) <= TEN_UNIT + TWO_UNIT) {
 		if (tempTime.size() == ONE_UNIT) {
 			tempTime = ZERO_STRING + tempTime + ZERO_STRING + ZERO_STRING;
 		} else {

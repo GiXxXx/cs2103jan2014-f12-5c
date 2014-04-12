@@ -107,8 +107,8 @@ string Tokenizer::changeWordToNumber(string input) {
 }
 
 void Tokenizer::changeDoubleDigit(string &Number) {
-	if (isNumber(Number)) {
-		if (stoi(Number) < 10 && Number.size() ==ONE_UNIT) {
+	if (isNumber(Number) && Number.size() <= NINE_UNIT) {
+		if (stoi(Number) < TEN_UNIT && Number.size() ==ONE_UNIT) {
 			Number = ZERO_STRING + Number;
 		}
 	}

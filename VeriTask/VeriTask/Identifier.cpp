@@ -13,29 +13,61 @@ Identifier::~Identifier() {
 void Identifier::identify(string userInput) {
 	_index++;
 
-	CommandGetter commandIdentifier(userInput);
-	_command = commandIdentifier.tokenize();
+	try{
+		CommandGetter commandIdentifier(userInput);
+		_command = commandIdentifier.tokenize();
+		throw userInput;
+	} catch (string userInput) {
+	}
 
-	TaskNumGetter taskNumIdentifier(userInput, _command);
-	_taskNum = taskNumIdentifier.tokenize();
+	try{
+		TaskNumGetter taskNumIdentifier(userInput, _command);
+		_taskNum = taskNumIdentifier.tokenize();
+		throw userInput;
+	} catch (string userInput) {
+	}
 
-	DateGetter dateIdentifier(userInput, _command);
-	_date = dateIdentifier.tokenize();
+	try{
+		DateGetter dateIdentifier(userInput, _command);
+		_date = dateIdentifier.tokenize();
+		throw userInput;
+	} catch (string userInput) {
+	}
 
-	TimeGetter startTimeIdentifier(userInput, _command);
-	_startTime = startTimeIdentifier.tokenize();
+	try{
+		TimeGetter startTimeIdentifier(userInput, _command);
+		_startTime = startTimeIdentifier.tokenize();
+		throw userInput;
+	} catch (string userInput) {
+	}
 
-	TimeGetter endTimeIdentifier(userInput, _command);
-	_endTime = endTimeIdentifier.tokenize();
+	try{
+		TimeGetter endTimeIdentifier(userInput, _command);
+		_endTime = endTimeIdentifier.tokenize();
+		throw userInput;
+	} catch (string userInput) {
+	}
 
-	StatusGetter statusIdentifier(userInput, _command);
-	_status = statusIdentifier.tokenize();
+	try{
+		StatusGetter statusIdentifier(userInput, _command);
+		_status = statusIdentifier.tokenize();
+		throw userInput;
+	} catch (string userInput) {
+	}
 
-	KeywordGetter keywordIdentifier(userInput, _command);
-	_keyword = keywordIdentifier.tokenize();
+	try{
+		KeywordGetter keywordIdentifier(userInput, _command);
+		_keyword = keywordIdentifier.tokenize();
+		throw userInput;
+	} catch (string userInput) {
+	}
 
-	EventGetter eventIdentifier(userInput, _command);
-	_event = eventIdentifier.tokenize();
+	try{
+		EventGetter eventIdentifier(userInput, _command);
+		_event = eventIdentifier.tokenize();
+		throw userInput;
+	} catch (string userInput) {
+	}
 	
 	//If In the end, there is no date identified from the user input
 	//when there are a specific time given, make the date returned 

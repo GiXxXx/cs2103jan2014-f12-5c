@@ -46,6 +46,7 @@ const int YEAR_DAYS = 365;
 const int MONTH_DAYS = 31;
 const int YEAR_MONTHS = 11;
 const int TEN_THOUSAND = 10000;
+const int MAX_DATE = 20991231;
 const string NUMBER = "0123456789";
 const string SLASH = "/";
 const string COLON = ":";
